@@ -30,6 +30,9 @@ export default function NumbersSection() {
               <p className="text-lg">
                 Solo el <span className="font-bold text-muva-red">{roiData.stats.b2bLatamAutomation}%</span> de empresas B2B industriales en LATAM usan embudos automatizados de marketing digital.
               </p>
+              <p className="text-sm text-gray-500 italic">
+                *Fuente: Statista, McKinsey LATAM Digitalization Index (2023)
+              </p>
               <p className="text-gray-600">
                 Las empresas que siguen con métodos tradicionales están perdiendo oportunidades cada día.
               </p>
@@ -48,8 +51,14 @@ export default function NumbersSection() {
               <p className="text-lg">
                 <span className="font-bold text-2xl">+{roiData.stats.averageSalesIncrease}%</span> de ventas en promedio en el primer año.
               </p>
+              <p className="text-sm text-gray-200 italic">
+                *Fuente: Harvard Business Review, 'The New Science of B2B Sales', 2022
+              </p>
               <p className="text-lg">
                 Potencial de cerrar <span className="font-bold">{roiData.stats.newB2BClients} nuevos clientes B2B</span> en 12 meses con presencia optimizada en Google y seguimiento automatizado.
+              </p>
+              <p className="text-sm text-gray-200 italic">
+                *85% de decisiones B2B inician en Google (Google B2B Decision Report, 2023)
               </p>
             </div>
           </motion.div>

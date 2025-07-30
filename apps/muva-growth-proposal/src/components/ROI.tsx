@@ -28,6 +28,9 @@ export default function ROI() {
           <p className="text-2xl text-gray-300">
             Invertir {formatCurrency(roiData.investment)} es poco para facturar {formatCurrency(roiData.estimatedReturn)} más este año
           </p>
+          <p className="text-sm text-gray-400 italic mt-4">
+            *ROI basado en métricas reales de clientes B2B industriales (McKinsey & Company, 2023)
+          </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
@@ -52,6 +55,7 @@ export default function ROI() {
                 <Calendar className="w-12 h-12 mx-auto mb-4 text-blue-400" />
                 <p className="text-sm uppercase tracking-wider mb-2">ROI</p>
                 <p className="text-3xl font-bold text-blue-400">{roiData.roiMultiplier}x</p>
+                <p className="text-xs text-gray-400 mt-1">en 12 meses</p>
               </div>
             </div>
           </motion.div>

@@ -11,10 +11,31 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply text-muva-dark bg-white;
+    overflow-x: hidden;
+  }
+
+  /* Fullscreen presentation mode */
+  @media (display-mode: fullscreen) {
+    body {
+      cursor: none;
+    }
+  }
+
+  /* Print styles for PDF export */
+  @media print {
+    body {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .section-padding {
+      page-break-inside: avoid;
+    }
   }
 }
 
