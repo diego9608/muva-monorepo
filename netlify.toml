@@ -1,7 +1,7 @@
 [build]
-  base = "/"
+  base = "apps/muva-growth-proposal"
   command = "npm install && npm run build"
-  publish = "apps/muva-growth-proposal/.next"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
