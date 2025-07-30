@@ -5,7 +5,10 @@ import Hero from '@/components/Hero'
 import NumbersSection from '@/components/NumbersSection'
 import PainPoints from '@/components/PainPoints'
 import Proposal from '@/components/Proposal'
+import StrategyBreakdown from '@/components/StrategyBreakdown'
 import ROI from '@/components/ROI'
+import ROITimeline from '@/components/ROITimeline'
+import Guarantee from '@/components/Guarantee'
 import About from '@/components/About'
 import CTA from '@/components/CTA'
 
@@ -24,7 +27,10 @@ export default function Home() {
       </div>
       <PainPoints />
       <Proposal />
+      <StrategyBreakdown />
       <ROI />
+      <ROITimeline />
+      <Guarantee />
       <About />
       <CTA />
     </main>
