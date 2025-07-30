@@ -1,6 +1,6 @@
 [build]
   base = "/"
-  command = "cd apps/muva-growth-proposal && npm run build"
+  command = "npm install && npm run build"
   publish = "apps/muva-growth-proposal/.next"
 
 [build.environment]
