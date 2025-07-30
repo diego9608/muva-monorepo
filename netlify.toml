@@ -1,0 +1,16 @@
+[build]
+  base = "/"
+  command = "cd apps/muva-growth-proposal && npm run build"
+  publish = "apps/muva-growth-proposal/.next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
