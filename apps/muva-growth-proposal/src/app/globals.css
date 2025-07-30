@@ -66,6 +66,34 @@
     }
   }
 
+  /* Fullscreen specific styles */
+  :fullscreen {
+    background-color: #ffffff;
+  }
+
+  :fullscreen .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  :fullscreen h1 {
+    @apply text-5xl md:text-7xl;
+  }
+
+  :fullscreen h2 {
+    @apply text-4xl md:text-6xl;
+  }
+
+  /* Hide scrollbar in fullscreen */
+  :fullscreen body {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  :fullscreen body::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Print styles for PDF export */
   @media print {
     body {

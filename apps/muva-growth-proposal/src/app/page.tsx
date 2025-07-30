@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import Hero from '@/components/Hero'
+import FullscreenButton from '@/components/FullscreenButton'
 import NumbersSection from '@/components/NumbersSection'
 import LostSalesCalculator from '@/components/LostSalesCalculator'
 import PainPoints from '@/components/PainPoints'
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden">
+      <FullscreenButton />
       <Hero onScrollToNext={scrollToNumbers} />
       <div ref={numbersRef}>
         <NumbersSection />

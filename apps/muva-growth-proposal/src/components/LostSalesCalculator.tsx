@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { AlertTriangle, TrendingDown, Calculator, Clock } from 'lucide-react'
+import { AlertTriangle, TrendingDown, Calculator, Clock, DollarSign } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function LostSalesCalculator() {
