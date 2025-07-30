@@ -5,8 +5,16 @@ import { ArrowDown } from 'lucide-react'
 
 export default function Hero({ onScrollToNext }: { onScrollToNext: () => void }) {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-muva-gray">
-      <div className="container text-center">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/95 to-muva-gray/90" />
+      
+      {/* Animated background shapes */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-20 w-96 h-96 bg-muva-red/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gray-900/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="container text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

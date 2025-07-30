@@ -6,7 +6,8 @@ import { roiData } from '@/data/roi'
 
 export default function NumbersSection() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding relative">
+      <div className="absolute inset-0 bg-pattern-dots opacity-5" />
       <div className="container">
         <motion.h2
           initial={{ opacity: 0 }}

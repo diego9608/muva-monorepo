@@ -14,8 +14,13 @@ export default function ROI() {
   }
 
   return (
-    <section className="section-padding bg-muva-dark text-white">
-      <div className="container">
+    <section className="section-padding bg-muva-dark text-white relative overflow-hidden">
+      {/* Dynamic background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-muva-dark via-gray-900 to-black opacity-90" />
+        <div className="absolute top-0 left-0 w-full h-full bg-pattern-grid opacity-10" />
+      </div>
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
