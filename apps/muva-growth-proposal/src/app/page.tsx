@@ -3,8 +3,10 @@
 import { useRef } from 'react'
 import Hero from '@/components/Hero'
 import NumbersSection from '@/components/NumbersSection'
+import LostSalesCalculator from '@/components/LostSalesCalculator'
 import PainPoints from '@/components/PainPoints'
 import Proposal from '@/components/Proposal'
+import ConversionPotential from '@/components/ConversionPotential'
 import StrategyBreakdown from '@/components/StrategyBreakdown'
 import ROI from '@/components/ROI'
 import ROITimeline from '@/components/ROITimeline'
@@ -25,8 +27,10 @@ export default function Home() {
       <div ref={numbersRef}>
         <NumbersSection />
       </div>
+      <LostSalesCalculator />
       <PainPoints />
       <Proposal />
+      <ConversionPotential />
       <StrategyBreakdown />
       <ROI />
       <ROITimeline />
