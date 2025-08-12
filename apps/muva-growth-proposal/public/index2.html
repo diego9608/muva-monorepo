@@ -1046,29 +1046,80 @@
   <!-- SLIDE NUEVO 1: Potencial fuera de retail -->
   <section class="slide br1" id="tam-b2b" style="background: white; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 3rem 2rem;">
     <style>
-      .br1-wrap{width:min(1200px,100%);display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;align-items:center}
+      /* CSS Variables for circle diameter */
+      .br1 {
+        --circle-d: 300px;
+        --panel-width: 320px;
+      }
+      
+      /* Grid layout */
+      .br1-wrap{width:min(1200px,100%);display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:center}
+      
+      /* Typography */
       .br1-left .caption{font:700 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;letter-spacing:.12em;color:#64748b;text-transform:uppercase;margin:0 0 10px}
-      .br1-left h1{font:800 clamp(36px,5vw,60px)/1.05 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin:0 0 8px;color:var(--dark)}
-      .br1-left .lead{font:400 clamp(16px,2.2vw,22px)/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#475569;margin:0 0 18px}
+      .br1-left h1{font:800 clamp(32px,4.6vw,52px)/1.02 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin:0 0 8px;color:var(--dark);letter-spacing:-0.02em}
+      .br1-left .lead{font:400 clamp(16px,2.2vw,20px)/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#475569;margin:0 0 18px;max-width:52ch}
+      
+      /* Chips */
       .br1-chips{display:flex;gap:8px;flex-wrap:wrap}
       .br1-chip{background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 10px;border-radius:999px;font:600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
-      .br1-circle{position:relative;justify-self:end;width:min(70vh,720px);aspect-ratio:1/1;border-radius:50%;
-        background:radial-gradient(80% 80% at 30% 30%, #f87171, #ef4444);display:flex;align-items:center;justify-content:center;
-        box-shadow:0 30px 80px rgba(239,68,68,.25)}
-      .br1-circle h2{color:#fff;text-align:center;margin:0 10%;font:800 clamp(32px,5vw,56px)/1.05 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
-      .br1-circle small{display:block;color:rgba(255,255,255,.85);font:500 clamp(12px,1.4vw,14px)/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin-top:6px}
-      .br1-panel{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:min(340px,32vw);
-        background:linear-gradient(135deg,#b91c1c,#7f1d1d);color:#fff;padding:18px;border-radius:18px;border:1px solid rgba(0,0,0,.15);
-        box-shadow:0 20px 60px rgba(2,6,23,.35)}
-      .br1-panel h3{margin:0 0 6px;font:700 18px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
-      .br1-panel ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-      .br1-panel li{font:500 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#f8fafc}
-      .br1-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22d3ee;margin-right:8px}
-      .br1-foot{position:absolute;bottom:18px;left:24px;color:#64748b;font:500 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      
+      /* Circle container */
+      .br1-visual{position:relative;justify-self:end;width:100%;max-width:450px}
+      
+      /* Circle - tokenized size with dark wine gradient */
+      .br1-circle{
+        width:var(--circle-d);
+        aspect-ratio:1/1;
+        border-radius:50%;
+        background:radial-gradient(70% 70% at 30% 30%, #722f37, #3c0e0e);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 24px 64px rgba(0,0,0,0.25);
+        border:1px solid rgba(255,255,255,0.06);
+        position:absolute;
+        right:0;
+        top:50%;
+        transform:translateY(-50%);
+        z-index:2;
+      }
+      
+      /* Circle text - smaller for more air */
+      .br1-circle h2{color:#fff;text-align:center;margin:0;padding:0 20px;font:800 clamp(24px,3.5vw,32px)/1.05 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      .br1-circle strong{display:block;font-size:1.4em;margin:4px 0}
+      .br1-circle small{display:block;color:rgba(255,255,255,0.85);font:500 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin-top:4px}
+      
+      /* Panel - darker than circle, with safe reading zone */
+      .br1-panel{
+        position:absolute;
+        right:calc(var(--circle-d) * 0.3);
+        top:50%;
+        transform:translateY(-50%);
+        width:var(--panel-width);
+        background:linear-gradient(135deg,#4a1f24,#2d0a0a);
+        color:#fff;
+        padding:24px;
+        padding-right:max(24px, calc(var(--circle-d) * 0.55));
+        border-radius:18px;
+        border:1px solid rgba(0,0,0,0.2);
+        box-shadow:0 20px 48px rgba(0,0,0,0.22);
+        z-index:1;
+      }
+      
+      .br1-panel h3{margin:0 0 12px;font:700 16px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      .br1-panel ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+      .br1-panel li{font:500 13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#f8fafc}
+      .br1-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22d3ee;margin-right:8px;vertical-align:middle}
+      .br1-foot{position:absolute;bottom:18px;left:24px;color:#64748b;font:500 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      
+      /* Responsive */
       @media(max-width:980px){
-        .br1-wrap{grid-template-columns:1fr}
-        .br1-circle{justify-self:center;width:min(60vh,520px)}
-        .br1-panel{position:static;transform:none;width:100%;margin-top:14px}
+        .br1{--circle-d:260px}
+        .br1-wrap{grid-template-columns:1fr;gap:40px}
+        .br1-visual{max-width:100%;display:flex;flex-direction:column;align-items:center;gap:20px}
+        .br1-circle{position:static;transform:none;margin:0 auto}
+        .br1-panel{position:static;transform:none;width:100%;max-width:400px;margin:0 auto;padding-right:24px}
       }
     </style>
     <div class="br1-wrap">
@@ -1083,8 +1134,7 @@
         </div>
       </div>
 
-      <div class="br1-circle reveal">
-        <h2>TAM fuera de retail<br><strong>0.66–1.43M</strong><br>puertas/año<small>(rango conservador)</small></h2>
+      <div class="br1-visual reveal">
         <div class="br1-panel">
           <h3>¿Dónde está?</h3>
           <ul>
@@ -1093,6 +1143,9 @@
             <li><span class="br1-dot"></span>Desarrolladores: paquetes por prototipo (5–8 puertas)</li>
             <li><span class="br1-dot"></span>Mayoristas regionales: exclusividad x objetivos</li>
           </ul>
+        </div>
+        <div class="br1-circle">
+          <h2>TAM fuera de retail<strong>0.66–1.43M</strong>puertas/año<small>(rango conservador)</small></h2>
         </div>
       </div>
     </div>
