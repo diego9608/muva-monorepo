@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Strategic Growth Plan - Door Manufacturing">
+  <title>Strategic Deck | Puertas Premium</title>
+  
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray: #8e8e93;
+      --light-gray: #f5f5f7;
+      --accent: #0071e3;
+      --green: #00e676;
+      --red: #ff3737;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior: none;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: default;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hide scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Slides */
+    .slide {
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .slide-content {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Typography */
+    .display {
+      font-size: clamp(64px, 10vw, 180px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 40px;
+    }
+
+    .headline {
+      font-size: clamp(48px, 7vw, 120px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 30px;
+    }
+
+    .title {
+      font-size: clamp(32px, 5vw, 72px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .body {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--gray);
+    }
+
+    .caption {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    /* Gradients */
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff 0%, #999999 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-blue {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-green {
+      background: linear-gradient(135deg, #00e676 0%, #00bfa5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Backgrounds */
+    .bg-black { background: var(--black); }
+    .bg-white { 
+      background: var(--white); 
+      color: var(--black);
+    }
+    .bg-white .subtitle,
+    .bg-white .body,
+    .bg-white .caption {
+      color: #666;
+    }
+
+    .bg-gradient-dark {
+      background: radial-gradient(ellipse at top, #1a1a2e 0%, #000000 100%);
+    }
+
+    .bg-gradient-mesh {
+      background: 
+        radial-gradient(at 40% 20%, hsla(28,100%,74%,0.1) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189,100%,56%,0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355,100%,93%,0.1) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(340,100%,76%,0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(224,100%,88%,0.1) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(242,100%,70%,0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343,100%,76%,0.1) 0px, transparent 50%);
+    }
+
+    /* Grid Layouts */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 60px;
+      margin-top: 80px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 48px;
+      margin: 40px 0;
+    }
+
+    .card-white {
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    /* Navigation */
+    .nav-dots {
+      position: fixed;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--white);
+      transform: scale(1.3);
+    }
+
+    .bg-white .dot {
+      background: rgba(0, 0, 0, 0.2);
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .bg-white .dot.active {
+      background: var(--black);
+    }
+
+    /* Progress Bar */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 101;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .animate-in {
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-scale {
+      animation: fadeInScale 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-up {
+      animation: slideUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    [data-delay="1"] { animation-delay: 0.1s; }
+    [data-delay="2"] { animation-delay: 0.2s; }
+    [data-delay="3"] { animation-delay: 0.3s; }
+    [data-delay="4"] { animation-delay: 0.4s; }
+    [data-delay="5"] { animation-delay: 0.5s; }
+
+    /* Charts */
+    .chart-container {
+      margin: 60px 0;
+      height: 400px;
+      position: relative;
+    }
+
+    .bar {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .bar-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bar-fill {
+      width: 100%;
+      background: linear-gradient(180deg, var(--accent) 0%, #0051a2 100%);
+      border-radius: 8px 8px 0 0;
+      transition: height 1.5s ease-out;
+    }
+
+    .bar-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      z-index: 100;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* CTA */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 40px;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 100px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 40px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 113, 227, 0.3);
+    }
+
+    .cta-outline {
+      background: transparent;
+      border: 2px solid var(--white);
+    }
+
+    .cta-outline:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* Arrow */
+    .arrow-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      opacity: 0.5;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide-content {
+        padding: 0 20px;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .nav-dots {
+        right: 20px;
+      }
+
+      .logo {
+        top: 20px;
+        left: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* List */
+    .list {
+      margin: 40px 0;
+    }
+
+    .list-item {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .list-number {
+      font-size: 48px;
+      font-weight: 800;
+      opacity: 0.2;
+      min-width: 60px;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 60px 0;
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 30px 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -41px;
+      top: 40px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--black);
+    }
+
+    .timeline-date {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .timeline-description {
+      font-size: 18px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* Special FX */
+    .glow {
+      text-shadow: 0 0 80px rgba(0, 113, 227, 0.5);
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo">PUERTAS PREMIUM</div>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- SLIDE 1: Opening -->
+  <section class="slide bg-black" data-slide="1">
+    <div class="slide-content">
+      <div class="animate-in">
+        <h1 class="display">
+          Más margen.<br>
+          <span class="gradient-text">Sin tocar precio.</span>
+        </h1>
+        <p class="subtitle animate-in" data-delay="2">
+          Estrategia dual para transformar 40,000 puertas/mes<br>
+          en un negocio de alto margen.
+        </p>
+      </div>
+    </div>
+    <svg class="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+    </svg>
+  </section>
+
+  <!-- SLIDE 2: The Problem -->
+  <section class="slide bg-gradient-dark" data-slide="2">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">EL PROBLEMA</p>
+        <h2 class="headline">
+          <span class="gradient-text">90%</span> concentración.<br>
+          <span class="gradient-text">120</span> días de cobro.<br>
+          <span class="gradient-text">0</span> poder de negociación.
+        </h2>
+        <p class="body animate-in" data-delay="3">
+          Un solo cliente controla tu destino.<br>
+          Es momento de cambiar las reglas del juego.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Market Size -->
+  <section class="slide bg-white" data-slide="3">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">OPORTUNIDAD DE MERCADO</p>
+        <h2 class="display gradient-blue">
+          1.4M
+        </h2>
+        <p class="subtitle">
+          puertas/año fuera de Home Depot
+        </p>
+        <div class="stats-grid animate-in" data-delay="2">
+          <div class="stat-item">
+            <div class="stat-number gradient-green">2,000+</div>
+            <div class="stat-label">Puntos Construrama</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number gradient-green">170K</div>
+            <div class="stat-label">Ferreterías</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number gradient-green">1,000</div>
+            <div class="stat-label">Desarrolladores</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number gradient-green">128K</div>
+            <div class="stat-label">Viviendas nuevas/año</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: Strategy -->
+  <section class="slide bg-black" data-slide="4">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">ESTRATEGIA</p>
+        <h2 class="headline">
+          Dos marcas.<br>
+          <span class="gradient-text">Cero canibalización.</span>
+        </h2>
+      </div>
+      <div class="split animate-in" data-delay="2">
+        <div class="card">
+          <h3 class="title">Marca A</h3>
+          <p class="caption gradient-blue">PREMIUM RETAIL</p>
+          <div class="body">
+            <p>• HDF 5.5mm premium</p>
+            <p>• Garantía 24 meses</p>
+            <p>• Pre-hung disponible</p>
+            <p>• Empaque retail</p>
+            <p>• Margen objetivo: 45-50%</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="title">Marca B</h3>
+          <p class="caption gradient-green">VALOR B2B</p>
+          <div class="body">
+            <p>• MDF 3mm estándar</p>
+            <p>• Kit marco incluido</p>
+            <p>• Entrega 48-72h</p>
+            <p>• Crédito 30-45 días</p>
+            <p>• Volumen: 20,000 uds/mes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: Economics -->
+  <section class="slide bg-gradient-mesh" data-slide="5">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">ECONOMÍA UNITARIA</p>
+        <h2 class="headline">
+          De <span class="gradient-text">$6.8M</span><br>
+          a <span class="gradient-text">$10.2M</span><br>
+          en margen mensual.
+        </h2>
+      </div>
+      
+      <div class="chart-container animate-in" data-delay="2">
+        <div class="bar">
+          <div class="bar-item">
+            <div class="bar-fill" style="height: 60%;" data-height="60"></div>
+            <div class="bar-label">Base<br>$6.8M</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill" style="height: 80%;" data-height="80"></div>
+            <div class="bar-label">+Kit (30%)<br>$9.8M</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-fill" style="height: 100%;" data-height="100"></div>
+            <div class="bar-label">+Prefinish<br>$10.2M</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="body animate-in" data-delay="3" style="text-align: center;">
+        <span class="gradient-text">+50% margen sin tocar precio base de $550</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: Key Metrics -->
+  <section class="slide bg-white" data-slide="6">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">MÉTRICAS CLAVE</p>
+        <h2 class="headline gradient-blue">
+          Lo que garantizamos.
+        </h2>
+      </div>
+      
+      <div class="list animate-in" data-delay="2">
+        <div class="list-item">
+          <span class="list-number">1</span>
+          <span>Reducir dependencia de HD de 90% a 60% en 12 meses</span>
+        </div>
+        <div class="list-item">
+          <span class="list-number">2</span>
+          <span>Attach rate de kits al 30% en 90 días</span>
+        </div>
+        <div class="list-item">
+          <span class="list-number">3</span>
+          <span>Fill rate >97% con entrega 48-72 horas</span>
+        </div>
+        <div class="list-item">
+          <span class="list-number">4</span>
+          <span>Devoluciones <1.5% con control de calidad</span>
+        </div>
+        <div class="list-item">
+          <span class="list-number">5</span>
+          <span>ROI 4.2x en 6 meses</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: 90-Day Plan -->
+  <section class="slide bg-black" data-slide="7">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">PLAN DE EJECUCIÓN</p>
+        <h2 class="headline">
+          90 días para<br>
+          <span class="gradient-text">transformar el negocio.</span>
+        </h2>
+      </div>
+      
+      <div class="timeline animate-in" data-delay="2">
+        <div class="timeline-item">
+          <div class="timeline-date">Días 1-14</div>
+          <div class="timeline-title">Setup & Piloto</div>
+          <div class="timeline-description">
+            Instrumentación de datos, SKU tree, 10 cuentas B2B piloto
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Días 15-45</div>
+          <div class="timeline-title">Expansión Canal B2B</div>
+          <div class="timeline-description">
+            150 cuentas objetivo, logística 48h, programa de crédito
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Días 46-90</div>
+          <div class="timeline-title">Escala & Optimización</div>
+          <div class="timeline-description">
+            Marca A en Sodimac, contratos CANADEVI, 15,000 uds B2B/mes
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Why Now -->
+  <section class="slide bg-gradient-dark" data-slide="8">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">POR QUÉ AHORA</p>
+        <h2 class="display">
+          Monterrey exporta<br>
+          <span class="gradient-text">$124M USD</span><br>
+          en puertas.
+        </h2>
+        <p class="subtitle animate-in" data-delay="2">
+          73% del total nacional.<br>
+          Estás sentado en el hub más importante de México.
+        </p>
+        <p class="body animate-in" data-delay="3">
+          La geografía, la infraestructura y el momento<br>
+          están perfectamente alineados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Investment -->
+  <section class="slide bg-white" data-slide="9">
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">INVERSIÓN</p>
+        <h2 class="headline">
+          <span class="gradient-blue">$150,000</span> setup.<br>
+          <span class="gradient-green">15%</span> success fee.
+        </h2>
+        <p class="subtitle animate-in" data-delay="2">
+          Si no agregamos margen en 14 días, no pagas.
+        </p>
+      </div>
+      
+      <div class="stats-grid animate-in" data-delay="3">
+        <div class="stat-item">
+          <div class="stat-number gradient-green">14</div>
+          <div class="stat-label">Días para ROI</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number gradient-green">4.2x</div>
+          <div class="stat-label">Retorno esperado</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number gradient-green">2.3</div>
+          <div class="stat-label">Meses payback</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number gradient-green">187%</div>
+          <div class="stat-label">TIR anual</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: Closing -->
+  <section class="slide bg-black" data-slide="10">
+    <div class="slide-content" style="text-align: center;">
+      <div class="animate-in">
+        <h1 class="display">
+          "Necesitamos a<br>
+          <span class="gradient-text glow">este chico."</span>
+        </h1>
+        <p class="subtitle animate-in" data-delay="2">
+          Empecemos con el piloto de 14 días.
+        </p>
+        <div class="animate-in" data-delay="3">
+          <a href="#" class="cta" onclick="startPilot()">
+            Iniciar Piloto Ahora
+          </a>
+          <a href="#" class="cta cta-outline" onclick="scheduleCall()">
+            Agendar Llamada
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    // Create navigation dots
+    const navDots = document.getElementById('navDots');
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      if (index === 0) dot.classList.add('active');
+      dot.onclick = () => scrollToSlide(index);
+      navDots.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    // Scroll to slide
+    function scrollToSlide(index) {
+      slides[index].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Update progress and dots
+    function updateProgress() {
+      const scrolled = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrolled / maxScroll) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Update active slide
+      const slideHeight = window.innerHeight;
+      const newSlide = Math.round(scrolled / slideHeight);
+      
+      if (newSlide !== currentSlide) {
+        currentSlide = newSlide;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
+        });
+
+        // Trigger animations for new slide
+        if (slides[currentSlide]) {
+          const elements = slides[currentSlide].querySelectorAll('.animate-in, .animate-scale, .animate-up');
+          elements.forEach(el => {
+            el.style.animationPlayState = 'running';
+          });
+
+          // Animate bars if present
+          const bars = slides[currentSlide].querySelectorAll('.bar-fill');
+          bars.forEach(bar => {
+            const height = bar.dataset.height;
+            setTimeout(() => {
+              bar.style.height = height + '%';
+            }, 100);
+          });
+        }
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        if (currentSlide < totalSlides - 1) {
+          scrollToSlide(currentSlide + 1);
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentSlide > 0) {
+          scrollToSlide(currentSlide - 1);
+        }
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    // Fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Actions
+    function startPilot() {
+      window.location.href = 'https://wa.me/528117881199?text=Quiero%20iniciar%20el%20piloto%20de%2014%20días';
+    }
+
+    function scheduleCall() {
+      window.location.href = 'mailto:ventas@puertaspremium.mx?subject=Agendar%20llamada%20-%20Estrategia%20Puertas';
+    }
+
+    // Arrow click
+    document.querySelectorAll('.arrow-down').forEach(arrow => {
+      arrow.onclick = () => {
+        if (currentSlide < totalSlides - 1) {
+          scrollToSlide(currentSlide + 1);
+        }
+      };
+    });
+
+    // Listen to scroll
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+
+    // Initial setup
+    updateProgress();
+
+    // Reset bar animations
+    document.querySelectorAll('.bar-fill').forEach(bar => {
+      bar.style.height = '0%';
+    });
+
+    // Start animations on load
+    setTimeout(() => {
+      document.querySelectorAll('.slide:first-child .animate-in').forEach(el => {
+        el.style.animationPlayState = 'running';
+      });
+    }, 100);
+
+    // Smooth scroll for Safari
+    document.documentElement.style.scrollBehavior = 'smooth';
+  </script>
+</body>
+</html>
