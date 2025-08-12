@@ -1110,14 +1110,14 @@
 
   <!-- SLIDE 9: TAM Potencial fuera de retail -->
   <section class="slide bg-white" data-slide="9">
-    <div class="slide-content">
-      <div class="animate-in" style="max-width: 500px;">
+    <div class="slide-content" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; max-width: 1400px;">
+      <div class="animate-in" style="max-width: 600px;">
         <p class="caption">POTENCIAL FUERA DE RETAIL</p>
-        <h2 class="headline">
+        <h2 class="headline" style="font-size: clamp(32px, 4.6vw, 52px); line-height: 1.02; letter-spacing: -0.02em;">
           El mercado B2B<br>
           que hoy no tocan
         </h2>
-        <p class="subtitle">
+        <p class="subtitle" style="max-width: 52ch;">
           Ferretería top, concesionarios y desarrolladores concentran el volumen que libera margen sin tocar la hoja base.
         </p>
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px;">
@@ -1134,51 +1134,54 @@
       </div>
       
       <!-- Círculo y panel -->
-      <div style="position: absolute; right: -100px; top: 50%; transform: translateY(-50%); width: 700px; height: 700px;">
+      <div style="position: relative; width: 350px; height: 350px; justify-self: end;">
         <!-- Panel rectangular DETRÁS del círculo -->
-        <div style="position: absolute; right: 180px; top: 50%; transform: translateY(-50%); width: 320px; height: 500px; 
-                    background: linear-gradient(135deg, #b91c1c, #7f1d1d); 
-                    border-radius: 20px; padding: 32px; color: white; z-index: 1;
-                    box-shadow: 0 25px 60px rgba(0,0,0,0.25);">
-          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; margin-top: 240px;">¿Dónde está?</h3>
-          <ul style="list-style: none; padding: 0; display: grid; gap: 14px;">
-            <li style="font-size: 14px; line-height: 1.5;">
-              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22d3ee; margin-right: 10px;"></span>
-              Construrama/redes: top-20% = 400 cuentas ancla
+        <div style="position: absolute; right: 90px; top: 50%; transform: translateY(-50%); 
+                    width: 280px; height: 400px; 
+                    background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); 
+                    border-radius: 20px; padding: 28px; color: white; z-index: 1;
+                    box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; margin-top: 200px;">¿Dónde está?</h3>
+          <ul style="list-style: none; padding: 0; display: grid; gap: 12px;">
+            <li style="font-size: 13px; line-height: 1.5;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 8px;"></span>
+              Construrama: top-20% = 400 cuentas
             </li>
-            <li style="font-size: 14px; line-height: 1.5;">
-              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22d3ee; margin-right: 10px;"></span>
-              Ferretería/tlapalería: top 1–3% por ciudad
+            <li style="font-size: 13px; line-height: 1.5;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 8px;"></span>
+              Ferretería: top 1–3% por ciudad
             </li>
-            <li style="font-size: 14px; line-height: 1.5;">
-              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22d3ee; margin-right: 10px;"></span>
-              Desarrolladores: paquetes por prototipo (5–8 puertas)
+            <li style="font-size: 13px; line-height: 1.5;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 8px;"></span>
+              Desarrolladores: 5–8 puertas/casa
             </li>
-            <li style="font-size: 14px; line-height: 1.5;">
-              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22d3ee; margin-right: 10px;"></span>
-              Mayoristas regionales: exclusividad x objetivos
+            <li style="font-size: 13px; line-height: 1.5;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 8px;"></span>
+              Mayoristas: exclusividad regional
             </li>
           </ul>
         </div>
         
-        <!-- Círculo rojo ENCIMA -->
-        <div style="position: absolute; right: 50px; top: 50%; transform: translateY(-50%); 
-                    width: 500px; height: 500px; border-radius: 50%; 
-                    background: radial-gradient(80% 80% at 30% 30%, #f87171, #ef4444);
+        <!-- Círculo rojo ENCIMA (50% más pequeño) -->
+        <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); 
+                    width: 250px; height: 250px; border-radius: 50%; 
+                    background: radial-gradient(70% 70% at 30% 30%, #b91c1c, #450a0a);
                     display: flex; align-items: center; justify-content: center;
-                    box-shadow: 0 30px 80px rgba(239, 68, 68, 0.3); z-index: 2;">
-          <div style="text-align: center; color: white; padding: 0 60px;">
-            <p style="font-size: 24px; margin-bottom: 10px; opacity: 0.9;">TAM fuera de retail</p>
-            <h2 style="font-size: 64px; font-weight: 800; margin: 10px 0; line-height: 1;">0.66–1.43M</h2>
-            <p style="font-size: 20px; margin-top: 10px;">puertas/año</p>
-            <p style="font-size: 14px; margin-top: 8px; opacity: 0.8;">(rango conservador)</p>
+                    box-shadow: 0 24px 64px rgba(0,0,0,0.25); 
+                    border: 1px solid rgba(255,255,255,0.08);
+                    z-index: 2;">
+          <div style="text-align: center; color: white; padding: 0 30px;">
+            <p style="font-size: 14px; margin-bottom: 8px; opacity: 0.9;">TAM fuera de retail</p>
+            <h2 style="font-size: 36px; font-weight: 800; margin: 8px 0; line-height: 1;">0.66–1.43M</h2>
+            <p style="font-size: 14px; margin-top: 8px;">puertas/año</p>
+            <p style="font-size: 11px; margin-top: 6px; opacity: 0.8;">(rango conservador)</p>
           </div>
         </div>
       </div>
-      
-      <div style="position: absolute; bottom: 30px; left: 40px; font-size: 12px; color: var(--gray); opacity: 0.7;">
-        *Rango basado en vivienda nueva + ferretería top. Ajustable con datos del cliente.
-      </div>
+    </div>
+    
+    <div style="position: absolute; bottom: 20px; left: 40px; font-size: 11px; color: var(--gray); opacity: 0.8;">
+      *Rango basado en vivienda nueva + ferretería top. Ajustable con datos del cliente.
     </div>
   </section>
 
