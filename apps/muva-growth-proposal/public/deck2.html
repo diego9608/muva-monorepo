@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TAM Analysis & Market Capture Strategy">
+  <title>Market Opportunity | Beyond Retail</title>
+  
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray: #8e8e93;
+      --light-gray: #f5f5f7;
+      --dark-gray: #1d1d1f;
+      --accent: #0071e3;
+      --green: #00e676;
+      --purple: #bf5af2;
+      --orange: #ff9f0a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior: none;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hide scrollbar */
+    ::-webkit-scrollbar { display: none; }
+    body { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Slides */
+    .slide {
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+    }
+
+    .slide-content {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Image Containers */
+    .image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    .image-container.active {
+      opacity: 1;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4);
+    }
+
+    .parallax-image {
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      opacity: 0;
+      transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .parallax-image.active {
+      opacity: 0.15;
+      transform: translateY(-50%) translateX(-50px);
+    }
+
+    .parallax-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 40px;
+    }
+
+    /* Typography */
+    .display {
+      font-size: clamp(56px, 9vw, 140px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 32px;
+    }
+
+    .headline {
+      font-size: clamp(40px, 6vw, 96px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .title {
+      font-size: clamp(28px, 4vw, 56px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .body {
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--dark-gray);
+    }
+
+    .caption {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .source {
+      font-size: 11px;
+      color: var(--gray);
+      opacity: 0.6;
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+      font-style: italic;
+    }
+
+    /* Backgrounds */
+    .bg-white { background: var(--white); }
+    .bg-black { 
+      background: var(--black); 
+      color: var(--white);
+    }
+    .bg-black .subtitle,
+    .bg-black .body,
+    .bg-black .caption {
+      color: rgba(255,255,255,0.7);
+    }
+    .bg-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--white);
+    }
+    .bg-gradient .subtitle,
+    .bg-gradient .body {
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Market Segments */
+    .segments-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .segment-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .segment-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .segment-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    .segment-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .segment-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .segment-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .segment-volume {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 16px 0;
+    }
+
+    .segment-details {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray);
+    }
+
+    /* TAM Visualization */
+    .tam-visual {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: center;
+      margin: 60px 0;
+    }
+
+    .tam-circle {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #ff3737 0deg 324deg,
+        #00e676 324deg 360deg
+      );
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .tam-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--white);
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tam-percentage {
+      font-size: 64px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .tam-label {
+      font-size: 14px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Strategy Cards */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .strategy-card {
+      background: linear-gradient(135deg, rgba(0,113,227,0.05), rgba(0,113,227,0));
+      border: 1px solid rgba(0,113,227,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .strategy-number {
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--accent);
+      color: var(--white);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    /* Tools Section */
+    .tools-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .tool-card {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .tool-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 28px;
+    }
+
+    .tool-content h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tool-content p {
+      font-size: 16px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .animate-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
+    .animate-left { animation: slideInLeft 1s ease-out forwards; opacity: 0; }
+    .animate-right { animation: slideInRight 1s ease-out forwards; opacity: 0; }
+    .animate-scale { animation: scaleIn 1s ease-out forwards; opacity: 0; }
+
+    [data-delay="1"] { animation-delay: 0.1s; }
+    [data-delay="2"] { animation-delay: 0.2s; }
+    [data-delay="3"] { animation-delay: 0.3s; }
+    [data-delay="4"] { animation-delay: 0.4s; }
+    [data-delay="5"] { animation-delay: 0.5s; }
+    [data-delay="6"] { animation-delay: 0.6s; }
+
+    /* Navigation */
+    .nav-dots {
+      position: fixed;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.5);
+    }
+
+    /* Progress */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: rgba(0,0,0,0.1);
+      z-index: 101;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* CTA */
+    .cta-container {
+      display: flex;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .cta {
+      padding: 16px 32px;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,113,227,0.3);
+    }
+
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .cta-secondary:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .segments-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .strategy-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tools-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .tam-visual {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .tam-circle {
+        margin: 0 auto;
+      }
+      
+      .parallax-image {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- SLIDE 1: Opening - TAM Overview -->
+  <section class="slide bg-white" data-slide="1">
+    <div class="image-container" data-image="1">
+      <!-- Necesita: Vista aérea de desarrollo habitacional o almacén industrial -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">OPORTUNIDAD DE MERCADO</p>
+        <h1 class="display">
+          1.4 millones<br>
+          de puertas al año
+        </h1>
+        <p class="subtitle animate-in" data-delay="2">
+          Fuera del canal de retail moderno.<br>
+          Un mercado fragmentado esperando consolidación.
+        </p>
+      </div>
+      <div class="source">Fuente: DataMéxico 2024, CANADEVI, INEGI DENUE</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Market Breakdown -->
+  <section class="slide bg-black" data-slide="2">
+    <div class="parallax-image" data-image="2">
+      <!-- Necesita: Interior de ferretería grande o centro de distribución -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-left">
+        <p class="caption">EL MERCADO REAL</p>
+        <h2 class="headline">
+          90% concentración<br>
+          = 10% del potencial
+        </h2>
+      </div>
+      
+      <div class="tam-visual animate-scale" data-delay="2">
+        <div class="tam-circle">
+          <div class="tam-center">
+            <div class="tam-percentage">90%</div>
+            <div class="tam-label">Home Depot</div>
+          </div>
+        </div>
+        <div>
+          <p class="body">
+            Mientras el 90% de tu volumen está atrapado en un solo canal,
+            existe un universo de compradores profesionales sin atender:
+          </p>
+          <ul style="margin-top: 20px; list-style: none;">
+            <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">
+              → 2,000+ puntos de venta Construrama
+            </li>
+            <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">
+              → 170,378 ferreterías y tlapalerías
+            </li>
+            <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">
+              → 1,000 desarrolladores activos
+            </li>
+            <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">
+              → 128,147 viviendas nuevas/año
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="source">Fuente: DENUE INEGI 2024, Construrama México</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Segmentos Detallados -->
+  <section class="slide bg-white" data-slide="3">
+    <div class="image-container" data-image="3">
+      <!-- Necesita: Collage de diferentes tipos de compradores (obra, ferretería, etc) -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">SEGMENTACIÓN ESTRATÉGICA</p>
+        <h2 class="title">
+          Tres segmentos.<br>
+          Tres estrategias.
+        </h2>
+      </div>
+      
+      <div class="segments-container animate-in" data-delay="2">
+        <div class="segment-card">
+          <div class="segment-icon">🏪</div>
+          <h3 class="segment-title">Puntos de Venta</h3>
+          <div class="segment-volume">600K</div>
+          <p class="segment-details">
+            <strong>Quiénes:</strong> Construrama, ferreterías top-tier, mayoristas regionales<br><br>
+            <strong>Volumen:</strong> 20-100 puertas/mes por punto<br><br>
+            <strong>Necesitan:</strong> Crédito 30-45 días, entrega programada, exhibidores
+          </p>
+        </div>
+        
+        <div class="segment-card">
+          <div class="segment-icon">🏗️</div>
+          <h3 class="segment-title">Proyectos Vivienda</h3>
+          <div class="segment-volume">460K</div>
+          <p class="segment-details">
+            <strong>Quiénes:</strong> Desarrolladores CANADEVI, constructoras medianas<br><br>
+            <strong>Volumen:</strong> 500-5,000 puertas/proyecto<br><br>
+            <strong>Necesitan:</strong> Precio por prototipo, stock dedicado, instalación
+          </p>
+        </div>
+        
+        <div class="segment-card">
+          <div class="segment-icon">🏢</div>
+          <h3 class="segment-title">Obra Institucional</h3>
+          <div class="segment-volume">340K</div>
+          <p class="segment-details">
+            <strong>Quiénes:</strong> Hospitales, escuelas, oficinas, gobierno<br><br>
+            <strong>Volumen:</strong> 100-1,000 puertas/obra<br><br>
+            <strong>Necesitan:</strong> Certificaciones, garantías extendidas, facturación
+          </p>
+        </div>
+      </div>
+      <div class="source">Fuente: CANADEVI 2024, RUV Registro Único de Vivienda</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: Cómo Capturar - Puntos de Venta -->
+  <section class="slide bg-gradient" data-slide="4">
+    <div class="parallax-image" data-image="4">
+      <!-- Necesita: Interior de Construrama o ferretería grande mostrando pasillos -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">ESTRATEGIA: PUNTOS DE VENTA</p>
+        <h2 class="headline">
+          2,000 Construrama<br>
+          = 400 cuentas ancla
+        </h2>
+        <p class="subtitle animate-in" data-delay="2">
+          Enfoque en el top 20% que mueve el 80% del volumen
+        </p>
+      </div>
+      
+      <div class="strategy-grid animate-in" data-delay="3">
+        <div class="strategy-card">
+          <div class="strategy-number">1</div>
+          <h4 style="margin-top: 20px; font-size: 18px; font-weight: 700;">Identificar</h4>
+          <p style="font-size: 14px; margin-top: 8px;">
+            Top 100 concesionarios por estado con facturación >$5M anuales
+          </p>
+        </div>
+        
+        <div class="strategy-card">
+          <div class="strategy-number">2</div>
+          <h4 style="margin-top: 20px; font-size: 18px; font-weight: 700;">Ofrecer</h4>
+          <p style="font-size: 14px; margin-top: 8px;">
+            Kit completo + exhibidor + crédito 45 días + capacitación vendedores
+          </p>
+        </div>
+        
+        <div class="strategy-card">
+          <div class="strategy-number">3</div>
+          <h4 style="margin-top: 20px; font-size: 18px; font-weight: 700;">Escalar</h4>
+          <p style="font-size: 14px; margin-top: 8px;">
+            Programa de recompensas por volumen y exclusividad territorial
+          </p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 40px; padding: 24px; background: rgba(255,255,255,0.1); border-radius: 16px;" class="animate-in" data-delay="4">
+        <p style="font-size: 18px; line-height: 1.6;">
+          <strong>Resultado esperado:</strong> 30 puertas/mes promedio × 400 puntos = 
+          <span style="font-size: 28px; font-weight: 800;">12,000 puertas/mes</span>
+        </p>
+      </div>
+      <div class="source">Fuente: Construrama.com, CEMEX México</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: Cómo Capturar - Desarrolladores -->
+  <section class="slide bg-white" data-slide="5">
+    <div class="image-container" data-image="5">
+      <!-- Necesita: Desarrollo habitacional en construcción o casas modelo -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">ESTRATEGIA: DESARROLLADORES</p>
+        <h2 class="headline">
+          128,147 viviendas<br>
+          × 6-8 puertas
+        </h2>
+        <p class="subtitle animate-in" data-delay="2">
+          Cada desarrollo es una orden de 500-5,000 unidades
+        </p>
+      </div>
+      
+      <div class="animate-in" data-delay="3" style="margin: 40px 0;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
+          <div style="padding: 24px; background: #f5f5f7; border-radius: 16px;">
+            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">Vivienda Popular</h3>
+            <p style="font-size: 48px; font-weight: 800; color: var(--accent);">76,888</p>
+            <p style="font-size: 16px; color: var(--gray);">unidades/año</p>
+            <ul style="margin-top: 16px; list-style: none;">
+              <li style="padding: 4px 0;">• 5-6 puertas promedio</li>
+              <li style="padding: 4px 0;">• Precio sensible</li>
+              <li style="padding: 4px 0;">• Volumen alto</li>
+            </ul>
+          </div>
+          
+          <div style="padding: 24px; background: #f5f5f7; border-radius: 16px;">
+            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">Vivienda Media/Residencial</h3>
+            <p style="font-size: 48px; font-weight: 800; color: var(--purple);">51,259</p>
+            <p style="font-size: 16px; color: var(--gray);">unidades/año</p>
+            <ul style="margin-top: 16px; list-style: none;">
+              <li style="padding: 4px 0;">• 7-10 puertas promedio</li>
+              <li style="padding: 4px 0;">• Calidad premium</li>
+              <li style="padding: 4px 0;">• Margen alto</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="animate-in" data-delay="4" style="background: linear-gradient(135deg, rgba(0,113,227,0.05), rgba(0,113,227,0)); padding: 32px; border-radius: 20px; margin-top: 40px;">
+        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px;">Propuesta de Valor para Desarrolladores:</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px;">
+          <div>
+            <strong style="color: var(--accent);">✓ Precio cerrado</strong><br>
+            <span style="font-size: 14px; color: var(--gray);">Por prototipo/etapa</span>
+          </div>
+          <div>
+            <strong style="color: var(--accent);">✓ Stock dedicado</strong><br>
+            <span style="font-size: 14px; color: var(--gray);">Sin quiebres</span>
+          </div>
+          <div>
+            <strong style="color: var(--accent);">✓ Instalación incluida</strong><br>
+            <span style="font-size: 14px; color: var(--gray);">Llave en mano</span>
+          </div>
+        </div>
+      </div>
+      <div class="source">Fuente: RUV 2024, CANADEVI Nacional</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: Nuestras Herramientas -->
+  <section class="slide bg-black" data-slide="6">
+    <div class="parallax-image" data-image="6">
+      <!-- Necesita: Dashboard o pantalla mostrando métricas/CRM -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">CAPACIDADES DIFERENCIALES</p>
+        <h2 class="headline">
+          Las herramientas<br>
+          para capturar el mercado
+        </h2>
+      </div>
+      
+      <div class="tools-container animate-in" data-delay="2">
+        <div class="tool-card">
+          <div class="tool-icon">📊</div>
+          <div class="tool-content">
+            <h4>Data & Analytics</h4>
+            <p>
+              CRM integrado con pipeline tracking, forecast automático 
+              y segmentación por potencial de compra.
+            </p>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <div class="tool-icon">🚚</div>
+          <div class="tool-content">
+            <h4>Logística 48h</h4>
+            <p>
+              Desde Monterrey: cobertura nacional con hubs regionales
+              y entrega garantizada en tiempo.
+            </p>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <div class="tool-icon">🎯</div>
+          <div class="tool-content">
+            <h4>Marketing B2B</h4>
+            <p>
+              Generación de demanda con contenido técnico, calculadoras ROI
+              y casos de éxito documentados.
+            </p>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <div class="tool-icon">💳</div>
+          <div class="tool-content">
+            <h4>Financiamiento</h4>
+            <p>
+              Líneas de crédito pre-aprobadas, factoraje
+              y condiciones flexibles por volumen.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 48px; text-align: center;" class="animate-in" data-delay="3">
+        <p style="font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+          Tecnología + Procesos + Equipo especializado
+        </p>
+        <h3 style="font-size: 32px; font-weight: 700;">
+          = Captura sistemática del TAM
+        </h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Geografía Estratégica -->
+  <section class="slide bg-gradient" data-slide="7">
+    <div class="image-container" data-image="7">
+      <!-- Necesita: Mapa de México o vista de hub logístico/almacén -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">VENTAJA GEOGRÁFICA</p>
+        <h2 class="display">
+          Monterrey:<br>
+          El hub perfecto
+        </h2>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 48px;" class="animate-in" data-delay="2">
+        <div>
+          <h3 style="font-size: 64px; font-weight: 800; margin-bottom: 8px;">73%</h3>
+          <p style="font-size: 18px;">
+            de las exportaciones nacionales<br>
+            salen de Nuevo León
+          </p>
+          <p style="font-size: 14px; margin-top: 12px; opacity: 0.8;">
+            $124M USD anuales en puertas de madera
+          </p>
+        </div>
+        
+        <div>
+          <h3 style="font-size: 64px; font-weight: 800; margin-bottom: 8px;">48h</h3>
+          <p style="font-size: 18px;">
+            cobertura al 80% del país<br>
+            desde centro de distribución
+          </p>
+          <p style="font-size: 14px; margin-top: 12px; opacity: 0.8;">
+            Infraestructura carretera clase A
+          </p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 48px; padding: 32px; background: rgba(255,255,255,0.1); border-radius: 20px;" class="animate-in" data-delay="3">
+        <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 20px;">Ciudades prioritarias (Fase 1):</h3>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+          <div style="text-align: center;">
+            <p style="font-size: 28px; font-weight: 800;">MTY</p>
+            <p style="font-size: 12px;">Hub central</p>
+          </div>
+          <div style="text-align: center;">
+            <p style="font-size: 28px; font-weight: 800;">CDMX</p>
+            <p style="font-size: 12px;">Mayor mercado</p>
+          </div>
+          <div style="text-align: center;">
+            <p style="font-size: 28px; font-weight: 800;">GDL</p>
+            <p style="font-size: 12px;">Hub occidente</p>
+          </div>
+          <div style="text-align: center;">
+            <p style="font-size: 28px; font-weight: 800;">QRO</p>
+            <p style="font-size: 12px;">Boom inmobiliario</p>
+          </div>
+          <div style="text-align: center;">
+            <p style="font-size: 28px; font-weight: 800;">TIJ</p>
+            <p style="font-size: 12px;">Frontera/Export</p>
+          </div>
+        </div>
+      </div>
+      <div class="source">Fuente: DataMéxico, Secretaría de Economía 2024</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Roadmap -->
+  <section class="slide bg-white" data-slide="8">
+    <div class="parallax-image" data-image="8">
+      <!-- Necesita: Equipo trabajando o sala de juntas profesional -->
+    </div>
+    <div class="slide-content">
+      <div class="animate-in">
+        <p class="caption">PLAN DE CAPTURA</p>
+        <h2 class="headline">
+          De 0 a 20,000<br>
+          puertas B2B/mes
+        </h2>
+        <p class="subtitle animate-in" data-delay="2">
+          En 6 meses. Con métricas claras.
+        </p>
+      </div>
+      
+      <div style="margin-top: 48px;" class="animate-in" data-delay="3">
+        <div style="display: grid; gap: 24px;">
+          <div style="display: flex; gap: 24px; align-items: center;">
+            <div style="width: 120px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: var(--accent);">MES 1-2</p>
+            </div>
+            <div style="flex: 1; padding: 20px; background: #f5f5f7; border-radius: 12px;">
+              <strong>Setup & Piloto</strong><br>
+              <span style="color: var(--gray);">10 cuentas ancla, sistema CRM, materiales de venta</span>
+              <span style="float: right; color: var(--accent); font-weight: 700;">500 uds</span>
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 24px; align-items: center;">
+            <div style="width: 120px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: var(--purple);">MES 3-4</p>
+            </div>
+            <div style="flex: 1; padding: 20px; background: #f5f5f7; border-radius: 12px;">
+              <strong>Expansión Regional</strong><br>
+              <span style="color: var(--gray);">50 puntos de venta, 2 desarrolladores</span>
+              <span style="float: right; color: var(--purple); font-weight: 700;">3,000 uds</span>
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 24px; align-items: center;">
+            <div style="width: 120px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: var(--green);">MES 5-6</p>
+            </div>
+            <div style="flex: 1; padding: 20px; background: #f5f5f7; border-radius: 12px;">
+              <strong>Escala Nacional</strong><br>
+              <span style="color: var(--gray);">200 puntos, 5 desarrolladores, 3 mayoristas</span>
+              <span style="float: right; color: var(--green); font-weight: 700;">20,000 uds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 40px; padding: 24px; border: 2px solid var(--accent); border-radius: 16px;" class="animate-in" data-delay="4">
+        <p style="font-size: 18px; line-height: 1.6;">
+          <strong>Inversión requerida:</strong> $2.5M MXN (equipo, inventario, marketing)<br>
+          <strong>Break-even:</strong> Mes 4<br>
+          <strong>ROI proyectado:</strong> 320% año 1
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Call to Action -->
+  <section class="slide bg-black" data-slide="9">
+    <div class="image-container" data-image="9">
+      <!-- Necesita: Imagen aspiracional de éxito/crecimiento -->
+    </div>
+    <div class="slide-content" style="text-align: center;">
+      <div class="animate-scale">
+        <p class="caption">LA DECISIÓN</p>
+        <h1 class="display">
+          1.4 millones<br>
+          de razones<br>
+          para crecer
+        </h1>
+        <p class="subtitle animate-in" data-delay="2">
+          El mercado existe. Las herramientas están listas.<br>
+          Solo falta la decisión.
+        </p>
+        
+        <div class="cta-container animate-in" data-delay="3" style="justify-content: center;">
+          <a href="#" class="cta" onclick="startCapture()">
+            Empezar Captura de Mercado
+          </a>
+          <a href="#" class="cta cta-secondary" onclick="downloadDeck()">
+            Descargar Análisis Completo
+          </a>
+        </div>
+        
+        <div style="margin-top: 60px;" class="animate-in" data-delay="4">
+          <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 16px;">
+            Desarrollado con datos de:
+          </p>
+          <p style="font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.8;">
+            INEGI DENUE 2024 • DataMéxico • CANADEVI • RUV 2024<br>
+            Construrama México • SIICEX • Secretaría de Economía
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    // Create navigation dots
+    const navDots = document.getElementById('navDots');
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      if (index === 0) dot.classList.add('active');
+      dot.onclick = () => scrollToSlide(index);
+      navDots.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    // Scroll to slide
+    function scrollToSlide(index) {
+      slides[index].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Update progress and dots
+    function updateProgress() {
+      const scrolled = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrolled / maxScroll) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Update active slide
+      const slideHeight = window.innerHeight;
+      const newSlide = Math.round(scrolled / slideHeight);
+      
+      if (newSlide !== currentSlide) {
+        currentSlide = newSlide;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
+        });
+
+        // Trigger animations
+        if (slides[currentSlide]) {
+          const elements = slides[currentSlide].querySelectorAll('.animate-in, .animate-left, .animate-right, .animate-scale');
+          elements.forEach(el => {
+            el.style.animationPlayState = 'running';
+          });
+
+          // Activate images
+          const imageContainer = slides[currentSlide].querySelector('.image-container');
+          if (imageContainer) {
+            setTimeout(() => imageContainer.classList.add('active'), 100);
+          }
+
+          const parallaxImage = slides[currentSlide].querySelector('.parallax-image');
+          if (parallaxImage) {
+            setTimeout(() => parallaxImage.classList.add('active'), 200);
+          }
+        }
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        if (currentSlide < totalSlides - 1) {
+          scrollToSlide(currentSlide + 1);
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentSlide > 0) {
+          scrollToSlide(currentSlide - 1);
+        }
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    // Fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Actions
+    function startCapture() {
+      window.location.href = 'mailto:estrategia@tuempresa.mx?subject=Iniciar%20Captura%20de%20Mercado%20B2B';
+    }
+
+    function downloadDeck() {
+      window.location.href = '/deck2.pdf';
+    }
+
+    // Listen to scroll
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+
+    // Initial setup
+    updateProgress();
+
+    // Start animations on load
+    setTimeout(() => {
+      const firstSlideElements = document.querySelectorAll('.slide:first-child .animate-in');
+      firstSlideElements.forEach(el => {
+        el.style.animationPlayState = 'running';
+      });
+    }, 100);
+  </script>
+</body>
+</html>
