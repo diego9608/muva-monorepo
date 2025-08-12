@@ -1134,14 +1134,14 @@
       </div>
       
       <!-- Círculo y panel -->
-      <div style="position: relative; width: 350px; height: 350px; justify-self: end;">
-        <!-- Panel rectangular DETRÁS del círculo -->
-        <div style="position: absolute; right: 90px; top: 50%; transform: translateY(-50%); 
-                    width: 280px; height: 400px; 
+      <div style="position: relative; width: 450px; height: 350px; justify-self: end;">
+        <!-- Panel rectangular al lado derecho más ancho -->
+        <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); 
+                    width: 320px; height: 400px; 
                     background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); 
-                    border-radius: 20px; padding: 28px; color: white; z-index: 1;
+                    border-radius: 20px; padding: 28px; padding-left: 140px; color: white; z-index: 1;
                     box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
-          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; margin-top: 200px;">¿Dónde está?</h3>
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; margin-top: 20px;">¿Dónde está?</h3>
           <ul style="list-style: none; padding: 0; display: grid; gap: 12px;">
             <li style="font-size: 13px; line-height: 1.5;">
               <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 8px;"></span>
@@ -1162,8 +1162,8 @@
           </ul>
         </div>
         
-        <!-- Círculo rojo ENCIMA (50% más pequeño) -->
-        <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); 
+        <!-- Círculo rojo al lado izquierdo (mitad dentro del rectángulo) -->
+        <div style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); 
                     width: 250px; height: 250px; border-radius: 50%; 
                     background: radial-gradient(70% 70% at 30% 30%, #b91c1c, #450a0a);
                     display: flex; align-items: center; justify-content: center;
