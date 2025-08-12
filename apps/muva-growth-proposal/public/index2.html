@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Transformamos puertas de tambor con estrategia de dos marcas: más margen, menos dependencia, mismo precio">
+  <title>Puertas Premium | Estrategia de Crecimiento y Margen</title>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Puertas de Tambor - Estrategia de Crecimiento">
+  <meta property="og:description" content="Elevamos márgenes 50% sin tocar precio base. Diversificación de canales y arquitectura de dos marcas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/favicon.svg">
+  
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --secondary: #10b981;
+      --accent: #8b5cf6;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --muted: #64748b;
+      --card: #ffffff;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+      --radius: 20px;
+      --max-width: 1200px;
+      --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--light);
+      overflow-x: hidden;
+    }
+
+    /* Dynamic Background */
+    .dynamic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+      transition: var(--transition);
+    }
+
+    .gradient-1 {
+      background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+    }
+
+    .gradient-2 {
+      background: radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(251, 146, 60, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+    }
+
+    .gradient-3 {
+      background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 70%),
+                  linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, rgba(241, 245, 249, 0.5) 100%);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      transition: var(--transition);
+    }
+
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Sections */
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .lead {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* Metrics */
+    .metric {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .metric-value {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--dark);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Lists */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 1rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--dark);
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 4px solid var(--light);
+      box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      z-index: 1001;
+      transition: width 0.3s ease;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(15, 23, 42, 0.1);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.75rem;
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: var(--radius);
+      margin-top: 4rem;
+    }
+
+    .cta-section h2 {
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .grid {
+        gap: 1rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+      70% { box-shadow: 0 0 0 20px rgba(14, 165, 233, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Special Effects */
+    .glow {
+      text-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient 3s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Fullscreen Button */
+    .fullscreen-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--dark);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    .fullscreen-btn:hover {
+      background: var(--primary);
+      transform: scale(1.1);
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--dark);
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Dynamic Background -->
+  <div class="dynamic-bg gradient-1" id="dynamicBg"></div>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">PUERTAS PREMIUM</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#estrategia">Estrategia</a></li>
+        <li><a href="#numeros">Números</a></li>
+        <li><a href="#plan">Plan</a></li>
+        <li><a href="#tam-b2b">TAM B2B</a></li>
+        <li><a href="#combos-canal">Combos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="reveal">
+        <h1>Más margen.<br>Menos dependencia.<br><span class="gradient-text">Mismo precio.</span></h1>
+        <p class="lead">
+          Transformamos tu línea de puertas de tambor con una estrategia de dos marcas que 
+          eleva márgenes 50% sin tocar el precio base de $550.
+        </p>
+        <div class="tags">
+          <span class="tag">40,000 unidades/mes</span>
+          <span class="tag">80-90% Home Depot</span>
+          <span class="tag">Margen actual: 30.9%</span>
+          <span class="tag">Meta: 50% margen</span>
+        </div>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#estrategia" class="btn btn-primary">Ver Estrategia Completa</a>
+          <a href="#contacto" class="btn btn-outline">Agendar Presentación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problema Section -->
+  <section id="problema">
+    <div class="container">
+      <div class="reveal">
+        <h2>El costo real de la dependencia</h2>
+        <p class="lead">Con 80-90% del volumen en un solo canal, cada decisión del retailer impacta directamente tu trimestre.</p>
+      </div>
+      
+      <div class="grid grid-4 reveal">
+        <div class="card metric">
+          <div class="metric-value">90%</div>
+          <div class="metric-label">Concentración HD</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-value">120</div>
+          <div class="metric-label">Días de cobro</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-value">2.5%</div>
+          <div class="metric-label">Devoluciones</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-value">$0</div>
+          <div class="metric-label">Poder negociación</div>
+        </div>
+      </div>
+
+      <div class="grid grid-2 reveal" style="margin-top: 3rem;">
+        <div class="card">
+          <h3>Riesgos Actuales</h3>
+          <ul class="feature-list">
+            <li>Presión constante en márgenes por planograma</li>
+            <li>Roturas de stock por mix 70/75/80/90cm</li>
+            <li>Devoluciones por humedad y planitud</li>
+            <li>Cambio de category manager = crisis</li>
+            <li>Sin capacidad de subir precios</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Oportunidades Perdidas</h3>
+          <ul class="feature-list">
+            <li>2,000+ puntos Construrama sin explotar</li>
+            <li>1,000 desarrolladores CANADEVI activos</li>
+            <li>170,000 ferreterías (top 1% = 1,700)</li>
+            <li>Kit completo = +$450 margen/puerta</li>
+            <li>Prefinish = +$150 margen/puerta</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estrategia Section -->
+  <section id="estrategia">
+    <div class="container">
+      <div class="reveal">
+        <h2>Arquitectura de <span class="gradient-text">dos marcas</span></h2>
+        <p class="lead">Premiumizamos en retail y escalamos en B2B sin canibalización.</p>
+      </div>
+
+      <div class="grid grid-2 reveal">
+        <div class="card" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(16, 185, 129, 0.05));">
+          <h3>🏆 Marca A - Premium Retail</h3>
+          <div class="tags">
+            <span class="tag">Home Depot</span>
+            <span class="tag">Sodimac</span>
+            <span class="tag">Proyectos AAA</span>
+          </div>
+          <ul class="feature-list" style="margin-top: 1.5rem;">
+            <li>Caras HDF 5.5mm seleccionadas</li>
+            <li>Honeycomb alta densidad (>120g/m²)</li>
+            <li>Prebarrenado y pre-hung disponible</li>
+            <li>Garantía 24 meses extendida</li>
+            <li>Empaque retail con QR instalación</li>
+            <li>Fill rate 98% con OTIF</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <strong>Margen objetivo: 45-50%</strong>
+          </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));">
+          <h3>💼 Marca B - Valor B2B</h3>
+          <div class="tags">
+            <span class="tag">Construrama</span>
+            <span class="tag">Mayoristas</span>
+            <span class="tag">Desarrolladores</span>
+          </div>
+          <ul class="feature-list" style="margin-top: 1.5rem;">
+            <li>Caras MDF 3mm estándar</li>
+            <li>Kit marco + herrajes incluido</li>
+            <li>Prefinish y primer disponible</li>
+            <li>Entrega 48-72 horas garantizada</li>
+            <li>Crédito 30-45 días</li>
+            <li>Exclusividad territorial</li>
+          </ul>
+          <div style="margin-top: 1.5rem;">
+            <strong>Volumen objetivo: 20,000 uds/mes</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal" style="margin-top: 2rem; text-align: center;">
+        <h3>Fences Anti-Canibalización</h3>
+        <div class="grid grid-3" style="margin-top: 1.5rem;">
+          <div>
+            <strong>SKUs Diferentes</strong>
+            <p style="color: var(--muted); font-size: 0.9rem;">Códigos GTIN únicos por marca</p>
+          </div>
+          <div>
+            <strong>Empaques Distintos</strong>
+            <p style="color: var(--muted); font-size: 0.9rem;">Retail vs Industrial</p>
+          </div>
+          <div>
+            <strong>Política MAPP</strong>
+            <p style="color: var(--muted); font-size: 0.9rem;">Control de precio mínimo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Números Section -->
+  <section id="numeros">
+    <div class="container">
+      <div class="reveal">
+        <h2>La economía que <span class="glow">sí cierra</span></h2>
+        <p class="lead">Sin tocar el precio base, el margen crece con attach de kits y servicios.</p>
+      </div>
+
+      <div class="grid grid-3 reveal">
+        <div class="card">
+          <h3>📊 Escenario Base</h3>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Precio hoja</div>
+            <div style="font-size: 2rem; font-weight: 800;">$550</div>
+          </div>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">COGS</div>
+            <div style="font-size: 2rem; font-weight: 800;">$380</div>
+          </div>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Margen/puerta</div>
+            <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">$170</div>
+          </div>
+          <div style="padding-top: 1rem; border-top: 1px solid rgba(15, 23, 42, 0.1);">
+            <strong>Margen mensual: $6.8M</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🚀 Con Kit (30% attach)</h3>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Precio kit</div>
+            <div style="font-size: 2rem; font-weight: 800;">$450</div>
+          </div>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Margen kit</div>
+            <div style="font-size: 2rem; font-weight: 800;">$250</div>
+          </div>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Impacto mensual</div>
+            <div style="font-size: 2rem; font-weight: 800; color: var(--secondary);">+$3.0M</div>
+          </div>
+          <div style="padding-top: 1rem; border-top: 1px solid rgba(15, 23, 42, 0.1);">
+            <strong>12,000 kits/mes</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>✨ Prefinish (10%)</h3>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Precio servicio</div>
+            <div style="font-size: 2rem; font-weight: 800;">$150</div>
+          </div>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Margen servicio</div>
+            <div style="font-size: 2rem; font-weight: 800;">$100</div>
+          </div>
+          <div style="margin: 1.5rem 0;">
+            <div style="font-size: 0.9rem; color: var(--muted);">Impacto mensual</div>
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">+$0.4M</div>
+          </div>
+          <div style="padding-top: 1rem; border-top: 1px solid rgba(15, 23, 42, 0.1);">
+            <strong>4,000 servicios/mes</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal" style="margin-top: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;">
+        <div style="text-align: center;">
+          <h3 style="color: white;">Resultado Final</h3>
+          <div style="font-size: 3rem; font-weight: 900; margin: 1rem 0;">$10.2M</div>
+          <div style="font-size: 1.2rem;">Margen mensual (+50% vs actual)</div>
+          <div class="tags" style="justify-content: center; margin-top: 1.5rem;">
+            <span class="tag" style="background: rgba(255,255,255,0.2); color: white;">ROI: 4.2x</span>
+            <span class="tag" style="background: rgba(255,255,255,0.2); color: white;">Payback: 2.3 meses</span>
+            <span class="tag" style="background: rgba(255,255,255,0.2); color: white;">TIR: 187%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan Section -->
+  <section id="plan">
+    <div class="container">
+      <div class="reveal">
+        <h2>Plan de <span class="gradient-text">90 días</span></h2>
+        <p class="lead">De "precio gancho" a "margen realizado" en 3 fases.</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card">
+            <h3>📅 Días 1-14: Setup y Piloto</h3>
+            <ul class="feature-list">
+              <li>Instrumentación de datos y price book por canal</li>
+              <li>SKU tree con 6 referencias héroe (70/75/80×213)</li>
+              <li>Fichas técnicas con QR y manual instalación</li>
+              <li>10 cuentas B2B para piloto (5 Construrama, 3 mayoristas, 2 desarrolladores)</li>
+              <li>Test attach kit en 3 ciudades principales</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Inversión: $150k</span>
+              <span class="tag">Team: 3 personas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card">
+            <h3>🚀 Días 15-45: Expansión Canal B2B</h3>
+            <ul class="feature-list">
+              <li>Outreach a 150 cuentas objetivo (top 20% Construrama)</li>
+              <li>Implementación logística 48-72h en 5 ciudades</li>
+              <li>Programa de crédito 30-45 días con garantías</li>
+              <li>Capacitación instaladores y certificación</li>
+              <li>Automatización CRM y seguimiento pipeline</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Meta: 30 cuentas activas</span>
+              <span class="tag">Volumen: 5,000 uds</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card">
+            <h3>📈 Días 46-90: Escala y Optimización</h3>
+            <ul class="feature-list">
+              <li>Acuerdos trimestrales con exclusividad territorial</li>
+              <li>Lanzamiento Marca A en Sodimac (15 tiendas)</li>
+              <li>Programa desarrolladores CANADEVI (contratos prototipo)</li>
+              <li>Sistema forecast y reabasto automático</li>
+              <li>Casos de éxito y material ventas profesional</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Meta: 60 cuentas</span>
+              <span class="tag">Volumen: 15,000 uds B2B</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3 reveal" style="margin-top: 3rem;">
+        <div class="card" style="text-align: center;">
+          <div class="metric-value">14</div>
+          <div class="metric-label">Días para primer ROI</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="metric-value">97%</div>
+          <div class="metric-label">Fill Rate objetivo</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div class="metric-value"><1.5%</div>
+          <div class="metric-label">Devoluciones meta</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAM Section -->
+  <section id="tam" style="background: linear-gradient(180deg, var(--light), white);">
+    <div class="container">
+      <div class="reveal">
+        <h2>TAM: El mercado que <span class="gradient-text">nadie está atacando</span></h2>
+        <p class="lead">1.4 millones de puertas/año fuera de Home Depot esperando mejor servicio.</p>
+      </div>
+
+      <div class="grid grid-2 reveal">
+        <div class="card">
+          <h3>🏗️ Vivienda Nueva (128,147 unidades/año)</h3>
+          <ul class="feature-list">
+            <li>6-8 puertas por vivienda promedio</li>
+            <li>60-80% usa puertas de tambor</li>
+            <li><strong>TAM: 460-820k puertas/año</strong></li>
+            <li>Desarrolladores top: Javer, Vinte, Sadasi</li>
+            <li>Concentración: Nuevo León, Querétaro, Jalisco</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>🏪 Canal Tradicional</h3>
+          <ul class="feature-list">
+            <li>2,000+ puntos Construrama México</li>
+            <li>170,378 ferreterías (top 1% = 1,700)</li>
+            <li>Top 20% Construrama = 400 tiendas</li>
+            <li><strong>TAM: 200-600k puertas/año</strong></li>
+            <li>Ticket promedio 30% mayor que HD</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card reveal" style="margin-top: 2rem;">
+        <h3>📍 Ventaja Geográfica: Monterrey</h3>
+        <div class="grid grid-3" style="margin-top: 1.5rem;">
+          <div>
+            <strong>$124M USD</strong>
+            <p style="color: var(--muted);">Exportaciones NL (73% del total nacional)</p>
+          </div>
+          <div>
+            <strong>Hub Logístico</strong>
+            <p style="color: var(--muted);">Cobertura 48h a 80% del país</p>
+          </div>
+          <div>
+            <strong>Clúster Maderero</strong>
+            <p style="color: var(--muted);">Proveedores y mano de obra especializada</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Garantía Section -->
+  <section id="garantia" style="background: var(--dark); color: white;">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <h2 style="color: white;">Garantía <span class="glow">Sin Riesgo</span></h2>
+        <p class="lead" style="color: rgba(255,255,255,0.8);">
+          Si en 14 días no agregamos margen demostrable, no pagas nada.
+        </p>
+        
+        <div class="grid grid-3" style="margin-top: 3rem;">
+          <div class="card" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+            <h3 style="color: white;">✓ Garantizamos</h3>
+            <ul class="feature-list" style="color: rgba(255,255,255,0.9);">
+              <li style="color: rgba(255,255,255,0.9);">+10pp attach rate de kits</li>
+              <li style="color: rgba(255,255,255,0.9);">Fill rate >97% en 6 SKUs</li>
+              <li style="color: rgba(255,255,255,0.9);">10 cuentas B2B activas</li>
+            </ul>
+          </div>
+          <div class="card" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+            <h3 style="color: white;">📅 En 14 días</h3>
+            <ul class="feature-list" style="color: rgba(255,255,255,0.9);">
+              <li style="color: rgba(255,255,255,0.9);">Dashboard con métricas reales</li>
+              <li style="color: rgba(255,255,255,0.9);">Piloto en 3 ciudades</li>
+              <li style="color: rgba(255,255,255,0.9);">Reporte ejecutivo semanal</li>
+            </ul>
+          </div>
+          <div class="card" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+            <h3 style="color: white;">💰 Inversión</h3>
+            <ul class="feature-list" style="color: rgba(255,255,255,0.9);">
+              <li style="color: rgba(255,255,255,0.9);">Setup: $150,000 MXN</li>
+              <li style="color: rgba(255,255,255,0.9);">Success fee: 15% del margen incremental</li>
+              <li style="color: rgba(255,255,255,0.9);">ROI esperado: 4.2x</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto Section -->
+  <section id="contacto">
+    <div class="container">
+      <div class="reveal">
+        <h2 style="text-align: center;">"Necesitamos a <span class="gradient-text">este chico</span>."</h2>
+        <p class="lead" style="text-align: center;">
+          Empecemos con el piloto de 14 días. Resultados medibles desde la primera semana.
+        </p>
+      </div>
+
+      <div class="grid grid-2 reveal">
+        <div class="card">
+          <h3>📞 Contacto Directo</h3>
+          <div style="margin-top: 2rem;">
+            <a href="https://wa.me/528117881199?text=Quiero%20el%20piloto%20de%2014%20días%20para%20puertas%20de%20tambor" 
+               class="btn btn-primary" style="width: 100%; text-align: center; margin-bottom: 1rem;">
+              💬 WhatsApp Ahora
+            </a>
+            <a href="tel:+528117881199" class="btn btn-secondary" style="width: 100%; text-align: center; margin-bottom: 1rem;">
+              📱 Llamar: (81) 1788-1199
+            </a>
+            <a href="mailto:ventas@puertaspremium.mx" class="btn btn-outline" style="width: 100%; text-align: center;">
+              ✉️ ventas@puertaspremium.mx
+            </a>
+          </div>
+          
+          <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(15, 23, 42, 0.1);">
+            <h4>Checklist para empezar:</h4>
+            <ul class="feature-list">
+              <li>Mix actual por medida (70/75/80/90)</li>
+              <li>Attach rate de kits actual</li>
+              <li>Top 5 ciudades de venta</li>
+              <li>Condiciones comerciales HD</li>
+              <li>Capacidad producción disponible</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Agenda una Presentación</h3>
+          <form name="contact" method="POST" data-netlify="true" style="margin-top: 1.5rem;">
+            <input type="hidden" name="form-name" value="contact">
+            
+            <div class="form-group">
+              <label>Nombre completo</label>
+              <input type="text" name="nombre" required placeholder="Héctor González">
+            </div>
+            
+            <div class="form-group">
+              <label>Empresa</label>
+              <input type="text" name="empresa" required placeholder="Puertas Premium SA de CV">
+            </div>
+            
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" name="telefono" required placeholder="(81) 1234-5678">
+            </div>
+            
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" required placeholder="hector@puertaspremium.mx">
+            </div>
+            
+            <div class="form-group">
+              <label>¿Cuál es su volumen mensual?</label>
+              <textarea name="mensaje" rows="3" placeholder="Ej: 40,000 puertas/mes, 80% Home Depot, buscamos diversificar..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Enviar y Agendar Llamada
+            </button>
+          </form>
+          
+          <p style="text-align: center; margin-top: 1rem; color: var(--muted); font-size: 0.9rem;">
+            Respondemos en menos de 15 minutos en horario laboral
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-section reveal">
+        <h2>¿Listo para multiplicar márgenes?</h2>
+        <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+          Únete a los líderes que ya están transformando la industria de puertas en México.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#hero" class="btn" style="background: white; color: var(--primary);">
+            Ver Presentación Completa
+          </a>
+          <a href="https://wa.me/528117881199" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: 2px solid white;">
+            Iniciar Conversación
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE NUEVO 1: Potencial fuera de retail -->
+  <section class="slide br1" id="tam-b2b" style="background: white; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 3rem 2rem;">
+    <style>
+      .br1-wrap{width:min(1200px,100%);display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;align-items:center}
+      .br1-left .caption{font:700 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;letter-spacing:.12em;color:#64748b;text-transform:uppercase;margin:0 0 10px}
+      .br1-left h1{font:800 clamp(36px,5vw,60px)/1.05 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin:0 0 8px;color:var(--dark)}
+      .br1-left .lead{font:400 clamp(16px,2.2vw,22px)/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#475569;margin:0 0 18px}
+      .br1-chips{display:flex;gap:8px;flex-wrap:wrap}
+      .br1-chip{background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 10px;border-radius:999px;font:600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      .br1-circle{position:relative;justify-self:end;width:min(70vh,720px);aspect-ratio:1/1;border-radius:50%;
+        background:radial-gradient(80% 80% at 30% 30%, #f87171, #ef4444);display:flex;align-items:center;justify-content:center;
+        box-shadow:0 30px 80px rgba(239,68,68,.25)}
+      .br1-circle h2{color:#fff;text-align:center;margin:0 10%;font:800 clamp(32px,5vw,56px)/1.05 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      .br1-circle small{display:block;color:rgba(255,255,255,.85);font:500 clamp(12px,1.4vw,14px)/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin-top:6px}
+      .br1-panel{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:min(340px,32vw);
+        background:linear-gradient(135deg,#b91c1c,#7f1d1d);color:#fff;padding:18px;border-radius:18px;border:1px solid rgba(0,0,0,.15);
+        box-shadow:0 20px 60px rgba(2,6,23,.35)}
+      .br1-panel h3{margin:0 0 6px;font:700 18px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      .br1-panel ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+      .br1-panel li{font:500 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#f8fafc}
+      .br1-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22d3ee;margin-right:8px}
+      .br1-foot{position:absolute;bottom:18px;left:24px;color:#64748b;font:500 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial}
+      @media(max-width:980px){
+        .br1-wrap{grid-template-columns:1fr}
+        .br1-circle{justify-self:center;width:min(60vh,520px)}
+        .br1-panel{position:static;transform:none;width:100%;margin-top:14px}
+      }
+    </style>
+    <div class="br1-wrap">
+      <div class="br1-left reveal">
+        <div class="caption">POTENCIAL FUERA DE RETAIL</div>
+        <h1>El mercado B2B que hoy no tocan</h1>
+        <p class="lead">Ferretería top, concesionarios y desarrolladores concentran el volumen que libera margen sin tocar la hoja base.</p>
+        <div class="br1-chips">
+          <span class="br1-chip">Cuentas objetivo: 30–50 (90 días)</span>
+          <span class="br1-chip">Velocidad: 10 reuniones / 14 días</span>
+          <span class="br1-chip">KPIs: attach kit +10 p.p., prefinish +5 p.p.</span>
+        </div>
+      </div>
+
+      <div class="br1-circle reveal">
+        <h2>TAM fuera de retail<br><strong>0.66–1.43M</strong><br>puertas/año<small>(rango conservador)</small></h2>
+        <div class="br1-panel">
+          <h3>¿Dónde está?</h3>
+          <ul>
+            <li><span class="br1-dot"></span>Construrama/redes: top-20% = 400 cuentas ancla</li>
+            <li><span class="br1-dot"></span>Ferretería/tlapalería: top 1–3% por ciudad</li>
+            <li><span class="br1-dot"></span>Desarrolladores: paquetes por prototipo (5–8 puertas)</li>
+            <li><span class="br1-dot"></span>Mayoristas regionales: exclusividad x objetivos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="br1-foot">*Rango basado en vivienda nueva + ferretería top. Ajustable con datos del cliente.</div>
+  </section>
+
+  <!-- SLIDE NUEVO 2: Combos por canal (con fotos) -->
+  <section class="slide br2" id="combos-canal" style="background: white; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 3rem 2rem;">
+    <style>
+      .br2-wrap{width:min(1200px,100%);display:grid;gap:20px}
+      .br2 .caption{font:700 12px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;letter-spacing:.12em;color:#64748b;text-transform:uppercase}
+      .br2 h1{font:800 clamp(32px,5vw,56px)/1.05 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;margin:6px 0 2px;color:var(--dark)}
+      .br2 .lead{font:400 clamp(16px,2.2vw,20px)/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:#475569;margin:0 0 12px}
+      .br2-grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+      .br2-card{grid-column:span 6;position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(15,23,42,.08);box-shadow:0 16px 40px rgba(2,6,23,.08)}
+      .br2-card img{width:100%;height:240px;object-fit:cover;display:block;filter:saturate(1.05)}
+      .br2-content{padding:16px 16px 18px;background:#fff}
+      .br2-tag{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);
+        padding:6px 10px;border-radius:999px;font:700 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;border:1px solid rgba(0,0,0,.06)}
+      .br2-badge{display:inline-block;font:700 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;padding:6px 10px;border-radius:999px;background:rgba(14,165,233,.12);color:#0369a1;border:1px solid rgba(14,165,233,.25);margin-right:6px;margin-top:6px}
+      .br2-list{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+      .br2-list li{font:400 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;color:var(--dark)}
+      .br2-list li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#10b981;margin-right:8px;vertical-align:middle}
+      @media(max-width:960px){.br2-card{grid-column:span 12}}
+      
+      /* Placeholder images mientras no tengas fotos reales */
+      .br2-placeholder{width:100%;height:240px;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;color:#64748b;font-size:14px;text-align:center;padding:20px}
+    </style>
+
+    <div class="br2-wrap">
+      <div class="reveal">
+        <div class="caption">QUÉ VENDER EN CADA CANAL</div>
+        <h1>Combos que ganan (con ejemplos reales)</h1>
+        <p class="lead">Estrategias específicas por canal para maximizar margen y volumen.</p>
+      </div>
+
+      <div class="br2-grid reveal">
+        <article class="br2-card">
+          <div class="br2-tag">Construrama / Redes</div>
+          <div class="br2-placeholder">
+            <div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <rect x="7" y="7" width="10" height="10" rx="1"/>
+                <path d="M12 7v10M7 12h10"/>
+              </svg>
+              <p>Exhibidor de puertas con kit</p>
+            </div>
+          </div>
+          <div class="br2-content">
+            <span class="br2-badge">SKUs héroe 70/75/80×213</span>
+            <ul class="br2-list">
+              <li>Solo hoja <strong>prebarrenada + precalada</strong></li>
+              <li><strong>KIT</strong> (marco + bisagras + cerradura + tapetas)</li>
+              <li><strong>Pre-hung</strong> opcional para instaladores PRO</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="br2-card">
+          <div class="br2-tag">Ferretería top-tier</div>
+          <div class="br2-placeholder">
+            <div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+              <p>Pasillo de ferretería con puertas</p>
+            </div>
+          </div>
+          <div class="br2-content">
+            <span class="br2-badge">Palet mixto + crédito 30–45 días</span>
+            <ul class="br2-list">
+              <li>Solo hoja <strong>preparada</strong> (prebarrenada/precalada)</li>
+              <li><strong>KIT</strong> para subir ticket</li>
+              <li>Programa de <strong>instaladores</strong> (plantillas y guías)</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="br2-card">
+          <div class="br2-tag">Mayorista regional</div>
+          <div class="br2-placeholder">
+            <div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+              <p>Embalaje reforzado para mayorista</p>
+            </div>
+          </div>
+          <div class="br2-content">
+            <span class="br2-badge">Exclusividad por objetivos</span>
+            <ul class="br2-list">
+              <li><strong>SKU exclusivo</strong> (color/ruteo) + <strong>palet mixto</strong></li>
+              <li><strong>Pre-hung</strong> para proyectos</li>
+              <li>Reposición <strong>48–72 h</strong> por ciudad</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="br2-card">
+          <div class="br2-tag">Desarrolladores (obra)</div>
+          <div class="br2-placeholder">
+            <div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 21h18M3 10h18M3 7l9-5 9 5M8 10v11M16 10v11"/>
+              </svg>
+              <p>Instalación en obra de vivienda</p>
+            </div>
+          </div>
+          <div class="br2-content">
+            <span class="br2-badge">Precio por vivienda (5–8 puertas)</span>
+            <ul class="br2-list">
+              <li><strong>Pre-hung/block</strong> con <strong>primario</strong></li>
+              <li>Opción <strong>pintura blanca</strong> de fábrica</li>
+              <li><strong>Reposición 72 h</strong> por etapa</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="br2-card">
+          <div class="br2-tag">Arquitectos / Interior</div>
+          <div class="br2-placeholder">
+            <div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+              <p>Puerta con acabados premium</p>
+            </div>
+          </div>
+          <div class="br2-content">
+            <span class="br2-badge">Especificación y muestrarios</span>
+            <ul class="br2-list">
+              <li><strong>Foil/HPL</strong> premium y <strong>veneer</strong></li>
+              <li>Ruteados <strong>shaker</strong> / lisa moderna</li>
+              <li>Garantía estética y ficha técnica</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="br2-card">
+          <div class="br2-tag">Instalador PRO</div>
+          <div class="br2-placeholder">
+            <div>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+              <p>Plantillas para instalación</p>
+            </div>
+          </div>
+          <div class="br2-content">
+            <span class="br2-badge">Capacitación + plantillas</span>
+            <ul class="br2-list">
+              <li>Guías de <strong>precalado</strong> y <strong>barrenado</strong></li>
+              <li>Checklist de recepción de lote</li>
+              <li>Soporte técnico y videos QR</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding: 2rem; text-align: center; background: var(--light); border-top: 1px solid rgba(15, 23, 42, 0.1);">
+    <p style="color: var(--muted); font-size: 0.9rem;">
+      © 2025 Estrategia de Crecimiento - Puertas de Tambor México<br>
+      Desarrollado con datos de mercado y análisis competitivo profundo
+    </p>
+  </footer>
+
+  <!-- Fullscreen Button -->
+  <button class="fullscreen-btn" id="fullscreenBtn" title="Pantalla completa">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+    </svg>
+  </button>
+
+  <script>
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // Reveal on Scroll
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+    // Dynamic Background Change
+    const sections = document.querySelectorAll('section');
+    const backgrounds = ['gradient-1', 'gradient-2', 'gradient-3'];
+    let currentBg = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const currentSection = Math.floor(scrollPosition / windowHeight);
+      
+      if (currentSection !== currentBg) {
+        currentBg = currentSection;
+        const bg = document.getElementById('dynamicBg');
+        bg.className = 'dynamic-bg ' + backgrounds[currentBg % backgrounds.length];
+      }
+    });
+
+    // Smooth Scroll for Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Fullscreen Toggle
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    menuToggle?.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'white';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.padding = '2rem';
+      navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+    });
+
+    // Animate Numbers on Scroll
+    function animateValue(element, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Trigger number animations when visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.classList.contains('metric-value')) {
+          const value = parseInt(entry.target.innerText);
+          if (!isNaN(value)) {
+            animateValue(entry.target, 0, value, 2000);
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('.metric-value').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Form Validation
+    const form = document.querySelector('form[name="contact"]');
+    form?.addEventListener('submit', (e) => {
+      const inputs = form.querySelectorAll('input[required], textarea[required]');
+      let valid = true;
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          valid = false;
+          input.style.borderColor = 'red';
+        } else {
+          input.style.borderColor = '';
+        }
+      });
+      
+      if (!valid) {
+        e.preventDefault();
+        alert('Por favor complete todos los campos requeridos');
+      }
+    });
+
+    // Add floating animation to cards on hover
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.animation = 'float 3s ease-in-out infinite';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.animation = '';
+      });
+    });
+  </script>
+</body>
+</html>
