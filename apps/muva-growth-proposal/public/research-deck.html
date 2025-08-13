@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Investigación de la industria de puertas en México, US y LATAM - Datos, pronósticos y análisis de mercado">
+  <title>Industria de Puertas MX·US·LATAM | Research Deck 2025</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f172a;
+      --secondary: #475569;
+      --accent: #0ea5e9;
+      --accent-mexico: #dc2626;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --muted: #94a3b8;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--light);
+      color: var(--primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Navigation Dots */
+    .nav-dots {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--white);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+
+    .nav-dot:hover::after {
+      content: attr(data-title);
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: var(--white);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* Sections */
+    .section {
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--secondary);
+      margin-bottom: 2rem;
+    }
+
+    .caption {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      background: var(--warning);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    .badge-seed {
+      background: var(--warning);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* Grid Layouts */
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* Footnotes */
+    .footnote {
+      position: relative;
+      cursor: help;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--accent);
+    }
+
+    .footnote:hover::after {
+      content: attr(data-note);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 400;
+      white-space: nowrap;
+      z-index: 10;
+      margin-bottom: 0.25rem;
+    }
+
+    .footnote:hover::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--primary);
+      margin-bottom: -5px;
+    }
+
+    /* Stats */
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Bullets */
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bullet-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .bullet-content {
+      flex: 1;
+    }
+
+    .bullet-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .bullet-text {
+      color: var(--secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: var(--light);
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      color: var(--secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Takeaway Box */
+    .takeaway {
+      background: linear-gradient(135deg, var(--accent), #0284c7);
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .takeaway::before {
+      content: '💡';
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--white);
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 1.25rem;
+    }
+
+    .takeaway-text {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    /* Charts Placeholder */
+    .chart-container {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-dots {
+        right: 1rem;
+      }
+
+      .section {
+        padding: 3rem 1rem;
+      }
+
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Glossary Tooltips */
+    .term {
+      border-bottom: 1px dotted var(--secondary);
+      cursor: help;
+      position: relative;
+    }
+
+    .term:hover::after {
+      content: attr(data-definition);
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      white-space: normal;
+      width: 250px;
+      z-index: 10;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid var(--border);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Navigation Dots -->
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- SECTION 1: Portada -->
+  <section class="section" id="portada">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="badge badge-seed">
+          <span class="loading"></span>
+          <span>SEED DATA — Reemplazable por dataset auditado</span>
+        </div>
+        <h1 style="margin-top: 2rem;">
+          Industria de Puertas<br>
+          <span style="color: var(--accent);">(foco tambor)</span>
+        </h1>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin: 2rem 0;">
+          <span style="padding: 0.5rem 1rem; background: var(--accent-mexico); color: white; border-radius: 8px; font-weight: 600;">MX</span>
+          <span style="padding: 0.5rem 1rem; background: var(--accent); color: white; border-radius: 8px; font-weight: 600;">US</span>
+          <span style="padding: 0.5rem 1rem; background: var(--success); color: white; border-radius: 8px; font-weight: 600;">LATAM</span>
+        </div>
+        <p class="subtitle">
+          Investigación, Datos y Pronósticos<br>
+          <strong>Edición 2025</strong>
+        </p>
+        <p style="color: var(--muted); font-size: 0.875rem; margin-top: 3rem;">
+          Documento preparado para: COO/Operaciones, Directores Comerciales,<br>
+          Category Managers, Mayoristas y Desarrolladores
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Resumen Ejecutivo -->
+  <section class="section" id="resumen">
+    <div class="container">
+      <div class="caption">RESUMEN EJECUTIVO</div>
+      <h2>6 conclusiones clave del mercado</h2>
+      <p class="subtitle">Cifras ancla y drivers principales de la industria</p>
+
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <div class="bullet-icon">1</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              TAM México: <span class="footnote" data-note="Seed v0: estimación preliminar">USD $2.2B</span> (2024)
+            </div>
+            <div class="bullet-text">
+              Mercado total de puertas con proyección a USD $3.6B para 2033, impulsado por vivienda nueva y reposición
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item">
+          <div class="bullet-icon">2</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              CAGR: <span class="footnote" data-note="Seed v0: tasa base estimada">5.65%</span> anual
+            </div>
+            <div class="bullet-text">
+              Crecimiento sostenido por demanda de vivienda nueva (128K unidades/año) y ciclos de reposición
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item">
+          <div class="bullet-icon">3</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              El volumen está fuera del retail: <span class="footnote" data-note="42% ferretería + 38% constructoras">80%</span> B2B
+            </div>
+            <div class="bullet-text">
+              Ferretería/redes (42%) y constructoras (38%) concentran el grueso del mercado vs retail moderno (12%)
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item">
+          <div class="bullet-icon">4</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Demanda base: <span class="footnote" data-note="128K viviendas × 6-8 puertas">0.77-1.03M</span> puertas nuevas/año
+            </div>
+            <div class="bullet-text">
+              Vivienda nueva genera demanda predecible de 6-8 puertas interiores por unidad habitacional
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item">
+          <div class="bullet-icon">5</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Palanca de margen: Kit <span class="footnote" data-note="Attach rate actual 22%">+$300</span> / Pre-hung <span class="footnote" data-note="Attach rate actual 8%">+$450</span>
+            </div>
+            <div class="bullet-text">
+              Mover attach rate 10-15 pp vale más que reducir costos 2-3%. El margen está en el mix, no en el costo base
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item">
+          <div class="bullet-icon">6</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Oportunidad B2B: <span class="footnote" data-note="Fuera de Home Depot/Sodimac">1.4M puertas/año</span>
+            </div>
+            <div class="bullet-text">
+              Potencial sin explotar en Construrama (2,000+ puntos), ferreterías top (170K) y desarrolladores directos
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="takeaway">
+        <p class="takeaway-text">
+          El mercado mexicano de puertas está fragmentado y dominado por canales B2B tradicionales. 
+          La oportunidad está en capturar share con mejor servicio y attach de productos de valor agregado, 
+          no en guerra de precios.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Definiciones & Taxonomía -->
+  <section class="section" id="definiciones">
+    <div class="container">
+      <div class="caption">DEFINICIONES & TAXONOMÍA</div>
+      <h2>¿De qué productos hablamos exactamente?</h2>
+      <p class="subtitle">Glosario técnico y clasificación de productos</p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3 style="color: var(--accent);">Tipos de Puerta</h3>
+          <dl>
+            <dt style="font-weight: 600; margin-top: 1rem;">
+              <span class="term" data-definition="Hoja hueca con núcleo tipo panal de cartón o honeycomb. Económica y ligera, ideal para interiores.">Puerta de Tambor</span>
+            </dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              Núcleo hueco (honeycomb), caras de MDF 3mm, peso 12-18 kg
+            </dd>
+
+            <dt style="font-weight: 600; margin-top: 1rem;">
+              <span class="term" data-definition="Núcleo de aglomerado o MDF con espacios. Más pesada y resistente que tambor.">Puerta Semi-sólida</span>
+            </dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              Núcleo parcial, caras MDF 5mm, peso 25-35 kg
+            </dd>
+
+            <dt style="font-weight: 600; margin-top: 1rem;">
+              <span class="term" data-definition="Madera maciza o MDF completo. Premium, pesada, aislamiento acústico.">Puerta Sólida</span>
+            </dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              Núcleo completo, peso 40+ kg, uso exterior/premium
+            </dd>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3 style="color: var(--success);">Formatos de Venta</h3>
+          <dl>
+            <dt style="font-weight: 600; margin-top: 1rem;">
+              <span class="term" data-definition="Solo la hoja de la puerta, sin marco ni herrajes">Solo Hoja</span>
+            </dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              Precio base: $550 MXN (seed)
+            </dd>
+
+            <dt style="font-weight: 600; margin-top: 1rem;">
+              <span class="term" data-definition="Hoja + marco + bisagras + chapa/manija en paquete">Kit</span>
+            </dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              Uplift: +$300 MXN, attach rate 22% (seed)
+            </dd>
+
+            <dt style="font-weight: 600; margin-top: 1rem;">
+              <span class="term" data-definition="Puerta pre-instalada en marco, lista para montar en vano">Pre-hung / Block</span>
+            </dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              Uplift: +$450 MXN, attach rate 8% (seed)
+            </dd>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3 style="color: var(--warning);">Acabados & Partes</h3>
+          <dl>
+            <dt style="font-weight: 600; margin-top: 1rem;">Acabados:</dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              • <span class="term" data-definition="Lámina decorativa termoadhesiva, imitación madera/color">Foil</span><br>
+              • <span class="term" data-definition="Laminado de alta presión, resistente y duradero">HPL</span><br>
+              • <span class="term" data-definition="Chapa de madera natural, acabado premium">Veneer</span>
+            </dd>
+
+            <dt style="font-weight: 600; margin-top: 1rem;">Componentes:</dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              • <span class="term" data-definition="Marco vertical donde se instala la puerta">Jamba</span><br>
+              • <span class="term" data-definition="Herraje que permite el giro de la puerta">Bisagra</span><br>
+              • <span class="term" data-definition="Moldura que cubre la unión marco-pared">Tapeta</span><br>
+              • <span class="term" data-definition="Hueco en la pared donde se instala la puerta">Vano</span>
+            </dd>
+
+            <dt style="font-weight: 600; margin-top: 1rem;">Preparaciones:</dt>
+            <dd style="color: var(--secondary); font-size: 0.875rem; margin: 0.5rem 0;">
+              • <span class="term" data-definition="Con perforaciones para bisagras y cerradura">Pre-barrenada</span><br>
+              • <span class="term" data-definition="Con cajas/rebajes para bisagras y cerradura">Pre-calada</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <p class="takeaway-text">
+          La puerta de tambor domina el mercado mexicano por su relación precio-funcionalidad. 
+          El valor agregado está en la preparación (pre-hung) y los kits completos, no en el tipo de núcleo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Demanda México -->
+  <section class="section" id="demanda">
+    <div class="container">
+      <div class="caption">DEMANDA MÉXICO</div>
+      <h2>¿De dónde sale el volumen base?</h2>
+      <p class="subtitle">Vivienda nueva + Reposición = Demanda total</p>
+
+      <div class="grid grid-2">
+        <div>
+          <h3>Componentes de la demanda</h3>
+          
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <h4 style="color: var(--accent); margin-bottom: 1rem;">Vivienda Nueva</h4>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Unidades nuevas/año:</span>
+              <strong><span class="footnote" data-note="Seed v0: RUV/CANADEVI preliminar">128,147</span></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Puertas por vivienda:</span>
+              <strong>6-8</strong>
+            </div>
+            <div style="border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.5rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">Demanda nueva:</span>
+                <strong style="color: var(--accent);">0.77-1.03M puertas</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 style="color: var(--success); margin-bottom: 1rem;">Reposición</h4>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Parque habitacional:</span>
+              <strong>~35M viviendas</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Tasa reposición anual:</span>
+              <strong>1.5-2.5%</strong>
+            </div>
+            <div style="border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.5rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">Demanda reposición:</span>
+                <strong style="color: var(--success);"><span class="footnote" data-note="Seed v0: estimación conservadora">0.55-0.85M</span> puertas</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Cascada de demanda total</h3>
+          <div class="chart-container">
+            <svg viewBox="0 0 400 300" style="width: 100%; max-width: 400px;">
+              <!-- Cascada simplificada -->
+              <rect x="50" y="200" width="80" height="80" fill="#0ea5e9" opacity="0.8"/>
+              <text x="90" y="195" text-anchor="middle" font-size="12" font-weight="600">Nueva</text>
+              <text x="90" y="245" text-anchor="middle" font-size="14" fill="white" font-weight="700">0.9M</text>
+              
+              <rect x="150" y="160" width="80" height="120" fill="#10b981" opacity="0.8"/>
+              <text x="190" y="155" text-anchor="middle" font-size="12" font-weight="600">Reposición</text>
+              <text x="190" y="225" text-anchor="middle" font-size="14" fill="white" font-weight="700">0.7M</text>
+              
+              <rect x="250" y="100" width="100" height="180" fill="#dc2626" opacity="0.9"/>
+              <text x="300" y="95" text-anchor="middle" font-size="12" font-weight="600">Total</text>
+              <text x="300" y="195" text-anchor="middle" font-size="18" fill="white" font-weight="700">1.6M</text>
+              
+              <!-- Conectores -->
+              <path d="M130 240 L150 220" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+              <path d="M230 220 L250 190" stroke="#333" stroke-width="2" stroke-dasharray="5,5"/>
+            </svg>
+            <div style="margin-top: 2rem; text-align: center;">
+              <p class="caption">DEMANDA ANUAL TOTAL (UNIDADES)</p>
+              <p style="font-size: 2rem; font-weight: 800; color: var(--accent-mexico);">
+                1.32 - 1.88M
+              </p>
+              <p style="color: var(--secondary); font-size: 0.875rem;">
+                Rango conservador <span class="footnote" data-note="Seed data v0">seed</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <p class="takeaway-text">
+          La demanda no depende solo de obra nueva; la reposición sostiene el piso del mercado. 
+          Con ~1.6M puertas/año promedio, el mercado mexicano ofrece volumen estable incluso en ciclos bajos de construcción.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: Split por Canal -->
+  <section class="section" id="canal">
+    <div class="container">
+      <div class="caption">SPLIT POR CANAL (MÉXICO)</div>
+      <h2>¿Quién vende cuánto?</h2>
+      <p class="subtitle">Distribución del volumen por canal de venta</p>
+
+      <div class="grid grid-2" style="align-items: start;">
+        <div>
+          <h3>Participación de mercado</h3>
+          <div class="chart-container" style="min-height: 350px;">
+            <svg viewBox="0 0 300 300" style="width: 100%; max-width: 300px;">
+              <!-- Donut Chart simplificado -->
+              <g transform="translate(150,150)">
+                <!-- Ferretería/Redes: 42% -->
+                <path d="M 0,-100 A 100,100 0 0,1 95,31 L 47,15 A 50,50 0 0,0 0,-50 Z" 
+                      fill="#10b981" opacity="0.9"/>
+                <text x="40" y="-60" font-size="14" font-weight="600" fill="white">42%</text>
+                
+                <!-- Constructoras: 38% -->
+                <path d="M 95,31 A 100,100 0 0,1 -59,81 L -29,40 A 50,50 0 0,0 47,15 Z" 
+                      fill="#0ea5e9" opacity="0.9"/>
+                <text x="60" y="60" font-size="14" font-weight="600" fill="white">38%</text>
+                
+                <!-- Retail moderno: 12% -->
+                <path d="M -59,81 A 100,100 0 0,1 -95,-31 L -47,-15 A 50,50 0 0,0 -29,40 Z" 
+                      fill="#f59e0b" opacity="0.9"/>
+                <text x="-70" y="50" font-size="14" font-weight="600" fill="white">12%</text>
+                
+                <!-- Institucional: 8% -->
+                <path d="M -95,-31 A 100,100 0 0,1 0,-100 L 0,-50 A 50,50 0 0,0 -47,-15 Z" 
+                      fill="#8b5cf6" opacity="0.9"/>
+                <text x="-50" y="-40" font-size="14" font-weight="600" fill="white">8%</text>
+                
+                <!-- Centro -->
+                <circle r="50" fill="white"/>
+                <text y="5" text-anchor="middle" font-size="12" font-weight="600" fill="#333">VOLUMEN</text>
+              </g>
+            </svg>
+            
+            <!-- Leyenda -->
+            <div style="margin-top: 1.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="width: 12px; height: 12px; background: #10b981; border-radius: 2px;"></span>
+                <span style="font-size: 0.875rem;">Ferretería/Redes: <strong>42%</strong> (38-45%)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="width: 12px; height: 12px; background: #0ea5e9; border-radius: 2px;"></span>
+                <span style="font-size: 0.875rem;">Constructoras: <strong>38%</strong> (35-40%)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span style="width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span>
+                <span style="font-size: 0.875rem;">Retail moderno: <strong>12%</strong> (10-15%)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 12px; height: 12px; background: #8b5cf6; border-radius: 2px;"></span>
+                <span style="font-size: 0.875rem;">Institucional: <strong>8%</strong> (5-10%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Características por canal</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Canal</th>
+                  <th>Drivers</th>
+                  <th>SLA típico</th>
+                  <th>Riesgos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong style="color: #10b981;">Ferretería/Redes</strong></td>
+                  <td>Capilaridad, crédito</td>
+                  <td>48-72h</td>
+                  <td>Fragmentación</td>
+                </tr>
+                <tr>
+                  <td><strong style="color: #0ea5e9;">Constructoras</strong></td>
+                  <td>Volumen, contratos</td>
+                  <td>Por etapa</td>
+                  <td>Concentración</td>
+                </tr>
+                <tr>
+                  <td><strong style="color: #f59e0b;">Retail moderno</strong></td>
+                  <td>Tráfico, marca</td>
+                  <td>Inmediato</td>
+                  <td>Márgenes bajos</td>
+                </tr>
+                <tr>
+                  <td><strong style="color: #8b5cf6;">Institucional</strong></td>
+                  <td>Especificación</td>
+                  <td>30-60 días</td>
+                  <td>Ciclos largos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card" style="margin-top: 1.5rem; background: var(--light);">
+            <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Contexto de mercado</h4>
+            <ul style="list-style: none; padding: 0; color: var(--secondary); font-size: 0.875rem;">
+              <li style="margin-bottom: 0.5rem;">
+                • Home Depot: ~139 tiendas <span class="footnote" data-note="Seed v0">*</span>
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                • Sodimac: 14-15 tiendas
+              </li>
+              <li style="margin-bottom: 0.5rem;">
+                • Construrama: 2,000+ puntos
+              </li>
+              <li>
+                • Ferreterías: ~170,378 <span class="footnote" data-note="INEGI/DENUE preliminar">*</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <p class="takeaway-text">
+          El volumen real vive en ferretería/redes (42%) y proyectos (38%). 
+          El retail moderno es visible pero no dominante (12%). 
+          La estrategia ganadora pasa por capturar el B2B fragmentado con mejor servicio.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: Mapa de Jugadores -->
+  <section class="section" id="jugadores">
+    <div class="container">
+      <div class="caption">MAPA DE JUGADORES</div>
+      <h2>¿Quiénes son y qué poder tienen?</h2>
+      <p class="subtitle">Análisis de la cadena de valor: oferta y demanda</p>
+
+      <div class="grid grid-4">
+        <!-- Fabricantes -->
+        <div class="card">
+          <h3 style="color: var(--accent); font-size: 1.25rem;">Fabricantes</h3>
+          <div style="margin: 1rem 0;">
+            <div class="badge" style="background: var(--primary); margin-bottom: 0.5rem; font-size: 0.75rem;">
+              GLOBALES
+            </div>
+            <ul style="list-style: none; padding: 0; font-size: 0.875rem; color: var(--secondary);">
+              <li>• Masonite</li>
+              <li>• JELD-WEN</li>
+              <li>• Grupo PROMA</li>
+            </ul>
+          </div>
+          <div style="margin: 1rem 0;">
+            <div class="badge" style="background: var(--secondary); margin-bottom: 0.5rem; font-size: 0.75rem;">
+              LOCALES
+            </div>
+            <ul style="list-style: none; padding: 0; font-size: 0.875rem; color: var(--secondary);">
+              <li>• Puertas Dara</li>
+              <li>• Grupo Villacero</li>
+              <li>• Regionales</li>
+            </ul>
+          </div>
+          <div style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.75rem;">
+            <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 0.25rem;">FORTALEZAS</p>
+            <p style="font-size: 0.875rem;">Escala, tecnología</p>
+            <p style="font-size: 0.75rem; color: var(--muted); margin: 0.5rem 0 0.25rem;">RIESGOS</p>
+            <p style="font-size: 0.875rem;">Insumos, tipo cambio</p>
+          </div>
+        </div>
+
+        <!-- Mayoristas -->
+        <div class="card">
+          <h3 style="color: var(--success); font-size: 1.25rem;">Mayoristas</h3>
+          <div style="margin: 1rem 0;">
+            <p style="font-size: 0.875rem; color: var(--secondary); margin-bottom: 0.5rem;">
+              <strong>Regionales:</strong> Control territorial
+            </p>
+            <p style="font-size: 0.875rem; color: var(--secondary); margin-bottom: 0.5rem;">
+              <strong>Especializados:</strong> Solo puertas
+            </p>
+            <p style="font-size: 0.875rem; color: var(--secondary);">
+              <strong>Generalistas:</strong> Multi-categoría
+            </p>
+          </div>
+          <div style="margin: 1rem 0;">
+            <span class="stat-value" style="font-size: 1.5rem;">30-45</span>
+            <p style="font-size: 0.75rem; color: var(--muted);">días crédito típico</p>
+          </div>
+          <div style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.75rem;">
+            <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 0.25rem;">FORTALEZAS</p>
+            <p style="font-size: 0.875rem;">Capilaridad, crédito</p>
+            <p style="font-size: 0.75rem; color: var(--muted); margin: 0.5rem 0 0.25rem;">RIESGOS</p>
+            <p style="font-size: 0.875rem;">Capital trabajo</p>
+          </div>
+        </div>
+
+        <!-- Retail -->
+        <div class="card">
+          <h3 style="color: var(--warning); font-size: 1.25rem;">Retail</h3>
+          <div style="margin: 1rem 0;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.875rem;">Home Depot</span>
+              <strong style="color: var(--accent);">~139</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.875rem;">Sodimac</span>
+              <strong style="color: var(--accent);">14-15</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="font-size: 0.875rem;">Construrama</span>
+              <strong style="color: var(--accent);">2,000+</strong>
+            </div>
+          </div>
+          <div style="margin: 1rem 0;">
+            <p style="font-size: 0.75rem; color: var(--muted);">PODER DE COMPRA</p>
+            <div style="display: flex; gap: 0.25rem; margin-top: 0.25rem;">
+              <span style="width: 20%; height: 8px; background: var(--accent); border-radius: 2px;"></span>
+              <span style="width: 20%; height: 8px; background: var(--accent); border-radius: 2px;"></span>
+              <span style="width: 20%; height: 8px; background: var(--accent); border-radius: 2px;"></span>
+              <span style="width: 20%; height: 8px; background: var(--accent); border-radius: 2px;"></span>
+              <span style="width: 20%; height: 8px; background: var(--border); border-radius: 2px;"></span>
+            </div>
+          </div>
+          <div style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.75rem;">
+            <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 0.25rem;">FORTALEZAS</p>
+            <p style="font-size: 0.875rem;">Volumen, marca</p>
+            <p style="font-size: 0.75rem; color: var(--muted); margin: 0.5rem 0 0.25rem;">RIESGOS</p>
+            <p style="font-size: 0.875rem;">Concentración, plazos</p>
+          </div>
+        </div>
+
+        <!-- Compradores B2B -->
+        <div class="card">
+          <h3 style="color: var(--accent-mexico); font-size: 1.25rem;">Compradores B2B</h3>
+          <div style="margin: 1rem 0;">
+            <p style="font-size: 0.875rem; margin-bottom: 0.75rem;">
+              <strong>Desarrolladores</strong><br>
+              <span style="color: var(--secondary); font-size: 0.75rem;">5-8 puertas/casa, entrega por etapa</span>
+            </p>
+            <p style="font-size: 0.875rem; margin-bottom: 0.75rem;">
+              <strong>Constructoras</strong><br>
+              <span style="color: var(--secondary); font-size: 0.75rem;">Precio por prototipo, garantías</span>
+            </p>
+            <p style="font-size: 0.875rem;">
+              <strong>Gobierno/Institucional</strong><br>
+              <span style="color: var(--secondary); font-size: 0.75rem;">Licitaciones, especificaciones</span>
+            </p>
+          </div>
+          <div style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.75rem;">
+            <p style="font-size: 0.75rem; color: var(--muted); margin-bottom: 0.25rem;">NECESIDADES</p>
+            <p style="font-size: 0.875rem;">JIT, calidad consistente</p>
+            <p style="font-size: 0.75rem; color: var(--muted); margin: 0.5rem 0 0.25rem;">RIESGOS</p>
+            <p style="font-size: 0.875rem;">Retrasos obra, cambios</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Power Dynamics -->
+      <div class="card" style="margin-top: 2rem; background: linear-gradient(135deg, var(--light), var(--white));">
+        <h3 style="margin-bottom: 1rem;">Dinámicas de poder en la cadena</h3>
+        <div class="grid grid-3">
+          <div style="text-align: center;">
+            <div class="stat-value" style="font-size: 2rem; color: var(--accent-mexico);">Alto</div>
+            <p style="color: var(--secondary); font-size: 0.875rem;">Retail moderno</p>
+            <p style="color: var(--muted); font-size: 0.75rem;">Volumen + condiciones</p>
+          </div>
+          <div style="text-align: center;">
+            <div class="stat-value" style="font-size: 2rem; color: var(--warning);">Medio</div>
+            <p style="color: var(--secondary); font-size: 0.875rem;">Desarrolladores grandes</p>
+            <p style="color: var(--muted); font-size: 0.75rem;">Contratos anuales</p>
+          </div>
+          <div style="text-align: center;">
+            <div class="stat-value" style="font-size: 2rem; color: var(--success);">Bajo</div>
+            <p style="color: var(--secondary); font-size: 0.875rem;">Ferretería individual</p>
+            <p style="color: var(--muted); font-size: 0.75rem;">Fragmentado</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <p class="takeaway-text">
+          El poder está concentrado en retail moderno pero el volumen está fragmentado en B2B. 
+          La oportunidad: servir mejor al middle market (mayoristas regionales y desarrolladores medianos) 
+          que tiene volumen pero no el poder de negociación del retail grande.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Seed Data Object
+    const seedData = {
+      version: "0.1-seed",
+      lastUpdate: "2025-01-13",
+      status: "SEED - Reemplazable por dataset auditado",
+      
+      assumptions: {
+        currency: "MXN",
+        usd_mxn: 20.5,
+        door_price_base: 550,
+        avg_doors_low: 6,
+        avg_doors_high: 8,
+        uplift_kit: 300,
+        uplift_prehung: 450,
+        attach_kit_default: 0.22,
+        attach_prehung_default: 0.08,
+        cagr_base: 0.0565
+      },
+      
+      macro_mx: {
+        market_value_2024: 2200000000, // USD
+        market_value_2033: 3600000000, // USD
+        cagr_reported: 0.0565,
+        housing_new_units: 128147,
+        retail_footprint: {
+          home_depot: 139,
+          sodimac: 15,
+          construrama: 2000
+        },
+        ferreterias_total: 170378
+      },
+      
+      channel_split_mx: [
+        {
+          name: "Ferretería/Redes",
+          share_mid: 0.42,
+          range_low: 0.38,
+          range_high: 0.45,
+          drivers: "Capilaridad, crédito",
+          risks: "Fragmentación",
+          sla: "48-72h"
+        },
+        {
+          name: "Constructoras/Desarrolladores",
+          share_mid: 0.38,
+          range_low: 0.35,
+          range_high: 0.40,
+          drivers: "Volumen, contratos",
+          risks: "Concentración",
+          sla: "Por etapa"
+        },
+        {
+          name: "Retail moderno",
+          share_mid: 0.12,
+          range_low: 0.10,
+          range_high: 0.15,
+          drivers: "Tráfico, marca",
+          risks: "Márgenes bajos",
+          sla: "Inmediato"
+        },
+        {
+          name: "Institucional/Comercial",
+          share_mid: 0.08,
+          range_low: 0.05,
+          range_high: 0.10,
+          drivers: "Especificación",
+          risks: "Ciclos largos",
+          sla: "30-60 días"
+        }
+      ],
+      
+      housing_flow_mx: {
+        new_units: 128147,
+        puertas_por_vivienda_low: 6,
+        puertas_por_vivienda_high: 8,
+        reposicion_low: 550000,
+        reposicion_high: 850000
+      }
+    };
+
+    // Navigation Setup
+    const sections = [
+      { id: 'portada', title: 'Portada' },
+      { id: 'resumen', title: 'Resumen' },
+      { id: 'definiciones', title: 'Definiciones' },
+      { id: 'demanda', title: 'Demanda MX' },
+      { id: 'canal', title: 'Split Canal' },
+      { id: 'jugadores', title: 'Jugadores' }
+    ];
+
+    // Create navigation dots
+    const navDots = document.getElementById('navDots');
+    sections.forEach((section, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot';
+      dot.setAttribute('data-title', section.title);
+      dot.onclick = () => {
+        document.getElementById(section.id).scrollIntoView({ behavior: 'smooth' });
+      };
+      if (index === 0) dot.classList.add('active');
+      navDots.appendChild(dot);
+    });
+
+    // Update progress and active dot on scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrolled / total) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Update active navigation dot
+      const dots = document.querySelectorAll('.nav-dot');
+      sections.forEach((section, index) => {
+        const element = document.getElementById(section.id);
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          dots.forEach(d => d.classList.remove('active'));
+          dots[index].classList.add('active');
+        }
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        const current = document.querySelector('.nav-dot.active');
+        const dots = Array.from(document.querySelectorAll('.nav-dot'));
+        const index = dots.indexOf(current);
+        if (index < dots.length - 1) {
+          dots[index + 1].click();
+        }
+      } else if (e.key === 'ArrowUp') {
+        const current = document.querySelector('.nav-dot.active');
+        const dots = Array.from(document.querySelectorAll('.nav-dot'));
+        const index = dots.indexOf(current);
+        if (index > 0) {
+          dots[index - 1].click();
+        }
+      }
+    });
+
+    // Log seed data info
+    console.log('Research Deck - Seed Data Loaded', seedData);
+  </script>
+</body>
+</html>
+<!-- FASE 1 COMPLETA -->
