@@ -1278,6 +1278,20 @@
       card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
       observer.observe(card);
     });
+
+    // Keyboard navigation - fullscreen with 'f'
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        // Toggle fullscreen
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable fullscreen: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
   </script>
 </body>
 </html>

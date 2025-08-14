@@ -1076,6 +1076,20 @@
       const hero = document.querySelector('.hero');
       hero.style.transform = `translateY(${scrolled * 0.5}px)`;
     });
+
+    // Keyboard navigation - fullscreen with 'f'
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        // Toggle fullscreen
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable fullscreen: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
   </script>
 </body>
 </html>
