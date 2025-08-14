@@ -664,8 +664,8 @@
     <div class="container">
       <div style="text-align: center;">
         <div class="badge-elite fade-in">
-          <div class="loading-elite"></div>
-          <span>PRELIMINARY DATA · INSTITUTIONAL GRADE</span>
+          <div class="loading-elite" id="loadingSpinner"></div>
+          <span id="badgeText" style="opacity: 0;">PRELIMINARY DATA · INSTITUTIONAL GRADE</span>
         </div>
         
         <div style="margin: 4rem 0;">
@@ -1370,6 +1370,21 @@
         }
       }
     });
+
+    // Loading animation
+    setTimeout(() => {
+      const spinner = document.getElementById('loadingSpinner');
+      const badgeText = document.getElementById('badgeText');
+      if (spinner && badgeText) {
+        spinner.style.transition = 'opacity 0.3s ease';
+        spinner.style.opacity = '0';
+        badgeText.style.transition = 'opacity 0.5s ease';
+        badgeText.style.opacity = '1';
+        setTimeout(() => {
+          spinner.style.display = 'none';
+        }, 300);
+      }
+    }, 1500);
 
     // Log data
     console.log('Market Intelligence Data:', marketData);
