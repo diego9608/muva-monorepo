@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Value Creation Strategies for Door Manufacturing Industry">
+  <title>Value Creation Playbook | Door Industry</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --dark: #0a0a0a;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #2a2a2a;
+      --gray-600: #404040;
+      --gray-500: #737373;
+      --gray-400: #a3a3a3;
+      --gray-300: #d4d4d4;
+      --gray-200: #e5e5e5;
+      --gray-100: #f5f5f5;
+      --white: #ffffff;
+      
+      --gold: #d4af37;
+      --gold-dark: #b8941f;
+      --gold-light: #f4e5bc;
+      
+      --accent: #00ff88;
+      --danger: #ff3366;
+      --warning: #ffaa00;
+      --blue: #0ea5e9;
+      --purple: #8b5cf6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--gray-900);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 4px;
+    }
+
+    /* Header */
+    .header {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--black), var(--gray-900));
+      border-bottom: 1px solid var(--gray-800);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--black);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, var(--white) 0%, var(--gray-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-400);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* Category Section */
+    .category {
+      margin-bottom: 6rem;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-800);
+    }
+
+    .category-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .category-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .category-subtitle {
+      color: var(--gray-400);
+      font-size: 1rem;
+      margin-left: auto;
+    }
+
+    /* Strategy Cards */
+    .strategies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .strategy-card {
+      background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .strategy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .strategy-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-dark);
+      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+    }
+
+    .strategy-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .strategy-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .strategy-number {
+      width: 32px;
+      height: 32px;
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .strategy-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--white);
+    }
+
+    .strategy-description {
+      color: var(--gray-400);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .strategy-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--black);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric {
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .metric-label {
+      font-size: 0.625rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .strategy-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.75rem;
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--gray-300);
+    }
+
+    .tag.high-impact {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+      border-color: var(--gold-dark);
+      color: var(--gold);
+    }
+
+    .tag.quick-win {
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 136, 0.1));
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Impact Matrix */
+    .matrix-container {
+      background: var(--gray-900);
+      border: 1px solid var(--gray-800);
+      border-radius: 16px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+
+    .matrix-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quadrant {
+      padding: 1.5rem;
+      background: var(--black);
+      border-radius: 12px;
+      border: 1px solid var(--gray-700);
+    }
+
+    .quadrant-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quadrant-items {
+      list-style: none;
+    }
+
+    .quadrant-items li {
+      padding: 0.5rem 0;
+      color: var(--gray-300);
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--gray-800);
+    }
+
+    .quadrant-items li:last-child {
+      border-bottom: none;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 4rem 0;
+      padding: 3rem;
+      background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+      border-radius: 16px;
+      border: 1px solid var(--gray-700);
+    }
+
+    .timeline-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-phases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .phase {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .phase::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+
+    .phase-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-duration {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-bottom: 1rem;
+    }
+
+    .phase-items {
+      list-style: none;
+    }
+
+    .phase-items li {
+      padding: 0.5rem 0;
+      color: var(--gray-300);
+      font-size: 0.875rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--gray-800);
+      color: var(--gray-500);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .strategies-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .category-subtitle {
+        margin-left: 0;
+        margin-top: 0.5rem;
+      }
+
+      .timeline-phases {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="badge">VALUE CREATION PLAYBOOK</div>
+    <h1>25 Ways to Build Value</h1>
+    <p class="subtitle">Strategic initiatives for door manufacturing excellence</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- CATEGORY 1: Digital Transformation -->
+    <section class="category">
+      <div class="category-header">
+        <div class="category-icon">🚀</div>
+        <h2 class="category-title">Digital Transformation</h2>
+        <span class="category-subtitle">Technology-driven growth</span>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">01</div>
+            <h3 class="strategy-title">B2B E-Commerce Platform</h3>
+          </div>
+          <p class="strategy-description">
+            Custom portal for contractors and hardware stores with real-time inventory, 
+            credit management, and automated reordering. White-label option for large accounts.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">25%</div>
+              <div class="metric-label">Order Efficiency</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$8M</div>
+              <div class="metric-label">Revenue Potential</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">6-9 months</span>
+            <span class="tag">Digital</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">02</div>
+            <h3 class="strategy-title">AR Door Visualizer</h3>
+          </div>
+          <p class="strategy-description">
+            Mobile app allowing customers to visualize doors in their space using AR. 
+            Integration with retail partners' apps. QR codes on physical samples.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">40%</div>
+              <div class="metric-label">Conversion Lift</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">-60%</div>
+              <div class="metric-label">Returns Reduction</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag quick-win">Quick Win</span>
+            <span class="tag">3-6 months</span>
+            <span class="tag">Customer Experience</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">03</div>
+            <h3 class="strategy-title">IoT Production Monitoring</h3>
+          </div>
+          <p class="strategy-description">
+            Sensors on production lines for real-time OEE tracking, predictive maintenance, 
+            and quality control. Dashboard for management with mobile alerts.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">15%</div>
+              <div class="metric-label">OEE Improvement</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">-30%</div>
+              <div class="metric-label">Downtime</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Operations</span>
+            <span class="tag">3-6 months</span>
+            <span class="tag">Industry 4.0</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">04</div>
+            <h3 class="strategy-title">CRM & Sales Intelligence</h3>
+          </div>
+          <p class="strategy-description">
+            Salesforce implementation with predictive analytics for lead scoring, 
+            churn prevention, and upsell opportunities. Integration with WhatsApp Business.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">35%</div>
+              <div class="metric-label">Sales Productivity</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">20%</div>
+              <div class="metric-label">Customer Retention</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">3-6 months</span>
+            <span class="tag">Sales</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY 2: Product Innovation -->
+    <section class="category">
+      <div class="category-header">
+        <div class="category-icon">💡</div>
+        <h2 class="category-title">Product Innovation</h2>
+        <span class="category-subtitle">Differentiation through innovation</span>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">05</div>
+            <h3 class="strategy-title">Smart Door Line</h3>
+          </div>
+          <p class="strategy-description">
+            IoT-enabled doors with integrated sensors for security, climate control, 
+            and usage analytics. Premium positioning for commercial and high-end residential.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">3x</div>
+              <div class="metric-label">Price Premium</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$15M</div>
+              <div class="metric-label">Market Size</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Innovation</span>
+            <span class="tag">12-18 months</span>
+            <span class="tag">Premium</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">06</div>
+            <h3 class="strategy-title">Eco-Sustainable Line</h3>
+          </div>
+          <p class="strategy-description">
+            Doors made from recycled materials and sustainable wood. 
+            Carbon-neutral production. LEED certification support for developers.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">25%</div>
+              <div class="metric-label">Premium</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">15%</div>
+              <div class="metric-label">Market Growth</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag quick-win">Quick Win</span>
+            <span class="tag">6-9 months</span>
+            <span class="tag">ESG</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">07</div>
+            <h3 class="strategy-title">Modular Door Systems</h3>
+          </div>
+          <p class="strategy-description">
+            Customizable door systems with interchangeable panels, frames, and hardware. 
+            Mass customization at scale. Configure-to-order platform.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">-40%</div>
+              <div class="metric-label">SKU Complexity</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">50%</div>
+              <div class="metric-label">Margin Increase</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">9-12 months</span>
+            <span class="tag">Manufacturing</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">08</div>
+            <h3 class="strategy-title">Fire-Rated Premium</h3>
+          </div>
+          <p class="strategy-description">
+            90-minute fire-rated doors for commercial and multi-family. 
+            Certification for international markets. Partnership with safety consultants.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">2.5x</div>
+              <div class="metric-label">ASP Multiple</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$12M</div>
+              <div class="metric-label">TAM</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Specialty</span>
+            <span class="tag">6-9 months</span>
+            <span class="tag">B2B</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY 3: Service Layer -->
+    <section class="category">
+      <div class="category-header">
+        <div class="category-icon">⚡</div>
+        <h2 class="category-title">Service Layer</h2>
+        <span class="category-subtitle">Beyond the product</span>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">09</div>
+            <h3 class="strategy-title">Installation Network</h3>
+          </div>
+          <p class="strategy-description">
+            Certified installer network with training, tools, and leads. 
+            Uber-like app for installation booking. Revenue share model.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$300</div>
+              <div class="metric-label">Per Door Revenue</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">500</div>
+              <div class="metric-label">Installers Target</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag quick-win">Quick Win</span>
+            <span class="tag">Services</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">10</div>
+            <h3 class="strategy-title">Door-as-a-Service (DaaS)</h3>
+          </div>
+          <p class="strategy-description">
+            Subscription model for developers and property managers. 
+            Includes maintenance, replacement, and upgrades. Predictable revenue stream.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$50</div>
+              <div class="metric-label">MRR per Unit</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">5yr</div>
+              <div class="metric-label">Contract Length</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Recurring Revenue</span>
+            <span class="tag">6-12 months</span>
+            <span class="tag">Innovation</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">11</div>
+            <h3 class="strategy-title">Express Manufacturing</h3>
+          </div>
+          <p class="strategy-description">
+            24-48 hour custom door production for urgent needs. 
+            Premium pricing (2-3x). Dedicated production line.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">200%</div>
+              <div class="metric-label">Price Premium</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">10%</div>
+              <div class="metric-label">Capacity Allocation</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag quick-win">Quick Win</span>
+            <span class="tag">3-6 months</span>
+            <span class="tag">Premium Service</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">12</div>
+            <h3 class="strategy-title">Design Consultation</h3>
+          </div>
+          <p class="strategy-description">
+            Interior design service for developers and architects. 
+            BIM integration, spec writing, and project management support.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$5K</div>
+              <div class="metric-label">Per Project</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">70%</div>
+              <div class="metric-label">Attachment Rate</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Professional Services</span>
+            <span class="tag">3-6 months</span>
+            <span class="tag">B2B</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY 4: Market Expansion -->
+    <section class="category">
+      <div class="category-header">
+        <div class="category-icon">🌎</div>
+        <h2 class="category-title">Market Expansion</h2>
+        <span class="category-subtitle">Geographic and segment growth</span>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">13</div>
+            <h3 class="strategy-title">US Border Strategy</h3>
+          </div>
+          <p class="strategy-description">
+            Distribution centers in Laredo, El Paso, and San Diego. 
+            USMCA optimization. Bilingual sales team. Focus on Hispanic contractors.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$400M</div>
+              <div class="metric-label">TAM</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">35%</div>
+              <div class="metric-label">Gross Margin</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">12-18 months</span>
+            <span class="tag">International</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">14</div>
+            <h3 class="strategy-title">Government Contracts</h3>
+          </div>
+          <p class="strategy-description">
+            INFONAVIT approved supplier status. 
+            Social housing programs. Military and education facilities.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">200K</div>
+              <div class="metric-label">Units/Year</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$110M</div>
+              <div class="metric-label">Contract Value</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Government</span>
+            <span class="tag">6-12 months</span>
+            <span class="tag">Volume</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">15</div>
+            <h3 class="strategy-title">Hospitality Vertical</h3>
+          </div>
+          <p class="strategy-description">
+            Specialized doors for hotels with RFID compatibility, 
+            soundproofing, and custom finishes. Renovation cycle alignment.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$800</div>
+              <div class="metric-label">ASP</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">50K</div>
+              <div class="metric-label">Rooms/Year</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Vertical Market</span>
+            <span class="tag">9-12 months</span>
+            <span class="tag">Premium</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">16</div>
+            <h3 class="strategy-title">Caribbean Export</h3>
+          </div>
+          <p class="strategy-description">
+            Hurricane-resistant doors for Caribbean markets. 
+            Miami-Dade certification. Distribution through Puerto Rico.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$1,200</div>
+              <div class="metric-label">ASP</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$45M</div>
+              <div class="metric-label">Market Size</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Export</span>
+            <span class="tag">12-18 months</span>
+            <span class="tag">Specialty</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY 5: Operational Excellence -->
+    <section class="category">
+      <div class="category-header">
+        <div class="category-icon">⚙️</div>
+        <h2 class="category-title">Operational Excellence</h2>
+        <span class="category-subtitle">Efficiency and optimization</span>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">17</div>
+            <h3 class="strategy-title">Lean Six Sigma Implementation</h3>
+          </div>
+          <p class="strategy-description">
+            Full lean transformation with waste elimination, 
+            5S implementation, and continuous improvement culture.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">-25%</div>
+              <div class="metric-label">Production Cost</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">-40%</div>
+              <div class="metric-label">Lead Time</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">6-12 months</span>
+            <span class="tag">Operations</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">18</div>
+            <h3 class="strategy-title">Supply Chain Finance</h3>
+          </div>
+          <p class="strategy-description">
+            Factoring program for suppliers, dynamic discounting, 
+            and reverse factoring for customers. Working capital optimization.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$15M</div>
+              <div class="metric-label">Cash Release</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">-20</div>
+              <div class="metric-label">Days CCC</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag quick-win">Quick Win</span>
+            <span class="tag">3-6 months</span>
+            <span class="tag">Finance</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">19</div>
+            <h3 class="strategy-title">Robotic Automation</h3>
+          </div>
+          <p class="strategy-description">
+            Automated cutting, routing, and packaging lines. 
+            Cobots for material handling. Lights-out manufacturing capability.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">50%</div>
+              <div class="metric-label">Productivity</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">2yr</div>
+              <div class="metric-label">Payback</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Automation</span>
+            <span class="tag">12-18 months</span>
+            <span class="tag">CAPEX</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">20</div>
+            <h3 class="strategy-title">Energy Independence</h3>
+          </div>
+          <p class="strategy-description">
+            Solar panel installation, energy recovery systems, 
+            and green certifications. Carbon credits generation.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">-40%</div>
+              <div class="metric-label">Energy Cost</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$2M</div>
+              <div class="metric-label">Annual Savings</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Sustainability</span>
+            <span class="tag">12-24 months</span>
+            <span class="tag">ESG</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY 6: Strategic Partnerships -->
+    <section class="category">
+      <div class="category-header">
+        <div class="category-icon">🤝</div>
+        <h2 class="category-title">Strategic Partnerships</h2>
+        <span class="category-subtitle">Ecosystem development</span>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">21</div>
+            <h3 class="strategy-title">Developer Alliances</h3>
+          </div>
+          <p class="strategy-description">
+            Exclusive partnerships with top 10 developers. 
+            Co-development of specifications. Joint marketing initiatives.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">500K</div>
+              <div class="metric-label">Units Locked</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">3yr</div>
+              <div class="metric-label">Contracts</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">6-9 months</span>
+            <span class="tag">B2B</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">22</div>
+            <h3 class="strategy-title">Retail Private Label</h3>
+          </div>
+          <p class="strategy-description">
+            Private label manufacturing for Home Depot, Sodimac. 
+            Store-within-store concepts. Category management.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$150M</div>
+              <div class="metric-label">Revenue</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">15%</div>
+              <div class="metric-label">EBITDA</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Retail</span>
+            <span class="tag">9-12 months</span>
+            <span class="tag">Volume</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">23</div>
+            <h3 class="strategy-title">Tech Platform Integration</h3>
+          </div>
+          <p class="strategy-description">
+            API integration with construction management platforms. 
+            BIM libraries. Specification writing tools.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">10K</div>
+              <div class="metric-label">Architects</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">70%</div>
+              <div class="metric-label">Specification Rate</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Technology</span>
+            <span class="tag">6-9 months</span>
+            <span class="tag">Digital</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">24</div>
+            <h3 class="strategy-title">Financial Services JV</h3>
+          </div>
+          <p class="strategy-description">
+            Joint venture with fintech for contractor financing. 
+            Purchase order financing. Insurance products.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">$50M</div>
+              <div class="metric-label">Credit Lines</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">8%</div>
+              <div class="metric-label">Net Interest</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag">Fintech</span>
+            <span class="tag">6-12 months</span>
+            <span class="tag">Innovation</span>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-header">
+            <div class="strategy-number">25</div>
+            <h3 class="strategy-title">M&A Roll-up Strategy</h3>
+          </div>
+          <p class="strategy-description">
+            Acquire 3-5 regional door manufacturers. 
+            Consolidate operations. Cross-sell products. Multiple arbitrage.
+          </p>
+          <div class="strategy-metrics">
+            <div class="metric">
+              <div class="metric-value">3-5x</div>
+              <div class="metric-label">EBITDA Multiple</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$200M</div>
+              <div class="metric-label">Enterprise Value</div>
+            </div>
+          </div>
+          <div class="strategy-tags">
+            <span class="tag high-impact">High Impact</span>
+            <span class="tag">12-24 months</span>
+            <span class="tag">M&A</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact vs Effort Matrix -->
+    <div class="matrix-container">
+      <h2 class="matrix-title">Strategic Priority Matrix</h2>
+      <div class="matrix-grid">
+        <div class="quadrant">
+          <div class="quadrant-title">Quick Wins</div>
+          <ul class="quadrant-items">
+            <li>AR Door Visualizer</li>
+            <li>Installation Network</li>
+            <li>Express Manufacturing</li>
+            <li>Supply Chain Finance</li>
+            <li>Eco-Sustainable Line</li>
+          </ul>
+        </div>
+        <div class="quadrant">
+          <div class="quadrant-title">Strategic Priorities</div>
+          <ul class="quadrant-items">
+            <li>B2B E-Commerce Platform</li>
+            <li>Developer Alliances</li>
+            <li>US Border Strategy</li>
+            <li>Modular Door Systems</li>
+            <li>M&A Roll-up Strategy</li>
+          </ul>
+        </div>
+        <div class="quadrant">
+          <div class="quadrant-title">Fill-ins</div>
+          <ul class="quadrant-items">
+            <li>Design Consultation</li>
+            <li>Caribbean Export</li>
+            <li>Tech Platform Integration</li>
+            <li>Energy Independence</li>
+          </ul>
+        </div>
+        <div class="quadrant">
+          <div class="quadrant-title">Long-term Bets</div>
+          <ul class="quadrant-items">
+            <li>Smart Door Line</li>
+            <li>Door-as-a-Service</li>
+            <li>Robotic Automation</li>
+            <li>Financial Services JV</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Implementation Timeline -->
+    <div class="timeline">
+      <h2 class="timeline-title">90-Day Sprint Plan</h2>
+      <div class="timeline-phases">
+        <div class="phase">
+          <h3 class="phase-title">Days 1-30</h3>
+          <p class="phase-duration">Foundation</p>
+          <ul class="phase-items">
+            <li>CRM implementation kickoff</li>
+            <li>E-commerce platform RFP</li>
+            <li>Installer network pilot (10 installers)</li>
+            <li>Supply chain finance setup</li>
+            <li>Developer meetings (top 5)</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3 class="phase-title">Days 31-60</h3>
+          <p class="phase-duration">Acceleration</p>
+          <ul class="phase-items">
+            <li>AR app MVP launch</li>
+            <li>Express manufacturing line setup</li>
+            <li>Eco line product development</li>
+            <li>Government tender preparation</li>
+            <li>US distribution center site selection</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3 class="phase-title">Days 61-90</h3>
+          <p class="phase-duration">Execution</p>
+          <ul class="phase-items">
+            <li>B2B portal beta with 20 accounts</li>
+            <li>100 certified installers</li>
+            <li>First express orders fulfilled</li>
+            <li>Developer alliance signed (1)</li>
+            <li>M&A target identification</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Value Creation Playbook · Door Manufacturing Industry · 2025</p>
+    <p style="margin-top: 0.5rem; color: var(--gray-600);">Confidential & Proprietary</p>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observe all strategy cards
+    document.querySelectorAll('.strategy-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
