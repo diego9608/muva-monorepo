@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Door Industry Intelligence Report - Mexico Market Analysis">
+  <title>Door Industry Intelligence | $2.2B Market Analysis</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --dark: #0a0a0a;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #2a2a2a;
+      --gray-600: #404040;
+      --gray-500: #737373;
+      --gray-400: #a3a3a3;
+      --gray-300: #d4d4d4;
+      --gray-200: #e5e5e5;
+      --gray-100: #f5f5f5;
+      --white: #ffffff;
+      
+      --gold: #d4af37;
+      --gold-dark: #b8941f;
+      --gold-light: #f4e5bc;
+      
+      --accent: #00ff88;
+      --danger: #ff3366;
+      --warning: #ffaa00;
+      
+      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      --shadow-2xl: 0 50px 100px -20px rgb(0 0 0 / 0.25);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--gray-900);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      width: 0%;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+    }
+
+    /* Navigation */
+    .nav-dots {
+      position: fixed;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gray-700);
+      border: 1px solid var(--gray-600);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .nav-dot.active {
+      background: var(--gold);
+      transform: scale(1.5);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+
+    .nav-dot:hover::after {
+      content: attr(data-title);
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--gray-900);
+      border: 1px solid var(--gray-700);
+      color: var(--gold);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    /* Sections */
+    .section {
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      scroll-snap-align: start;
+      background: var(--black);
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    /* Typography */
+    .display-1 {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, var(--white) 0%, var(--gray-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .display-2 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .display-3 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-400);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 3rem;
+    }
+
+    .overline {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* Data Badge */
+    .badge-elite {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--black);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-elite::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Metric Cards */
+    .metric-card {
+      background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-dark);
+      box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+    }
+
+    .metric-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .metric-value {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .metric-delta {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Grid System */
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Insight Box */
+    .insight {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+      border-left: 3px solid var(--gold);
+      padding: 2rem;
+      margin: 3rem 0;
+      border-radius: 0 8px 8px 0;
+      position: relative;
+    }
+
+    .insight-icon {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 32px;
+      height: 32px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--black);
+    }
+
+    .insight-text {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: var(--gray-200);
+      font-weight: 300;
+    }
+
+    /* Bullet Points Premium */
+    .bullet-premium {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--gray-800);
+      transition: all 0.3s ease;
+    }
+
+    .bullet-item:hover {
+      padding-left: 1rem;
+      border-left: 2px solid var(--gold);
+      border-bottom-color: var(--gray-700);
+    }
+
+    .bullet-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--black);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .bullet-content {
+      flex: 1;
+    }
+
+    .bullet-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .bullet-text {
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    .bullet-stat {
+      display: inline-block;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0 0.25rem;
+    }
+
+    /* Tables Elite */
+    .table-elite {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--gray-900);
+      border: 1px solid var(--gray-800);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table-elite thead {
+      background: linear-gradient(180deg, var(--gray-800), var(--gray-900));
+    }
+
+    .table-elite th {
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gray-700);
+    }
+
+    .table-elite td {
+      padding: 1.25rem 1.5rem;
+      color: var(--gray-300);
+      border-bottom: 1px solid var(--gray-800);
+      font-weight: 300;
+    }
+
+    .table-elite tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-elite tr:hover td {
+      background: rgba(212, 175, 55, 0.03);
+    }
+
+    /* Charts Container */
+    .chart-container {
+      background: var(--gray-900);
+      border: 1px solid var(--gray-800);
+      border-radius: 16px;
+      padding: 3rem;
+      position: relative;
+      min-height: 400px;
+    }
+
+    .chart-title {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    /* Footnotes Elite */
+    .footnote {
+      position: relative;
+      color: var(--gold);
+      font-weight: 600;
+      cursor: help;
+      border-bottom: 1px dotted var(--gold-dark);
+    }
+
+    .footnote::after {
+      content: attr(data-note);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background: var(--gray-900);
+      border: 1px solid var(--gold-dark);
+      color: var(--gray-300);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 400;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+      margin-bottom: 0.5rem;
+    }
+
+    .footnote:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-dots {
+        right: 1rem;
+      }
+
+      .container {
+        padding: 0 2rem;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .display-1 {
+        font-size: 3rem;
+      }
+
+      .display-2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Loading Animation */
+    .loading-elite {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--gray-700);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Fade In Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+
+    /* Glitch Effect for Numbers */
+    .glitch {
+      position: relative;
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      animation: glitch-1 0.5s infinite;
+      color: var(--gold);
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitch-2 0.5s infinite;
+      color: var(--accent);
+      z-index: -2;
+    }
+
+    @keyframes glitch-1 {
+      0%, 100% { clip: rect(0, 0, 0, 0); }
+      20% { clip: rect(20px, 9999px, 40px, 0); }
+      40% { clip: rect(60px, 9999px, 80px, 0); }
+      60% { clip: rect(100px, 9999px, 120px, 0); }
+      80% { clip: rect(140px, 9999px, 160px, 0); }
+    }
+
+    @keyframes glitch-2 {
+      0%, 100% { clip: rect(0, 0, 0, 0); }
+      20% { clip: rect(10px, 9999px, 30px, 0); transform: translateX(-2px); }
+      40% { clip: rect(50px, 9999px, 70px, 0); transform: translateX(2px); }
+      60% { clip: rect(90px, 9999px, 110px, 0); transform: translateX(-1px); }
+      80% { clip: rect(130px, 9999px, 150px, 0); transform: translateX(1px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- SECTION 1: Hero -->
+  <section class="section" id="hero">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="badge-elite fade-in">
+          <div class="loading-elite"></div>
+          <span>PRELIMINARY DATA · INSTITUTIONAL GRADE</span>
+        </div>
+        
+        <div style="margin: 4rem 0;">
+          <div class="display-1 fade-in delay-1">$2.2B</div>
+          <div class="overline fade-in delay-2" style="margin-top: 2rem;">MEXICAN DOOR INDUSTRY</div>
+          <h1 class="fade-in delay-3" style="color: var(--gray-400); font-weight: 300; font-size: 1.5rem; letter-spacing: 0.05em;">
+            Market Intelligence Report · 2025 Edition
+          </h1>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 600px; margin: 4rem auto;" class="fade-in delay-4">
+          <div>
+            <div class="metric-value" style="font-size: 2rem;">5.65%</div>
+            <div class="metric-label">CAGR</div>
+          </div>
+          <div>
+            <div class="metric-value" style="font-size: 2rem;">1.6M</div>
+            <div class="metric-label">Units/Year</div>
+          </div>
+          <div>
+            <div class="metric-value" style="font-size: 2rem;">80%</div>
+            <div class="metric-label">B2B Share</div>
+          </div>
+        </div>
+
+        <p style="color: var(--gray-500); font-size: 0.875rem; margin-top: 6rem; letter-spacing: 0.1em; text-transform: uppercase;" class="fade-in delay-5">
+          Prepared for C-Suite Executives · Private Equity · Institutional Investors
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Executive Summary -->
+  <section class="section" id="executive">
+    <div class="container">
+      <div class="overline">Executive Summary</div>
+      <h1>Six Strategic Imperatives</h1>
+      <p class="subtitle">Critical insights shaping the Mexican door market</p>
+
+      <ul class="bullet-premium">
+        <li class="bullet-item fade-in">
+          <div class="bullet-number">01</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Market Valuation: <span class="bullet-stat footnote" data-note="2024 Preliminary Estimate">$2.2B</span> → <span class="bullet-stat">$3.6B</span> (2033E)
+            </div>
+            <div class="bullet-text">
+              The Mexican door market represents a stable, growing asset class with predictable demand drivers 
+              from both new construction (128K housing units annually) and replacement cycles.
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item fade-in delay-1">
+          <div class="bullet-number">02</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Growth Trajectory: <span class="bullet-stat footnote" data-note="Compound Annual Growth Rate">5.65%</span> CAGR
+            </div>
+            <div class="bullet-text">
+              Above GDP growth driven by housing deficit reduction programs and middle-class expansion. 
+              Resilient through economic cycles due to essential nature of product.
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item fade-in delay-2">
+          <div class="bullet-number">03</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Channel Concentration: <span class="bullet-stat">80%</span> Outside Modern Retail
+            </div>
+            <div class="bullet-text">
+              Traditional channels (hardware stores 42%, contractors 38%) dominate volume. 
+              Modern retail (12%) offers margins but not scale. Opportunity lies in B2B consolidation.
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item fade-in delay-3">
+          <div class="bullet-number">04</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Demand Fundamentals: <span class="bullet-stat">1.6M</span> Units Annual Baseline
+            </div>
+            <div class="bullet-text">
+              New construction generates 0.77-1.03M units (6-8 doors per housing unit). 
+              Replacement market adds 0.55-0.85M units. Combined demand floor provides revenue stability.
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item fade-in delay-4">
+          <div class="bullet-number">05</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Margin Architecture: Kit <span class="bullet-stat">+54%</span> · Pre-hung <span class="bullet-stat">+82%</span>
+            </div>
+            <div class="bullet-text">
+              Value creation through product bundling. Current attach rates (Kit 22%, Pre-hung 8%) 
+              suggest 10-15pp improvement potential worth $150M+ in enterprise value.
+            </div>
+          </div>
+        </li>
+
+        <li class="bullet-item fade-in delay-5">
+          <div class="bullet-number">06</div>
+          <div class="bullet-content">
+            <div class="bullet-title">
+              Untapped Opportunity: <span class="bullet-stat">1.4M</span> Units B2B Potential
+            </div>
+            <div class="bullet-text">
+              Fragmented traditional channels present consolidation opportunity. 
+              2,000+ Construrama locations, 170K hardware stores, direct developer relationships 
+              offer path to 3x growth without retail dependency.
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="insight">
+        <div class="insight-icon">★</div>
+        <p class="insight-text">
+          <strong>Strategic Thesis:</strong> The Mexican door market is ripe for sophisticated operators 
+          who can consolidate fragmented B2B channels while improving product mix. 
+          The opportunity is not in price competition but in service excellence and value-added bundling.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Market Structure -->
+  <section class="section" id="structure">
+    <div class="container">
+      <div class="overline">Market Structure</div>
+      <h1>Industry Taxonomy & Definitions</h1>
+      <p class="subtitle">Product classification driving economics</p>
+
+      <div class="grid grid-3">
+        <div class="metric-card fade-in">
+          <div class="overline" style="color: var(--gold); margin-bottom: 1.5rem;">Core Products</div>
+          
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Hollow Core</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              MDF faces (3mm) · Honeycomb core · 12-18kg weight<br>
+              <span style="color: var(--gold);">85% market share</span> · $550 ASP
+            </p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Semi-Solid</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              MDF faces (5mm) · Partial core · 25-35kg weight<br>
+              <span style="color: var(--gold);">12% market share</span> · $850 ASP
+            </p>
+          </div>
+
+          <div>
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Solid Core</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Full MDF/wood · 40kg+ weight · Acoustic properties<br>
+              <span style="color: var(--gold);">3% market share</span> · $1,200+ ASP
+            </p>
+          </div>
+        </div>
+
+        <div class="metric-card fade-in delay-1">
+          <div class="overline" style="color: var(--gold); margin-bottom: 1.5rem;">Value Configurations</div>
+          
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Slab Only</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Base product · No hardware<br>
+              <span style="color: var(--gold);">$550</span> price point · 70% of sales
+            </p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Kit Bundle</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Slab + frame + hinges + handle<br>
+              <span style="color: var(--gold);">+$300</span> uplift · 22% attach rate
+            </p>
+          </div>
+
+          <div>
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Pre-hung System</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Factory assembled · Ready to install<br>
+              <span style="color: var(--gold);">+$450</span> uplift · 8% attach rate
+            </p>
+          </div>
+        </div>
+
+        <div class="metric-card fade-in delay-2">
+          <div class="overline" style="color: var(--gold); margin-bottom: 1.5rem;">Surface Finishes</div>
+          
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Foil Laminate</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Thermoadhesive film · Wood grain patterns<br>
+              <span style="color: var(--gold);">65% preference</span> · Standard option
+            </p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">HPL (High Pressure)</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Durable laminate · Commercial grade<br>
+              <span style="color: var(--gold);">25% preference</span> · +15% price premium
+            </p>
+          </div>
+
+          <div>
+            <h3 style="color: var(--white); font-size: 1.125rem; margin-bottom: 0.5rem;">Natural Veneer</h3>
+            <p style="color: var(--gray-400); font-size: 0.875rem; line-height: 1.6;">
+              Real wood surface · Premium segment<br>
+              <span style="color: var(--gold);">10% preference</span> · +40% price premium
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Demand Dynamics -->
+  <section class="section" id="demand">
+    <div class="container">
+      <div class="overline">Demand Dynamics</div>
+      <h1>Volume Generation Model</h1>
+      <p class="subtitle">Structural drivers of 1.6M unit baseline</p>
+
+      <div class="grid grid-2" style="align-items: center; gap: 4rem;">
+        <div class="fade-in">
+          <h2 style="color: var(--gold); font-size: 2rem; margin-bottom: 2rem;">New Construction</h2>
+          
+          <div style="margin-bottom: 3rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <span style="color: var(--gray-400);">Housing starts annually</span>
+              <span style="color: var(--white); font-weight: 600; font-size: 1.25rem;">128,147</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <span style="color: var(--gray-400);">Doors per unit (interior)</span>
+              <span style="color: var(--white); font-weight: 600; font-size: 1.25rem;">6-8</span>
+            </div>
+            <div style="border-top: 1px solid var(--gray-800); padding-top: 1rem; margin-top: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--gold); font-weight: 600;">New demand</span>
+                <span style="color: var(--gold); font-weight: 800; font-size: 1.5rem;">0.77-1.03M</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 style="color: var(--accent); font-size: 2rem; margin-bottom: 2rem;">Replacement Cycle</h2>
+          
+          <div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <span style="color: var(--gray-400);">Housing stock</span>
+              <span style="color: var(--white); font-weight: 600; font-size: 1.25rem;">~35M units</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <span style="color: var(--gray-400);">Annual replacement rate</span>
+              <span style="color: var(--white); font-weight: 600; font-size: 1.25rem;">1.5-2.5%</span>
+            </div>
+            <div style="border-top: 1px solid var(--gray-800); padding-top: 1rem; margin-top: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--accent); font-weight: 600;">Replacement demand</span>
+                <span style="color: var(--accent); font-weight: 800; font-size: 1.5rem;">0.55-0.85M</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-container fade-in delay-1">
+          <div class="chart-title">Demand Waterfall (Units M)</div>
+          <svg viewBox="0 0 400 300" style="width: 100%; max-width: 400px; margin: 2rem auto;">
+            <!-- Waterfall Chart -->
+            <defs>
+              <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
+              </linearGradient>
+              <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#00cc6a;stop-opacity:1" />
+              </linearGradient>
+              <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#ff3366;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#cc2952;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            
+            <!-- Bars -->
+            <rect x="50" y="180" width="80" height="100" fill="url(#goldGradient)" opacity="0.9"/>
+            <text x="90" y="175" text-anchor="middle" font-size="12" fill="#d4af37" font-weight="600">NEW</text>
+            <text x="90" y="235" text-anchor="middle" font-size="18" fill="white" font-weight="700">0.9</text>
+            
+            <rect x="150" y="140" width="80" height="140" fill="url(#greenGradient)" opacity="0.9"/>
+            <text x="190" y="135" text-anchor="middle" font-size="12" fill="#00ff88" font-weight="600">REPLACEMENT</text>
+            <text x="190" y="215" text-anchor="middle" font-size="18" fill="white" font-weight="700">0.7</text>
+            
+            <rect x="250" y="80" width="100" height="200" fill="url(#redGradient)" opacity="0.9"/>
+            <text x="300" y="75" text-anchor="middle" font-size="12" fill="#ff3366" font-weight="600">TOTAL</text>
+            <text x="300" y="180" text-anchor="middle" font-size="24" fill="white" font-weight="700">1.6</text>
+            
+            <!-- Connectors -->
+            <path d="M130 230 L150 210" stroke="#444" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+            <path d="M230 210 L250 180" stroke="#444" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+          </svg>
+          
+          <div style="text-align: center; margin-top: 2rem;">
+            <div class="metric-value" style="font-size: 3rem;">1.32 - 1.88M</div>
+            <div class="metric-label">Total Annual Demand Range</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-icon">◆</div>
+        <p class="insight-text">
+          <strong>Investment Thesis:</strong> Demand floor of 1.6M units provides downside protection. 
+          Replacement cycle creates non-cyclical baseline representing 40% of volume, 
+          insulating business from construction volatility.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: Channel Architecture -->
+  <section class="section" id="channels">
+    <div class="container">
+      <div class="overline">Channel Architecture</div>
+      <h1>Distribution Landscape Analysis</h1>
+      <p class="subtitle">Where value concentrates vs. where volume lives</p>
+
+      <div class="grid grid-2" style="gap: 4rem;">
+        <div class="chart-container fade-in">
+          <div class="chart-title">Market Share by Channel</div>
+          <svg viewBox="0 0 350 350" style="width: 100%; max-width: 350px; margin: 2rem auto;">
+            <!-- Donut Chart -->
+            <g transform="translate(175,175)">
+              <!-- Hardware/Networks: 42% -->
+              <path d="M 0,-120 A 120,120 0 0,1 114,37 L 57,18 A 60,60 0 0,0 0,-60 Z" 
+                    fill="#00ff88" opacity="0.9"/>
+              <text x="50" y="-70" font-size="16" font-weight="700" fill="white">42%</text>
+              <text x="50" y="-50" font-size="10" font-weight="400" fill="white">Hardware</text>
+              
+              <!-- Contractors: 38% -->
+              <path d="M 114,37 A 120,120 0 0,1 -71,97 L -35,48 A 60,60 0 0,0 57,18 Z" 
+                    fill="#0ea5e9" opacity="0.9"/>
+              <text x="70" y="70" font-size="16" font-weight="700" fill="white">38%</text>
+              <text x="70" y="90" font-size="10" font-weight="400" fill="white">Contractors</text>
+              
+              <!-- Modern Retail: 12% -->
+              <path d="M -71,97 A 120,120 0 0,1 -114,-37 L -57,-18 A 60,60 0 0,0 -35,48 Z" 
+                    fill="#ffaa00" opacity="0.9"/>
+              <text x="-80" y="60" font-size="16" font-weight="700" fill="white">12%</text>
+              <text x="-80" y="80" font-size="10" font-weight="400" fill="white">Retail</text>
+              
+              <!-- Institutional: 8% -->
+              <path d="M -114,-37 A 120,120 0 0,1 0,-120 L 0,-60 A 60,60 0 0,0 -57,-18 Z" 
+                    fill="#8b5cf6" opacity="0.9"/>
+              <text x="-60" y="-50" font-size="16" font-weight="700" fill="white">8%</text>
+              
+              <!-- Center -->
+              <circle r="60" fill="#0a0a0a"/>
+              <text y="0" text-anchor="middle" font-size="14" font-weight="300" fill="#666">CHANNEL</text>
+              <text y="20" text-anchor="middle" font-size="14" font-weight="300" fill="#666">MIX</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="fade-in delay-1">
+          <h2 style="font-size: 1.5rem; margin-bottom: 2rem;">Channel Economics</h2>
+          
+          <table class="table-elite">
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Margin</th>
+                <th>Terms</th>
+                <th>Risk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color: #00ff88;">Hardware/Networks</strong></td>
+                <td>18-22%</td>
+                <td>30-45 days</td>
+                <td style="color: var(--gray-500);">Fragmentation</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #0ea5e9;">Contractors</strong></td>
+                <td>15-20%</td>
+                <td>By milestone</td>
+                <td style="color: var(--gray-500);">Concentration</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #ffaa00;">Modern Retail</strong></td>
+                <td>8-12%</td>
+                <td>60-90 days</td>
+                <td style="color: var(--gray-500);">Power asymmetry</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #8b5cf6;">Institutional</strong></td>
+                <td>25-30%</td>
+                <td>90-120 days</td>
+                <td style="color: var(--gray-500);">Long cycles</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 2rem; padding: 1.5rem; background: var(--gray-900); border-radius: 12px; border: 1px solid var(--gray-800);">
+            <h3 style="font-size: 1rem; color: var(--gold); margin-bottom: 1rem;">Infrastructure Footprint</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+              <div>
+                <span style="color: var(--gray-400); font-size: 0.875rem;">Home Depot</span>
+                <div style="color: var(--white); font-weight: 600;">139 stores</div>
+              </div>
+              <div>
+                <span style="color: var(--gray-400); font-size: 0.875rem;">Construrama</span>
+                <div style="color: var(--white); font-weight: 600;">2,000+ locations</div>
+              </div>
+              <div>
+                <span style="color: var(--gray-400); font-size: 0.875rem;">Hardware stores</span>
+                <div style="color: var(--white); font-weight: 600;">170,378 points</div>
+              </div>
+              <div>
+                <span style="color: var(--gray-400); font-size: 0.875rem;">Sodimac</span>
+                <div style="color: var(--white); font-weight: 600;">14-15 stores</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight" style="margin-top: 4rem;">
+        <div class="insight-icon">◈</div>
+        <p class="insight-text">
+          <strong>Channel Strategy:</strong> Volume concentration in traditional channels (80%) presents arbitrage opportunity. 
+          Modern retail offers visibility but destroys margins. Optimal strategy: dominate fragmented B2B 
+          with superior service while maintaining selective retail presence for brand validation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: Value Chain -->
+  <section class="section" id="value">
+    <div class="container">
+      <div class="overline">Value Chain Dynamics</div>
+      <h1>Power Structure & Margin Flow</h1>
+      <p class="subtitle">Understanding where leverage resides</p>
+
+      <div class="grid grid-4" style="margin-bottom: 3rem;">
+        <div class="metric-card fade-in">
+          <div class="metric-delta">↑ HIGH</div>
+          <h3 style="color: var(--gold); font-size: 1.125rem; margin-bottom: 1rem;">Manufacturers</h3>
+          
+          <div style="margin-bottom: 1rem;">
+            <p style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">
+              <strong style="color: var(--white);">Global:</strong> Masonite, JELD-WEN
+            </p>
+            <p style="color: var(--gray-400); font-size: 0.875rem;">
+              <strong style="color: var(--white);">Local:</strong> Puertas Dara, Villacero
+            </p>
+          </div>
+          
+          <div style="padding-top: 1rem; border-top: 1px solid var(--gray-800);">
+            <p style="color: var(--gold); font-size: 0.75rem; margin-bottom: 0.25rem;">LEVERAGE</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Scale, technology</p>
+            <p style="color: var(--danger); font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">RISK</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Input costs, FX</p>
+          </div>
+        </div>
+
+        <div class="metric-card fade-in delay-1">
+          <div class="metric-delta" style="color: var(--warning);">↔ MEDIUM</div>
+          <h3 style="color: var(--gold); font-size: 1.125rem; margin-bottom: 1rem;">Distributors</h3>
+          
+          <div style="margin-bottom: 1rem;">
+            <p style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">
+              Regional control
+            </p>
+            <p style="color: var(--gray-400); font-size: 0.875rem;">
+              30-45 day terms
+            </p>
+          </div>
+          
+          <div style="padding-top: 1rem; border-top: 1px solid var(--gray-800);">
+            <p style="color: var(--gold); font-size: 0.75rem; margin-bottom: 0.25rem;">LEVERAGE</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Geography, credit</p>
+            <p style="color: var(--danger); font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">RISK</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Working capital</p>
+          </div>
+        </div>
+
+        <div class="metric-card fade-in delay-2">
+          <div class="metric-delta">↑ HIGH</div>
+          <h3 style="color: var(--gold); font-size: 1.125rem; margin-bottom: 1rem;">Modern Retail</h3>
+          
+          <div style="margin-bottom: 1rem;">
+            <p style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">
+              Home Depot: 139
+            </p>
+            <p style="color: var(--gray-400); font-size: 0.875rem;">
+              60-90 day payment
+            </p>
+          </div>
+          
+          <div style="padding-top: 1rem; border-top: 1px solid var(--gray-800);">
+            <p style="color: var(--gold); font-size: 0.75rem; margin-bottom: 0.25rem;">LEVERAGE</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Volume, brand</p>
+            <p style="color: var(--danger); font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">RISK</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Margin pressure</p>
+          </div>
+        </div>
+
+        <div class="metric-card fade-in delay-3">
+          <div class="metric-delta" style="color: var(--gray-500);">↓ LOW</div>
+          <h3 style="color: var(--gold); font-size: 1.125rem; margin-bottom: 1rem;">End Buyers</h3>
+          
+          <div style="margin-bottom: 1rem;">
+            <p style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">
+              Fragmented demand
+            </p>
+            <p style="color: var(--gray-400); font-size: 0.875rem;">
+              Price takers
+            </p>
+          </div>
+          
+          <div style="padding-top: 1rem; border-top: 1px solid var(--gray-800);">
+            <p style="color: var(--gold); font-size: 0.75rem; margin-bottom: 0.25rem;">LEVERAGE</p>
+            <p style="color: var(--white); font-size: 0.875rem;">None</p>
+            <p style="color: var(--danger); font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">RISK</p>
+            <p style="color: var(--white); font-size: 0.875rem;">Quality variance</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unit Economics -->
+      <div style="background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 16px; padding: 3rem;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 2rem;">Unit Economics Cascade</h2>
+        
+        <div style="display: flex; align-items: center; gap: 2rem; overflow-x: auto;">
+          <div style="text-align: center; min-width: 150px;">
+            <div style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">Base Slab</div>
+            <div style="color: var(--white); font-size: 2rem; font-weight: 700;">$550</div>
+            <div style="color: var(--gold); font-size: 0.875rem; margin-top: 0.5rem;">18% margin</div>
+          </div>
+          
+          <div style="color: var(--gray-600); font-size: 2rem;">→</div>
+          
+          <div style="text-align: center; min-width: 150px;">
+            <div style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">+ Kit Bundle</div>
+            <div style="color: var(--white); font-size: 2rem; font-weight: 700;">$850</div>
+            <div style="color: var(--gold); font-size: 0.875rem; margin-top: 0.5rem;">28% margin</div>
+          </div>
+          
+          <div style="color: var(--gray-600); font-size: 2rem;">→</div>
+          
+          <div style="text-align: center; min-width: 150px;">
+            <div style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">+ Pre-hung</div>
+            <div style="color: var(--white); font-size: 2rem; font-weight: 700;">$1,000</div>
+            <div style="color: var(--gold); font-size: 0.875rem; margin-top: 0.5rem;">33% margin</div>
+          </div>
+          
+          <div style="color: var(--gray-600); font-size: 2rem;">→</div>
+          
+          <div style="text-align: center; min-width: 150px;">
+            <div style="color: var(--gray-400); font-size: 0.875rem; margin-bottom: 0.5rem;">+ Installation</div>
+            <div style="color: var(--white); font-size: 2rem; font-weight: 700;">$1,300</div>
+            <div style="color: var(--gold); font-size: 0.875rem; margin-top: 0.5rem;">42% margin</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--gray-700);">
+          <p style="color: var(--gray-400); font-size: 0.875rem;">
+            Current attach rates: Kit 22% · Pre-hung 8% · Installation <1%
+          </p>
+          <p style="color: var(--gold); font-size: 1.125rem; margin-top: 0.5rem;">
+            10pp attach improvement = $150M enterprise value creation
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Elite Data Object
+    const marketData = {
+      version: "1.0-institutional",
+      classification: "PRELIMINARY",
+      timestamp: new Date().toISOString(),
+      
+      metrics: {
+        market: {
+          value_2024_usd: 2200000000,
+          value_2033_usd: 3600000000,
+          cagr: 0.0565,
+          currency: "MXN",
+          fx_rate: 20.5
+        },
+        
+        demand: {
+          housing_new: 128147,
+          doors_per_unit: { low: 6, high: 8 },
+          replacement: { low: 550000, high: 850000 },
+          total: { low: 1320000, high: 1880000 }
+        },
+        
+        channels: {
+          hardware: { share: 0.42, margin: 0.20, terms: 37 },
+          contractors: { share: 0.38, margin: 0.175, terms: "milestone" },
+          retail: { share: 0.12, margin: 0.10, terms: 75 },
+          institutional: { share: 0.08, margin: 0.275, terms: 105 }
+        },
+        
+        economics: {
+          base_price: 550,
+          kit_uplift: 300,
+          prehung_uplift: 450,
+          installation_uplift: 300,
+          attach_rates: {
+            kit: 0.22,
+            prehung: 0.08,
+            installation: 0.008
+          }
+        }
+      }
+    };
+
+    // Navigation
+    const sections = [
+      { id: 'hero', title: 'Overview' },
+      { id: 'executive', title: 'Executive' },
+      { id: 'structure', title: 'Structure' },
+      { id: 'demand', title: 'Demand' },
+      { id: 'channels', title: 'Channels' },
+      { id: 'value', title: 'Value Chain' }
+    ];
+
+    // Create navigation dots
+    const navDots = document.getElementById('navDots');
+    sections.forEach((section, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot';
+      dot.setAttribute('data-title', section.title);
+      dot.onclick = () => {
+        document.getElementById(section.id).scrollIntoView({ behavior: 'smooth' });
+      };
+      if (index === 0) dot.classList.add('active');
+      navDots.appendChild(dot);
+    });
+
+    // Update progress and active dot
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrolled / total) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Update active navigation dot
+      const dots = document.querySelectorAll('.nav-dot');
+      sections.forEach((section, index) => {
+        const element = document.getElementById(section.id);
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          dots.forEach(d => d.classList.remove('active'));
+          dots[index].classList.add('active');
+        }
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        const current = document.querySelector('.nav-dot.active');
+        const dots = Array.from(document.querySelectorAll('.nav-dot'));
+        const index = dots.indexOf(current);
+        if (index < dots.length - 1) {
+          dots[index + 1].click();
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const current = document.querySelector('.nav-dot.active');
+        const dots = Array.from(document.querySelectorAll('.nav-dot'));
+        const index = dots.indexOf(current);
+        if (index > 0) {
+          dots[index - 1].click();
+        }
+      }
+    });
+
+    // Log data
+    console.log('Market Intelligence Data:', marketData);
+  </script>
+</body>
+</html>
+<!-- PHASE 1 ELITE COMPLETE -->
