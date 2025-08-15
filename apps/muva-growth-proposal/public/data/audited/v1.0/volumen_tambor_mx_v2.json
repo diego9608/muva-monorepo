@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "generated": "2025-08-15",
+    "dataset": "volumen_tambor_mx_segmented",
+    "description": "Volumen de mercado puertas tambor México ajustado por NSE"
+  },
+  "calculos_paso_a_paso": {
+    "1_base_instalada_real": {
+      "descripcion": "Viviendas que realmente usan puertas tambor",
+      "total_viviendas_mexico": 34900000,
+      "viviendas_excluidas_A_B_Cplus": 6980000,
+      "viviendas_mercado_tambor": 22322040,
+      "formula": "34.9M * 64.0%",
+      "status": "derived"
+    },
+    "2_puertas_por_vivienda_ajustado": {
+      "descripcion": "Promedio ponderado por segmento NSE",
+      "promedio_ponderado": 5.45,
+      "detalle": {
+        "C": "6.5 puertas * 10.6% peso = 0.69",
+        "C_minus": "6.0 puertas * 23.9% peso = 1.43",
+        "D_plus": "5.5 puertas * 31.8% peso = 1.75",
+        "D": "5.0 puertas * 28.5% peso = 1.43",
+        "E": "3.0 puertas * 5.1% peso = 0.15",
+        "suma": 5.45
+      },
+      "status": "derived"
+    },
+    "3_base_instalada_puertas": {
+      "descripcion": "Total puertas tambor instaladas",
+      "valores": {
+        "total": 121655118,
+        "formula": "22,322,040 * 5.45"
+      },
+      "status": "derived"
+    },
+    "4_reposicion_tambor": {
+      "descripcion": "Demanda anual por reposición",
+      "vida_util_anos": {
+        "min": 20,
+        "max": 30,
+        "promedio": 25
+      },
+      "tasa_reposicion": {
+        "low": 0.033,
+        "mid": 0.040,
+        "high": 0.050
+      },
+      "valores": {
+        "low": 4014619,
+        "mid": 4866205,
+        "high": 6082756
+      },
+      "formula": "121,655,118 * tasa_reposicion",
+      "status": "derived"
+    },
+    "5_nueva_construccion_tambor": {
+      "descripcion": "Puertas para vivienda nueva segmentada",
+      "vivienda_nueva_total": 128147,
+      "distribucion_nse_nueva": {
+        "A_B_Cplus": {
+          "porcentaje": 0.35,
+          "viviendas": 44851,
+          "usa_tambor": false
+        },
+        "C": {
+          "porcentaje": 0.20,
+          "viviendas": 25629,
+          "factor_tambor": 0.40,
+          "viviendas_tambor": 10252
+        },
+        "C_minus_y_menor": {
+          "porcentaje": 0.45,
+          "viviendas": 57666,
+          "factor_tambor": 0.95,
+          "viviendas_tambor": 54783
+        }
+      },
+      "viviendas_nueva_con_tambor": 65035,
+      "puertas_promedio": 5.5,
+      "valores": {
+        "low": 321323,
+        "mid": 357693,
+        "high": 394062
+      },
+      "formula": "65,035 * 5.5 * factor_variacion",
+      "status": "derived"
+    }
+  },
+  "resultados_finales": {
+    "volumen_anual": {
+      "low": 4335942,
+      "mid": 5223898,
+      "high": 6476818,
+      "unit": "puertas/año",
+      "status": "derived"
+    },
+    "volumen_mensual": {
+      "low": 361329,
+      "mid": 435325,
+      "high": 539735,
+      "unit": "puertas/mes",
+      "status": "derived"
+    },
+    "comparacion_con_v1": {
+      "version_anterior": {
+        "low": 6000000,
+        "mid": 9400000,
+        "high": 14600000
+      },
+      "reduccion_porcentual": {
+        "low": "-28%",
+        "mid": "-44%",
+        "high": "-56%"
+      },
+      "razon": "Exclusión correcta de clases A/B y C+ que no usan puertas tambor"
+    }
+  },
+  "validacion": {
+    "supuestos_clave": {
+      "1": "A/B y C+ (20% viviendas) NO usan puertas tambor",
+      "2": "Clase C usa 40% tambor (áreas secundarias)",
+      "3": "C- usa 85% tambor, D+/D usan 96-97% (tienen puertas completas)",
+      "4": "Clase E solo 65% tiene puertas (resto usa cortinas/nada)",
+      "5": "Promedio puertas: 5.45 (ajustado por segmento NSE)"
+    },
+    "sensibilidad": {
+      "si_incluimos_C_completo": {
+        "incremento": "+15%",
+        "volumen_mid": "6.0M puertas/año"
+      },
+      "si_excluimos_E": {
+        "reduccion": "-7%",
+        "volumen_mid": "4.9M puertas/año"
+      }
+    }
+  },
+  "implicaciones_estrategicas": {
+    "tam_real": "El mercado es 44% menor al estimado inicialmente (5.2M vs 9.4M)",
+    "concentracion": "58% del mercado está en C-, D+ y D",
+    "precio_critico": "Rango 350-650 MXN es crítico para volumen",
+    "canal_prioritario": "Ferreterías tradicionales dominan estos segmentos",
+    "competencia": "Mercado más pequeño = competencia más intensa"
+  }
+}

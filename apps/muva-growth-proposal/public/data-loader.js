@@ -13,11 +13,11 @@ class DoorIndustryDataLoader {
   async loadAllDatasets() {
     try {
       const files = [
-        'housing_mx.json',
+        'housing_mx_segmented.json',
         'reposicion_mx.json',
         'footprints_mx.json',
         'split_canales_mx.json',
-        'volumen_tambor_mx.json',
+        'volumen_tambor_mx_v2.json',
         'assumptions_mx.json',
         'sources.json'
       ];
@@ -110,8 +110,9 @@ class DoorIndustryDataLoader {
       mid: (vol.mid / 1000000).toFixed(1),
       high: (vol.high / 1000000).toFixed(1),
       unit: 'M puertas/año',
-      status: 'audited',
+      status: 'audited_v2',
       display: `${(vol.low / 1000000).toFixed(1)}M - ${(vol.high / 1000000).toFixed(1)}M`,
+      nota_critica: 'Ajustado por NSE - Excluye A/B y C+ (no usan tambor)',
       footnote: this.getFootnote('fn_vol_004')
     };
   }

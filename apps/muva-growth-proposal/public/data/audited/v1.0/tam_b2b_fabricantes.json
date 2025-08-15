@@ -1,0 +1,316 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15",
+    "dataset": "tam_b2b_fabricantes",
+    "description": "TAM para fabricantes/importadores que venden a distribuidores (B2B)"
+  },
+  "mercado_total": {
+    "tam_consumidor_final": {
+      "volumen_anual": 5200000,
+      "unit": "puertas/año",
+      "nota": "Demanda total del consumidor final ajustada por NSE"
+    },
+    "tam_b2b_fabricantes": {
+      "volumen_anual": 5200000,
+      "unit": "puertas/año",
+      "nota": "Los fabricantes/importadores mueven el mismo volumen pero a través de canales"
+    }
+  },
+  "canales_distribucion_b2b": {
+    "constructoras_desarrolladores": {
+      "descripcion": "Venta directa a constructoras y desarrolladores inmobiliarios",
+      "share_mercado": 0.38,
+      "volumen_anual": 1976000,
+      "puntos_venta": {
+        "grandes_desarrolladores": {
+          "cantidad": 150,
+          "volumen_promedio_anual": 8000,
+          "frecuencia_compra": "Mensual",
+          "pedido_promedio": 667,
+          "subtotal_volumen": 1200000
+        },
+        "constructoras_medianas": {
+          "cantidad": 500,
+          "volumen_promedio_anual": 800,
+          "frecuencia_compra": "Bimestral",
+          "pedido_promedio": 133,
+          "subtotal_volumen": 400000
+        },
+        "constructoras_pequeñas": {
+          "cantidad": 2000,
+          "volumen_promedio_anual": 188,
+          "frecuencia_compra": "Trimestral",
+          "pedido_promedio": 47,
+          "subtotal_volumen": 376000
+        }
+      },
+      "total_puntos": 2650,
+      "caracteristicas": {
+        "modelo_negocio": "B2B directo",
+        "credito": "60-90 días",
+        "descuentos_volumen": "15-25%",
+        "servicio_requerido": "Entrega en obra, inventario dedicado"
+      }
+    },
+    "ferreterias_tradicionales": {
+      "descripcion": "Distribución a través de ferreterías independientes",
+      "share_mercado": 0.35,
+      "volumen_anual": 1820000,
+      "puntos_venta": {
+        "ferreterias_grandes": {
+          "cantidad": 5000,
+          "volumen_promedio_anual": 200,
+          "frecuencia_compra": "Mensual",
+          "pedido_promedio": 17,
+          "subtotal_volumen": 1000000
+        },
+        "ferreterias_medianas": {
+          "cantidad": 15000,
+          "volumen_promedio_anual": 40,
+          "frecuencia_compra": "Bimestral",
+          "pedido_promedio": 7,
+          "subtotal_volumen": 600000
+        },
+        "ferreterias_pequeñas": {
+          "cantidad": 50000,
+          "volumen_promedio_anual": 4.4,
+          "frecuencia_compra": "Esporádica",
+          "pedido_promedio": 2,
+          "subtotal_volumen": 220000
+        }
+      },
+      "total_puntos": 70000,
+      "caracteristicas": {
+        "modelo_negocio": "Distribución tradicional",
+        "credito": "30-45 días",
+        "descuentos_volumen": "10-15%",
+        "servicio_requerido": "Entrega frecuente, lotes pequeños"
+      }
+    },
+    "redes_especializadas": {
+      "descripcion": "Cadenas especializadas en construcción (Construrama, etc)",
+      "share_mercado": 0.07,
+      "volumen_anual": 364000,
+      "puntos_venta": {
+        "construrama": {
+          "tiendas": 1900,
+          "volumen_promedio_anual": 150,
+          "frecuencia_compra": "Quincenal",
+          "pedido_promedio": 6,
+          "subtotal_volumen": 285000
+        },
+        "otras_cadenas": {
+          "tiendas": 300,
+          "volumen_promedio_anual": 263,
+          "frecuencia_compra": "Mensual",
+          "pedido_promedio": 22,
+          "subtotal_volumen": 79000
+        }
+      },
+      "total_puntos": 2200,
+      "caracteristicas": {
+        "modelo_negocio": "Franquicias/cadenas",
+        "credito": "45-60 días",
+        "descuentos_volumen": "18-22%",
+        "servicio_requerido": "Centralizado o por región"
+      }
+    },
+    "retail_moderno": {
+      "descripcion": "Home centers y tiendas de mejoramiento del hogar",
+      "share_mercado": 0.12,
+      "volumen_anual": 624000,
+      "puntos_venta": {
+        "home_depot": {
+          "tiendas": 140,
+          "volumen_promedio_anual": 3214,
+          "frecuencia_compra": "Semanal",
+          "pedido_promedio": 62,
+          "subtotal_volumen": 450000
+        },
+        "sodimac": {
+          "tiendas": 19,
+          "volumen_promedio_anual": 5263,
+          "frecuencia_compra": "Semanal",
+          "pedido_promedio": 101,
+          "subtotal_volumen": 100000
+        },
+        "otros_retail": {
+          "tiendas": 50,
+          "volumen_promedio_anual": 1480,
+          "frecuencia_compra": "Quincenal",
+          "pedido_promedio": 57,
+          "subtotal_volumen": 74000
+        }
+      },
+      "total_puntos": 209,
+      "caracteristicas": {
+        "modelo_negocio": "Vendor managed inventory",
+        "credito": "60-90 días",
+        "descuentos_volumen": "25-35%",
+        "servicio_requerido": "VMI, cross-docking, marca propia"
+      }
+    },
+    "institucional_gobierno": {
+      "descripcion": "Ventas a gobierno, hospitales, escuelas",
+      "share_mercado": 0.08,
+      "volumen_anual": 416000,
+      "puntos_venta": {
+        "licitaciones_grandes": {
+          "cantidad": 50,
+          "volumen_promedio_anual": 5000,
+          "frecuencia_compra": "Por proyecto",
+          "pedido_promedio": 5000,
+          "subtotal_volumen": 250000
+        },
+        "instituciones_medianas": {
+          "cantidad": 200,
+          "volumen_promedio_anual": 830,
+          "frecuencia_compra": "Anual",
+          "pedido_promedio": 830,
+          "subtotal_volumen": 166000
+        }
+      },
+      "total_puntos": 250,
+      "caracteristicas": {
+        "modelo_negocio": "Licitaciones",
+        "credito": "90-120 días",
+        "descuentos_volumen": "Variable",
+        "servicio_requerido": "Cumplimiento normativo, entregas programadas"
+      }
+    }
+  },
+  "metricas_clave_b2b": {
+    "concentracion_mercado": {
+      "top_100_clientes": {
+        "porcentaje_volumen": 0.45,
+        "volumen": 2340000,
+        "descripcion": "Grandes constructoras y retail moderno"
+      },
+      "siguientes_1000": {
+        "porcentaje_volumen": 0.30,
+        "volumen": 1560000,
+        "descripcion": "Constructoras medianas y ferreterías grandes"
+      },
+      "cola_larga": {
+        "porcentaje_volumen": 0.25,
+        "volumen": 1300000,
+        "descripcion": "Miles de ferreterías pequeñas"
+      }
+    },
+    "frecuencia_reorden": {
+      "alta_rotacion": {
+        "canales": ["Retail moderno", "Redes especializadas"],
+        "frecuencia": "Semanal a quincenal",
+        "volumen": "40% del total"
+      },
+      "rotacion_media": {
+        "canales": ["Ferreterías grandes", "Constructoras activas"],
+        "frecuencia": "Mensual",
+        "volumen": "35% del total"
+      },
+      "baja_rotacion": {
+        "canales": ["Ferreterías pequeñas", "Institucional"],
+        "frecuencia": "Trimestral o esporádica",
+        "volumen": "25% del total"
+      }
+    },
+    "ticket_promedio": {
+      "mega_pedidos": {
+        "rango": "1000+ puertas",
+        "clientes": "Grandes desarrolladores, licitaciones",
+        "frecuencia": "5% de pedidos, 25% del volumen"
+      },
+      "pedidos_grandes": {
+        "rango": "100-999 puertas",
+        "clientes": "Constructoras medianas, retail",
+        "frecuencia": "15% de pedidos, 35% del volumen"
+      },
+      "pedidos_medianos": {
+        "rango": "10-99 puertas",
+        "clientes": "Ferreterías grandes, constructoras pequeñas",
+        "frecuencia": "30% de pedidos, 25% del volumen"
+      },
+      "pedidos_pequeños": {
+        "rango": "1-9 puertas",
+        "clientes": "Ferreterías pequeñas",
+        "frecuencia": "50% de pedidos, 15% del volumen"
+      }
+    }
+  },
+  "oportunidad_estrategica": {
+    "segmentos_prioritarios": {
+      "1_constructoras_top50": {
+        "potencial_volumen": 800000,
+        "margen_esperado": "18-22%",
+        "inversion_requerida": "Alta (inventario dedicado)",
+        "roi_esperado": "Alto"
+      },
+      "2_cadenas_regionales": {
+        "potencial_volumen": 400000,
+        "margen_esperado": "20-25%",
+        "inversion_requerida": "Media",
+        "roi_esperado": "Muy alto"
+      },
+      "3_ferreterias_consolidadas": {
+        "potencial_volumen": 300000,
+        "margen_esperado": "15-20%",
+        "inversion_requerida": "Baja",
+        "roi_esperado": "Medio"
+      }
+    },
+    "canales_no_atendidos": {
+      "e_commerce_b2b": {
+        "potencial": "5-10% del mercado en 3 años",
+        "inversion": "Plataforma digital B2B"
+      },
+      "marca_propia_retail": {
+        "potencial": "200,000 unidades/año",
+        "margen_adicional": "+5-8%"
+      }
+    }
+  },
+  "logistica_distribucion": {
+    "centros_distribucion_requeridos": {
+      "cdmx_centro": {
+        "cobertura": "CDMX, Estado de México, Puebla",
+        "volumen_anual": 2080000,
+        "puntos_atencion": 30000
+      },
+      "monterrey": {
+        "cobertura": "Nuevo León, Coahuila, Tamaulipas",
+        "volumen_anual": 780000,
+        "puntos_atencion": 10000
+      },
+      "guadalajara": {
+        "cobertura": "Jalisco, Michoacán, Nayarit",
+        "volumen_anual": 650000,
+        "puntos_atencion": 12000
+      },
+      "merida": {
+        "cobertura": "Península de Yucatán",
+        "volumen_anual": 520000,
+        "puntos_atencion": 8000
+      },
+      "hermosillo": {
+        "cobertura": "Sonora, Sinaloa, Baja California",
+        "volumen_anual": 390000,
+        "puntos_atencion": 6000
+      }
+    },
+    "inventario_promedio": {
+      "rotacion_objetivo": "12 veces/año",
+      "dias_inventario": 30,
+      "inventario_promedio_unidades": 433333,
+      "valor_inventario_mxn": 238333000
+    }
+  },
+  "conclusiones": {
+    "tam_b2b_total": "5.2M puertas/año a través de 75,309 puntos de venta",
+    "concentracion": "Top 100 clientes = 45% del volumen",
+    "canal_principal": "Constructoras (38%) seguido por ferreterías (35%)",
+    "frecuencia_critica": "40% del volumen rota semanalmente",
+    "inversion_inventario": "$238M MXN en inventario promedio",
+    "oportunidad_inmediata": "Capturar 10% = 520,000 unidades/año = $286M MXN"
+  }
+}

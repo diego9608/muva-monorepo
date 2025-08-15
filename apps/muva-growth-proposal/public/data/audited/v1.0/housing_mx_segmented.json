@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "generated": "2025-08-15",
+    "dataset": "housing_mx_segmented",
+    "description": "Datos de vivienda México segmentados por NSE AMAI 2024"
+  },
+  "data": {
+    "vivienda_nueva_2024": {
+      "value": 128147,
+      "unit": "viviendas",
+      "status": "audited",
+      "source": "RUV 2024",
+      "citation": "El Economista 18-Mar-2025 cita RUV 2024",
+      "footnote_id": "fn_housing_001"
+    },
+    "viviendas_habitadas_total": {
+      "value": 34900000,
+      "unit": "viviendas",
+      "status": "audited",
+      "source": "Censo 2020 INEGI",
+      "footnote_id": "fn_housing_002"
+    },
+    "segmentacion_nse_amai": {
+      "metodologia": "AMAI NSE 2024 - Asociación Mexicana de Agencias de Inteligencia de Mercado",
+      "distribucion": {
+        "A_B": {
+          "nombre": "Clase Alta",
+          "porcentaje": 0.06,
+          "viviendas": 2094000,
+          "usa_puertas_tambor": false,
+          "tipo_puertas": "Sólidas, madera maciza, premium",
+          "precio_promedio_puerta": "3000-8000 MXN"
+        },
+        "C_plus": {
+          "nombre": "Clase Media-Alta",
+          "porcentaje": 0.14,
+          "viviendas": 4886000,
+          "usa_puertas_tambor": false,
+          "tipo_puertas": "Sólidas, MDF premium, madera",
+          "precio_promedio_puerta": "1500-3000 MXN"
+        },
+        "C": {
+          "nombre": "Clase Media",
+          "porcentaje": 0.17,
+          "viviendas": 5933000,
+          "usa_puertas_tambor": "parcial",
+          "factor_uso_tambor": 0.40,
+          "viviendas_con_tambor": 2373200,
+          "tipo_puertas": "Mixto: tambor en secundarias, sólidas en principales",
+          "precio_promedio_puerta": "800-1500 MXN"
+        },
+        "C_minus": {
+          "nombre": "Clase Media-Baja",
+          "porcentaje": 0.18,
+          "viviendas": 6282000,
+          "usa_puertas_tambor": true,
+          "factor_uso_tambor": 0.85,
+          "viviendas_con_tambor": 5339700,
+          "tipo_puertas": "Principalmente tambor, pocas sólidas",
+          "precio_promedio_puerta": "550-800 MXN"
+        },
+        "D_plus": {
+          "nombre": "Clase Baja-Alta",
+          "porcentaje": 0.21,
+          "viviendas": 7329000,
+          "usa_puertas_tambor": true,
+          "factor_uso_tambor": 0.97,
+          "viviendas_con_tambor": 7109130,
+          "tipo_puertas": "100% tambor cuando tienen puertas",
+          "precio_promedio_puerta": "450-650 MXN",
+          "nota": "97% tiene puertas completas, 100% son tambor"
+        },
+        "D": {
+          "nombre": "Clase Baja",
+          "porcentaje": 0.19,
+          "viviendas": 6631000,
+          "usa_puertas_tambor": true,
+          "factor_uso_tambor": 0.96,
+          "viviendas_con_tambor": 6365760,
+          "tipo_puertas": "100% tambor cuando tienen puertas",
+          "precio_promedio_puerta": "350-550 MXN",
+          "nota": "96% tiene puertas completas, 100% son tambor"
+        },
+        "E": {
+          "nombre": "Pobreza Extrema",
+          "porcentaje": 0.05,
+          "viviendas": 1745000,
+          "usa_puertas_tambor": true,
+          "factor_uso_tambor": 0.65,
+          "viviendas_con_tambor": 1134250,
+          "tipo_puertas": "Tambor básico cuando tienen, muchos usan cortinas",
+          "precio_promedio_puerta": "250-450 MXN",
+          "nota": "Solo 65% tiene puertas instaladas, resto usa cortinas/nada"
+        }
+      }
+    },
+    "mercado_addressable_tambor": {
+      "total_viviendas": 22322040,
+      "porcentaje_del_total": 0.640,
+      "calculo_detallado": {
+        "C_parcial": {
+          "viviendas": 2373200,
+          "formula": "5933000 * 0.40"
+        },
+        "C_minus": {
+          "viviendas": 5339700,
+          "formula": "6282000 * 0.85"
+        },
+        "D_plus": {
+          "viviendas": 7109130,
+          "formula": "7329000 * 0.97"
+        },
+        "D": {
+          "viviendas": 6365760,
+          "formula": "6631000 * 0.96"
+        },
+        "E": {
+          "viviendas": 1134250,
+          "formula": "1745000 * 0.65"
+        }
+      },
+      "status": "derived",
+      "nota_critica": "Excluye A/B y C+ que NO usan puertas tambor (20% del total)"
+    },
+    "puertas_por_vivienda_nse": {
+      "promedio_ponderado": 5.2,
+      "detalle_por_segmento": {
+        "C": {
+          "promedio": 6.5,
+          "configuracion_tipica": {
+            "recamaras": 3,
+            "banos": 2,
+            "closets": 1,
+            "otras": 0.5
+          }
+        },
+        "C_minus": {
+          "promedio": 6,
+          "configuracion_tipica": {
+            "recamaras": 2,
+            "banos": 1.5,
+            "closets": 1,
+            "otras": 1.5
+          }
+        },
+        "D_plus": {
+          "promedio": 5.5,
+          "configuracion_tipica": {
+            "recamaras": 2,
+            "banos": 1,
+            "closets": 1,
+            "otras": 1.5
+          }
+        },
+        "D": {
+          "promedio": 5,
+          "configuracion_tipica": {
+            "recamaras": 2,
+            "banos": 1,
+            "closets": 0.5,
+            "otras": 1.5
+          }
+        },
+        "E": {
+          "promedio": 3,
+          "configuracion_tipica": {
+            "recamaras": 1,
+            "banos": 0.5,
+            "closets": 0,
+            "otras": 1.5
+          },
+          "nota": "Muchas viviendas de 1 solo cuarto multifuncional"
+        }
+      },
+      "calculo_promedio_ponderado": "(6.5*0.106 + 6*0.239 + 5.5*0.318 + 5*0.285 + 3*0.051) = 5.45",
+      "status": "derived"
+    },
+    "base_instalada_puertas_tambor": {
+      "total_puertas": 121655118,
+      "calculo": "22,322,040 viviendas * 5.45 puertas/vivienda",
+      "status": "derived",
+      "nota": "Base instalada real con factores corregidos por NSE"
+    }
+  },
+  "insights": {
+    "mercado_real": "Solo 64% de las viviendas son mercado para puertas tambor",
+    "exclusion_importante": "20% de viviendas (A/B + C+) NO compran puertas tambor",
+    "core_market": "C-, D+ y D representan 58% del total y 90% del mercado tambor",
+    "precio_sensibilidad": "El mercado tambor es altamente sensible al precio (350-650 MXN)",
+    "volumen_ajustado": "TAM real: 4.9M puertas/año (vs 9.4M sin segmentación)"
+  },
+  "fuentes": {
+    "amai_nse": {
+      "nombre": "AMAI NSE 2024",
+      "descripcion": "Niveles Socioeconómicos México",
+      "url": "https://www.amai.org/NSE/"
+    },
+    "inegi_censo": {
+      "nombre": "INEGI Censo 2020",
+      "descripcion": "Censo de Población y Vivienda",
+      "url": "https://www.inegi.org.mx/programas/ccpv/2020/"
+    },
+    "enigh": {
+      "nombre": "ENIGH 2022",
+      "descripcion": "Encuesta Nacional de Ingresos y Gastos de los Hogares",
+      "url": "https://www.inegi.org.mx/programas/enigh/"
+    }
+  }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MUVA Presentations Hub | Centro de Presentaciones</title>
+  <title>MUVA | Centro de Presentaciones</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,714 +17,1132 @@
     }
 
     :root {
-      --primary: #0f172a;
-      --secondary: #475569;
-      --accent: #3b82f6;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #dc2626;
-      --light: #f8fafc;
-      --white: #ffffff;
-      --border: #e2e8f0;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #00ff88;
+      --accent-hover: #00cc6a;
+      --danger: #ff3366;
+      --warning: #ffaa00;
+      --info: #00aaff;
     }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      opacity: 0.4;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 51, 102, 0.05) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite;
+    }
+
+    @keyframes bgShift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    /* Main Container */
+    .main-container {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
-      padding: 2rem;
-      color: var(--primary);
     }
 
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
+    /* Header */
     .header {
+      padding: 4rem 2rem 2rem;
       text-align: center;
-      margin-bottom: 3rem;
-      color: var(--white);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(17,17,17,0) 0%, rgba(17,17,17,1) 100%);
     }
 
-    .header h1 {
-      font-size: 3rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .header p {
-      font-size: 1.25rem;
-      opacity: 0.95;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .stat-card {
-      background: var(--white);
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .sections {
-      display: grid;
-      gap: 2.5rem;
-    }
-
-    .section {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .section-header {
-      display: flex;
+    .logo {
+      display: inline-flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--border);
+      margin-bottom: 2rem;
     }
 
-    .section-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      border-radius: 12px;
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent), var(--info));
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      color: var(--white);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--bg);
+      animation: pulse 2s ease-in-out infinite;
     }
 
-    .section-title {
-      flex: 1;
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
-    .section-title h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.25rem;
+    .logo-text {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .section-title p {
-      font-size: 0.875rem;
-      color: var(--secondary);
+    .tagline {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
     }
 
-    .presentations-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1.5rem;
+    /* Search Bar */
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      position: relative;
     }
 
-    .presentation-card {
-      background: var(--light);
+    .search-input {
+      width: 100%;
+      padding: 1.25rem 3.5rem 1.25rem 1.5rem;
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.5rem;
+      color: var(--text-primary);
+      font-size: 1rem;
       transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+    }
+
+    /* Filter Tabs */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding: 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .presentation-card::before {
+    .filter-btn::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent), #8b5cf6);
+      bottom: 0;
+      background: var(--accent);
       transform: translateX(-100%);
       transition: transform 0.3s ease;
+      z-index: -1;
     }
 
-    .presentation-card:hover::before {
+    .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--accent);
+    }
+
+    .filter-btn.active {
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .filter-btn.active::before {
       transform: translateX(0);
     }
 
-    .presentation-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      background: var(--white);
+    /* Grid Layout */
+    .presentations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1600px;
+      margin: 0 auto;
     }
 
-    .presentation-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
+    /* Card Design */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--info), var(--danger));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-preview {
+      height: 200px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-preview-content {
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      opacity: 0.2;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-preview-content {
+      opacity: 0.4;
+      transform: scale(1.1);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badges {
+      display: flex;
       gap: 0.5rem;
-    }
-
-    .presentation-description {
-      font-size: 0.875rem;
-      color: var(--secondary);
-      line-height: 1.5;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
 
-    .presentation-meta {
+    .badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge.new {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .badge.featured {
+      background: var(--danger);
+      color: var(--text-primary);
+    }
+
+    .badge.data {
+      background: var(--info);
+      color: var(--bg);
+    }
+
+    .badge.es {
+      background: var(--warning);
+      color: var(--bg);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .card-description {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-meta {
       display: flex;
       gap: 1rem;
       font-size: 0.75rem;
-      color: var(--muted);
+      color: var(--text-secondary);
     }
 
-    .tag {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background: var(--light);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-right: 0.5rem;
-    }
-
-    .tag.new {
-      background: linear-gradient(135deg, #10b981, #34d399);
-      color: var(--white);
-    }
-
-    .tag.updated {
-      background: linear-gradient(135deg, #f59e0b, #fbbf24);
-      color: var(--white);
-    }
-
-    .tag.featured {
-      background: linear-gradient(135deg, #3b82f6, #60a5fa);
-      color: var(--white);
-    }
-
-    .tag.es {
-      background: linear-gradient(135deg, #dc2626, #ef4444);
-      color: var(--white);
-    }
-
-    .tag.data {
-      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-      color: var(--white);
-    }
-
-    .launch-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .card-action {
       padding: 0.5rem 1rem;
-      background: var(--accent);
-      color: var(--white);
-      border: none;
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
       border-radius: 8px;
+      font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
-      margin-top: 1rem;
-    }
-
-    .launch-btn:hover {
-      background: #2563eb;
-      transform: translateX(4px);
-    }
-
-    .quick-access {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--white);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      z-index: 100;
-    }
-
-    .quick-access h3 {
-      font-size: 0.875rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--primary);
-    }
-
-    .quick-links {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
+      align-items: center;
       gap: 0.5rem;
     }
 
-    .quick-link {
-      padding: 0.5rem 0.75rem;
-      background: var(--light);
-      border-radius: 8px;
-      font-size: 0.875rem;
-      color: var(--primary);
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .quick-link:hover {
+    .card-action:hover {
       background: var(--accent);
-      color: var(--white);
+      color: var(--bg);
       transform: translateX(4px);
     }
 
+    /* Featured Section */
+    .featured-section {
+      padding: 3rem 2rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .featured-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .featured-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--info));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .featured-card {
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .featured-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+    }
+
+    .featured-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: 5rem;
+    }
+
+    .footer-text {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .header h1 {
-        font-size: 2rem;
+      .logo-text {
+        font-size: 1.75rem;
       }
       
       .presentations-grid {
         grid-template-columns: 1fr;
+        padding: 1rem;
       }
       
-      .quick-access {
-        display: none;
+      .featured-grid {
+        grid-template-columns: 1fr;
       }
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Keyboard Shortcuts */
+    .shortcuts {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      z-index: 100;
+      display: none;
+    }
+
+    .shortcuts.show {
+      display: block;
+    }
+
+    .shortcut {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .shortcut kbd {
+      padding: 0.25rem 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: monospace;
+      color: var(--accent);
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- Animated Background -->
+  <div class="bg-animation"></div>
+
+  <!-- Main Container -->
+  <div class="main-container">
     <!-- Header -->
-    <div class="header">
-      <h1>🚀 MUVA Presentations Hub</h1>
-      <p>Centro de control para todas las presentaciones y propuestas de valor</p>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats">
-      <div class="stat-card">
-        <div class="stat-value">20</div>
-        <div class="stat-label">Presentaciones</div>
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">MUVA</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Idiomas</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">5</div>
-        <div class="stat-label">Categorías</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">2025</div>
-        <div class="stat-label">Última Actualización</div>
-      </div>
-    </div>
-
-    <!-- Sections -->
-    <div class="sections">
+      <p class="tagline">Centro de Presentaciones y Propuestas de Valor</p>
       
-      <!-- Industria de Puertas México -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">🚪</div>
-          <div class="section-title">
-            <h2>Industria de Puertas México</h2>
-            <p>Análisis completo del mercado de puertas huecas en México con datos validados</p>
-          </div>
+      <!-- Search -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Buscar presentaciones..."
+          id="searchInput"
+        >
+        <span class="search-icon">🔍</span>
+      </div>
+    </header>
+
+    <!-- Filter Tabs -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="featured">⭐ Destacadas</button>
+      <button class="filter-btn" data-filter="doors">🚪 Puertas</button>
+      <button class="filter-btn" data-filter="research">💎 Research</button>
+      <button class="filter-btn" data-filter="strategy">🚀 Estrategia</button>
+      <button class="filter-btn" data-filter="legacy">📁 Legacy</button>
+    </div>
+
+    <!-- Featured Section -->
+    <div class="featured-section">
+      <div class="featured-header">
+        <h2 class="featured-title">Presentaciones Destacadas</h2>
+        <p style="color: var(--text-secondary);">Acceso rápido a las presentaciones más importantes</p>
+      </div>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="featured-icon">🚪</div>
+          <h3 style="margin-bottom: 0.5rem;">Executive Deck v2</h3>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+            Presentación principal con mapa interactivo
+          </p>
+          <a href="door-industry-executive-deck-v2.html" class="card-action">
+            Abrir →
+          </a>
         </div>
-        
-        <div class="presentations-grid">
-          <div class="presentation-card" onclick="window.open('door-industry-executive-deck-v2.html', '_blank')">
-            <div class="presentation-title">
-              <span>📊</span>
-              Executive Deck v2
-              <span class="tag featured">FEATURED</span>
-              <span class="tag new">NEW</span>
-            </div>
-            <div class="presentation-description">
-              Presentación ejecutiva completa con mapa de calor interactivo, análisis de mercado y propuesta de valor creativa. Incluye scroll resistance y auto-scroll.
-            </div>
-            <div class="presentation-meta">
-              <span>✅ Datos Validados</span>
-              <span>🗺️ Mapa Interactivo</span>
-              <span>📈 Visualizaciones</span>
-            </div>
-            <a href="door-industry-executive-deck-v2.html" class="launch-btn">
-              Abrir Presentación →
-            </a>
-          </div>
+        <div class="featured-card">
+          <div class="featured-icon">📊</div>
+          <h3 style="margin-bottom: 0.5rem;">Datos Integrados</h3>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+            Dashboard con datos validados
+          </p>
+          <a href="door-industry-integrated-v1.html" class="card-action">
+            Abrir →
+          </a>
+        </div>
+        <div class="featured-card">
+          <div class="featured-icon">💰</div>
+          <h3 style="margin-bottom: 0.5rem;">Research Elite MXN</h3>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+            Análisis premium en pesos
+          </p>
+          <a href="research-elite-mxn.html" class="card-action">
+            Abrir →
+          </a>
+        </div>
+      </div>
+    </div>
 
-          <div class="presentation-card" onclick="window.open('door-industry-integrated-v1.html', '_blank')">
-            <div class="presentation-title">
-              <span>🔄</span>
-              Datos Integrados v1
-              <span class="tag data">DATA</span>
-            </div>
-            <div class="presentation-description">
-              Sistema integrado con data-loader.js para gestión centralizada de datos auditados. Toggle entre datos seed y validados.
-            </div>
-            <div class="presentation-meta">
-              <span>📊 Data Loader</span>
-              <span>🔧 Exportable</span>
-            </div>
-            <a href="door-industry-integrated-v1.html" class="launch-btn">
-              Abrir Dashboard →
-            </a>
-          </div>
+    <!-- Loading -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Cargando presentaciones...</p>
+    </div>
 
-          <div class="presentation-card" onclick="window.open('door-industry-research-2025.html', '_blank')">
-            <div class="presentation-title">
-              <span>📚</span>
-              Research 2025
-            </div>
-            <div class="presentation-description">
-              Investigación inicial del mercado con análisis detallado de volúmenes, canales de distribución y validación de datos.
-            </div>
-            <div class="presentation-meta">
-              <span>📈 Análisis Base</span>
-              <span>📊 Gráficos</span>
-            </div>
-            <a href="door-industry-research-2025.html" class="launch-btn">
-              Ver Research →
-            </a>
+    <!-- Presentations Grid -->
+    <div class="presentations-grid" id="presentationsGrid">
+      <!-- Door Industry Cards -->
+      <div class="card" data-category="doors featured" data-title="Executive Deck v2">
+        <div class="card-preview">
+          <div class="card-preview-content">🚪</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge featured">Featured</span>
+            <span class="badge new">New</span>
           </div>
-
-          <div class="presentation-card" onclick="window.open('door-industry-forecast-2025.html', '_blank')">
-            <div class="presentation-title">
-              <span>🔮</span>
-              Forecast 2025
+          <h3 class="card-title">Door Industry Executive Deck v2</h3>
+          <p class="card-description">
+            Presentación ejecutiva completa con mapa de calor interactivo de México, análisis de mercado validado (9.4M puertas/año) y propuesta creativa de servicios.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>📊 Datos</span>
+              <span>🗺️ Mapa</span>
             </div>
-            <div class="presentation-description">
-              Proyecciones y escenarios futuros con análisis de sensibilidad y modelado financiero interactivo.
-            </div>
-            <div class="presentation-meta">
-              <span>📈 Proyecciones</span>
-              <span>💰 Financiero</span>
-            </div>
-            <a href="door-industry-forecast-2025.html" class="launch-btn">
-              Ver Forecast →
+            <a href="door-industry-executive-deck-v2.html" class="card-action">
+              Abrir →
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Propuestas de Valor Elite -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">💎</div>
-          <div class="section-title">
-            <h2>Research Elite Series</h2>
-            <p>Presentaciones premium con estrategias avanzadas de crecimiento</p>
+      <div class="card" data-category="doors" data-title="Integrated Data v1">
+        <div class="card-preview">
+          <div class="card-preview-content">📊</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Data</span>
+          </div>
+          <h3 class="card-title">Door Industry Integrated v1</h3>
+          <p class="card-description">
+            Dashboard con sistema data-loader.js para gestión centralizada. Toggle entre datos seed y auditados, exportación CSV/JSON.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>🔄 Dynamic</span>
+              <span>📥 Export</span>
+            </div>
+            <a href="door-industry-integrated-v1.html" class="card-action">
+              Abrir →
+            </a>
           </div>
         </div>
-        
-        <div class="presentations-grid">
-          <div class="presentation-card" onclick="window.open('research-elite.html', '_blank')">
-            <div class="presentation-title">
-              <span>🏆</span>
-              Research Elite (EN)
+      </div>
+
+      <div class="card" data-category="doors" data-title="Research 2025">
+        <div class="card-preview">
+          <div class="card-preview-content">📚</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Research</span>
+          </div>
+          <h3 class="card-title">Door Industry Research 2025</h3>
+          <p class="card-description">
+            Investigación inicial del mercado mexicano con análisis detallado de volúmenes, canales de distribución y validación con fuentes oficiales.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>📈 Analysis</span>
+              <span>📊 Charts</span>
             </div>
-            <div class="presentation-description">
-              Comprehensive market analysis with advanced growth strategies and data-driven insights for premium clients.
+            <a href="door-industry-research-2025.html" class="card-action">
+              Abrir →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="doors" data-title="Forecast 2025">
+        <div class="card-preview">
+          <div class="card-preview-content">🔮</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Forecast</span>
+          </div>
+          <h3 class="card-title">Door Industry Forecast 2025</h3>
+          <p class="card-description">
+            Proyecciones y escenarios 2025-2033 con análisis de sensibilidad interactivo y modelado financiero de 3 escenarios.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>📈 Projections</span>
+              <span>💰 Financial</span>
             </div>
-            <div class="presentation-meta">
+            <a href="door-industry-forecast-2025.html" class="card-action">
+              Abrir →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Elite Cards -->
+      <div class="card" data-category="research" data-title="Research Elite EN">
+        <div class="card-preview">
+          <div class="card-preview-content">💎</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Premium</span>
+          </div>
+          <h3 class="card-title">Research Elite (English)</h3>
+          <p class="card-description">
+            Comprehensive market analysis with advanced growth strategies and data-driven insights for premium clients.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>🇺🇸 English</span>
-              <span>📊 Premium</span>
+              <span>💎 Premium</span>
             </div>
-            <a href="research-elite.html" class="launch-btn">
-              Open Presentation →
+            <a href="research-elite.html" class="card-action">
+              Open →
             </a>
           </div>
+        </div>
+      </div>
 
-          <div class="presentation-card" onclick="window.open('research-elite-es.html', '_blank')">
-            <div class="presentation-title">
-              <span>🏆</span>
-              Research Elite (ES)
-              <span class="tag es">ES</span>
-            </div>
-            <div class="presentation-description">
-              Análisis integral del mercado con estrategias avanzadas de crecimiento y insights basados en datos.
-            </div>
-            <div class="presentation-meta">
+      <div class="card" data-category="research" data-title="Research Elite ES">
+        <div class="card-preview">
+          <div class="card-preview-content">💎</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge es">ES</span>
+          </div>
+          <h3 class="card-title">Research Elite (Español)</h3>
+          <p class="card-description">
+            Análisis integral del mercado con estrategias avanzadas de crecimiento. Incluye animaciones mejoradas y modo fullscreen.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>🇲🇽 Español</span>
-              <span>📊 Premium</span>
+              <span>💎 Premium</span>
             </div>
-            <a href="research-elite-es.html" class="launch-btn">
-              Abrir Presentación →
+            <a href="research-elite-es.html" class="card-action">
+              Abrir →
             </a>
           </div>
+        </div>
+      </div>
 
-          <div class="presentation-card" onclick="window.open('research-elite-mxn.html', '_blank')">
-            <div class="presentation-title">
-              <span>💰</span>
-              Research Elite (MXN)
-              <span class="tag es">ES</span>
-              <span class="tag updated">MXN</span>
-            </div>
-            <div class="presentation-description">
-              Versión localizada con valores en pesos mexicanos, adaptada al contexto económico local.
-            </div>
-            <div class="presentation-meta">
+      <div class="card" data-category="research featured" data-title="Research Elite MXN">
+        <div class="card-preview">
+          <div class="card-preview-content">💰</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge es">MXN</span>
+            <span class="badge new">New</span>
+          </div>
+          <h3 class="card-title">Research Elite (MXN)</h3>
+          <p class="card-description">
+            Versión localizada con valores en pesos mexicanos, adaptada al contexto económico local con animaciones de cascada.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>🇲🇽 México</span>
               <span>💱 MXN</span>
             </div>
-            <a href="research-elite-mxn.html" class="launch-btn">
-              Abrir Presentación →
+            <a href="research-elite-mxn.html" class="card-action">
+              Abrir →
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Estrategias Avanzadas -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">🎯</div>
-          <div class="section-title">
-            <h2>Estrategias Avanzadas</h2>
-            <p>Propuestas estratégicas y modelos de colaboración innovadores</p>
-          </div>
+      <!-- Strategy Cards -->
+      <div class="card" data-category="strategy" data-title="Advanced Strategies EN">
+        <div class="card-preview">
+          <div class="card-preview-content">🚀</div>
         </div>
-        
-        <div class="presentations-grid">
-          <div class="presentation-card" onclick="window.open('advanced-strategies.html', '_blank')">
-            <div class="presentation-title">
-              <span>🚀</span>
-              Advanced Strategies (EN)
-            </div>
-            <div class="presentation-description">
-              Strategic proposals with innovative collaboration models and growth acceleration frameworks.
-            </div>
-            <div class="presentation-meta">
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Strategy</span>
+          </div>
+          <h3 class="card-title">Advanced Strategies (English)</h3>
+          <p class="card-description">
+            Strategic proposals with innovative collaboration models and growth acceleration frameworks.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>🇺🇸 English</span>
               <span>📈 Strategy</span>
             </div>
-            <a href="advanced-strategies.html" class="launch-btn">
-              View Strategies →
-            </a>
-          </div>
-
-          <div class="presentation-card" onclick="window.open('advanced-strategies-es.html', '_blank')">
-            <div class="presentation-title">
-              <span>🚀</span>
-              Estrategias Avanzadas
-              <span class="tag es">ES</span>
-              <span class="tag new">NEW</span>
-            </div>
-            <div class="presentation-description">
-              Propuestas estratégicas con modelos de colaboración innovadores y frameworks de aceleración.
-            </div>
-            <div class="presentation-meta">
-              <span>🇲🇽 Español</span>
-              <span>📈 Estrategia</span>
-            </div>
-            <a href="advanced-strategies-es.html" class="launch-btn">
-              Ver Estrategias →
-            </a>
-          </div>
-
-          <div class="presentation-card" onclick="window.open('value-creation-ideas.html', '_blank')">
-            <div class="presentation-title">
-              <span>💡</span>
-              Value Creation Ideas (EN)
-            </div>
-            <div class="presentation-description">
-              Innovative value creation concepts and business model innovations for rapid growth.
-            </div>
-            <div class="presentation-meta">
-              <span>🇺🇸 English</span>
-              <span>💡 Innovation</span>
-            </div>
-            <a href="value-creation-ideas.html" class="launch-btn">
-              View Ideas →
-            </a>
-          </div>
-
-          <div class="presentation-card" onclick="window.open('value-creation-ideas-es.html', '_blank')">
-            <div class="presentation-title">
-              <span>💡</span>
-              Ideas de Creación de Valor
-              <span class="tag es">ES</span>
-            </div>
-            <div class="presentation-description">
-              Conceptos innovadores de creación de valor y modelos de negocio para crecimiento acelerado.
-            </div>
-            <div class="presentation-meta">
-              <span>🇲🇽 Español</span>
-              <span>💡 Innovación</span>
-            </div>
-            <a href="value-creation-ideas-es.html" class="launch-btn">
-              Ver Ideas →
+            <a href="advanced-strategies.html" class="card-action">
+              Open →
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Presentaciones Legacy -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon">📁</div>
-          <div class="section-title">
-            <h2>Presentaciones Legacy</h2>
-            <p>Versiones anteriores y presentaciones base</p>
+      <div class="card" data-category="strategy" data-title="Advanced Strategies ES">
+        <div class="card-preview">
+          <div class="card-preview-content">🚀</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge es">ES</span>
+            <span class="badge new">New</span>
+          </div>
+          <h3 class="card-title">Estrategias Avanzadas</h3>
+          <p class="card-description">
+            Propuestas estratégicas con modelos de colaboración innovadores y frameworks de aceleración de crecimiento.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>🇲🇽 Español</span>
+              <span>📈 Estrategia</span>
+            </div>
+            <a href="advanced-strategies-es.html" class="card-action">
+              Abrir →
+            </a>
           </div>
         </div>
-        
-        <div class="presentations-grid">
-          <div class="presentation-card" onclick="window.open('../../index2.html', '_blank')">
-            <div class="presentation-title">
-              <span>🏠</span>
-              Index Principal (Raíz)
+      </div>
+
+      <div class="card" data-category="strategy" data-title="Value Creation EN">
+        <div class="card-preview">
+          <div class="card-preview-content">💡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Innovation</span>
+          </div>
+          <h3 class="card-title">Value Creation Ideas (English)</h3>
+          <p class="card-description">
+            Innovative value creation concepts and business model innovations for rapid growth.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>🇺🇸 English</span>
+              <span>💡 Innovation</span>
             </div>
-            <div class="presentation-description">
-              Página principal del repositorio ubicada en la raíz del proyecto.
+            <a href="value-creation-ideas.html" class="card-action">
+              Open →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-category="strategy" data-title="Value Creation ES">
+        <div class="card-preview">
+          <div class="card-preview-content">💡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge es">ES</span>
+          </div>
+          <h3 class="card-title">Ideas de Creación de Valor</h3>
+          <p class="card-description">
+            Conceptos innovadores de creación de valor y modelos de negocio para crecimiento acelerado.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
+              <span>🇲🇽 Español</span>
+              <span>💡 Innovación</span>
             </div>
-            <div class="presentation-meta">
+            <a href="value-creation-ideas-es.html" class="card-action">
+              Abrir →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legacy Cards -->
+      <div class="card" data-category="legacy" data-title="Index Root">
+        <div class="card-preview">
+          <div class="card-preview-content">🏠</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Root</span>
+          </div>
+          <h3 class="card-title">Index Principal (Raíz)</h3>
+          <p class="card-description">
+            Página principal del repositorio ubicada en la raíz del proyecto monorepo.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>📍 Root</span>
               <span>🏠 Main</span>
             </div>
-            <a href="../../index2.html" class="launch-btn">
-              Ir a Index →
+            <a href="../../../index2.html" class="card-action">
+              Abrir →
             </a>
           </div>
+        </div>
+      </div>
 
-          <div class="presentation-card" onclick="window.open('pitch.html', '_blank')">
-            <div class="presentation-title">
-              <span>🎤</span>
-              Pitch Original
-            </div>
-            <div class="presentation-description">
-              Primera versión del pitch de presentación con propuesta inicial.
-            </div>
-            <div class="presentation-meta">
+      <div class="card" data-category="legacy" data-title="Pitch v1">
+        <div class="card-preview">
+          <div class="card-preview-content">🎤</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">v1.0</span>
+          </div>
+          <h3 class="card-title">Pitch Original</h3>
+          <p class="card-description">
+            Primera versión del pitch de presentación con propuesta inicial básica.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>📝 v1.0</span>
               <span>🎯 Pitch</span>
             </div>
-            <a href="pitch.html" class="launch-btn">
-              Ver Pitch →
+            <a href="pitch.html" class="card-action">
+              Abrir →
             </a>
           </div>
+        </div>
+      </div>
 
-          <div class="presentation-card" onclick="window.open('deck.html', '_blank')">
-            <div class="presentation-title">
-              <span>📋</span>
-              Deck v1
-            </div>
-            <div class="presentation-description">
-              Primer deck de presentación con estructura básica.
-            </div>
-            <div class="presentation-meta">
+      <div class="card" data-category="legacy" data-title="Deck v1">
+        <div class="card-preview">
+          <div class="card-preview-content">📋</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">v1.0</span>
+          </div>
+          <h3 class="card-title">Deck v1</h3>
+          <p class="card-description">
+            Primer deck de presentación con estructura básica inicial.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>📝 v1.0</span>
               <span>📊 Deck</span>
             </div>
-            <a href="deck.html" class="launch-btn">
-              Ver Deck →
+            <a href="deck.html" class="card-action">
+              Abrir →
             </a>
           </div>
+        </div>
+      </div>
 
-          <div class="presentation-card" onclick="window.open('deck2.html', '_blank')">
-            <div class="presentation-title">
-              <span>📋</span>
-              Deck v2
-            </div>
-            <div class="presentation-description">
-              Segunda iteración del deck con mejoras en diseño y contenido.
-            </div>
-            <div class="presentation-meta">
+      <div class="card" data-category="legacy" data-title="Deck v2">
+        <div class="card-preview">
+          <div class="card-preview-content">📋</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">v2.0</span>
+          </div>
+          <h3 class="card-title">Deck v2</h3>
+          <p class="card-description">
+            Segunda iteración del deck con mejoras en diseño y contenido.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>📝 v2.0</span>
               <span>📊 Deck</span>
             </div>
-            <a href="deck2.html" class="launch-btn">
-              Ver Deck →
+            <a href="deck2.html" class="card-action">
+              Abrir →
             </a>
           </div>
+        </div>
+      </div>
 
-          <div class="presentation-card" onclick="window.open('research-deck.html', '_blank')">
-            <div class="presentation-title">
-              <span>🔬</span>
-              Research Deck
-            </div>
-            <div class="presentation-description">
-              Deck de investigación con análisis de mercado inicial.
-            </div>
-            <div class="presentation-meta">
+      <div class="card" data-category="legacy" data-title="Research Deck">
+        <div class="card-preview">
+          <div class="card-preview-content">🔬</div>
+        </div>
+        <div class="card-body">
+          <div class="card-badges">
+            <span class="badge data">Research</span>
+          </div>
+          <h3 class="card-title">Research Deck</h3>
+          <p class="card-description">
+            Deck de investigación con análisis de mercado inicial y datos preliminares.
+          </p>
+          <div class="card-footer">
+            <div class="card-meta">
               <span>📚 Research</span>
               <span>📊 Analysis</span>
             </div>
-            <a href="research-deck.html" class="launch-btn">
-              Ver Research →
+            <a href="research-deck.html" class="card-action">
+              Abrir →
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Quick Access Panel -->
-    <div class="quick-access">
-      <h3>⚡ Acceso Rápido</h3>
-      <div class="quick-links">
-        <a href="door-industry-executive-deck-v2.html" class="quick-link">🚪 Executive Deck v2</a>
-        <a href="door-industry-integrated-v1.html" class="quick-link">📊 Datos Integrados</a>
-        <a href="research-elite-mxn.html" class="quick-link">💰 Elite MXN</a>
-        <a href="advanced-strategies-es.html" class="quick-link">🚀 Estrategias ES</a>
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-text">
+        MUVA Presentations Hub • 2025 • Press <kbd style="padding: 0.25rem 0.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">?</kbd> for shortcuts
+      </p>
+    </footer>
+
+    <!-- Keyboard Shortcuts -->
+    <div class="shortcuts" id="shortcuts">
+      <h4 style="margin-bottom: 1rem; color: var(--text-primary);">Keyboard Shortcuts</h4>
+      <div class="shortcut">
+        <kbd>/</kbd>
+        <span>Focus search</span>
+      </div>
+      <div class="shortcut">
+        <kbd>1</kbd>
+        <span>Open Executive Deck v2</span>
+      </div>
+      <div class="shortcut">
+        <kbd>2</kbd>
+        <span>Open Integrated Data</span>
+      </div>
+      <div class="shortcut">
+        <kbd>3</kbd>
+        <span>Open Research Elite MXN</span>
+      </div>
+      <div class="shortcut">
+        <kbd>ESC</kbd>
+        <span>Clear filters</span>
+      </div>
+      <div class="shortcut">
+        <kbd>?</kbd>
+        <span>Toggle this help</span>
       </div>
     </div>
   </div>
 
   <script>
-    // Add search functionality
-    document.addEventListener('DOMContentLoaded', () => {
-      // Count presentations
-      const cards = document.querySelectorAll('.presentation-card');
-      console.log(`Total presentations loaded: ${cards.length}`);
+    // DOM Elements
+    const searchInput = document.getElementById('searchInput');
+    const grid = document.getElementById('presentationsGrid');
+    const cards = document.querySelectorAll('.card');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const shortcuts = document.getElementById('shortcuts');
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
       
-      // Add keyboard shortcuts
-      document.addEventListener('keydown', (e) => {
-        // Press 'h' to go to hub
-        if (e.key === 'h' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+      cards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const description = card.querySelector('.card-description').textContent.toLowerCase();
         
-        // Press '1' for featured presentation
-        if (e.key === '1' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-          window.open('door-industry-executive-deck-v2.html', '_blank');
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          card.style.display = 'flex';
+          card.style.animation = 'fadeIn 0.3s ease';
+        } else {
+          card.style.display = 'none';
         }
       });
+    });
 
-      // Add animation on scroll
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '0';
-            entry.target.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-              entry.target.style.transition = 'all 0.5s ease';
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }, 100);
+    // Filter functionality
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category.includes(filter)) {
+            card.style.display = 'flex';
+            card.style.animation = 'fadeIn 0.3s ease';
+          } else {
+            card.style.display = 'none';
           }
         });
       });
+    });
 
-      cards.forEach(card => observer.observe(card));
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Focus search with /
+      if (e.key === '/' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      
+      // Show/hide shortcuts with ?
+      if (e.key === '?' && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        shortcuts.classList.toggle('show');
+      }
+      
+      // Clear filters with ESC
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        cards.forEach(card => card.style.display = 'flex');
+        filterBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.filter === 'all') {
+            btn.classList.add('active');
+          }
+        });
+      }
+      
+      // Quick open shortcuts
+      if (!e.ctrlKey && !e.altKey && !e.shiftKey) {
+        switch(e.key) {
+          case '1':
+            window.open('door-industry-executive-deck-v2.html', '_blank');
+            break;
+          case '2':
+            window.open('door-industry-integrated-v1.html', '_blank');
+            break;
+          case '3':
+            window.open('research-elite-mxn.html', '_blank');
+            break;
+        }
+      }
+    });
+
+    // Animation on load
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    // Add animation style
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Initial animation
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.animation = 'fadeIn 0.5s ease';
+      }, index * 50);
+    });
+
+    // Click to open
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('card-action')) {
+          const link = card.querySelector('.card-action');
+          if (link) {
+            window.open(link.href, '_blank');
+          }
+        }
+      });
     });
   </script>
 </body>
