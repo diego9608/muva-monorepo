@@ -1,0 +1,9 @@
+field_path,description,unit,status,example,notes
+sources.housing_new_units_2024_ruv.value,Vivienda nueva 2024 (RUV),unidades,audited,128147,Actualizar con serie histórica
+sources.home_depot_mx_store_count_q1_2025.value,Tiendas Home Depot México Q1-2025,tiendas,audited,140,
+sources.construrama_points.value,Puntos de venta Construrama,puntos,audited,2000,
+sources.ferreterias_tlapalerias_denue_2024.value,Ferreterías y tlapalerías (DENUE 2024),unidades,audited,170378,Usar filtro SCIAN para subsegmentar
+assumptions.interior_doors_per_home_low,Puertas interiores por vivienda (bajo),puertas/vivienda,seed,6,
+assumptions.hollow_share_new_build_high,% de puertas de tambor en obra nueva (alto),proporción,seed,0.9,
+derived_estimates.channel_model_totals.mid,Volumen anual estimado por canales (escenario medio),unidades/año,model,3863010,Resultado de modelo; auditar
+derived_estimates.coo_claim_crosscheck.implied_market_units_per_year,Volumen implícito por reclamo 4%,unidades/año,crosscheck,12000000,Confirmar alcance del 4%

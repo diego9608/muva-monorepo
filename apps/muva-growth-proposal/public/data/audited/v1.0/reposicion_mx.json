@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15",
+    "dataset": "reposicion_mx",
+    "description": "Tasas de reposición y vida útil de puertas en México"
+  },
+  "data": {
+    "puertas_por_vivienda_interior": {
+      "low": 6,
+      "mid": 7,
+      "high": 8,
+      "unit": "puertas",
+      "status": "assumption_with_rationale",
+      "rationale": "Estándar vivienda interés social: 2-3 recámaras + baño + cocina/sala",
+      "footnote_id": "fn_repo_001",
+      "notes": "No incluye puertas exteriores"
+    },
+    "vida_util_hollow_core": {
+      "min": 20,
+      "max": 30,
+      "unit": "años",
+      "status": "audited",
+      "source": "InterNACHI Standard Estimated Life Expectancy Chart",
+      "citation": "International Association of Certified Home Inspectors",
+      "footnote_id": "fn_repo_002",
+      "urls": [
+        "https://www.nachi.org/life-expectancy.htm",
+        "https://www.narpm.org/life-expectancy-chart/",
+        "https://irp-cdn.multiscreensite.com/life-expectancy-chart.pdf",
+        "https://www.gatewayhi.com/life-expectancy"
+      ],
+      "notes": "Hollow core interior doors: 20-30 años bajo uso normal residencial"
+    },
+    "tasa_reposicion_anual": {
+      "low": 0.03,
+      "mid": 0.04,
+      "high": 0.05,
+      "unit": "porcentaje",
+      "status": "derived_from_audited",
+      "calculation": "1 / vida_util promedio",
+      "rationale": "3% = 1/33 años; 4% = 1/25 años; 5% = 1/20 años",
+      "footnote_id": "fn_repo_003"
+    },
+    "share_tambor_interiores": {
+      "low": 0.70,
+      "mid": 0.80,
+      "high": 0.85,
+      "unit": "porcentaje",
+      "status": "assumption_with_rationale",
+      "rationale": "Hollow core domina segmento económico e interés social en México",
+      "footnote_id": "fn_repo_004",
+      "source_reference": "The Spruce - Door Types Guide",
+      "url": "https://www.thespruce.com/hollow-core-vs-solid-wood-doors",
+      "notes": "Semi-sólidas y sólidas concentradas en segmento premium y comercial"
+    },
+    "factores_aceleracion_reposicion": {
+      "humedad_costera": {
+        "multiplier": 1.3,
+        "status": "assumption",
+        "rationale": "Zonas costeras reducen vida útil 30% por humedad y salinidad"
+      },
+      "uso_intensivo": {
+        "multiplier": 1.5,
+        "status": "assumption",
+        "rationale": "Vivienda multifamiliar/rentada acelera desgaste 50%"
+      },
+      "calidad_inferior": {
+        "multiplier": 1.4,
+        "status": "assumption",
+        "rationale": "Puertas económicas (<$400) duran 40% menos"
+      }
+    },
+    "ciclo_remodelacion": {
+      "residencial_medio": {
+        "años": 15,
+        "status": "assumption",
+        "source": "Práctica común industria",
+        "incluye_puertas": 0.6,
+        "notes": "60% de remodelaciones incluyen cambio de puertas"
+      },
+      "residencial_premium": {
+        "años": 10,
+        "status": "assumption",
+        "incluye_puertas": 0.8,
+        "notes": "80% cambian puertas en remodelación premium"
+      }
+    }
+  },
+  "calculos_base": {
+    "base_instalada_puertas_interior": {
+      "formula": "viviendas_habitadas * puertas_por_vivienda",
+      "low": 209400000,
+      "mid": 244300000,
+      "high": 279200000,
+      "unit": "puertas",
+      "calculation_note": "34.9M viviendas × (6, 7, 8) puertas"
+    },
+    "reposicion_anual_total": {
+      "formula": "base_instalada * tasa_reposicion",
+      "low": 6282000,
+      "mid": 9772000,
+      "high": 13960000,
+      "unit": "puertas/año",
+      "calculation_note": "Base instalada × (3%, 4%, 5%)"
+    },
+    "reposicion_tambor_anual": {
+      "formula": "reposicion_total * share_tambor",
+      "low": 4397400,
+      "mid": 7817600,
+      "high": 11866000,
+      "unit": "puertas tambor/año",
+      "status": "derived",
+      "footnote_id": "fn_repo_005"
+    }
+  },
+  "quality_checks": {
+    "reposicion_como_porcentaje_base": {
+      "low": "3.0%",
+      "mid": "4.0%",
+      "high": "5.0%",
+      "plausible": true,
+      "benchmark": "Consistente con vida útil 20-33 años"
+    },
+    "puertas_por_hogar_benchmark": {
+      "mexico": 7,
+      "usa": 8,
+      "latam_promedio": 6,
+      "plausible": true,
+      "source": "Comparables internacionales"
+    }
+  }
+}

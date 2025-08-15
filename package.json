@@ -14,9 +14,13 @@
     "clean": "turbo run clean"
   },
   "devDependencies": {
-    "turbo": "^1.10.16",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "eslint": "^8.48.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "prettier": "^3.0.3",
-    "eslint": "^8.48.0"
+    "turbo": "^1.10.16"
   },
   "engines": {
     "node": ">=18.0.0",

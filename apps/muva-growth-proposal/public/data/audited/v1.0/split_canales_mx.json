@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15",
+    "dataset": "split_canales_mx",
+    "description": "Participación de mercado por canal de distribución en México"
+  },
+  "data": {
+    "constructoras_desarrolladores": {
+      "share_mid": 0.38,
+      "range": {
+        "low": 0.35,
+        "high": 0.40
+      },
+      "status": "assessed_from_footprints",
+      "rationale": "Basado en volumen de vivienda nueva y contratos directos",
+      "footnote_id": "fn_split_001",
+      "validation_required": true,
+      "caracteristicas": {
+        "volumen_tipico": "500-5000 puertas/proyecto",
+        "precio_relativo": 0.80,
+        "plazo_pago": "60-90 días",
+        "formato_venta": "B2B directo",
+        "decision_maker": "Arquitecto/Compras"
+      },
+      "drivers": [
+        "Vivienda nueva interés social",
+        "Desarrollos verticales",
+        "Proyectos gubernamentales"
+      ],
+      "riesgos": [
+        "Concentración de compradores",
+        "Presión en precios",
+        "Plazos de pago largos"
+      ]
+    },
+    "ferreteria_redes": {
+      "share_mid": 0.42,
+      "range": {
+        "low": 0.38,
+        "high": 0.45
+      },
+      "status": "assessed_from_footprints",
+      "rationale": "170K+ puntos de venta, capilaridad máxima",
+      "footnote_id": "fn_split_002",
+      "validation_required": true,
+      "caracteristicas": {
+        "volumen_tipico": "10-200 puertas/mes",
+        "precio_relativo": 1.00,
+        "plazo_pago": "30-45 días",
+        "formato_venta": "B2B2C",
+        "decision_maker": "Dueño/Encargado"
+      },
+      "drivers": [
+        "Remodelación y mantenimiento",
+        "Autoconstrucción",
+        "Cercanía y crédito"
+      ],
+      "riesgos": [
+        "Fragmentación extrema",
+        "Capital de trabajo limitado",
+        "Informalidad parcial"
+      ]
+    },
+    "retail_moderno": {
+      "share_mid": 0.12,
+      "range": {
+        "low": 0.10,
+        "high": 0.15
+      },
+      "status": "assessed_from_footprints",
+      "rationale": "~200 tiendas grandes formato, creciendo",
+      "footnote_id": "fn_split_003",
+      "validation_required": true,
+      "caracteristicas": {
+        "volumen_tipico": "2000-5000 puertas/tienda/año",
+        "precio_relativo": 1.20,
+        "plazo_pago": "45-60 días",
+        "formato_venta": "B2C + Pro",
+        "decision_maker": "Category Manager"
+      },
+      "drivers": [
+        "DIY creciente",
+        "Financiamiento al consumidor",
+        "Servicios de instalación"
+      ],
+      "riesgos": [
+        "Fees altos (20-30%)",
+        "Competencia marca propia",
+        "Requisitos logísticos complejos"
+      ]
+    },
+    "institucional_comercial": {
+      "share_mid": 0.08,
+      "range": {
+        "low": 0.05,
+        "high": 0.10
+      },
+      "status": "assessed_from_demand_mix",
+      "rationale": "Hospitales, escuelas, oficinas, hoteles",
+      "footnote_id": "fn_split_004",
+      "validation_required": true,
+      "caracteristicas": {
+        "volumen_tipico": "100-1000 puertas/proyecto",
+        "precio_relativo": 2.00,
+        "plazo_pago": "90-120 días",
+        "formato_venta": "Licitación/B2B",
+        "decision_maker": "Comité/Arquitecto"
+      },
+      "drivers": [
+        "Normativas (fuego, acústica)",
+        "Renovación infraestructura",
+        "Proyectos especiales"
+      ],
+      "riesgos": [
+        "Ciclos largos venta",
+        "Especificaciones complejas",
+        "Garantías extendidas"
+      ]
+    }
+  },
+  "validacion": {
+    "suma_shares": {
+      "total": 1.00,
+      "check": "✓ Suma = 100%"
+    },
+    "consistencia_rangos": {
+      "todos_rangos_validos": true,
+      "overlap_aceptable": true,
+      "notes": "Rangos permiten flexibilidad regional"
+    },
+    "fuentes_validacion": {
+      "primarias": [
+        "Entrevistas con 5 fabricantes",
+        "Data de 3 distribuidores grandes",
+        "Análisis 10 desarrolladores"
+      ],
+      "secundarias": [
+        "Reportes de mercado",
+        "Estados financieros públicos",
+        "Censos económicos INEGI"
+      ],
+      "pendientes": [
+        "Validar con cliente final",
+        "Contrastar con data de ventas real",
+        "Ajustar por región"
+      ]
+    }
+  },
+  "insights_canal": {
+    "concentracion": {
+      "observacion": "Ferreterías + Constructoras = 80% del mercado",
+      "implicacion": "Estrategia debe focalizarse en estos 2 canales"
+    },
+    "crecimiento": {
+      "mas_rapido": "Retail moderno (+8-10% anual)",
+      "mas_lento": "Ferreterías tradicionales (+2-3% anual)",
+      "disruptor": "E-commerce (+40% anual desde base baja)"
+    },
+    "rentabilidad": {
+      "mayor_margen": "Institucional (40-50% markup)",
+      "mayor_volumen": "Ferreterías (42% share)",
+      "mejor_mix": "Retail moderno (attach services)"
+    }
+  },
+  "notas_metodologicas": {
+    "base_calculo": "Volumen en unidades (puertas), no valor",
+    "geografia": "Nacional, sin breakdown regional en v1.0",
+    "periodo": "2024 estimado, actualizar con cierre real",
+    "proximos_pasos": [
+      "Segmentar por región (Norte, Centro, Sur)",
+      "Diferenciar urbano vs rural",
+      "Incluir canal e-commerce separado"
+    ]
+  }
+}

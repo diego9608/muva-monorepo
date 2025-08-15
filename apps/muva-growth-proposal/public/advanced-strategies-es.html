@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estrategias Avanzadas de Creación de Valor - Crecimiento de Siguiente Nivel">
+  <title>Estrategias Avanzadas | Industria de Puertas Next-Gen</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --dark: #0a0a0a;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #2a2a2a;
+      --gray-600: #404040;
+      --gray-500: #737373;
+      --gray-400: #a3a3a3;
+      --gray-300: #d4d4d4;
+      --gray-200: #e5e5e5;
+      --white: #ffffff;
+      
+      --gold: #d4af37;
+      --gold-dark: #b8941f;
+      --gold-light: #f4e5bc;
+      
+      --neon-green: #00ff88;
+      --neon-blue: #00d4ff;
+      --neon-purple: #9945ff;
+      --neon-pink: #ff0080;
+      --danger: #ff3366;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, var(--gray-900) 0%, var(--black) 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(212, 175, 55, 0.03) 10px,
+        rgba(212, 175, 55, 0.03) 20px
+      );
+      animation: slide 20s linear infinite;
+    }
+
+    @keyframes slide {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .mega-title {
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--white));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--gray-400);
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 3rem;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(153, 69, 255, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(153, 69, 255, 0.8); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-number {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--black);
+      margin: 0 auto 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-400);
+      font-weight: 300;
+    }
+
+    /* Mega Strategy Cards */
+    .mega-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 3rem;
+      margin-bottom: 6rem;
+    }
+
+    .mega-card {
+      background: linear-gradient(135deg, var(--gray-900), var(--black));
+      border: 2px solid var(--gray-800);
+      border-radius: 24px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mega-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-green), var(--neon-purple));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mega-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--gold);
+      box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2);
+    }
+
+    .mega-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--white), var(--gray-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-description {
+      color: var(--gray-400);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .card-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--black);
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .metric-item {
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .metric-label {
+      font-size: 0.625rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* Innovation Matrix */
+    .innovation-matrix {
+      background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+      border: 2px solid var(--gray-700);
+      border-radius: 24px;
+      padding: 4rem;
+      margin: 6rem 0;
+    }
+
+    .matrix-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .matrix-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .innovation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .innovation-item {
+      background: var(--black);
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .innovation-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .innovation-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .innovation-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .innovation-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    /* Financial Engineering */
+    .financial-section {
+      background: linear-gradient(180deg, var(--black), var(--gray-900));
+      padding: 6rem 0;
+      margin: 6rem 0;
+    }
+
+    .financial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .financial-card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+      border: 1px solid var(--gold-dark);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .financial-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .financial-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .financial-details {
+      position: relative;
+      z-index: 1;
+      color: var(--gray-300);
+      line-height: 1.8;
+    }
+
+    .financial-highlight {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    /* Technology Stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .tech-badge {
+      padding: 0.5rem 1rem;
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      border-radius: 100px;
+      font-size: 0.875rem;
+      color: var(--gray-300);
+      transition: all 0.3s ease;
+    }
+
+    .tech-badge:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: scale(1.05);
+    }
+
+    /* Timeline Advanced */
+    .timeline-advanced {
+      position: relative;
+      padding: 4rem 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding: 2rem;
+      background: var(--gray-900);
+      border: 1px solid var(--gray-700);
+      border-radius: 16px;
+      margin: 0 2rem;
+    }
+
+    .timeline-dot {
+      width: 30px;
+      height: 30px;
+      background: var(--gold);
+      border: 4px solid var(--black);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .timeline-year {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--gray-800);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .mega-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        flex-direction: column;
+      }
+
+      .timeline-line {
+        left: 20px;
+      }
+
+      .timeline-dot {
+        left: 20px;
+      }
+    }
+
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      animation: glitch-1 0.5s infinite;
+      color: var(--neon-blue);
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitch-2 0.5s infinite;
+      color: var(--neon-pink);
+      z-index: -2;
+    }
+
+    @keyframes glitch-1 {
+      0%, 100% { clip: rect(0, 0, 0, 0); }
+      20% { clip: rect(20px, 9999px, 40px, 0); }
+    }
+
+    @keyframes glitch-2 {
+      0%, 100% { clip: rect(0, 0, 0, 0); }
+      20% { clip: rect(10px, 9999px, 30px, 0); transform: translateX(-2px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">ESTRATEGIAS DE PRÓXIMA GENERACIÓN</div>
+      <h1 class="mega-title glitch" data-text="AVANZADO">AVANZADO</h1>
+      <p class="hero-subtitle">Modelos Disruptivos para Crecimiento 10x</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- SECTION 1: AI & Data Monetization -->
+    <section>
+      <div class="section-header">
+        <div class="section-number">01</div>
+        <h2 class="section-title">IA y Monetización de Datos</h2>
+        <p class="section-subtitle">Transforma datos en flujos de ingresos</p>
+      </div>
+
+      <div class="mega-grid">
+        <div class="mega-card">
+          <div class="card-icon">🧠</div>
+          <h3 class="card-title">Pronóstico de Demanda con IA</h3>
+          <p class="card-description">
+            Modelos de machine learning prediciendo demanda por SKU, región y segmento de cliente. 
+            Integración con datos climáticos, permisos de construcción e indicadores económicos. 
+            Planificación de producción automatizada y optimización de inventario.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">-35%</div>
+              <div class="metric-label">Costo Inventario</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">98%</div>
+              <div class="metric-label">Tasa Servicio</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$246M</div>
+              <div class="metric-label">Capital Trabajo</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">TensorFlow</span>
+            <span class="tech-badge">AWS SageMaker</span>
+            <span class="tech-badge">Prophet</span>
+            <span class="tech-badge">Analítica Tiempo Real</span>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">Plataforma de Inteligencia de Mercado</h3>
+          <p class="card-description">
+            Marketplace de datos vendiendo insights agregados de la industria a fondos PE, competidores y proveedores. 
+            Datos de transacciones anonimizados, tendencias de precios y patrones de demanda. 
+            Modelo SaaS con suscripciones escalonadas.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">$103M</div>
+              <div class="metric-label">ARR Potencial</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">85%</div>
+              <div class="metric-label">Margen Bruto</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">200</div>
+              <div class="metric-label">Clientes Corp</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">Snowflake</span>
+            <span class="tech-badge">Tableau</span>
+            <span class="tech-badge">API Gateway</span>
+            <span class="tech-badge">Blockchain</span>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">🤖</div>
+          <h3 class="card-title">Control de Calidad con Visión por Computadora</h3>
+          <p class="card-description">
+            Sistema de inspección visual con IA detectando defectos en tiempo real. 
+            Objetivo de tasa de defectos 0.001%. Clasificación y ordenamiento automatizado. 
+            Mantenimiento predictivo basado en tendencias de calidad.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">-90%</div>
+              <div class="metric-label">Tasa Defectos</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">-$62M</div>
+              <div class="metric-label">Costo Devoluciones</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">24/7</div>
+              <div class="metric-label">Monitoreo</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">OpenCV</span>
+            <span class="tech-badge">NVIDIA Jetson</span>
+            <span class="tech-badge">Edge Computing</span>
+            <span class="tech-badge">Red 5G</span>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">💬</div>
+          <h3 class="card-title">Asistente de Ventas con GPT</h3>
+          <p class="card-description">
+            Chatbot IA manejando 80% de consultas de clientes. Generación de cotizaciones, soporte técnico 
+            y seguimiento de pedidos. Habilitado por voz para operación manos libres en obras.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">80%</div>
+              <div class="metric-label">Automatización</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">24/7</div>
+              <div class="metric-label">Disponibilidad</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">-$41M</div>
+              <div class="metric-label">Costo Soporte</div>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">GPT-4</span>
+            <span class="tech-badge">LangChain</span>
+            <span class="tech-badge">WhatsApp API</span>
+            <span class="tech-badge">IA de Voz</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Platform Economy -->
+    <section>
+      <div class="section-header">
+        <div class="section-number">02</div>
+        <h2 class="section-title">Modelos de Economía de Plataforma</h2>
+        <p class="section-subtitle">Construye ecosistemas, no solo productos</p>
+      </div>
+
+      <div class="mega-grid">
+        <div class="mega-card">
+          <div class="card-icon">🏗️</div>
+          <h3 class="card-title">Marketplace de Materiales de Construcción</h3>
+          <p class="card-description">
+            Marketplace B2B conectando todos los proveedores de materiales con contratistas. 
+            Empresa de puertas como ancla. Comisión en ventas de terceros. 
+            Financiamiento y seguros integrados.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">$10,250M</div>
+              <div class="metric-label">GMV Año 3</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">15%</div>
+              <div class="metric-label">Tasa Take</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">10K</div>
+              <div class="metric-label">Proveedores</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">🏠</div>
+          <h3 class="card-title">Super App de Mejoras para el Hogar</h3>
+          <p class="card-description">
+            App para consumidores para todo el viaje de renovación. Selección de puertas, matching de contratistas, 
+            gestión de proyectos y financiamiento. Ingresos por leads, transacciones y productos financieros.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">5M</div>
+              <div class="metric-label">Descargas</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$2,050</div>
+              <div class="metric-label">CAC</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$41K</div>
+              <div class="metric-label">LTV</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">🔧</div>
+          <h3 class="card-title">Sistema Operativo para Contratistas</h3>
+          <p class="card-description">
+            SaaS vertical para pequeños contratistas. CRM, gestión de proyectos, facturación y pedido de materiales. 
+            Puertas pre-integradas. Modelo freemium con características premium.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">50K</div>
+              <div class="metric-label">Contratistas</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$2,029</div>
+              <div class="metric-label">Mensual</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$1,230M</div>
+              <div class="metric-label">ARR</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">🎓</div>
+          <h3 class="card-title">Academia de Oficios</h3>
+          <p class="card-description">
+            Capacitación online y offline para instalación de puertas. Programa de certificación. 
+            Red de colocación laboral. Ingresos por matrícula, tarifas de certificación y alianzas con empleadores.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">10K</div>
+              <div class="metric-label">Estudiantes/Año</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$10,250</div>
+              <div class="metric-label">Por Curso</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">90%</div>
+              <div class="metric-label">Colocación</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Financial Engineering -->
+    <section class="financial-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <h2 class="section-title">Ingeniería Financiera</h2>
+          <p class="section-subtitle">Optimización de estructura de capital</p>
+        </div>
+
+        <div class="financial-grid">
+          <div class="financial-card">
+            <h3 class="financial-title">🏦 Valores Respaldados por Activos (ABS)</h3>
+            <div class="financial-details">
+              Titularizar cuentas por cobrar de contratistas en bonos calificados. 
+              <span class="financial-highlight">$4,100M</span> emisión ABS a 
+              <span class="financial-highlight">TIIE+250pb</span>. 
+              Efectivo inmediato, tratamiento fuera de balance. 
+              Retener servicio para ingresos por comisión.
+            </div>
+          </div>
+
+          <div class="financial-card">
+            <h3 class="financial-title">🏢 FIBRA Sale-Leaseback</h3>
+            <div class="financial-details">
+              Crear FIBRA para instalaciones de manufactura y almacenes. 
+              <span class="financial-highlight">$3,075M</span> valor de activos a 
+              <span class="financial-highlight">6.5% cap rate</span>. 
+              Arrendamientos triple neto a 20 años. Liberar capital manteniendo operaciones.
+            </div>
+          </div>
+
+          <div class="financial-card">
+            <h3 class="financial-title">💰 Fondo de Financiamiento Basado en Ingresos</h3>
+            <div class="financial-details">
+              Lanzar fondo proporcionando financiamiento basado en ingresos a contratistas. 
+              <span class="financial-highlight">$1,025M</span> tamaño del fondo, 
+              <span class="financial-highlight">15-20% TIR</span> objetivo. 
+              Crea lealtad del cliente y nuevo flujo de ingresos.
+            </div>
+          </div>
+
+          <div class="financial-card">
+            <h3 class="financial-title">🪙 Criptomoneda PuertaCoin</h3>
+            <div class="financial-details">
+              Token de lealtad y pago basado en blockchain. 
+              <span class="financial-highlight">$615M</span> potencial ICO. 
+              Descuentos por pagos con token. Liquidez en mercado secundario. 
+              Contratos inteligentes para pedidos automatizados.
+            </div>
+          </div>
+
+          <div class="financial-card">
+            <h3 class="financial-title">📈 Estrategia de Fusión SPAC</h3>
+            <div class="financial-details">
+              Fusión con empresa de cheque en blanco para cotización pública. 
+              <span class="financial-highlight">$20,500M</span> valuación a 
+              <span class="financial-highlight">5x ingresos</span>. 
+              $4,100M compromiso PIPE. Liquidez para fundadores y capital de crecimiento.
+            </div>
+          </div>
+
+          <div class="financial-card">
+            <h3 class="financial-title">🎯 Equity Sintético para Empleados</h3>
+            <div class="financial-details">
+              Programa de acciones fantasma vinculado a crecimiento EBITDA. 
+              <span class="financial-highlight">10%</span> pool para empleados clave. 
+              3 años cliff, 5 años vesting. Liquidación en efectivo en salida. 
+              Alinea incentivos sin dilución.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Sustainability & ESG -->
+    <section>
+      <div class="section-header">
+        <div class="section-number">04</div>
+        <h2 class="section-title">ESG e Inversión de Impacto</h2>
+        <p class="section-subtitle">Ganancias con propósito</p>
+      </div>
+
+      <div class="mega-grid">
+        <div class="mega-card">
+          <div class="card-icon">🌱</div>
+          <h3 class="card-title">Manufactura Carbono-Negativa</h3>
+          <p class="card-description">
+            Materiales bio-basados, tecnología de captura de carbono y energía renovable. 
+            Vender créditos de carbono. Precio premium para productos net-zero. 
+            Certificación B Corp.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">-50K</div>
+              <div class="metric-label">Ton CO2/Año</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$103M</div>
+              <div class="metric-label">Créditos Carbono</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">30%</div>
+              <div class="metric-label">Prima Precio</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">♻️</div>
+          <h3 class="card-title">Modelo de Economía Circular</h3>
+          <p class="card-description">
+            Programa de recompra de puertas, centro de reacondicionamiento y recuperación de materiales. 
+            Modelo de suscripción incluye reemplazo. Cero residuos a vertedero para 2027.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">100%</div>
+              <div class="metric-label">Reciclable</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$410M</div>
+              <div class="metric-label">Valor Material</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">-80%</div>
+              <div class="metric-label">Residuos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">🏘️</div>
+          <h3 class="card-title">Iniciativa de Vivienda Social</h3>
+          <p class="card-description">
+            Puertas subsidiadas para vivienda de bajos ingresos. Financiamiento con bonos de impacto. 
+            Alianzas gubernamentales. PR positivo y licencia social para operar.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">100K</div>
+              <div class="metric-label">Hogares/Año</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$1,025M</div>
+              <div class="metric-label">Bonos Impacto</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">10%</div>
+              <div class="metric-label">ROI Social</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mega-card">
+          <div class="card-icon">💧</div>
+          <h3 class="card-title">Operaciones Agua-Positivas</h3>
+          <p class="card-description">
+            Sistemas de agua de circuito cerrado, cosecha de agua de lluvia y restauración de humedales. 
+            Comercio de créditos de agua. Cadena de suministro resistente a sequías.
+          </p>
+          <div class="card-metrics">
+            <div class="metric-item">
+              <div class="metric-value">3.8M</div>
+              <div class="metric-label">Litros Ahorrados</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">$41M</div>
+              <div class="metric-label">Ahorro Costos</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">150%</div>
+              <div class="metric-label">Agua Positivo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Innovation Matrix -->
+    <div class="innovation-matrix">
+      <div class="matrix-header">
+        <h2 class="matrix-title">Valor del Portafolio de Innovación</h2>
+        <p class="section-subtitle">Impacto combinado de estrategias avanzadas</p>
+      </div>
+
+      <div class="innovation-grid">
+        <div class="innovation-item">
+          <div class="innovation-icon">📈</div>
+          <div class="innovation-name">Crecimiento Ingresos</div>
+          <div class="innovation-value">+$17,425M</div>
+        </div>
+        <div class="innovation-item">
+          <div class="innovation-icon">💰</div>
+          <div class="innovation-name">Impacto EBITDA</div>
+          <div class="innovation-value">+$3,690M</div>
+        </div>
+        <div class="innovation-item">
+          <div class="innovation-icon">🏢</div>
+          <div class="innovation-name">Valor Empresa</div>
+          <div class="innovation-value">$51,250M</div>
+        </div>
+        <div class="innovation-item">
+          <div class="innovation-icon">📊</div>
+          <div class="innovation-name">Expansión Múltiplo</div>
+          <div class="innovation-value">8x → 15x</div>
+        </div>
+        <div class="innovation-item">
+          <div class="innovation-icon">🚀</div>
+          <div class="innovation-name">Cap. Mercado</div>
+          <div class="innovation-value">$61.5B+</div>
+        </div>
+        <div class="innovation-item">
+          <div class="innovation-icon">💎</div>
+          <div class="innovation-name">Estatus Unicornio</div>
+          <div class="innovation-value">2027</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <section class="timeline-advanced">
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2025</div>
+          <h3>Año Fundación</h3>
+          <p>Implementación IA, lanzamiento plataforma, línea base ESG</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2026</div>
+          <h3>Año Escala</h3>
+          <p>Crecimiento marketplace, emisión ABS, carbono neutral</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2027</div>
+          <h3>Año Unicornio</h3>
+          <p>Valuación $20.5B, fusión SPAC, dominio plataforma</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-year">2028</div>
+          <h3>Año Global</h3>
+          <p>Expansión internacional, cap. mercado $61.5B, líder categoría</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p style="font-size: 1.25rem; margin-bottom: 1rem;">¿Listos para Construir el Futuro?</p>
+    <p style="color: var(--gray-500);">Estrategias Avanzadas para la Transformación de la Industria · 2025</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Animate cards on scroll
+    document.querySelectorAll('.mega-card, .financial-card, .innovation-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(el);
+    });
+
+    // Parallax effect for hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const hero = document.querySelector('.hero');
+      hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+
+    // Keyboard navigation - fullscreen with 'f'
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        // Toggle fullscreen
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable fullscreen: ${err.message}`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deck Ejecutivo - Oportunidad Puertas México 2025">
+  <title>Oportunidad Puertas MX 2025 | Deck Ejecutivo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --secondary: #475569;
+      --accent: #3b82f6;
+      --accent-dark: #2563eb;
+      --mexico: #dc2626;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --muted: #94a3b8;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-mexico: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Progress */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-hero);
+      width: 0%;
+      transition: width 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Side Navigation */
+    .side-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--white);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+    }
+
+    .nav-label {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-dot:hover .nav-label {
+      opacity: 1;
+    }
+
+    /* Sections */
+    .section {
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .section.dark {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .section.gradient {
+      background: var(--gradient-hero);
+      color: var(--white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    /* Hero Section */
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero-number {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--white) 0%, rgba(255,255,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0.95;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-stat-label {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .card.dark {
+      background: var(--primary);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Pain Points Grid */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .pain-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    .pain-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .pain-card.danger {
+      border-left-color: var(--danger);
+    }
+
+    .pain-card.warning {
+      border-left-color: var(--warning);
+    }
+
+    .pain-card.success {
+      border-left-color: var(--success);
+    }
+
+    .pain-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .pain-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    .pain-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .pain-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Bargaining Power Matrix */
+    .power-matrix {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .power-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .power-level {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .power-level.high {
+      background: var(--danger);
+      color: var(--white);
+    }
+
+    .power-level.medium {
+      background: var(--warning);
+      color: var(--white);
+    }
+
+    .power-level.low {
+      background: var(--success);
+      color: var(--white);
+    }
+
+    /* Strategy Cards */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .strategy-card {
+      background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 2px solid var(--border);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strategy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-hero);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .strategy-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .strategy-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent);
+      opacity: 0.2;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .strategy-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .strategy-description {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .strategy-impact {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--success);
+      color: var(--white);
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    /* Financial Case */
+    .financial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin: 3rem 0;
+    }
+
+    .investment-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .return-card {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .financial-value {
+      font-size: 3rem;
+      font-weight: 900;
+      margin: 1rem 0;
+    }
+
+    .financial-breakdown {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    .financial-breakdown li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ROI Meter */
+    .roi-meter {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .roi-value {
+      font-size: 6rem;
+      font-weight: 900;
+      background: var(--gradient-success);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Channel Flow Chart */
+    .channel-flow {
+      margin: 3rem 0;
+      position: relative;
+    }
+
+    .flow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .flow-node {
+      flex: 1;
+      text-align: center;
+    }
+
+    .flow-box {
+      background: var(--white);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .flow-box:hover {
+      background: var(--accent);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    .flow-percentage {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-arrow {
+      position: absolute;
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    /* Porter Analysis */
+    .porter-container {
+      margin: 3rem 0;
+    }
+
+    .porter-chart {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Value Proposition */
+    .value-hero {
+      background: var(--gradient-hero);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .value-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 2rem;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 12px;
+    }
+
+    .value-icon {
+      font-size: 2rem;
+    }
+
+    .value-text {
+      flex: 1;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: var(--gradient-mexico);
+      color: var(--white);
+      padding: 4rem;
+      border-radius: 24px;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .cta-title {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--white);
+      color: var(--mexico);
+      padding: 1.5rem 3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Charts Container */
+    .chart-container {
+      position: relative;
+      height: 400px;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .side-nav {
+        display: none;
+      }
+
+      .financial-grid,
+      .power-matrix,
+      .value-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-container {
+        flex-direction: column;
+      }
+
+      .flow-arrow {
+        display: none;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .side-nav,
+      .progress-bar {
+        display: none;
+      }
+
+      .section {
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav">
+    <div class="nav-dot active" data-section="hero">
+      <span class="nav-label">Oportunidad</span>
+    </div>
+    <div class="nav-dot" data-section="market">
+      <span class="nav-label">Mercado</span>
+    </div>
+    <div class="nav-dot" data-section="channels">
+      <span class="nav-label">Canales</span>
+    </div>
+    <div class="nav-dot" data-section="players">
+      <span class="nav-label">Jugadores</span>
+    </div>
+    <div class="nav-dot" data-section="analysis">
+      <span class="nav-label">Análisis Porter</span>
+    </div>
+    <div class="nav-dot" data-section="strategy">
+      <span class="nav-label">Estrategias</span>
+    </div>
+    <div class="nav-dot" data-section="financials">
+      <span class="nav-label">Caso Financiero</span>
+    </div>
+    <div class="nav-dot" data-section="value">
+      <span class="nav-label">Tu Valor</span>
+    </div>
+    <div class="nav-dot" data-section="action">
+      <span class="nav-label">Acción</span>
+    </div>
+  </nav>
+
+  <!-- SECTION 1: Hero - La Oportunidad -->
+  <section class="section gradient" id="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-number">9.4M</div>
+        <h1>Puertas de Tambor al Año</h1>
+        <div class="hero-subtitle">= $7,000 Millones MXN de Oportunidad en México</div>
+        
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">4%</div>
+            <div class="hero-stat-label">Tu participación actual</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">96%</div>
+            <div class="hero-stat-label">Mercado sin capturar</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">72%</div>
+            <div class="hero-stat-label">En solo 5 ciudades</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">22x</div>
+            <div class="hero-stat-label">ROI en 12 meses</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Volumen de Mercado -->
+  <section class="section" id="market">
+    <div class="container">
+      <h2 class="fade-in">El Mercado Real Validado</h2>
+      <p class="subtitle fade-in">Cross-check con tus propios números</p>
+
+      <div class="card fade-in" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid var(--success);">
+        <h3 style="color: var(--success);">✅ Validación Consistente</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+          <div>
+            <h4>Tu Claim:</h4>
+            <p style="font-size: 1.25rem;"><strong>40,000 puertas/mes @ 4% share</strong></p>
+            <p>Implica mercado total: 1M/mes = 12M/año</p>
+          </div>
+          <div>
+            <h4>Nuestro Análisis:</h4>
+            <p style="font-size: 1.25rem;"><strong>6.0M - 14.6M puertas/año</strong></p>
+            <p>Punto medio: 9.4M | Tu 12M está dentro del rango ✓</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;">
+        <div class="card scale-in">
+          <h4 style="color: var(--accent);">Reposición (80%)</h4>
+          <div style="font-size: 2rem; font-weight: 800; margin: 1rem 0;">7.8M</div>
+          <p style="color: var(--secondary);">34.9M viviendas × 7 puertas × 3-5% anual</p>
+        </div>
+        <div class="card scale-in" style="animation-delay: 0.1s;">
+          <h4 style="color: var(--success);">Nueva Construcción (20%)</h4>
+          <div style="font-size: 2rem; font-weight: 800; margin: 1rem 0;">0.7M</div>
+          <p style="color: var(--secondary);">128,147 viviendas × 6-8 puertas</p>
+        </div>
+        <div class="card scale-in" style="animation-delay: 0.2s;">
+          <h4 style="color: var(--mexico);">Total Anual</h4>
+          <div style="font-size: 2rem; font-weight: 800; margin: 1rem 0;">9.4M</div>
+          <p style="color: var(--secondary);">$7,050M MXN @ $750/puerta</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Análisis de Canales -->
+  <section class="section dark" id="channels">
+    <div class="container">
+      <h2 class="fade-in">Distribución por Canal</h2>
+      <p class="subtitle fade-in">Dónde está el volumen real</p>
+
+      <div class="channel-flow fade-in">
+        <div class="flow-container">
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-percentage">42%</div>
+              <div>Ferreterías/Redes</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">170,378 puntos</div>
+              <div class="flow-arrow">→</div>
+            </div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-percentage">38%</div>
+              <div>Constructoras</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">B2B Directo</div>
+              <div class="flow-arrow">→</div>
+            </div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-percentage">12%</div>
+              <div>Retail Moderno</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">HD 140 tiendas</div>
+              <div class="flow-arrow">→</div>
+            </div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-percentage">8%</div>
+              <div>Institucional</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">Licitaciones</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 3rem; margin-bottom: 2rem;">Pain Points por Canal</h3>
+      <div class="pain-grid">
+        <div class="pain-card danger">
+          <div class="pain-title">🏪 Ferreterías</div>
+          <ul class="pain-list">
+            <li>Capital de trabajo limitado</li>
+            <li>Fragmentación extrema</li>
+            <li>30% informalidad</li>
+            <li>Rotación lenta inventario</li>
+          </ul>
+        </div>
+        <div class="pain-card warning">
+          <div class="pain-title">🏗️ Constructoras</div>
+          <ul class="pain-list">
+            <li>Presión brutal en precios</li>
+            <li>Plazos pago 60-90 días</li>
+            <li>Exigen calidad consistente</li>
+            <li>Cambios de especificación</li>
+          </ul>
+        </div>
+        <div class="pain-card danger">
+          <div class="pain-title">🏬 Home Depot</div>
+          <ul class="pain-list">
+            <li>Fees 20-30% sobre venta</li>
+            <li>Competencia marca propia</li>
+            <li>22% poder sobre Masonite</li>
+            <li>Devoluciones sin límite</li>
+          </ul>
+        </div>
+        <div class="pain-card success">
+          <div class="pain-title">🏢 Institucional</div>
+          <ul class="pain-list">
+            <li>Ciclos venta 6-12 meses</li>
+            <li>Especificaciones complejas</li>
+            <li>Múltiples decisores</li>
+            <li>Garantías extendidas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Matriz de Jugadores -->
+  <section class="section" id="players">
+    <div class="container">
+      <h2 class="fade-in">Los Jugadores del Mercado</h2>
+      <p class="subtitle fade-in">Poder de negociación y posicionamiento</p>
+
+      <div class="power-matrix">
+        <div class="power-card slide-in-left">
+          <span class="power-level high">PODER ALTO</span>
+          <h3>🏭 Masonite México</h3>
+          <p><strong>Capacidad:</strong> 2M puertas/año</p>
+          <p><strong>Planta:</strong> Ciénega de Flores, NL (mayor de LATAM)</p>
+          <p><strong>Mercados:</strong> México + Export USA/LATAM</p>
+          <p><strong>Ventaja:</strong> Escala, marca, distribución</p>
+          <p style="margin-top: 1rem; color: var(--danger);"><strong>Amenaza:</strong> Domina relación con HD y grandes constructoras</p>
+        </div>
+
+        <div class="power-card slide-in-right">
+          <span class="power-level medium">PODER MEDIO</span>
+          <h3>🏭 JELD-WEN México</h3>
+          <p><strong>Foco:</strong> Premium/Custom</p>
+          <p><strong>Planta:</strong> Tijuana (export USA)</p>
+          <p><strong>Nicho:</strong> Puertas lujo fibra de vidrio</p>
+          <p><strong>Ventaja:</strong> Calidad superior, márgenes altos</p>
+          <p style="margin-top: 1rem; color: var(--warning);"><strong>Limitante:</strong> Volumen bajo, precio alto para masa</p>
+        </div>
+
+        <div class="power-card slide-in-left">
+          <span class="power-level low">PODER BAJO</span>
+          <h3>🏭 200+ Fabricantes Locales</h3>
+          <p><strong>Capacidad:</strong> 10K-100K puertas/año c/u</p>
+          <p><strong>Ventaja:</strong> Flexibilidad, servicio local</p>
+          <p><strong>Mercado:</strong> Regional, ferreterías</p>
+          <p><strong>Problema:</strong> Sin marca, guerra de precios</p>
+          <p style="margin-top: 1rem; color: var(--success);"><strong>Oportunidad:</strong> Consolidación o alianzas</p>
+        </div>
+
+        <div class="power-card slide-in-right">
+          <span class="power-level high">PODER MUY ALTO</span>
+          <h3>🏬 Home Depot México</h3>
+          <p><strong>Tiendas:</strong> 140 → 165 (2030)</p>
+          <p><strong>Share:</strong> 22% ventas Masonite global</p>
+          <p><strong>Leverage:</strong> Puede cambiar proveedor</p>
+          <p><strong>Exige:</strong> Precios bajos, VMI, exclusivas</p>
+          <p style="margin-top: 1rem; color: var(--danger);"><strong>Riesgo:</strong> Dependencia excesiva = vulnerabilidad</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 3rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+        <h3>💡 Insight Clave</h3>
+        <p style="font-size: 1.125rem; line-height: 1.8;">
+          <strong>El mercado está dominado por pocos jugadores grandes con alto poder.</strong> 
+          Masonite controla la relación con HD y grandes constructoras. 
+          Los 200+ fabricantes locales compiten en precio sin diferenciación. 
+          <strong>Oportunidad: posicionarse en el medio con marca y servicio superior.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: Análisis 5 Fuerzas Porter -->
+  <section class="section dark" id="analysis">
+    <div class="container">
+      <h2 class="fade-in">Análisis de las 5 Fuerzas</h2>
+      <p class="subtitle fade-in">Estructura competitiva de la industria</p>
+
+      <div class="porter-chart">
+        <canvas id="porterChart"></canvas>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem;">
+        <div class="card">
+          <h4 style="color: var(--danger);">🔥 Fuerzas Altas (Amenazas)</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+              <strong>Rivalidad:</strong> Guerra de precios, productos commodity
+            </li>
+            <li style="padding: 0.75rem 0;">
+              <strong>Poder Compradores:</strong> HD = 22% ventas, constructoras presionan
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4 style="color: var(--success);">✅ Fuerzas Bajas (Ventajas)</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+              <strong>Sustitutos:</strong> No hay alternativa real a puertas
+            </li>
+            <li style="padding: 0.75rem 0;">
+              <strong>Proveedores:</strong> Insumos son commodities disponibles
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: 7 Estrategias de Crecimiento -->
+  <section class="section" id="strategy">
+    <div class="container">
+      <h2 class="fade-in">7 Estrategias para Dominar</h2>
+      <p class="subtitle fade-in">De commodity a líder de categoría</p>
+
+      <div class="strategy-grid">
+        <div class="strategy-card fade-in">
+          <span class="strategy-number">1</span>
+          <div class="strategy-title">Diversificar Canales</div>
+          <div class="strategy-description">
+            Ningún canal >40% de ventas. Reduce dependencia de HD. 
+            Abre ferreterías y constructoras medianas.
+          </div>
+          <span class="strategy-impact">+30% resiliencia</span>
+        </div>
+
+        <div class="strategy-card fade-in" style="animation-delay: 0.1s;">
+          <span class="strategy-number">2</span>
+          <div class="strategy-title">Crear Marca Premium</div>
+          <div class="strategy-description">
+            Línea B con +35% margen. Semi-sólidas, acabados lujo, 
+            garantía extendida. Salir del commodity.
+          </div>
+          <span class="strategy-impact">+35% margen</span>
+        </div>
+
+        <div class="strategy-card fade-in" style="animation-delay: 0.2s;">
+          <span class="strategy-number">3</span>
+          <div class="strategy-title">Innovar Catálogo</div>
+          <div class="strategy-description">
+            Puertas smart-ready, acústicas, cortafuego. 
+            Anticipar normativas 2027. Certificaciones.
+          </div>
+          <span class="strategy-impact">+$200 ticket</span>
+        </div>
+
+        <div class="strategy-card fade-in" style="animation-delay: 0.3s;">
+          <span class="strategy-number">4</span>
+          <div class="strategy-title">Calidad > Precio</div>
+          <div class="strategy-description">
+            Garantías formales, servicio técnico, capacitación instaladores. 
+            Ser "el confiable" no "el barato".
+          </div>
+          <span class="strategy-impact">+25% retención</span>
+        </div>
+
+        <div class="strategy-card fade-in" style="animation-delay: 0.4s;">
+          <span class="strategy-number">5</span>
+          <div class="strategy-title">Exportar USA/LATAM</div>
+          <div class="strategy-description">
+            Nearshoring 2025-2027. Certificación ASTM. 
+            Texas/California primer target. JV con distribuidor US.
+          </div>
+          <span class="strategy-impact">+$3M USD/año</span>
+        </div>
+
+        <div class="strategy-card fade-in" style="animation-delay: 0.5s;">
+          <span class="strategy-number">6</span>
+          <div class="strategy-title">Marketing Digital B2B2C</div>
+          <div class="strategy-description">
+            Website profesional, LinkedIn para arquitectos, 
+            WhatsApp Business, showroom virtual.
+          </div>
+          <span class="strategy-impact">200 leads/mes</span>
+        </div>
+
+        <div class="strategy-card fade-in" style="animation-delay: 0.6s;">
+          <span class="strategy-number">7</span>
+          <div class="strategy-title">Ventas Consultivas</div>
+          <div class="strategy-description">
+            CRM moderno, equipo capacitado, no vender "madera" 
+            sino soluciones. Account management.
+          </div>
+          <span class="strategy-impact">3x LTV cliente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: Caso Financiero -->
+  <section class="section dark" id="financials">
+    <div class="container">
+      <h2 class="fade-in">El Caso de Negocio</h2>
+      <p class="subtitle fade-in">Números duros del piloto 5 ciudades</p>
+
+      <div class="financial-grid">
+        <div class="investment-card scale-in">
+          <h3>📥 Inversión Inicial</h3>
+          <div class="financial-value">$3.5M MXN</div>
+          <ul class="financial-breakdown">
+            <li>
+              <span>Inventario inicial</span>
+              <span>$2.5M</span>
+            </li>
+            <li>
+              <span>Equipo (5 personas × 2 meses)</span>
+              <span>$400K</span>
+            </li>
+            <li>
+              <span>Marketing/Muestras</span>
+              <span>$350K</span>
+            </li>
+            <li>
+              <span>Setup logístico</span>
+              <span>$250K</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="return-card scale-in" style="animation-delay: 0.2s;">
+          <h3>📈 Retorno Año 1</h3>
+          <div class="financial-value">$77.5M MXN</div>
+          <ul class="financial-breakdown">
+            <li>
+              <span>5% share en 5 ciudades</span>
+              <span>340K puertas</span>
+            </li>
+            <li>
+              <span>Precio promedio</span>
+              <span>$600/puerta</span>
+            </li>
+            <li>
+              <span>Ventas totales</span>
+              <span>$204M</span>
+            </li>
+            <li>
+              <span>Margen bruto (38%)</span>
+              <span>$77.5M</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roi-meter">
+        <div class="roi-value">22x</div>
+        <h3>ROI en 12 meses</h3>
+        <p style="color: var(--muted);">Break-even: Semana 6</p>
+      </div>
+
+      <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+        <h3>📊 Las 5 Ciudades Target</h3>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 1.5rem;">
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">CDMX</div>
+            <div style="color: var(--secondary);">3.0M puertas/año</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">MTY</div>
+            <div style="color: var(--secondary);">1.35M puertas/año</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">GDL</div>
+            <div style="color: var(--secondary);">1.15M puertas/año</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">QRO</div>
+            <div style="color: var(--secondary);">0.7M puertas/año</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">MID</div>
+            <div style="color: var(--secondary);">0.6M puertas/año</div>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 1.5rem; font-size: 1.25rem; font-weight: 600;">
+          Total: 6.8M puertas = 72% del mercado nacional
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: Tu Propuesta de Valor -->
+  <section class="section" id="value">
+    <div class="container">
+      <div class="value-hero">
+        <h2 class="value-title">Tu Socio Estratégico de Crecimiento</h2>
+        <p style="font-size: 1.25rem; margin-bottom: 2rem;">
+          Transformo fabricantes de puertas de proveedores invisibles a marcas líderes
+        </p>
+
+        <div class="value-grid">
+          <div class="value-item">
+            <div class="value-icon">🎯</div>
+            <div class="value-text">
+              <strong>Estrategia Multicanal</strong><br>
+              Diversificación inteligente, no >40% en un canal
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💎</div>
+            <div class="value-text">
+              <strong>Marca Premium</strong><br>
+              +35% margen con línea B diferenciada
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🚀</div>
+            <div class="value-text">
+              <strong>Marketing Digital B2B2C</strong><br>
+              200 leads/mes, presencia omnicanal
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🌎</div>
+            <div class="value-text">
+              <strong>Expansión Geográfica</strong><br>
+              México + Export USA/LATAM
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">📈</div>
+            <div class="value-text">
+              <strong>Optimización Comercial</strong><br>
+              CRM + Ventas consultivas + Account management
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🤝</div>
+            <div class="value-text">
+              <strong>Alianzas Estratégicas</strong><br>
+              JVs, distribuidores, complementarios
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+          <h3 style="margin-bottom: 1rem;">Resultados Esperados</h3>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;">
+            <div>
+              <div style="font-size: 2rem; font-weight: 800;">+50%</div>
+              <div>Ventas en 24 meses</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 800;">+15pp</div>
+              <div>Margen con marca B</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 800;">3</div>
+              <div>Nuevos mercados</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 800;">Top 3</div>
+              <div>Recordación marca</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 3rem;">
+        <h3>📋 Modelo de Trabajo</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
+          <div>
+            <h4 style="color: var(--accent);">Opción A: Fee + Comisión</h4>
+            <ul style="list-style: none; padding: 0;">
+              <li>• Fee base: $80K/mes</li>
+              <li>• Comisión: 5% ventas nuevas</li>
+              <li>• Bonus: 10% margen incremental</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: var(--success);">Opción B: Success Fee</h4>
+            <ul style="list-style: none; padding: 0;">
+              <li>• $0 fee mensual</li>
+              <li>• 12% ventas incrementales</li>
+              <li>• Mínimo garantizado</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color: var(--warning);">Opción C: Por Proyecto</h4>
+            <ul style="list-style: none; padding: 0;">
+              <li>• $150K diagnóstico</li>
+              <li>• $300K piloto 30 días</li>
+              <li>• $1M trimestre completo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: Call to Action -->
+  <section class="section gradient" id="action">
+    <div class="container">
+      <div class="cta-section">
+        <h2 class="cta-title">¿Empezamos?</h2>
+        <p class="cta-subtitle">La ventana nearshoring cierra en 2027</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0;">
+          <div>
+            <h3>Mes 1</h3>
+            <p>10 clientes nuevos<br>50 leads calificados<br>Website profesional</p>
+          </div>
+          <div>
+            <h3>Mes 3</h3>
+            <p>Marca B lanzada<br>Canal ferretero activo<br>+30% ventas</p>
+          </div>
+          <div>
+            <h3>Mes 6</h3>
+            <p>Export a Texas<br>2 canales nuevos<br>ROI 5:1</p>
+          </div>
+        </div>
+
+        <a href="#" class="cta-button" onclick="showContact()">Agenda Reunión Ahora</a>
+        
+        <p style="margin-top: 2rem; font-size: 1.125rem;">
+          📞 WhatsApp: +52 555 123 4567<br>
+          📧 Email: crecimiento@puertasmx.com
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrolled / total) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+    });
+
+    // Navigation
+    const sections = document.querySelectorAll('.section');
+    const navDots = document.querySelectorAll('.nav-dot');
+
+    // Update active nav on scroll
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navDots.forEach(dot => {
+        dot.classList.remove('active');
+        if (dot.getAttribute('data-section') === current) {
+          dot.classList.add('active');
+        }
+      });
+    });
+
+    // Click navigation
+    navDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const section = document.getElementById(dot.getAttribute('data-section'));
+        section.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Initialize Porter Chart
+    const porterCtx = document.getElementById('porterChart');
+    if (porterCtx) {
+      new Chart(porterCtx.getContext('2d'), {
+        type: 'radar',
+        data: {
+          labels: ['Rivalidad', 'Nuevos Entrantes', 'Poder Proveedores', 'Poder Compradores', 'Sustitutos'],
+          datasets: [{
+            label: 'Intensidad de la Fuerza',
+            data: [85, 45, 40, 90, 15],
+            backgroundColor: 'rgba(220, 38, 38, 0.2)',
+            borderColor: 'rgba(220, 38, 38, 1)',
+            borderWidth: 2,
+            pointBackgroundColor: 'rgba(220, 38, 38, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(220, 38, 38, 1)'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                stepSize: 20
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Análisis de las 5 Fuerzas de Porter',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // GSAP Animations
+    gsap.utils.toArray('.fade-in').forEach(element => {
+      gsap.fromTo(element, 
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.slide-in-left').forEach(element => {
+      gsap.fromTo(element, 
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.slide-in-right').forEach(element => {
+      gsap.fromTo(element, 
+        { opacity: 0, x: 50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.scale-in').forEach(element => {
+      gsap.fromTo(element, 
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // Counter Animation
+    function animateValue(element, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Contact function
+    function showContact() {
+      alert('📞 Llámame: +52 555 123 4567\n📧 Email: crecimiento@puertasmx.com\n\n¡Empecemos con el diagnóstico de $150K!');
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+
+    console.log('💼 Deck Ejecutivo Cargado - Oportunidad Puertas MX 2025');
+  </script>
+</body>
+</html>

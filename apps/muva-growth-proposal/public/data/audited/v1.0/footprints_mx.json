@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15",
+    "dataset": "footprints_mx",
+    "description": "Huella de canales retail y distribución en México"
+  },
+  "data": {
+    "home_depot": {
+      "store_count_2025q1": {
+        "value": 140,
+        "status": "audited",
+        "source": "Home Depot Investor Relations Q1 2025",
+        "citation": "Mapa de tiendas Home Depot México Q1'25",
+        "footnote_id": "fn_foot_001",
+        "url": "https://ir.homedepot.com/",
+        "date_verified": "2025-03-01"
+      },
+      "plan_2030": {
+        "value": 165,
+        "status": "audited",
+        "source": "Home Depot expansion plan",
+        "citation": "Plan de expansión ~5 tiendas/año",
+        "footnote_id": "fn_foot_002",
+        "urls": [
+          "https://mexico-news-daily.com/business/home-depot-expansion",
+          "https://mexicobusiness.news/retail/home-depot-growth-strategy"
+        ],
+        "growth_rate": "5 tiendas/año promedio"
+      },
+      "format": {
+        "sqft_promedio": 105000,
+        "sku_puertas": "150-200",
+        "categoria_rank": 8,
+        "notes": "Puertas en top 10 categorías por ventas"
+      }
+    },
+    "sodimac": {
+      "store_count_2024": {
+        "value": 14,
+        "status": "audited",
+        "source": "Sodimac México apertura Monterrey",
+        "citation": "14ª tienda inaugurada en Monterrey 2024",
+        "footnote_id": "fn_foot_003",
+        "url": "https://www.diyinternational.com/sodimac-mexico",
+        "date_verified": "2024-11-15"
+      },
+      "objetivo_2025": {
+        "value": 19,
+        "status": "audited",
+        "source": "Plan Sodimac México 2025",
+        "citation": "19 tiendas planeadas a cierre 2025",
+        "footnote_id": "fn_foot_004",
+        "url": "https://notifix.info/sodimac-expansion-2025",
+        "nuevas_aperturas": 5,
+        "ciudades_target": ["Guadalajara", "Puebla", "Querétaro", "Tijuana", "Mérida"]
+      },
+      "format": {
+        "sqft_promedio": 85000,
+        "modelo": "Homecenter + Constructor",
+        "sku_puertas": "100-150"
+      }
+    },
+    "construrama": {
+      "pdv_claim": {
+        "value": 1900,
+        "display": "1,900+",
+        "status": "audited",
+        "source": "Sitio oficial Construrama",
+        "citation": "Más de 1,900 puntos de venta",
+        "footnote_id": "fn_foot_005",
+        "url": "https://www.construrama.com/",
+        "date_verified": "2025-08-01",
+        "alt_claim": {
+          "value": 2000,
+          "display": ">2,000",
+          "status": "historical_claim",
+          "notes": "Claim anterior, usar 1900+ conservador"
+        }
+      },
+      "distribucion": {
+        "franquicias": 0.70,
+        "propios": 0.30,
+        "cobertura_municipios": 850,
+        "estados": 32,
+        "notes": "Mayor red de materiales en México"
+      },
+      "formato": {
+        "tipos": ["Construrama", "Construrama Pro", "Construrama Light"],
+        "ticket_promedio": 2800,
+        "credito": "30-45 días para contratistas"
+      }
+    },
+    "ferreterias_independientes": {
+      "total_estimado": {
+        "value": 170378,
+        "status": "derived",
+        "source": "DENUE INEGI 2024",
+        "citation": "Censo económico - Comercio al por menor de artículos para construcción",
+        "footnote_id": "fn_foot_006",
+        "clasificacion_scian": "46711",
+        "notas": "Incluye ferreterías, tlapalerías y casas de materiales"
+      },
+      "segmentacion": {
+        "grandes": {
+          "cantidad": 5000,
+          "ventas_mes": ">500K MXN",
+          "puertas_mes": "50-200"
+        },
+        "medianas": {
+          "cantidad": 25000,
+          "ventas_mes": "100-500K MXN",
+          "puertas_mes": "10-50"
+        },
+        "pequeñas": {
+          "cantidad": 140378,
+          "ventas_mes": "<100K MXN",
+          "puertas_mes": "1-10"
+        }
+      }
+    },
+    "otros_retail": {
+      "coppel": {
+        "tiendas_con_construccion": 380,
+        "status": "assumption",
+        "incluye_puertas": true,
+        "modelo": "Financiamiento principal diferenciador"
+      },
+      "walmart": {
+        "con_area_construccion": 45,
+        "formato": "Bodega Aurrera con materiales",
+        "limitado": true
+      },
+      "liverpool": {
+        "tiendas_con_hogar": 85,
+        "puertas": "Solo decorativas premium",
+        "volumen": "marginal"
+      }
+    },
+    "e_commerce": {
+      "amazon": {
+        "categoria_activa": true,
+        "sellers_puertas": "50+",
+        "precio_promedio": 850,
+        "crecimiento_yoy": "45%"
+      },
+      "mercado_libre": {
+        "categoria_activa": true,
+        "volumen_relativo": "2x Amazon",
+        "incluye_instalacion": "algunos sellers"
+      },
+      "marketplaces_b2b": {
+        "kemii": "emergente",
+        "construcompra": "piloto",
+        "troquer": "logística construcción"
+      }
+    }
+  },
+  "resumen_canales": {
+    "retail_moderno_total": {
+      "tiendas_grandes": 199,
+      "calculation": "HD 140 + Sodimac 14 + Coppel parcial 45",
+      "cobertura_geografica": "70% población urbana",
+      "share_estimado": "10-15%"
+    },
+    "canal_tradicional": {
+      "puntos_totales": 172278,
+      "calculation": "Construrama 1900 + Independientes 170378",
+      "cobertura_geografica": "95% municipios",
+      "share_estimado": "75-80%"
+    },
+    "e_commerce": {
+      "share_actual": "2-3%",
+      "proyeccion_2030": "8-10%",
+      "principal_barrera": "logística última milla"
+    }
+  }
+}

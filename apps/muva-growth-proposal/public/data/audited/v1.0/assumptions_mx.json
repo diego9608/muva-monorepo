@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15",
+    "dataset": "assumptions_mx",
+    "description": "Supuestos de negocio y parámetros económicos para modelado"
+  },
+  "data": {
+    "macroeconomicos": {
+      "mxn_usd_fx_for_display": {
+        "value": 17.0,
+        "status": "assumption",
+        "rationale": "Tipo de cambio simplificado para presentación",
+        "actual_range": [16.5, 17.5],
+        "footnote_id": "fn_assum_001"
+      },
+      "inflacion_anual_mx": {
+        "value": 0.045,
+        "status": "assumption",
+        "source": "Banxico objetivo",
+        "range": [0.03, 0.06]
+      },
+      "crecimiento_pib_mx": {
+        "value": 0.025,
+        "status": "assumption",
+        "source": "Consenso analistas 2025",
+        "range": [0.015, 0.035]
+      }
+    },
+    "precios_producto": {
+      "precio_base_hoja_mxn": {
+        "value": 550,
+        "status": "assumption",
+        "producto": "Puerta tambor estándar 75x210cm",
+        "rationale": "Precio promedio canal tradicional",
+        "range": [450, 650],
+        "footnote_id": "fn_assum_002"
+      },
+      "uplift_kit_mxn": {
+        "value": 300,
+        "status": "assumption",
+        "incluye": "Marco, bisagras, manija básica",
+        "margen_adicional": "45%",
+        "footnote_id": "fn_assum_003"
+      },
+      "uplift_prehung_mxn": {
+        "value": 450,
+        "status": "assumption",
+        "incluye": "Pre-instalada en marco, ajustada",
+        "margen_adicional": "48%",
+        "footnote_id": "fn_assum_004"
+      },
+      "uplift_instalacion_mxn": {
+        "value": 400,
+        "status": "assumption",
+        "incluye": "Mano de obra y ajustes",
+        "margen_adicional": "55%"
+      }
+    },
+    "attach_rates": {
+      "attach_kit_default": {
+        "value": 0.22,
+        "status": "assumption_to_validate",
+        "rationale": "Estimado inicial, validar con ventas reales",
+        "por_canal": {
+          "ferreterias": 0.18,
+          "constructoras": 0.35,
+          "retail_moderno": 0.45,
+          "institucional": 0.65
+        },
+        "footnote_id": "fn_assum_005"
+      },
+      "attach_prehung_default": {
+        "value": 0.08,
+        "status": "assumption_to_validate",
+        "rationale": "Bajo por costo y logística",
+        "por_canal": {
+          "ferreterias": 0.03,
+          "constructoras": 0.15,
+          "retail_moderno": 0.12,
+          "institucional": 0.25
+        },
+        "footnote_id": "fn_assum_006"
+      }
+    },
+    "mercado": {
+      "cagr_base_mercado": {
+        "value": 0.0565,
+        "status": "secondary_source",
+        "source": "Reportes industria construcción MX",
+        "periodo": "2024-2033",
+        "componentes": {
+          "volumen": 0.035,
+          "precio": 0.021
+        },
+        "footnote_id": "fn_assum_007"
+      },
+      "tam_puertas_mx_2024_usd": {
+        "value": 2200000000,
+        "status": "assumption",
+        "calculation": "Volumen × precio promedio",
+        "mxn_equivalente": 37400000000,
+        "footnote_id": "fn_assum_008"
+      }
+    },
+    "operacionales": {
+      "lead_time_importacion_dias": {
+        "china": 45,
+        "brasil": 20,
+        "chile": 15,
+        "status": "assumption"
+      },
+      "merma_promedio": {
+        "value": 0.03,
+        "status": "assumption",
+        "range": [0.02, 0.05],
+        "incluye": "Daños transporte, defectos, devoluciones"
+      },
+      "rotacion_inventario_objetivo": {
+        "value": 12,
+        "status": "assumption",
+        "unit": "veces/año",
+        "dias_inventario": 30
+      }
+    },
+    "financieros": {
+      "costo_capital_wacc": {
+        "value": 0.12,
+        "status": "assumption",
+        "componentes": {
+          "deuda": 0.08,
+          "equity": 0.16,
+          "estructura": "60/40"
+        }
+      },
+      "margen_ebitda_objetivo": {
+        "value": 0.15,
+        "status": "assumption",
+        "benchmark": "Industria materiales construcción MX"
+      },
+      "dias_cartera_objetivo": {
+        "ferreterias": 35,
+        "constructoras": 75,
+        "retail": 50,
+        "institucional": 105,
+        "status": "assumption"
+      }
+    },
+    "competitivos": {
+      "share_importaciones": {
+        "value": 0.20,
+        "status": "assumption",
+        "tendencia": "creciendo 2pp/año",
+        "origen_principal": "China 45%, Brasil 25%, Chile 15%"
+      },
+      "concentracion_mercado": {
+        "top5_fabricantes": 0.35,
+        "top10_fabricantes": 0.55,
+        "status": "assumption",
+        "tendencia": "consolidándose"
+      },
+      "penetracion_marca_propia": {
+        "home_depot": 0.25,
+        "sodimac": 0.30,
+        "construrama": 0.10,
+        "status": "assumption"
+      }
+    },
+    "escenarios": {
+      "base": {
+        "probabilidad": 0.60,
+        "cagr": 0.0565,
+        "descripcion": "Crecimiento orgánico sostenido"
+      },
+      "alcista": {
+        "probabilidad": 0.25,
+        "cagr": 0.075,
+        "drivers": "Boom construcción, programas vivienda",
+        "descripcion": "Aceleración por estímulos"
+      },
+      "bajista": {
+        "probabilidad": 0.15,
+        "cagr": 0.030,
+        "drivers": "Recesión, restricción crédito",
+        "descripcion": "Desaceleración económica"
+      }
+    }
+  },
+  "validacion_requerida": {
+    "criticos": [
+      "attach_kit_default",
+      "attach_prehung_default",
+      "precio_base_hoja_mxn",
+      "cagr_base_mercado"
+    ],
+    "importantes": [
+      "share_importaciones",
+      "concentracion_mercado",
+      "margen_ebitda_objetivo"
+    ],
+    "deseables": [
+      "penetracion_marca_propia",
+      "rotacion_inventario_objetivo",
+      "merma_promedio"
+    ]
+  },
+  "notas_uso": {
+    "proposito": "Parametrizar modelos de forecast y sensibilidad",
+    "actualizacion": "Trimestral o cuando haya cambios materiales",
+    "responsable": "Equipo Strategy & Analytics",
+    "proximo_review": "2025-11-15"
+  }
+}

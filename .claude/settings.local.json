@@ -5,7 +5,13 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(cp:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\door-industry-research-2025.html\")",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\door-industry-forecast-2025.html\")",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\door-industry-integrated-v1.html\")",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\door-industry-executive-deck-v2.html\")",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\presentations-hub.html\")"
     ],
     "deny": [],
     "ask": [],

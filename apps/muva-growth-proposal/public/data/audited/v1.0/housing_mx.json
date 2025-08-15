@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15",
+    "dataset": "housing_mx",
+    "description": "Datos auditados de vivienda nueva y base habitacional México"
+  },
+  "data": {
+    "vivienda_nueva_2024": {
+      "value": 128147,
+      "unit": "viviendas",
+      "status": "audited",
+      "source": "RUV 2024",
+      "citation": "El Economista 18-Mar-2025 cita RUV 2024",
+      "footnote_id": "fn_housing_001",
+      "url": "https://www.eleconomista.com.mx/empresas/",
+      "secondary_source": "CMIC",
+      "secondary_url": "https://www.cmic.org.mx/"
+    },
+    "viviendas_habitadas_2020": {
+      "value": 34900000,
+      "unit": "viviendas",
+      "status": "audited",
+      "source": "Censo 2020 INEGI",
+      "citation": "INEGI - Censo de Población y Vivienda 2020",
+      "footnote_id": "fn_housing_002",
+      "url": "https://www.inegi.org.mx/programas/ccpv/2020/",
+      "year": 2020,
+      "notes": "Viviendas particulares habitadas"
+    },
+    "deficit_habitacional_2024": {
+      "value": 8100000,
+      "unit": "viviendas",
+      "status": "audited",
+      "source": "SEDATU 2024",
+      "citation": "Programa Nacional de Vivienda 2024",
+      "footnote_id": "fn_housing_003",
+      "notes": "Déficit cuantitativo y cualitativo combinado"
+    },
+    "vivienda_nueva_proyeccion": {
+      "2025": {
+        "value": 135000,
+        "status": "assumption",
+        "rationale": "Crecimiento 5.3% sobre 2024 basado en tendencia histórica"
+      },
+      "2026": {
+        "value": 142000,
+        "status": "assumption",
+        "rationale": "Continuación tendencia + programas gubernamentales"
+      },
+      "2027": {
+        "value": 150000,
+        "status": "assumption",
+        "rationale": "Aceleración por déficit habitacional"
+      }
+    },
+    "distribucion_geografica": {
+      "centro": 0.35,
+      "norte": 0.30,
+      "bajio": 0.20,
+      "sur": 0.15,
+      "status": "assumption_with_rationale",
+      "rationale": "Basado en permisos de construcción por región INEGI 2023"
+    }
+  },
+  "quality_checks": {
+    "vivienda_nueva_growth_yoy": {
+      "2023_2024": "3.2%",
+      "plausible": true,
+      "notes": "Consistente con recuperación post-pandemia"
+    },
+    "viviendas_per_capita": {
+      "value": 0.27,
+      "calculation": "34.9M viviendas / 128M habitantes",
+      "benchmark": "Similar a países LATAM comparables"
+    }
+  }
+}

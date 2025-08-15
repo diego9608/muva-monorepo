@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deck Ejecutivo v2 - Oportunidad Puertas México 2025 con Mapa de Calor">
+  <title>Oportunidad Puertas MX 2025 | Deck Ejecutivo v2</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --secondary: #475569;
+      --accent: #3b82f6;
+      --accent-dark: #2563eb;
+      --mexico: #dc2626;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --muted: #94a3b8;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-mexico: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-behavior: auto; /* Disable for custom smooth scrolling */
+      font-size: 16px;
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Custom Scrollbar - White on White */
+    ::-webkit-scrollbar {
+      width: 12px;
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(240, 240, 240, 0.5);
+      border-radius: 10px;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(250, 250, 250, 0.9);
+      border: 1px solid rgba(230, 230, 230, 0.6);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Firefox Scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(250, 250, 250, 0.8) rgba(255, 255, 255, 0.95);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-hero);
+      width: 0%;
+      transition: width 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Side Navigation */
+    .side-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--white);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+    }
+
+    .nav-label {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-dot:hover .nav-label {
+      opacity: 1;
+    }
+
+    /* Sections */
+    .section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #ffffff;
+      color: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 800px 600px at 50% 50%, rgba(135, 206, 235, 0.35) 0%, transparent 40%),
+        radial-gradient(ellipse 600px 400px at 55% 45%, rgba(173, 216, 230, 0.28) 0%, transparent 35%),
+        radial-gradient(ellipse 500px 350px at 45% 55%, rgba(135, 206, 250, 0.25) 0%, transparent 30%),
+        radial-gradient(ellipse 400px 300px at 52% 48%, rgba(176, 224, 230, 0.20) 0%, transparent 25%),
+        radial-gradient(ellipse 300px 250px at 20% 30%, rgba(135, 206, 235, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 250px 200px at 80% 70%, rgba(173, 216, 230, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 200px 150px at 15% 80%, rgba(135, 206, 250, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 200px 150px at 85% 20%, rgba(176, 224, 230, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 280px 180px at 5% 5%, rgba(135, 206, 250, 0.15) 0%, transparent 45%),
+        radial-gradient(ellipse 220px 160px at 95% 95%, rgba(173, 216, 230, 0.13) 0%, transparent 50%),
+        radial-gradient(ellipse 180px 140px at 92% 8%, rgba(176, 224, 230, 0.11) 0%, transparent 55%),
+        radial-gradient(ellipse 240px 170px at 7% 93%, rgba(135, 206, 235, 0.14) 0%, transparent 48%);
+      animation: cloudDrift 30s ease-in-out infinite;
+    }
+
+    @keyframes cloudDrift {
+      0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      25% { 
+        transform: translate(-10px, 5px) scale(1.02);
+        opacity: 0.9;
+      }
+      50% { 
+        transform: translate(5px, -10px) scale(1.01);
+        opacity: 0.95;
+      }
+      75% { 
+        transform: translate(10px, 5px) scale(1.02);
+        opacity: 0.9;
+      }
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 1000px 800px at 50% 50%, transparent 0%, rgba(255, 255, 255, 0.4) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-number {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1e40af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    
+    .hero h1 {
+      color: var(--primary);
+    }
+    
+    .hero-subtitle {
+      color: var(--secondary);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 300;
+      opacity: 0.9;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Heat Map Section */
+    .heat-map-section {
+      background: var(--light);
+    }
+
+    #mexicoMap {
+      height: 600px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin: 2rem 0;
+      background: #f0f0f0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .city-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .city-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .city-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .city-card.cdmx { border-color: #dc2626; }
+    .city-card.monterrey { border-color: #f59e0b; }
+    .city-card.guadalajara { border-color: #3b82f6; }
+    .city-card.queretaro { border-color: #10b981; }
+    .city-card.merida { border-color: #8b5cf6; }
+
+    .city-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .city-value {
+      font-size: 2rem;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.25rem;
+    }
+
+    .city-percentage {
+      font-size: 0.875rem;
+      color: var(--secondary);
+    }
+
+    /* Market Section */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .metric-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-hero);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .metric-label {
+      font-size: 0.875rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    /* Channel Analysis */
+    .channel-container {
+      position: relative;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .channel-chart {
+      height: 400px;
+      margin: 2rem 0;
+    }
+
+    /* Strategy Cards */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .strategy-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .strategy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-hero);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .strategy-card:hover::before {
+      opacity: 0.05;
+    }
+
+    .strategy-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+
+    .strategy-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-hero);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .strategy-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .strategy-description {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .strategy-metrics {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .strategy-metric {
+      flex: 1;
+    }
+
+    .strategy-metric-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .strategy-metric-label {
+      font-size: 0.75rem;
+      color: var(--secondary);
+    }
+
+    /* Financial Case */
+    .financial-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .financial-step {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      position: relative;
+    }
+
+    .financial-step::after {
+      content: '→';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: var(--accent);
+      opacity: 0.5;
+    }
+
+    .financial-step:last-child::after {
+      display: none;
+    }
+
+    .financial-amount {
+      font-size: 2.5rem;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .financial-label {
+      font-size: 0.875rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Pricing Options */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+      border: 2px solid var(--border);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.05);
+      box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+
+    .pricing-tier {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      margin: 1rem 0;
+    }
+
+    .pricing-period {
+      font-size: 0.875rem;
+      color: var(--secondary);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .pricing-features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: var(--gradient-mexico);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--white);
+      color: var(--mexico);
+      font-weight: 700;
+      font-size: 1.125rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .side-nav {
+        display: none;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+      }
+
+      .market-grid,
+      .strategy-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .financial-flow {
+        flex-direction: column;
+      }
+
+      .financial-step::after {
+        display: none;
+      }
+
+      #mexicoMap {
+        height: 400px;
+      }
+
+      .city-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .side-nav,
+      .progress-bar {
+        display: none;
+      }
+
+      .section {
+        page-break-after: always;
+      }
+    }
+
+    /* Scroll Resistance Indicator - Removed for cleaner experience */
+    /* Fullscreen Mode */
+    .fullscreen-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .fullscreen-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+    }
+
+    body.fullscreen {
+      cursor: none;
+    }
+
+    body.fullscreen .side-nav,
+    body.fullscreen .fullscreen-toggle {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav">
+    <div class="nav-dot active" data-section="0">
+      <span class="nav-label">Oportunidad</span>
+    </div>
+    <div class="nav-dot" data-section="1">
+      <span class="nav-label">Mapa de Calor</span>
+    </div>
+    <div class="nav-dot" data-section="2">
+      <span class="nav-label">Mercado</span>
+    </div>
+    <div class="nav-dot" data-section="3">
+      <span class="nav-label">Canales</span>
+    </div>
+    <div class="nav-dot" data-section="4">
+      <span class="nav-label">Estrategias</span>
+    </div>
+    <div class="nav-dot" data-section="5">
+      <span class="nav-label">Financiero</span>
+    </div>
+    <div class="nav-dot" data-section="6">
+      <span class="nav-label">Pricing</span>
+    </div>
+    <div class="nav-dot" data-section="7">
+      <span class="nav-label">Acción</span>
+    </div>
+  </nav>
+
+  <!-- Section 1: Hero/Opportunity -->
+  <section class="section hero" id="section0">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-number">9.4M</div>
+        <h1>Puertas de Tambor al Año</h1>
+        <div class="hero-subtitle">= $7,000 Millones MXN de Oportunidad en México</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Heat Map -->
+  <section class="section heat-map-section" id="section1">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; text-align: center;">
+        Concentración de Oportunidad
+      </h2>
+      <p style="text-align: center; color: var(--secondary); margin-bottom: 2rem;">
+        5 ciudades = 72% del potencial nacional
+      </p>
+      
+      <div id="mexicoMap"></div>
+      
+      <div class="city-stats">
+        <div class="city-card cdmx" onclick="focusCity('cdmx')">
+          <div class="city-name">CDMX + EdoMex</div>
+          <div class="city-value">3.0M</div>
+          <div class="city-percentage">32% del mercado</div>
+        </div>
+        <div class="city-card monterrey" onclick="focusCity('monterrey')">
+          <div class="city-name">Monterrey</div>
+          <div class="city-value">1.35M</div>
+          <div class="city-percentage">14% del mercado</div>
+        </div>
+        <div class="city-card guadalajara" onclick="focusCity('guadalajara')">
+          <div class="city-name">Guadalajara</div>
+          <div class="city-value">1.15M</div>
+          <div class="city-percentage">12% del mercado</div>
+        </div>
+        <div class="city-card queretaro" onclick="focusCity('queretaro')">
+          <div class="city-name">Querétaro</div>
+          <div class="city-value">0.7M</div>
+          <div class="city-percentage">7% del mercado</div>
+        </div>
+        <div class="city-card merida" onclick="focusCity('merida')">
+          <div class="city-name">Mérida</div>
+          <div class="city-value">0.6M</div>
+          <div class="city-percentage">7% del mercado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Market Size & Validation -->
+  <section class="section" id="section2">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; text-align: center;">
+        Tamaño y Validación del Mercado
+      </h2>
+      
+      <div class="market-grid">
+        <div class="metric-card fade-in">
+          <div class="metric-label">Base Instalada</div>
+          <div class="metric-value">244M</div>
+          <p style="color: var(--secondary);">puertas en 34.9M viviendas</p>
+          <div class="metric-change">↑ 2.1% anual</div>
+        </div>
+        
+        <div class="metric-card fade-in">
+          <div class="metric-label">Reposición Anual</div>
+          <div class="metric-value">7.8M</div>
+          <p style="color: var(--secondary);">80% del volumen total</p>
+          <div class="metric-change">Vida útil: 20-30 años</div>
+        </div>
+        
+        <div class="metric-card fade-in">
+          <div class="metric-label">Nueva Construcción</div>
+          <div class="metric-value">0.9M</div>
+          <p style="color: var(--secondary);">128K viviendas × 7 puertas</p>
+          <div class="metric-change">↑ 15% YoY</div>
+        </div>
+      </div>
+
+      <!-- Cross Validation -->
+      <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 2rem; border-radius: 16px; margin-top: 3rem; border: 2px solid var(--success);">
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--success);">
+          ✓ Validación con Datos del Cliente
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+          <div>
+            <p style="font-weight: 600;">Su claim:</p>
+            <p style="font-size: 1.5rem; font-weight: 700;">40K puertas/mes @ 4% share</p>
+          </div>
+          <div>
+            <p style="font-weight: 600;">Implica mercado de:</p>
+            <p style="font-size: 1.5rem; font-weight: 700;">12M puertas/año</p>
+          </div>
+          <div>
+            <p style="font-weight: 600;">Nuestro cálculo:</p>
+            <p style="font-size: 1.5rem; font-weight: 700;">6M - 14.6M rango</p>
+          </div>
+        </div>
+        <p style="margin-top: 1rem; color: var(--success); font-weight: 600;">
+          ✅ CONSISTENTE: 12M está dentro del rango alto de nuestro modelo
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Channel Distribution -->
+  <section class="section" id="section3" style="background: var(--light);">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; text-align: center;">
+        Distribución por Canal
+      </h2>
+      
+      <div class="channel-container">
+        <div class="channel-chart">
+          <canvas id="channelChart"></canvas>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 2rem;">
+          <div style="padding: 1rem; background: var(--light); border-radius: 8px; border-left: 4px solid #3b82f6;">
+            <div style="font-weight: 700; font-size: 1.25rem;">Ferreterías</div>
+            <div style="font-size: 2rem; font-weight: 900; color: #3b82f6;">42%</div>
+            <div style="color: var(--secondary); font-size: 0.875rem;">170K puntos + Construrama</div>
+          </div>
+          
+          <div style="padding: 1rem; background: var(--light); border-radius: 8px; border-left: 4px solid #10b981;">
+            <div style="font-weight: 700; font-size: 1.25rem;">Constructoras</div>
+            <div style="font-size: 2rem; font-weight: 900; color: #10b981;">38%</div>
+            <div style="color: var(--secondary); font-size: 0.875rem;">B2B Directo</div>
+          </div>
+          
+          <div style="padding: 1rem; background: var(--light); border-radius: 8px; border-left: 4px solid #f59e0b;">
+            <div style="font-weight: 700; font-size: 1.25rem;">Retail Moderno</div>
+            <div style="font-size: 2rem; font-weight: 900; color: #f59e0b;">12%</div>
+            <div style="color: var(--secondary); font-size: 0.875rem;">HD 140 + Sodimac 19</div>
+          </div>
+          
+          <div style="padding: 1rem; background: var(--light); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+            <div style="font-weight: 700; font-size: 1.25rem;">Institucional</div>
+            <div style="font-size: 2rem; font-weight: 900; color: #8b5cf6;">8%</div>
+            <div style="color: var(--secondary); font-size: 0.875rem;">Licitaciones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Growth Strategies -->
+  <section class="section" id="section4">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; text-align: center;">
+        7 Estrategias de Crecimiento
+      </h2>
+      
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <div class="strategy-icon">🎯</div>
+          <div class="strategy-title">1. Hub & Spoke Regional</div>
+          <div class="strategy-description">
+            Centros de distribución en las 5 ciudades clave con entrega 24-48h
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">-25%</div>
+              <div class="strategy-metric-label">Costo logística</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">72%</div>
+              <div class="strategy-metric-label">Cobertura</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-icon">🏗️</div>
+          <div class="strategy-title">2. Programa Constructoras</div>
+          <div class="strategy-description">
+            Líneas de crédito 90 días + inventario consignado para top 50
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">38%</div>
+              <div class="strategy-metric-label">del mercado</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">+45%</div>
+              <div class="strategy-metric-label">Ticket prom</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-icon">🏪</div>
+          <div class="strategy-title">3. Red Ferreterías Plus</div>
+          <div class="strategy-description">
+            Franquicia ligera con marca, capacitación y financiamiento
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">1,000</div>
+              <div class="strategy-metric-label">Puntos año 1</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">5K</div>
+              <div class="strategy-metric-label">Meta 3 años</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-icon">📦</div>
+          <div class="strategy-title">4. Kits Completos</div>
+          <div class="strategy-description">
+            Bundles puerta + marco + herrajes con 35% attach rate objetivo
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">+$450</div>
+              <div class="strategy-metric-label">Por unidad</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">48%</div>
+              <div class="strategy-metric-label">Margen bruto</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-icon">🚚</div>
+          <div class="strategy-title">5. Fulfillment Express</div>
+          <div class="strategy-description">
+            Entrega + instalación en 72h para retail moderno
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">+$400</div>
+              <div class="strategy-metric-label">Servicio</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">92%</div>
+              <div class="strategy-metric-label">Satisfacción</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-icon">🏢</div>
+          <div class="strategy-title">6. División Institucional</div>
+          <div class="strategy-description">
+            Equipo dedicado para licitaciones gobierno y comercial
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">$50M</div>
+              <div class="strategy-metric-label">Pipeline año 1</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">18%</div>
+              <div class="strategy-metric-label">Win rate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-card">
+          <div class="strategy-icon">🌱</div>
+          <div class="strategy-title">7. Marca Eco-Premium</div>
+          <div class="strategy-description">
+            Línea sustentable certificada FSC con precio +20%
+          </div>
+          <div class="strategy-metrics">
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">15%</div>
+              <div class="strategy-metric-label">Share objetivo</div>
+            </div>
+            <div class="strategy-metric">
+              <div class="strategy-metric-value">+20%</div>
+              <div class="strategy-metric-label">Premium</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: What We Deliver -->
+  <section class="section" id="section5" style="background: var(--light);">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; text-align: center;">
+        Lo Que Entregamos
+      </h2>
+      <p style="text-align: center; color: var(--secondary); margin-bottom: 3rem; font-size: 1.125rem;">
+        Resultados tangibles, no presentaciones
+      </p>
+      
+      <!-- Visual Deliverables Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <!-- Sistema Digital -->
+        <div style="background: var(--white); border-radius: 16px; padding: 2rem; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);"></div>
+          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 1rem;">
+            💻
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Sistema Digital Completo</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              CRM con 10K+ contactos precargados
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Dashboard tiempo real (móvil + web)
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              API integración con su ERP actual
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Analytics predictivo de demanda
+            </li>
+          </ul>
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">30 días</div>
+            <div style="font-size: 0.875rem; color: var(--secondary);">para go-live</div>
+          </div>
+        </div>
+
+        <!-- Red Comercial -->
+        <div style="background: var(--white); border-radius: 16px; padding: 2rem; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #10b981 0%, #059669 100%);"></div>
+          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 1rem;">
+            🏪
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Red Comercial Activa</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              100 ferreterías primer mes
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              5 distribuidores regionales
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Contratos firmados incluidos
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Capacitación a vendedores
+            </li>
+          </ul>
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">500+</div>
+            <div style="font-size: 0.875rem; color: var(--secondary);">puntos mes 6</div>
+          </div>
+        </div>
+
+        <!-- Operaciones -->
+        <div style="background: var(--white); border-radius: 16px; padding: 2rem; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);"></div>
+          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin-bottom: 1rem;">
+            🚚
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">Operación Optimizada</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Centro distribución CDMX
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Rutas optimizadas con IA
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Sistema tracking GPS
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center;">
+              <span style="color: #10b981; margin-right: 0.5rem;">●</span>
+              Inventario consignación
+            </li>
+          </ul>
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+            <div style="font-size: 2rem; font-weight: 800; color: var(--primary);">24h</div>
+            <div style="font-size: 0.875rem; color: var(--secondary);">entrega CDMX</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Visual -->
+      <div style="background: var(--white); border-radius: 16px; padding: 2rem; margin-top: 2rem;">
+        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Cronograma de Implementación</h3>
+        <div style="position: relative; padding: 2rem 0;">
+          <!-- Timeline Line -->
+          <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%);"></div>
+          
+          <!-- Timeline Points -->
+          <div style="display: flex; justify-content: space-between; position: relative;">
+            <div style="text-align: center; flex: 1;">
+              <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 4px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">1</div>
+              <div style="font-weight: 700;">Mes 1</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">Setup Digital</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem;">CRM + Dashboard</div>
+            </div>
+            <div style="text-align: center; flex: 1;">
+              <div style="width: 40px; height: 40px; background: #2563eb; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 4px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">2</div>
+              <div style="font-weight: 700;">Mes 2</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">100 Puntos</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem;">Ferreterías activas</div>
+            </div>
+            <div style="text-align: center; flex: 1;">
+              <div style="width: 40px; height: 40px; background: #10b981; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 4px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">3</div>
+              <div style="font-weight: 700;">Mes 3</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">Hub CDMX</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem;">Operacional</div>
+            </div>
+            <div style="text-align: center; flex: 1;">
+              <div style="width: 40px; height: 40px; background: #059669; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 4px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">6</div>
+              <div style="font-weight: 700;">Mes 6</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">500+ Puntos</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem;">3 ciudades</div>
+            </div>
+            <div style="text-align: center; flex: 1;">
+              <div style="width: 40px; height: 40px; background: #f59e0b; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 4px solid white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">12</div>
+              <div style="font-weight: 700;">Mes 12</div>
+              <div style="font-size: 0.875rem; color: var(--secondary); margin-top: 0.5rem;">1,000+ Puntos</div>
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem;">5 ciudades</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Investment Models -->
+  <section class="section" id="section6">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; text-align: center;">
+        Modelos de Colaboración
+      </h2>
+      <p style="text-align: center; color: var(--secondary); margin-bottom: 3rem; font-size: 1.125rem;">
+        Paga por resultados, no por consultoría
+      </p>
+      
+      <div class="pricing-grid">
+        <!-- Discovery Model -->
+        <div class="pricing-card" style="position: relative; overflow: visible;">
+          <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); padding: 0.5rem 1.5rem; border-radius: 50px; color: white; font-size: 0.875rem; font-weight: 600; white-space: nowrap;">
+            Validación Rápida
+          </div>
+          <div style="margin-top: 2rem;">
+            <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #f0f4ff 0%, #e5e7ff 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+              🔍
+            </div>
+            <div class="pricing-tier">Discovery</div>
+            <div class="pricing-price">$180K MXN</div>
+            <div class="pricing-period">30 días</div>
+            
+            <div style="background: var(--light); padding: 1rem; border-radius: 12px; margin: 1.5rem 0;">
+              <div style="font-weight: 600; margin-bottom: 0.5rem;">Entregables Concretos:</div>
+              <div style="display: grid; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Base de datos 500+ ferreterías</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">10 contratos LOI firmados</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Mockup sistema digital</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Proyección financiera auditada</span>
+                </div>
+              </div>
+            </div>
+            
+            <div style="padding: 1rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 12px; margin-top: 1rem;">
+              <div style="font-size: 0.875rem; color: #059669; font-weight: 600;">Garantía:</div>
+              <div style="font-size: 0.75rem; color: #047857; margin-top: 0.25rem;">100% reembolsable si no procedemos a Fase 2</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Launch Model -->
+        <div class="pricing-card featured" style="position: relative; overflow: visible; transform: scale(1.05);">
+          <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 0.5rem 1.5rem; border-radius: 50px; color: white; font-size: 0.875rem; font-weight: 600; white-space: nowrap;">
+            Más Popular
+          </div>
+          <div style="margin-top: 2rem;">
+            <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+              🚀
+            </div>
+            <div class="pricing-tier">Launch</div>
+            <div class="pricing-price">$2.4M MXN</div>
+            <div class="pricing-period">6 meses</div>
+            
+            <div style="background: var(--light); padding: 1rem; border-radius: 12px; margin: 1.5rem 0;">
+              <div style="font-weight: 600; margin-bottom: 0.5rem;">Implementación Real:</div>
+              <div style="display: grid; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Sistema digital operando</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Hub CDMX funcionando</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">300 puntos activos</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Equipo 5 personas entrenado</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Primeras 10K unidades vendidas</span>
+                </div>
+              </div>
+            </div>
+            
+            <div style="padding: 1rem; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 12px; margin-top: 1rem;">
+              <div style="font-size: 0.875rem; color: #059669; font-weight: 600;">Pago por Hitos:</div>
+              <div style="font-size: 0.75rem; color: #047857; margin-top: 0.25rem;">30% inicio | 40% mes 3 | 30% al completar</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Scale Model -->
+        <div class="pricing-card" style="position: relative; overflow: visible;">
+          <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 0.5rem 1.5rem; border-radius: 50px; color: white; font-size: 0.875rem; font-weight: 600; white-space: nowrap;">
+            Máximo Impacto
+          </div>
+          <div style="margin-top: 2rem;">
+            <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+              📈
+            </div>
+            <div class="pricing-tier">Scale</div>
+            <div class="pricing-price">Performance</div>
+            <div class="pricing-period">$15 por puerta vendida</div>
+            
+            <div style="background: var(--light); padding: 1rem; border-radius: 12px; margin: 1.5rem 0;">
+              <div style="font-weight: 600; margin-bottom: 0.5rem;">Expansión Nacional:</div>
+              <div style="display: grid; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">5 ciudades operando</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">1,000+ puntos de venta</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Equipo 20+ personas</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Gestión end-to-end</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: #10b981;">✓</span>
+                  <span style="font-size: 0.875rem;">Board advisor incluido</span>
+                </div>
+              </div>
+            </div>
+            
+            <div style="padding: 1rem; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; margin-top: 1rem;">
+              <div style="font-size: 0.875rem; color: #b45309; font-weight: 600;">Sin Inversión Inicial:</div>
+              <div style="font-size: 0.75rem; color: #92400e; margin-top: 0.25rem;">Nosotros invertimos, ganamos juntos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Call to Action -->
+  <section class="section cta-section" id="section7">
+    <div class="container">
+      <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 1rem;">
+        ¿Listos para Capturar 10% del Mercado?
+      </h2>
+      <p style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+        940K puertas adicionales al año = $620M MXN en revenue incremental
+      </p>
+      <a href="#" class="cta-button">Agendar Sesión Estratégica</a>
+      
+      <div style="margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.2);">
+        <p style="font-size: 0.875rem; opacity: 0.7;">
+          Contacto: strategy@muva.mx | +52 55 1234 5678
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Toggle -->
+  <div class="fullscreen-toggle" onclick="toggleFullscreen()">⛶</div>
+
+  <script>
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initialize Charts
+    let channelChart;
+
+    // City coordinates for map
+    const cities = {
+      cdmx: { lat: 19.4326, lng: -99.1332, value: 3000000, name: 'CDMX + EdoMex', percentage: 32 },
+      monterrey: { lat: 25.6866, lng: -100.3161, value: 1350000, name: 'Monterrey', percentage: 14 },
+      guadalajara: { lat: 20.6597, lng: -103.3496, value: 1150000, name: 'Guadalajara', percentage: 12 },
+      queretaro: { lat: 20.5881, lng: -100.3899, value: 700000, name: 'Querétaro', percentage: 7 },
+      merida: { lat: 20.9674, lng: -89.5926, value: 600000, name: 'Mérida', percentage: 7 }
+    };
+
+    // Initialize map
+    let map = null;
+    let markers = {};
+    let mapInitialized = false;
+
+    function initMap() {
+      // Prevent multiple initializations
+      if (mapInitialized) {
+        if (map) {
+          setTimeout(() => map.invalidateSize(), 100);
+        }
+        return;
+      }
+
+      const mapContainer = document.getElementById('mexicoMap');
+      if (!mapContainer) {
+        console.error('Map container not found');
+        return;
+      }
+
+      // Clear any existing content
+      mapContainer.innerHTML = '';
+
+      try {
+        // Create map instance
+        map = L.map('mexicoMap', {
+          center: [23.6345, -102.5528],
+          zoom: 5,
+          scrollWheelZoom: false,
+          zoomControl: true,
+          preferCanvas: true
+        });
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+          maxZoom: 18,
+          minZoom: 4
+        }).addTo(map);
+
+        // Add city markers
+        Object.entries(cities).forEach(([key, city]) => {
+          const radius = 20 + Math.sqrt(city.value / 50000);
+          
+          const circle = L.circleMarker([city.lat, city.lng], {
+            radius: radius,
+            fillColor: getColorForCity(key),
+            color: '#fff',
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0.8
+          }).addTo(map);
+
+          const popupContent = `
+            <div style="padding: 10px; min-width: 150px;">
+              <h3 style="margin: 0 0 5px 0; color: ${getColorForCity(key)};">${city.name}</h3>
+              <div style="font-size: 24px; font-weight: bold; margin: 5px 0;">
+                ${(city.value / 1000000).toFixed(1)}M
+              </div>
+              <div style="color: #666; font-size: 14px;">
+                ${city.percentage}% del mercado nacional
+              </div>
+            </div>
+          `;
+
+          circle.bindPopup(popupContent);
+          markers[key] = circle;
+        });
+
+        // Invalidate size to ensure proper rendering
+        setTimeout(() => {
+          if (map) {
+            map.invalidateSize();
+            map.fitBounds([
+              [32.71, -117.16], // Northwest Mexico
+              [14.54, -86.71]   // Southeast Mexico
+            ]);
+          }
+        }, 100);
+
+        mapInitialized = true;
+        console.log('Map initialized successfully');
+
+      } catch (error) {
+        console.error('Error initializing map:', error);
+        mapContainer.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem;">
+            <h3 style="font-size: 2rem; margin-bottom: 1rem;">Mapa de Oportunidad México</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; width: 100%; max-width: 600px;">
+              ${Object.entries(cities).map(([key, city]) => `
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: center;">
+                  <div style="font-weight: bold; font-size: 1.1rem;">${city.name}</div>
+                  <div style="font-size: 1.5rem; margin: 0.5rem 0;">${(city.value / 1000000).toFixed(1)}M</div>
+                  <div style="font-size: 0.9rem; opacity: 0.9;">${city.percentage}%</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function getColorForCity(key) {
+      const colors = {
+        cdmx: '#dc2626',
+        monterrey: '#f59e0b',
+        guadalajara: '#3b82f6',
+        queretaro: '#10b981',
+        merida: '#8b5cf6'
+      };
+      return colors[key] || '#666';
+    }
+
+    function focusCity(cityKey) {
+      // Initialize map if not already done
+      if (!map) {
+        initMap();
+        setTimeout(() => focusCity(cityKey), 500);
+        return;
+      }
+      
+      const city = cities[cityKey];
+      if (city && map) {
+        map.setView([city.lat, city.lng], 8, {
+          animate: true,
+          duration: 1
+        });
+        
+        if (markers[cityKey]) {
+          markers[cityKey].openPopup();
+        }
+      }
+    }
+
+    // Initialize channel chart
+    function initChannelChart() {
+      const ctx = document.getElementById('channelChart').getContext('2d');
+      channelChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Ferreterías', 'Constructoras', 'Retail Moderno', 'Institucional'],
+          datasets: [{
+            data: [42, 38, 12, 8],
+            backgroundColor: [
+              'rgba(59, 130, 246, 0.8)',
+              'rgba(16, 185, 129, 0.8)',
+              'rgba(245, 158, 11, 0.8)',
+              'rgba(139, 92, 246, 0.8)'
+            ],
+            borderColor: '#fff',
+            borderWidth: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                font: {
+                  size: 14,
+                  weight: '600'
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Progress bar and navigation
+    function updateProgress() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPosition = window.scrollY;
+      const progress = (scrollPosition / scrollHeight) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+
+      // Update active nav dot
+      const sections = document.querySelectorAll('.section');
+      const navDots = document.querySelectorAll('.nav-dot');
+      
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          navDots.forEach(dot => dot.classList.remove('active'));
+          navDots[index]?.classList.add('active');
+        }
+      });
+    }
+
+    // Smooth scroll to section with nav dots
+    document.querySelectorAll('.nav-dot').forEach(dot => {
+      dot.addEventListener('click', function() {
+        if (isTransitioning) return;
+        
+        const sectionIndex = this.dataset.section;
+        const section = document.getElementById('section' + sectionIndex);
+        
+        if (section) {
+          isTransitioning = true;
+          smoothScrollToSection(section, 1200);
+          setTimeout(() => { isTransitioning = false; }, 1200);
+        }
+      });
+    });
+
+    // Animations
+    function initAnimations() {
+      // Hero animations
+      gsap.timeline()
+        .to('.hero-number', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+        .to('.hero h1', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+        .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5');
+
+      // Fade in animations
+      gsap.utils.toArray('.fade-in').forEach(element => {
+        gsap.to(element, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
+
+      // Strategy cards stagger
+      ScrollTrigger.batch('.strategy-card', {
+        onEnter: batch => gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          overwrite: true
+        }),
+        onLeave: batch => gsap.to(batch, {
+          opacity: 0,
+          y: 30,
+          stagger: 0.15,
+          overwrite: true
+        }),
+        onEnterBack: batch => gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          overwrite: true
+        }),
+        onLeaveBack: batch => gsap.to(batch, {
+          opacity: 0,
+          y: 30,
+          stagger: 0.15,
+          overwrite: true
+        })
+      });
+
+      // City cards animation
+      ScrollTrigger.batch('.city-card', {
+        onEnter: batch => gsap.to(batch, {
+          opacity: 1,
+          scale: 1,
+          stagger: 0.1,
+          duration: 0.6,
+          ease: 'back.out(1.7)'
+        }),
+        start: 'top 85%'
+      });
+
+      // Set initial states
+      gsap.set('.strategy-card', { opacity: 0, y: 30 });
+      gsap.set('.city-card', { opacity: 0, scale: 0.8 });
+    }
+
+    // Fullscreen functionality
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        document.body.classList.add('fullscreen');
+      } else {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
+      }
+    }
+
+    // Custom scroll handling with ice-like momentum and boundaries
+    let scrollVelocity = 0;
+    let scrollAccumulator = 0;
+    let isSnapping = false;
+    let animationFrame = null;
+    let autoScrollFrame = null;
+    let isAutoScrolling = false;
+    const SCROLL_THRESHOLD = 52; // Optimized threshold for smooth transitions
+    const SCROLL_RESISTANCE = 0.3;
+    const FRICTION = 0.95; // Ice-like friction (closer to 1 = less friction)
+    const MIN_VELOCITY = 0.5; // Minimum velocity before stopping
+    const AUTO_SCROLL_SPEED = 1.2; // Speed of automatic scrolling (increased for visibility)
+    
+    // Momentum-based scrolling animation
+    function applyMomentum() {
+      if (Math.abs(scrollVelocity) < MIN_VELOCITY) {
+        scrollVelocity = 0;
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+        return;
+      }
+      
+      const sections = document.querySelectorAll('.section');
+      const currentSection = getCurrentSectionIndex();
+      const currentSectionElement = sections[currentSection];
+      const nextSectionElement = sections[currentSection + 1];
+      const prevSectionElement = sections[currentSection - 1];
+      
+      // Get current section boundaries
+      const sectionTop = currentSectionElement.offsetTop;
+      const sectionBottom = sectionTop + currentSectionElement.offsetHeight;
+      const currentScroll = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate boundaries (stop at next/prev section starts)
+      const maxScroll = nextSectionElement ? nextSectionElement.offsetTop - windowHeight : sectionBottom - windowHeight;
+      const minScroll = prevSectionElement ? currentSectionElement.offsetTop : 0;
+      
+      // Apply velocity
+      let newScroll = currentScroll + scrollVelocity;
+      
+      // Check boundaries with soft stop
+      if (newScroll > maxScroll) {
+        newScroll = maxScroll;
+        scrollVelocity *= 0.3; // Dampen velocity at boundary
+      } else if (newScroll < minScroll) {
+        newScroll = minScroll;
+        scrollVelocity *= 0.3; // Dampen velocity at boundary
+      }
+      
+      window.scrollTo(0, newScroll);
+      
+      // Apply friction
+      scrollVelocity *= FRICTION;
+      
+      // Continue animation
+      animationFrame = requestAnimationFrame(applyMomentum);
+    }
+    
+    // Handle wheel input
+    function handleWheelWithMomentum(e) {
+      e.preventDefault();
+      
+      // Stop auto-scroll on any manual scroll
+      stopAutoScroll();
+      
+      if (isSnapping || isTransitioning) return;
+      
+      const sections = document.querySelectorAll('.section');
+      const currentSection = getCurrentSectionIndex();
+      const currentSectionElement = sections[currentSection];
+      const nextSection = sections[currentSection + 1];
+      const prevSection = sections[currentSection - 1];
+      
+      // Check current position within section
+      const sectionTop = currentSectionElement.offsetTop;
+      const sectionHeight = currentSectionElement.offsetHeight;
+      const currentScroll = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Determine if we're at section boundaries
+      const atSectionTop = currentScroll <= sectionTop + 10;
+      const atSectionBottom = currentScroll + windowHeight >= sectionTop + sectionHeight - 10;
+      const scrollingDown = e.deltaY > 0;
+      const scrollingUp = e.deltaY < 0;
+      
+      // Check if trying to scroll beyond current section
+      const tryingToLeaveSection = 
+        (atSectionBottom && scrollingDown && nextSection) ||
+        (atSectionTop && scrollingUp && prevSection);
+      
+      if (tryingToLeaveSection) {
+        // Apply resistance at section boundaries
+        scrollAccumulator += e.deltaY * SCROLL_RESISTANCE;
+        
+        // Visual indicator removed - cleaner experience
+        
+        // Check if we've accumulated enough to change sections
+        if (Math.abs(scrollAccumulator) > SCROLL_THRESHOLD) {
+          isSnapping = true;
+          scrollAccumulator = 0;
+          scrollVelocity = 0;
+          
+          if (scrollingDown && nextSection) {
+            smoothScrollToSection(nextSection, 800);
+            setTimeout(() => { 
+              isSnapping = false;
+              startAutoScroll(); // Start auto-scroll after section change
+            }, 900);
+          } else if (scrollingUp && prevSection) {
+            smoothScrollToSection(prevSection, 800);
+            setTimeout(() => { 
+              isSnapping = false;
+              startAutoScroll(); // Start auto-scroll after section change
+            }, 900);
+          } else {
+            isSnapping = false;
+          }
+        }
+      } else {
+        // Within section - apply ice-like momentum
+        scrollAccumulator = 0;
+        
+        // Add to velocity instead of direct scroll
+        scrollVelocity += e.deltaY * 0.15; // Reduced factor for smoother control
+        
+        // Start momentum animation if not running
+        if (!animationFrame) {
+          animationFrame = requestAnimationFrame(applyMomentum);
+        }
+      }
+    }
+    
+    // Add wheel event listener
+    window.addEventListener('wheel', handleWheelWithMomentum, { passive: false });
+    
+    // Stop momentum and auto-scroll on key press
+    window.addEventListener('keydown', () => {
+      stopAutoScroll(); // Stop auto-scroll
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+        scrollVelocity = 0;
+      }
+    });
+
+    // Auto-scroll through long sections
+    function startAutoScroll() {
+      // Clear any existing auto-scroll
+      if (autoScrollFrame) {
+        cancelAnimationFrame(autoScrollFrame);
+        autoScrollFrame = null;
+      }
+      
+      const sections = document.querySelectorAll('.section');
+      const currentSection = getCurrentSectionIndex();
+      const currentSectionElement = sections[currentSection];
+      const nextSection = sections[currentSection + 1];
+      
+      if (!currentSectionElement) return;
+      
+      // Get the actual content height
+      const rect = currentSectionElement.getBoundingClientRect();
+      const container = currentSectionElement.querySelector('.container');
+      const contentHeight = container ? container.scrollHeight : currentSectionElement.scrollHeight;
+      const sectionTop = currentSectionElement.offsetTop;
+      const sectionHeight = Math.max(contentHeight, currentSectionElement.offsetHeight);
+      const windowHeight = window.innerHeight;
+      const currentScroll = window.scrollY;
+      
+      // Check if we're at the top of this section and it's taller than viewport
+      const atSectionStart = Math.abs(currentScroll - sectionTop) < 50;
+      const needsScroll = sectionHeight > windowHeight + 100;
+      
+      console.log('Auto-scroll check:', {
+        section: currentSection,
+        sectionHeight: sectionHeight,
+        contentHeight: contentHeight,
+        windowHeight: windowHeight,
+        needsScroll: needsScroll,
+        atSectionStart: atSectionStart,
+        currentScroll: currentScroll,
+        sectionTop: sectionTop
+      });
+      
+      if (needsScroll && atSectionStart && !isAutoScrolling) {
+        isAutoScrolling = true;
+        console.log('Starting auto-scroll for section', currentSection);
+        
+        // Calculate end position
+        const endScroll = nextSection ? 
+          Math.min(nextSection.offsetTop - windowHeight, sectionTop + sectionHeight - windowHeight) :
+          sectionTop + sectionHeight - windowHeight;
+        
+        function performAutoScroll() {
+          if (!isAutoScrolling) {
+            cancelAnimationFrame(autoScrollFrame);
+            autoScrollFrame = null;
+            return;
+          }
+          
+          const currentPos = window.scrollY;
+          
+          // Check if we've reached the end
+          if (currentPos >= endScroll - 2) {
+            console.log('Auto-scroll completed');
+            isAutoScrolling = false;
+            cancelAnimationFrame(autoScrollFrame);
+            autoScrollFrame = null;
+            return;
+          }
+          
+          // Scroll down slowly
+          window.scrollTo(0, currentPos + AUTO_SCROLL_SPEED);
+          autoScrollFrame = requestAnimationFrame(performAutoScroll);
+        }
+        
+        // Start auto-scrolling after a delay
+        console.log('Will start auto-scroll in 1 second...');
+        setTimeout(() => {
+          if (isAutoScrolling) {
+            console.log('Auto-scroll starting NOW');
+            performAutoScroll();
+          }
+        }, 1000);
+      } else {
+        console.log('Auto-scroll not needed or not at section start');
+      }
+    }
+    
+    // Stop auto-scroll on any user interaction
+    function stopAutoScroll() {
+      if (isAutoScrolling) {
+        isAutoScrolling = false;
+        if (autoScrollFrame) {
+          cancelAnimationFrame(autoScrollFrame);
+          autoScrollFrame = null;
+        }
+      }
+    }
+    
+    // Smooth scroll function with custom duration
+    function smoothScrollToSection(targetSection, duration = 1500) {
+      stopAutoScroll(); // Stop any auto-scrolling
+      
+      const startPosition = window.scrollY;
+      const targetPosition = targetSection.offsetTop;
+      const distance = targetPosition - startPosition;
+      const startTime = performance.now();
+      
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      
+      function animation(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition + distance * ease);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animation);
+        } else {
+          // After reaching the new section, force check if it needs auto-scroll
+          console.log('Transition complete, checking for auto-scroll...');
+          setTimeout(() => {
+            // Reset the flag to allow auto-scroll
+            isAutoScrolling = false;
+            startAutoScroll();
+          }, 800);
+        }
+      }
+      
+      requestAnimationFrame(animation);
+    }
+
+    // Keyboard shortcuts with slower transitions
+    let isTransitioning = false;
+    
+    // Better function to detect current section
+    function getCurrentSectionIndex() {
+      const sections = document.querySelectorAll('.section');
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Check if we're at the very bottom of the page
+      if (scrollPosition + windowHeight >= documentHeight - 10) {
+        return sections.length - 1;
+      }
+      
+      // Check if we're at the very top
+      if (scrollPosition <= 10) {
+        return 0;
+      }
+      
+      // Find which section is most visible
+      let maxVisibleHeight = 0;
+      let mostVisibleSection = 0;
+      
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        
+        if (visibleHeight > maxVisibleHeight) {
+          maxVisibleHeight = visibleHeight;
+          mostVisibleSection = index;
+        }
+      });
+      
+      console.log('Current section:', mostVisibleSection, 'of', sections.length - 1);
+      return mostVisibleSection;
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      // Prevent multiple transitions at once
+      if (isTransitioning) return;
+      
+      const sections = document.querySelectorAll('.section');
+      const currentSection = getCurrentSectionIndex();
+      
+      if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && document.fullscreenElement) {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
+      } else if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        if (currentSection < sections.length - 1) {
+          isTransitioning = true;
+          smoothScrollToSection(sections[currentSection + 1], 1200);
+          setTimeout(() => { 
+            isTransitioning = false;
+            startAutoScroll(); // Check for auto-scroll after transition
+          }, 1300);
+        }
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        if (currentSection > 0) {
+          isTransitioning = true;
+          smoothScrollToSection(sections[currentSection - 1], 1200);
+          setTimeout(() => { 
+            isTransitioning = false;
+            startAutoScroll(); // Check for auto-scroll after transition
+          }, 1300);
+        }
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        isTransitioning = true;
+        smoothScrollToSection(sections[0], 1500);
+        setTimeout(() => { isTransitioning = false; }, 1500);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        isTransitioning = true;
+        smoothScrollToSection(sections[sections.length - 1], 1500);
+        setTimeout(() => { isTransitioning = false; }, 1500);
+      } else if (e.key >= '1' && e.key <= '8') {
+        e.preventDefault();
+        const sectionIndex = parseInt(e.key) - 1;
+        if (sections[sectionIndex]) {
+          isTransitioning = true;
+          smoothScrollToSection(sections[sectionIndex], 1000);
+          setTimeout(() => { isTransitioning = false; }, 1000);
+        }
+      }
+    });
+
+    // Initialize everything
+    window.addEventListener('DOMContentLoaded', () => {
+      initChannelChart();
+      initAnimations();
+      updateProgress();
+      
+      // Start auto-scroll if first section is long
+      setTimeout(() => {
+        startAutoScroll();
+      }, 1500);
+      
+      // Use IntersectionObserver to initialize map when visible
+      const mapObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!mapInitialized) {
+              console.log('Map section is visible, initializing map...');
+              initMap();
+            } else if (map) {
+              // Refresh map size when section becomes visible again
+              setTimeout(() => {
+                map.invalidateSize();
+              }, 100);
+            }
+          }
+        });
+      }, { 
+        threshold: 0.25,
+        rootMargin: '100px'
+      });
+      
+      const mapSection = document.getElementById('section1');
+      if (mapSection) {
+        mapObserver.observe(mapSection);
+      }
+      
+      // Also try to initialize after a delay as fallback
+      setTimeout(() => {
+        if (!mapInitialized) {
+          console.log('Fallback map initialization...');
+          initMap();
+        }
+      }, 2000);
+    });
+
+    // Update progress on scroll
+    window.addEventListener('scroll', updateProgress);
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      if (channelChart) {
+        channelChart.resize();
+      }
+    });
+  </script>
+</body>
+</html>

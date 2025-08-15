@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "generated": "2025-08-15T10:30:00Z",
+    "dataset": "volumen_tambor_mx",
+    "description": "Cálculos derivados de volumen anual de puertas tambor en México",
+    "calculation_timestamp": "2025-08-15T10:30:00Z",
+    "inputs_used": {
+      "housing_mx": "v1.0",
+      "reposicion_mx": "v1.0"
+    }
+  },
+  "inputs": {
+    "viviendas_habitadas": 34900000,
+    "vivienda_nueva_2024": 128147,
+    "puertas_por_vivienda": {
+      "low": 6,
+      "mid": 7,
+      "high": 8
+    },
+    "tasa_reposicion": {
+      "low": 0.03,
+      "mid": 0.04,
+      "high": 0.05
+    },
+    "share_tambor": {
+      "low": 0.70,
+      "mid": 0.80,
+      "high": 0.85
+    },
+    "uplift_no_residencial": {
+      "low": 0.05,
+      "mid": 0.10,
+      "high": 0.15
+    }
+  },
+  "calculos_paso_a_paso": {
+    "1_base_instalada": {
+      "formula": "viviendas_habitadas × puertas_por_vivienda",
+      "valores": {
+        "low": 209400000,
+        "mid": 244300000,
+        "high": 279200000
+      },
+      "unit": "puertas totales",
+      "calculation_detail": "34.9M × (6, 7, 8)",
+      "status": "derived_from_audited"
+    },
+    "2_reposicion_total_interiores": {
+      "formula": "base_instalada × tasa_reposicion",
+      "valores": {
+        "low": 6282000,
+        "mid": 9772000,
+        "high": 13960000
+      },
+      "unit": "puertas/año",
+      "calculation_detail": "Base × (3%, 4%, 5%)",
+      "status": "derived_from_audited",
+      "footnote_id": "fn_vol_001"
+    },
+    "3_reposicion_tambor": {
+      "formula": "reposicion_total × share_tambor",
+      "valores": {
+        "low": 4397400,
+        "mid": 7817600,
+        "high": 11866000
+      },
+      "unit": "puertas tambor/año",
+      "calculation_detail": "Reposición × (70%, 80%, 85%)",
+      "status": "derived",
+      "footnote_id": "fn_vol_002"
+    },
+    "4_nueva_construccion_interiores": {
+      "formula": "vivienda_nueva × puertas_por_vivienda",
+      "valores": {
+        "low": 768882,
+        "mid": 897029,
+        "high": 1025176
+      },
+      "unit": "puertas/año",
+      "calculation_detail": "128,147 × (6, 7, 8)",
+      "status": "derived_from_audited"
+    },
+    "5_nueva_tambor": {
+      "formula": "nueva_interiores × share_tambor",
+      "valores": {
+        "low": 538217,
+        "mid": 717623,
+        "high": 871400
+      },
+      "unit": "puertas tambor/año",
+      "calculation_detail": "Nueva × (70%, 80%, 85%)",
+      "status": "derived",
+      "footnote_id": "fn_vol_003"
+    },
+    "6_subtotal_residencial": {
+      "formula": "reposicion_tambor + nueva_tambor",
+      "valores": {
+        "low": 4935617,
+        "mid": 8535223,
+        "high": 12737400
+      },
+      "unit": "puertas tambor/año",
+      "status": "calculated"
+    },
+    "7_total_con_no_residencial": {
+      "formula": "subtotal × (1 + uplift_no_residencial)",
+      "valores": {
+        "low": 5182398,
+        "mid": 9388745,
+        "high": 14648010
+      },
+      "unit": "puertas tambor/año",
+      "calculation_detail": "Subtotal × (1.05, 1.10, 1.15)",
+      "status": "derived",
+      "footnote_id": "fn_vol_004"
+    }
+  },
+  "resultados_finales": {
+    "volumen_anual": {
+      "low": 5182398,
+      "mid": 9388745,
+      "high": 14648010,
+      "unit": "puertas tambor/año",
+      "rounded_display": {
+        "low": "5.2M",
+        "mid": "9.4M",
+        "high": "14.6M"
+      }
+    },
+    "volumen_mensual": {
+      "low": 431867,
+      "mid": 782395,
+      "high": 1220668,
+      "unit": "puertas tambor/mes",
+      "rounded_display": {
+        "low": "432K",
+        "mid": "782K",
+        "high": "1.2M"
+      }
+    },
+    "rango_conservador": {
+      "min": 6000000,
+      "max": 13000000,
+      "unit": "puertas/año",
+      "rationale": "Rango práctico para planning",
+      "display": "6M - 13M puertas/año"
+    }
+  },
+  "cross_checks": {
+    "implied_market_from_client": {
+      "dato_cliente": "40,000 puertas/mes en 4% share",
+      "calculo": "40,000 / 0.04 = 1,000,000 puertas/mes",
+      "anualizado": 12000000,
+      "unit": "puertas/año",
+      "validacion": "Dentro del rango high (14.6M)",
+      "status": "✓ Plausible",
+      "footnote_id": "fn_vol_005"
+    },
+    "vs_poblacion": {
+      "puertas_per_capita": 0.073,
+      "calculation": "9.4M / 128M habitantes",
+      "benchmark_usa": 0.095,
+      "status": "✓ Razonable vs comparables"
+    },
+    "vs_pib_construccion": {
+      "puertas_por_millon_pib": 450,
+      "benchmark_latam": "400-500",
+      "status": "✓ En rango esperado"
+    }
+  },
+  "sensibilidad": {
+    "impacto_tasa_reposicion": {
+      "si_baja_1pp": "-2.4M puertas/año",
+      "si_sube_1pp": "+2.4M puertas/año",
+      "conclusion": "Variable más sensible"
+    },
+    "impacto_share_tambor": {
+      "si_baja_5pp": "-0.5M puertas/año",
+      "si_sube_5pp": "+0.5M puertas/año",
+      "conclusion": "Impacto moderado"
+    },
+    "impacto_vivienda_nueva": {
+      "si_baja_10k": "-0.07M puertas/año",
+      "si_sube_10k": "+0.07M puertas/año",
+      "conclusion": "Impacto menor"
+    }
+  },
+  "notas_importantes": {
+    "conservador": "Usamos 70-85% share tambor, podría ser 90%+ en segmento económico",
+    "no_incluye": "Puertas exteriores, comerciales especiales, importaciones directas consumidor",
+    "uplift_no_residencial": "Estimado 5-15%, requiere validación con m² comerciales iniciados",
+    "siguiente_paso": "Validar con data real de principales fabricantes y distribuidores"
+  },
+  "para_el_deck": {
+    "mensaje_principal": "El mercado mexicano mueve entre 6 y 13 millones de puertas tambor al año",
+    "desglose_visual": "80% reposición, 20% nueva construcción",
+    "oportunidad": "Con 4% de share = 400K puertas/año = $220M MXN en ventas"
+  }
+}

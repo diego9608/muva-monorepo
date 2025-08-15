@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "dataset_name": "puertas_tambor_mx_dataset",
+    "version": "v1.0",
+    "created_at": "2025-08-15T11:09:17.109716",
+    "currency": "MXN",
+    "notes": "Campos con status='seed' deben auditarse; incluye citas url para trazabilidad."
+  },
+  "sources": {
+    "housing_new_units_2024_ruv": {
+      "value": 128147,
+      "unit": "unidades",
+      "status": "audited",
+      "citation_url": "https://www.elfinanciero.com.mx/empresas/2025/01/14/produccion-de-vivienda-en-mexico-alcanza-su-nivel-mas-bajo-en-una-decada/"
+    },
+    "home_depot_mx_store_count_q1_2025": {
+      "value": 140,
+      "unit": "tiendas",
+      "status": "audited",
+      "citation_url": "https://ir.homedepot.com/~/media/Files/H/HomeDepot-IR/2025/2025-q1-store-map.pdf"
+    },
+    "construrama_points": {
+      "value": 2000,
+      "unit": "puntos de venta (aprox.)",
+      "status": "audited",
+      "citation_url": "https://www.construrama.com/somos-construrama"
+    },
+    "construrama_concesionarios": {
+      "value": 900,
+      "unit": "concesionarios (aprox.)",
+      "status": "audited",
+      "citation_url": "https://www.construrama.com/somos-construrama"
+    },
+    "ferreterias_tlapalerias_denue_2024": {
+      "value": 170378,
+      "unit": "unidades económicas",
+      "status": "audited",
+      "citation_url": "https://www.economia.gob.mx/datamexico/es/profile/industry/retail-of-hardware-and-glassware"
+    },
+    "total_dwellings_2020_census": {
+      "value": 35219141,
+      "unit": "viviendas habitadas",
+      "status": "audited",
+      "citation_url": "https://www.inegi.org.mx/app/areasgeograficas/"
+    }
+  },
+  "product": {
+    "base_price_sheet_mxn": 550,
+    "uplifts_seed": {
+      "kit": 300,
+      "prehung": 450
+    },
+    "attach_rates_seed": {
+      "kit_pct": 0.22,
+      "prehung_pct": 0.08
+    }
+  },
+  "assumptions": {
+    "interior_doors_per_home_low": 6,
+    "interior_doors_per_home_high": 8,
+    "hollow_share_new_build_low": 0.8,
+    "hollow_share_new_build_high": 0.9,
+    "replacement_model": {
+      "active_ferreterias_pct_low": 0.07,
+      "active_ferreterias_pct_mid": 0.1,
+      "active_ferreterias_pct_high": 0.15,
+      "doors_per_active_ferreteria_per_month_low": 8,
+      "doors_per_active_ferreteria_per_month_mid": 10,
+      "doors_per_active_ferreteria_per_month_high": 12,
+      "construrama_doors_per_month": 30,
+      "home_depot_doors_per_month": 200
+    }
+  },
+  "derived_estimates": {
+    "new_build_interior_hollow_doors_low": 615105,
+    "new_build_interior_hollow_doors_high": 922658,
+    "channel_model_totals": {
+      "low": 2816045,
+      "mid": 3863010,
+      "high": 5902822
+    },
+    "coo_claim_crosscheck": {
+      "client_units_per_month": 40000,
+      "claimed_share_pct": 0.04,
+      "implied_market_units_per_year": 12000000,
+      "note": "Si 40k/mes = 4% del total de TAM 'puerta tambor', implica ~12M u/año. Verificar a qué universo aplica el 4% (¿todo MX? ¿solo retail moderno? ¿solo hoja sin kit?)."
+    }
+  }
+}
