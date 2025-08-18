@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GMuva B2B - Nuevo Motor de Crecimiento">
+  <title>GMuva B2B | Motor de Crecimiento</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --white: #FFFFFF;
+      --off-white: #F9FAFB;
+      --primary-blue: #2563EB;
+      --light-blue: #E8F1FF;
+      --lighter-blue: #DBEAFE;
+      --text-dark: #111827;
+      --text-gray: #4B5563;
+      --text-light: #9CA3AF;
+      --border: #E5E7EB;
+      --teal: #0EA5E9;
+      --purple: #7C3AED;
+      --amber: #F59E0B;
+      --green: #10B981;
+      --red: #EF4444;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(229, 231, 235, 0.5);
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(209, 213, 219, 0.7);
+      background-clip: padding-box;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-blue) 0%, var(--teal) 100%);
+      width: 0%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+    }
+
+    /* Side Navigation */
+    .side-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--white);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0.75rem 0;
+      position: relative;
+    }
+
+    .nav-dot.active {
+      background: var(--primary-blue);
+      transform: scale(1.3);
+      box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.1);
+    }
+
+    .nav-label {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-dot:hover .nav-label {
+      opacity: 1;
+    }
+
+    /* Sections */
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Custom scrollbar for sections */
+    .section::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .section::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .section::-webkit-scrollbar-thumb {
+      background: rgba(37, 99, 235, 0.3);
+      border-radius: 4px;
+    }
+
+    .section::-webkit-scrollbar-thumb:hover {
+      background: rgba(37, 99, 235, 0.5);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Scroll indicator for tall slides */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: bounce 2s infinite;
+      color: var(--primary-blue);
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* Typography */
+    .display-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    .subtitle {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text-gray);
+      margin-bottom: 2rem;
+    }
+
+    .hero-number {
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    /* Bullets */
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      color: var(--text-gray);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .bullet-item:nth-child(1) { animation-delay: 0.1s; }
+    .bullet-item:nth-child(2) { animation-delay: 0.2s; }
+    .bullet-item:nth-child(3) { animation-delay: 0.3s; }
+    .bullet-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .bullet-icon {
+      width: 8px;
+      height: 8px;
+      background: var(--primary-blue);
+      border-radius: 50%;
+      margin-right: 1rem;
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 3rem auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--border) 0%, var(--primary-blue) 50%, var(--teal) 100%);
+      z-index: -1;
+    }
+
+    .timeline-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .timeline-dot {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary-blue);
+    }
+
+    .timeline-label {
+      font-size: 1rem;
+      color: var(--text-gray);
+      font-weight: 500;
+    }
+
+    .timeline-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-top: 0.5rem;
+    }
+
+    /* Slide 1: Portada */
+    .hero-slide {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-slide::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
+      opacity: 0.5;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--lighter-blue) 0%, transparent 70%);
+      opacity: 0.3;
+      animation: float 25s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: var(--light-blue);
+      color: var(--primary-blue);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Map Section */
+    .map-container {
+      position: relative;
+      height: 500px;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f1ff 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 2rem auto;
+      max-width: 1000px;
+      border: 1px solid var(--border);
+    }
+
+    .city-bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: var(--white);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .city-bubble:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .city-name {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+
+    .city-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .city-percent {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    /* CDMX - Largest */
+    .bubble-cdmx {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, #1E40AF 100%);
+      top: 45%;
+      left: 42%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Monterrey */
+    .bubble-mty {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--teal) 0%, #0891B2 100%);
+      top: 25%;
+      right: 25%;
+    }
+
+    /* Guadalajara */
+    .bubble-gdl {
+      width: 110px;
+      height: 110px;
+      background: linear-gradient(135deg, var(--purple) 0%, #6D28D9 100%);
+      top: 50%;
+      left: 20%;
+    }
+
+    /* Mérida */
+    .bubble-mid {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, var(--amber) 0%, #D97706 100%);
+      bottom: 20%;
+      right: 15%;
+    }
+
+    /* Hermosillo */
+    .bubble-hmo {
+      width: 85px;
+      height: 85px;
+      background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
+      top: 15%;
+      left: 15%;
+    }
+
+    /* Pricing Table */
+    .pricing-table {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      margin: 2rem 0;
+    }
+
+    .pricing-header {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--teal) 100%);
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      font-weight: 600;
+      font-size: 1.125rem;
+    }
+
+    .pricing-row {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s ease;
+    }
+
+    .pricing-row:hover {
+      background: var(--off-white);
+    }
+
+    .pricing-row:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-volume {
+      flex: 1;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .pricing-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--light-blue);
+      color: var(--primary-blue);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+
+    /* Motor Diagram */
+    .motor-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 3rem auto;
+      position: relative;
+    }
+
+    .motor-node {
+      background: var(--white);
+      border: 2px solid var(--primary-blue);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 200px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .motor-node:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+    }
+
+    .motor-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--light-blue);
+      border-radius: 12px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .motor-title {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .motor-desc {
+      font-size: 0.875rem;
+      color: var(--text-gray);
+    }
+
+    .motor-arrow {
+      position: absolute;
+      top: 50%;
+      right: -40px;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .motor-arrow::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      top: -4px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid var(--border);
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+    }
+
+    /* KPI Dashboard */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .kpi-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--primary-blue);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+    }
+
+    .kpi-label {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .kpi-change {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .kpi-change.positive {
+      color: var(--green);
+    }
+
+    .kpi-change.negative {
+      color: var(--red);
+    }
+
+    /* Financial Table */
+    .financial-table {
+      width: 100%;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      margin: 2rem 0;
+    }
+
+    .financial-table thead {
+      background: var(--off-white);
+    }
+
+    .financial-table th {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .financial-table td {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-gray);
+    }
+
+    .financial-table tbody tr:hover {
+      background: var(--off-white);
+    }
+
+    .table-highlight {
+      font-weight: 600;
+      color: var(--primary-blue);
+    }
+
+    /* Ask Section */
+    .ask-section {
+      background: linear-gradient(135deg, var(--light-blue) 0%, var(--lighter-blue) 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .ask-amount {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+
+    .ask-description {
+      font-size: 1.25rem;
+      color: var(--text-gray);
+      margin-bottom: 2rem;
+    }
+
+    .ask-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .ask-feature {
+      background: var(--white);
+      padding: 1rem;
+      border-radius: 12px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--teal) 100%);
+      color: var(--white);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.125rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+      margin-top: 2rem;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Fullscreen Button */
+    .fullscreen-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-blue);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+
+    .fullscreen-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 99, 235, 0.4);
+      background: var(--teal);
+    }
+
+    body.fullscreen .side-nav,
+    body.fullscreen .fullscreen-toggle {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.fullscreen {
+      cursor: none;
+    }
+
+    /* Fullscreen hint */
+    .fullscreen-hint {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 998;
+    }
+
+    .fullscreen-toggle:hover + .fullscreen-hint {
+      opacity: 1;
+    }
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .side-nav {
+        display: none;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+        min-height: 100vh;
+      }
+
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        flex-direction: column;
+      }
+
+      .timeline::before {
+        display: none;
+      }
+
+      .motor-diagram {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .motor-arrow {
+        display: none;
+      }
+
+      .map-container {
+        height: 300px;
+      }
+
+      .city-bubble {
+        transform: scale(0.7);
+      }
+
+      .fullscreen-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Fullscreen Button -->
+  <div class="fullscreen-toggle" onclick="toggleFullscreen()">⛶</div>
+  <div class="fullscreen-hint">Presiona F para pantalla completa</div>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="sideNav">
+    <div class="nav-dot active" data-section="0">
+      <span class="nav-label">Inicio</span>
+    </div>
+    <div class="nav-dot" data-section="1">
+      <span class="nav-label">Contexto</span>
+    </div>
+    <div class="nav-dot" data-section="2">
+      <span class="nav-label">TAM Real</span>
+    </div>
+    <div class="nav-dot" data-section="3">
+      <span class="nav-label">Canales B2B</span>
+    </div>
+    <div class="nav-dot" data-section="4">
+      <span class="nav-label">Geografía</span>
+    </div>
+    <div class="nav-dot" data-section="5">
+      <span class="nav-label">Valor 1%</span>
+    </div>
+    <div class="nav-dot" data-section="6">
+      <span class="nav-label">Metas</span>
+    </div>
+    <div class="nav-dot" data-section="7">
+      <span class="nav-label">SKUs</span>
+    </div>
+    <div class="nav-dot" data-section="8">
+      <span class="nav-label">Precios</span>
+    </div>
+    <div class="nav-dot" data-section="9">
+      <span class="nav-label">ASK</span>
+    </div>
+    <div class="nav-dot" data-section="10">
+      <span class="nav-label">Motor</span>
+    </div>
+    <div class="nav-dot" data-section="11">
+      <span class="nav-label">ROI</span>
+    </div>
+    <div class="nav-dot" data-section="12">
+      <span class="nav-label">Alineación</span>
+    </div>
+    <div class="nav-dot" data-section="13">
+      <span class="nav-label">Gobernanza</span>
+    </div>
+    <div class="nav-dot" data-section="14">
+      <span class="nav-label">Exclusividad</span>
+    </div>
+    <div class="nav-dot" data-section="15">
+      <span class="nav-label">Garantía PO</span>
+    </div>
+    <div class="nav-dot" data-section="16">
+      <span class="nav-label">Riesgo</span>
+    </div>
+    <div class="nav-dot" data-section="17">
+      <span class="nav-label">Afiliados</span>
+    </div>
+    <div class="nav-dot" data-section="18">
+      <span class="nav-label">Funnel IA</span>
+    </div>
+    <div class="nav-dot" data-section="19">
+      <span class="nav-label">Portal B2B</span>
+    </div>
+    <div class="nav-dot" data-section="20">
+      <span class="nav-label">AE/SDR</span>
+    </div>
+    <div class="nav-dot" data-section="21">
+      <span class="nav-label">Reporting</span>
+    </div>
+    <div class="nav-dot" data-section="22">
+      <span class="nav-label">Micro-DC</span>
+    </div>
+    <div class="nav-dot" data-section="23">
+      <span class="nav-label">QA/OTIF</span>
+    </div>
+    <div class="nav-dot" data-section="24">
+      <span class="nav-label">90 Días</span>
+    </div>
+    <div class="nav-dot" data-section="25">
+      <span class="nav-label">Escalamiento</span>
+    </div>
+    <div class="nav-dot" data-section="26">
+      <span class="nav-label">KPIs</span>
+    </div>
+    <div class="nav-dot" data-section="27">
+      <span class="nav-label">Escenarios</span>
+    </div>
+    <div class="nav-dot" data-section="28">
+      <span class="nav-label">Próximos Pasos</span>
+    </div>
+    <div class="nav-dot" data-section="29">
+      <span class="nav-label">Cierre</span>
+    </div>
+  </nav>
+
+  <!-- Slide 1: Portada -->
+  <section class="section hero-slide" id="slide-1" style="background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);">
+    <div class="container">
+      <div class="hero-content" style="text-align: center;">
+        <div style="margin-bottom: 4rem;">
+          <h1 style="font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 1; letter-spacing: -0.03em; color: #111827; margin-bottom: 1rem;">
+            Motor B2B
+          </h1>
+          <div style="height: 4px; width: 120px; background: linear-gradient(90deg, #2563EB 0%, #0EA5E9 100%); margin: 0 auto 3rem; border-radius: 2px;"></div>
+          <p style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 300; color: #6B7280; letter-spacing: 0.02em;">
+            GMuva × 2025
+          </p>
+        </div>
+        
+        <div style="margin-top: 6rem;">
+          <div style="display: inline-flex; gap: 4rem; align-items: center; justify-content: center; flex-wrap: wrap;">
+            <div style="text-align: center;">
+              <div style="font-size: 3rem; font-weight: 800; color: #2563EB;">5.2M</div>
+              <div style="font-size: 0.875rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">Puertas/Año</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 3rem; font-weight: 800; color: #0EA5E9;">$3,900M</div>
+              <div style="font-size: 0.875rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">TAM MXN</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 3rem; font-weight: 800; color: #7C3AED;">72%</div>
+              <div style="font-size: 0.875rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em;">5 Ciudades</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 2: Macro contexto -->
+  <section class="section" id="slide-2" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Macro Contexto</h2>
+      <p class="subtitle">El mercado de puertas en México</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>TAM real vs. teórico.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>72% en 5 ciudades.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>B2B sin explotar.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Vivienda Nueva</div>
+          <div class="card-value">800K</div>
+          <div class="card-subtitle">unidades/año</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Renovación</div>
+          <div class="card-value">4.4M</div>
+          <div class="card-subtitle">puertas/año</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Crecimiento</div>
+          <div class="card-value">+5.2%</div>
+          <div class="card-subtitle">anual</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3: TAM Real -->
+  <section class="section" id="slide-3">
+    <div class="container">
+      <h2 class="section-title">Nuestro Pastel Real</h2>
+      <div class="hero-number">5.2M</div>
+      <p class="subtitle">puertas de tambor/año</p>
+      <div style="text-align: center; margin: 2rem 0;">
+        <div style="display: inline-block; padding: 1rem 2rem; background: var(--light-blue); border-radius: 12px;">
+          <span style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue);">
+            TAM real tambor = $3,900M MXN
+          </span>
+        </div>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>5.2M puertas tambor.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>$3,900M TAM MXN.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Base para metas.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 4: TAM B2B por canal -->
+  <section class="section" id="slide-4" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">TAM B2B por Canal</h2>
+      <p class="subtitle">Distribución del volumen por canal</p>
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-title">Constructoras</div>
+          <div class="card-value">38%</div>
+          <div class="card-subtitle">1.98M unidades</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Ferreterías</div>
+          <div class="card-value">35%</div>
+          <div class="card-subtitle">1.82M unidades</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Retail Moderno</div>
+          <div class="card-value">12%</div>
+          <div class="card-subtitle">0.62M unidades</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Otros B2B</div>
+          <div class="card-value">15%</div>
+          <div class="card-subtitle">0.78M unidades</div>
+        </div>
+      </div>
+      <div style="max-width: 500px; margin: 2rem auto;">
+        <canvas id="channelChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Concentración geográfica -->
+  <section class="section" id="slide-5" style="background: var(--white);">
+    <div class="container">
+      <h2 class="section-title">Concentración Geográfica</h2>
+      <p class="subtitle">72% del mercado en 5 ciudades clave</p>
+      <div class="map-container">
+        <div class="city-bubble bubble-cdmx">
+          <div class="city-name">CDMX + EdoMex</div>
+          <div class="city-value">2.08M</div>
+          <div class="city-percent">40%</div>
+        </div>
+        <div class="city-bubble bubble-mty">
+          <div class="city-name">Monterrey</div>
+          <div class="city-value">0.78M</div>
+          <div class="city-percent">15%</div>
+        </div>
+        <div class="city-bubble bubble-gdl">
+          <div class="city-name">Guadalajara</div>
+          <div class="city-value">0.65M</div>
+          <div class="city-percent">12.5%</div>
+        </div>
+        <div class="city-bubble bubble-mid">
+          <div class="city-name">Mérida</div>
+          <div class="city-value">0.52M</div>
+          <div class="city-percent">10%</div>
+        </div>
+        <div class="city-bubble bubble-hmo">
+          <div class="city-name">Hermosillo</div>
+          <div class="city-value">0.39M</div>
+          <div class="city-percent">7.5%</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem; padding-bottom: 2rem;">
+        <span style="font-size: 1.125rem; color: var(--text-gray);">
+          Enfoque en estas plazas para visitas, pilotos y micro-DC
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Valor de 1% -->
+  <section class="section" id="slide-6" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Valor de 1% del B2B</h2>
+      <div style="text-align: center;">
+        <div style="display: inline-block; margin: 2rem 0;">
+          <div class="hero-number">44.2K</div>
+          <p style="font-size: 1.25rem; color: var(--text-gray); margin-bottom: 2rem;">unidades = 1% del mercado B2B</p>
+        </div>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>1% = 44.2K unidades.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>$19M MXN/año.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Meta: 10% en 5 años.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Precio Promedio</div>
+          <div class="card-value">$430</div>
+          <div class="card-subtitle">por puerta</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Valor 1%</div>
+          <div class="card-value">$19M</div>
+          <div class="card-subtitle">MXN/año</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Meta 10%</div>
+          <div class="card-value">$190M</div>
+          <div class="card-subtitle">MXN/año</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Meta por etapas -->
+  <section class="section" id="slide-7">
+    <div class="container">
+      <h2 class="section-title">Meta por Etapas</h2>
+      <p class="subtitle">Crecimiento progresivo y sostenible</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-label">Año 1</div>
+          <div class="timeline-value">0.5-1.0%</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-label">Año 3</div>
+          <div class="timeline-value">3-5%</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">5</div>
+          <div class="timeline-label">Año 5</div>
+          <div class="timeline-value">10%</div>
+        </div>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Año 1: 0.5-1.0%.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Año 3: 3-5%.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Año 5: 10%.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Anclas + 12 mayoristas.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 8: Wedge SKUs -->
+  <section class="section" id="slide-8" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Dónde Jugamos - Wedge SKUs</h2>
+      <p class="subtitle">6 SKUs que resuelven el 80% del mercado</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>6 SKUs alta rotación.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>HDF interior estándar.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Acero exterior reforzado.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Marcos aparte.</span>
+        </li>
+      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Interior HDF</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Lisa blanca 75/85cm</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Panelada 6 tableros</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Semisólida con venas</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Exterior Acero</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Lisa calibre 24</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Con ventila 90cm</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Reforzada seguridad</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Programa de precios -->
+  <section class="section" id="slide-9">
+    <div class="container">
+      <h2 class="section-title">Programa de Precios y Mínimos</h2>
+      <p class="subtitle">Estructura de precios por volumen</p>
+      <div class="pricing-table">
+        <div class="pricing-header">Precio por Volumen Mensual</div>
+        <div class="pricing-row">
+          <div class="pricing-volume">1 tráiler/mes</div>
+          <div class="pricing-price">$450</div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-volume">2-3 tráileres/mes</div>
+          <div class="pricing-price">$430</div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-volume">4+ tráileres/mes</div>
+          <div class="pricing-price">$410</div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-volume">Key account prepago</div>
+          <div class="pricing-price">$395-$400</div>
+          <div class="pricing-badge">MEJOR PRECIO</div>
+        </div>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>MOQ: 1 tráiler (800 puertas).</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Pronto pago: 2% adicional.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Rebate anual volumen.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 10: ASK -->
+  <section class="section" id="slide-10" style="background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);">
+    <div class="container">
+      <div class="ask-section">
+        <h2 class="section-title">ASK: Todo el Stack</h2>
+        <div class="ask-amount">$1,500,000</div>
+        <p class="ask-description">Inversión total para el motor B2B completo</p>
+        <div class="ask-features">
+          <div class="ask-feature">✓ Funnel IA + portal B2B</div>
+          <div class="ask-feature">✓ SDR + AE/field dedicados</div>
+          <div class="ask-feature">✓ Muestras, QA, logística</div>
+          <div class="ask-feature">✓ Reporting C-suite semanal</div>
+        </div>
+        <ul class="bullet-list" style="max-width: 600px; margin: 2rem auto;">
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>Sistema completo B2B.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>Tecnología + Equipo.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>Arranque 30 días.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>PO garantizado 10K.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: ¿Qué compra el anticipo? -->
+  <section class="section" id="slide-11">
+    <div class="container">
+      <h2 class="section-title">¿Qué Compra el Anticipo? El Motor</h2>
+      <p class="subtitle">Sistema completo de generación de demanda B2B</p>
+      <div class="motor-diagram">
+        <div class="motor-node">
+          <div class="motor-icon">🎯</div>
+          <div class="motor-title">Captación</div>
+          <div class="motor-desc">Scoring inteligente</div>
+          <div class="motor-arrow"></div>
+        </div>
+        <div class="motor-node">
+          <div class="motor-icon">📅</div>
+          <div class="motor-title">Citas</div>
+          <div class="motor-desc">Semanales calificadas</div>
+          <div class="motor-arrow"></div>
+        </div>
+        <div class="motor-node">
+          <div class="motor-icon">🔄</div>
+          <div class="motor-title">Pedidos</div>
+          <div class="motor-desc">Repetitivos por portal</div>
+          <div class="motor-arrow"></div>
+        </div>
+        <div class="motor-node">
+          <div class="motor-icon">✅</div>
+          <div class="motor-title">QA</div>
+          <div class="motor-desc">Por lote y OTIF</div>
+        </div>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Funnel IA automatizado.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Portal autoservicio 24/7.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Equipo AE/SDR dedicado.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Garantía OTIF 90%+.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 12: Se paga solo en 90 días -->
+  <section class="section" id="slide-12" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Se Paga Solo en 90 Días</h2>
+      <p class="subtitle">El costo de esperar supera la inversión</p>
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-title">Utilidad Mensual</div>
+          <div class="card-value">$550K</div>
+          <div class="card-subtitle">estimado</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Utilidad 90 días</div>
+          <div class="card-value">$1.65M</div>
+          <div class="card-subtitle">acumulado</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Anticipo</div>
+          <div class="card-value">$1.5M</div>
+          <div class="card-subtitle">inversión</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Diferencia</div>
+          <div class="card-value" style="color: var(--green);">+$150K</div>
+          <div class="card-subtitle">ganancia neta</div>
+        </div>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Utilidad mes: $550k.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>90 días: $1.65M.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Inversión: $1.5M.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Esperar cuesta más.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 13: Alineación y control -->
+  <section class="section" id="slide-13">
+    <div class="container">
+      <h2 class="section-title">Alineación y Control del Riesgo</h2>
+      <p class="subtitle">Primero recuperan, después compartimos utilidad</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Umbral: $8M primero.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>18.83% s/ utilidad.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>GMuva seller-of-record.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>KPIs transparentes.</span>
+        </li>
+      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Estructura de Compensación</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">1. Primeras ventas hasta $8M → 100% GMuva</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">2. Sobre utilidad excedente → 18.83% comisión</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">3. Control total de precio y calidad</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Control Operativo</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ GMuva mantiene seller-of-record</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ Aprobación de descuentos especiales</li>
+            <li style="padding: 0.5rem 0; color: var(--text-gray);">✓ KPIs mensuales transparentes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: Gobernanza y Transparencia -->
+  <section class="section" id="slide-14" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Gobernanza y Transparencia</h2>
+      <p class="subtitle">Control total con visibilidad completa</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Weekly Scorecard C-Suite.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Acceso completo CRM.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Call recordings disponibles.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Sync mensual presencial.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Reportes Semanales</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Pipeline actualizado</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Conversiones por etapa</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Forecast 30-60-90</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Acceso Tiempo Real</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Dashboard ejecutivo</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Grabaciones de llamadas</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Chat con AE/SDR</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Auditoría Mensual</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Review presencial</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Ajustes de estrategia</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Decisiones conjuntas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 15: Exclusividad Regional -->
+  <section class="section" id="slide-15">
+    <div class="container">
+      <h2 class="section-title">Exclusividad: Solo Ustedes</h2>
+      <p class="subtitle">Protección de mercado por 24 meses</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Exclusividad puertas tambor.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Solo GMuva B2B.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>24 meses renovables.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Anclas bloqueadas.</span>
+        </li>
+      </ul>
+      <div style="background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border-radius: 16px; padding: 2rem; margin: 2rem 0; text-align: center;">
+        <div style="font-size: 2rem; font-weight: 700; color: #92400E; margin-bottom: 1rem;">
+          🔒 Exclusividad Total
+        </div>
+        <p style="font-size: 1.125rem; color: #78350F; line-height: 1.6;">
+          <strong>24 meses de exclusividad</strong> en canal B2B puertas de tambor.<br>
+          No trabajaremos con ningún otro fabricante de puertas.<br>
+          Ustedes controlan precios, calidad y canal.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Lo que SÍ podemos</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">✓ Otros productos construcción</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">✓ Accesorios y herrajes</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">✓ Servicios de instalación</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Lo que NO haremos</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--red);">✗ Otras marcas de puertas</li>
+            <li style="padding: 0.3rem 0; color: var(--red);">✗ Competencia directa</li>
+            <li style="padding: 0.3rem 0; color: var(--red);">✗ Importaciones asiáticas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 16: Garantía PO 10,000 -->
+  <section class="section" id="slide-16" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Garantía: PO de 10,000 Puertas</h2>
+      <p class="subtitle">Compromiso real con resultados tangibles</p>
+      <div style="background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%); border-radius: 16px; padding: 3rem; text-align: center; margin: 2rem 0;">
+        <div style="font-size: 3rem; font-weight: 800; color: #166534; margin-bottom: 1rem;">
+          10,000
+        </div>
+        <p style="font-size: 1.5rem; color: #15803D; font-weight: 600; margin-bottom: 1rem;">
+          Puertas garantizadas en 12 meses
+        </p>
+        <p style="font-size: 1.125rem; color: #166534;">
+          Si no logramos 10,000 puertas vendidas,<br>
+          devolvemos proporcionalmente el anticipo
+        </p>
+      </div>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>10K puertas año 1.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>$4.3M MXN ventas.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Devolución proporcional.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Sin letra chiquita.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Trimestre 1-2</div>
+          <div class="card-value">3,000</div>
+          <div class="card-subtitle">puertas</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Trimestre 3</div>
+          <div class="card-value">3,500</div>
+          <div class="card-subtitle">puertas</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Trimestre 4</div>
+          <div class="card-value">3,500</div>
+          <div class="card-subtitle">puertas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 17: Control del Riesgo -->
+  <section class="section" id="slide-17">
+    <div class="container">
+      <h2 class="section-title">Control del Riesgo</h2>
+      <p class="subtitle">Múltiples mecanismos de protección</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Make-goods mensuales.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Kill-switch por hitos.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Garantía 10K puertas.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Devolución proporcional.</span>
+        </li>
+      </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--green); color: white;">✓</div>
+          <div class="timeline-label">Mes 3</div>
+          <div class="timeline-value">2,500 puertas</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--amber); color: white;">!</div>
+          <div class="timeline-label">Mes 6</div>
+          <div class="timeline-value">5,000 puertas</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--red); color: white;">×</div>
+          <div class="timeline-label">Mes 12</div>
+          <div class="timeline-value">10,000 puertas</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Si cumplimos</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--green);">✓ Continuamos relación</li>
+            <li style="padding: 0.3rem 0; color: var(--green);">✓ Escalamos inversión</li>
+            <li style="padding: 0.3rem 0; color: var(--green);">✓ Expandimos geografía</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Si no cumplimos</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Ajuste de estrategia</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Devolución proporcional</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Salida ordenada</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 18: Programa de Afiliados -->
+  <section class="section" id="slide-18" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Programa de Afiliados</h2>
+      <p class="subtitle">Red de vendedores independientes</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>50 afiliados activos.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Comisión 3-5% venta.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Portal propio tracking.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Pago automático mensual.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Perfil Afiliado</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Arquitectos freelance</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Ex-vendedores industria</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Contratistas pequeños</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Herramientas</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• App cotizador móvil</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Muestras digitales AR</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Portal de comisiones</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Incentivos</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• 3% primer tráiler</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• 5% recurrente</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Bonos trimestrales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 19: Funnel IA -->
+  <section class="section" id="slide-19">
+    <div class="container">
+      <h2 class="section-title">Funnel IA: El Motor Inteligente</h2>
+      <p class="subtitle">Automatización completa del proceso comercial</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Scoring predictivo IA.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Nurturing automatizado.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Booking inteligente.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Follow-up sin fricciones.</span>
+        </li>
+      </ul>
+      <div class="motor-diagram">
+        <div class="motor-node">
+          <div class="motor-icon">🎯</div>
+          <div class="motor-title">Captación</div>
+          <div class="motor-desc">1000+ leads/mes</div>
+          <div class="motor-arrow"></div>
+        </div>
+        <div class="motor-node">
+          <div class="motor-icon">🤖</div>
+          <div class="motor-title">IA Scoring</div>
+          <div class="motor-desc">Top 20% calificados</div>
+          <div class="motor-arrow"></div>
+        </div>
+        <div class="motor-node">
+          <div class="motor-icon">📅</div>
+          <div class="motor-title">Booking</div>
+          <div class="motor-desc">50 citas/semana</div>
+          <div class="motor-arrow"></div>
+        </div>
+        <div class="motor-node">
+          <div class="motor-icon">💰</div>
+          <div class="motor-title">Cierre</div>
+          <div class="motor-desc">10-15 POs/mes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 20: Portal B2B 24/7 -->
+  <section class="section" id="slide-20" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Portal B2B: Compra 24/7</h2>
+      <p class="subtitle">Autoservicio completo para mayoristas</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Catálogo completo online.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Pedidos sin fricción.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Tracking tiempo real.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Reorden automático.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Funcionalidades</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Cotizador instantáneo</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Visualizador 3D/AR</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Chat con soporte</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Beneficios Cliente</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Compra 24/7</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Historial completo</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Facturas automáticas</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Integraciones</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• SAP/ERP GMuva</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• WhatsApp Business</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Sistema logístico</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 21: AE/SDR Dedicados -->
+  <section class="section" id="slide-21">
+    <div class="container">
+      <h2 class="section-title">Equipo AE/SDR Elite</h2>
+      <p class="subtitle">Hunters dedicados 100% GMuva</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>2 AE senior hunters.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>3 SDR calificadores.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>1 Customer Success.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Capacitación continua.</span>
+        </li>
+      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Account Executives</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Experiencia B2B construcción</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Red activa de contactos</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Cierre promedio $500K/mes</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Visitas presenciales semanales</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">SDR Team</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• 200 llamadas/día equipo</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Calificación BANT estricta</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• 50 citas calificadas/semana</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• CRM actualizado real-time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 22: Reporting C-Suite -->
+  <section class="section" id="slide-22" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Reporting C-Suite Semanal</h2>
+      <p class="subtitle">Dashboard ejecutivo para decisiones rápidas</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Weekly scorecard lunes.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Pipeline actualizado.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Forecast 30-60-90.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Action items claros.</span>
+        </li>
+      </ul>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Pipeline Total</div>
+          <div class="kpi-value">$8.2M</div>
+          <div class="kpi-change positive">↑ 22%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Citas Semana</div>
+          <div class="kpi-value">47</div>
+          <div class="kpi-change positive">↑ 8</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Conversión</div>
+          <div class="kpi-value">18%</div>
+          <div class="kpi-change positive">↑ 3pp</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Forecast Mes</div>
+          <div class="kpi-value">$1.8M</div>
+          <div class="kpi-change positive">85% prob</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 23: Micro-DC Logística -->
+  <section class="section" id="slide-23">
+    <div class="container">
+      <h2 class="section-title">Micro-DC: Entrega 48h</h2>
+      <p class="subtitle">Centros locales para respuesta rápida</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>5 micro-DCs estratégicos.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Inventario 6 SKUs top.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Reposición 48-72h.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Cross-dock optimizado.</span>
+        </li>
+      </ul>
+      <div class="map-container" style="height: 400px;">
+        <div class="city-bubble" style="width: 100px; height: 100px; background: linear-gradient(135deg, #2563EB, #1E40AF); top: 45%; left: 42%; transform: translate(-50%, -50%);">
+          <div class="city-name">CDMX</div>
+          <div class="city-value">DC1</div>
+        </div>
+        <div class="city-bubble" style="width: 80px; height: 80px; background: linear-gradient(135deg, #0EA5E9, #0891B2); top: 25%; right: 25%;">
+          <div class="city-name">MTY</div>
+          <div class="city-value">DC2</div>
+        </div>
+        <div class="city-bubble" style="width: 80px; height: 80px; background: linear-gradient(135deg, #7C3AED, #6D28D9); top: 50%; left: 20%;">
+          <div class="city-name">GDL</div>
+          <div class="city-value">DC3</div>
+        </div>
+        <div class="city-bubble" style="width: 70px; height: 70px; background: linear-gradient(135deg, #F59E0B, #D97706); bottom: 20%; right: 15%;">
+          <div class="city-name">MID</div>
+          <div class="city-value">DC4</div>
+        </div>
+        <div class="city-bubble" style="width: 70px; height: 70px; background: linear-gradient(135deg, #10B981, #059669); top: 15%; left: 15%;">
+          <div class="city-name">HMO</div>
+          <div class="city-value">DC5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 24: QA y OTIF -->
+  <section class="section" id="slide-24" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">QA y OTIF: Excelencia Operativa</h2>
+      <p class="subtitle">Garantía de calidad y entrega perfecta</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>QA por lote 100%.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>OTIF objetivo 95%+.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Tracking GPS real-time.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Devolución sin fricción.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Control Calidad</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Inspección origen</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Fotos por lote</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Certificados digitales</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Entrega Perfecta</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Ventana 2h acordada</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• POD digital instant</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Notificaciones SMS</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Resolución</div>
+          <ul style="list-style: none; padding: 1rem 0;">
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Respuesta 24h</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Reemplazo 72h</li>
+            <li style="padding: 0.3rem 0; color: var(--text-gray);">• Crédito automático</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 25: Plan 90 Días -->
+  <section class="section" id="slide-25">
+    <div class="container">
+      <h2 class="section-title">Plan 90 Días: Fit in the Door</h2>
+      <p class="subtitle">Arranque rápido con resultados medibles</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Casa muestra ready.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Top-50 mayoristas.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>6-8 cotizaciones/mes.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>4-6 POs tráiler.</span>
+        </li>
+      </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">30</div>
+          <div class="timeline-label">Días</div>
+          <div class="timeline-value">Setup + Ola A</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">60</div>
+          <div class="timeline-label">Días</div>
+          <div class="timeline-value">Primeros POs</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">90</div>
+          <div class="timeline-label">Días</div>
+          <div class="timeline-value">4-6 clientes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 26: Plan 180/365 -->
+  <section class="section" id="slide-26" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Plan 180/365: Escalamiento</h2>
+      <p class="subtitle">Expansión sistemática del canal B2B</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Ola B: 50 más.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>2 contratos ancla.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Micro-DC activo.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Reposición 48h.</span>
+        </li>
+      </ul>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Mes 6</div>
+          <div class="card-value">12</div>
+          <div class="card-subtitle">mayoristas activos</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Mes 9</div>
+          <div class="card-value">2</div>
+          <div class="card-subtitle">contratos ancla</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Mes 12</div>
+          <div class="card-value">1</div>
+          <div class="card-subtitle">micro-DC</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 27: KPIs de Dirección -->
+  <section class="section" id="slide-27">
+    <div class="container">
+      <h2 class="section-title">KPIs de Dirección</h2>
+      <p class="subtitle">Métricas clave para el board</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Tráileres/mes creciendo.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>MC por puerta estable.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Fill-rate 94%+.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>DSO mejorando.</span>
+        </li>
+      </ul>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Tráileres/Mes</div>
+          <div class="kpi-value">8.5</div>
+          <div class="kpi-change positive">↑ 15%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">MC/Puerta</div>
+          <div class="kpi-value">$110</div>
+          <div class="kpi-change positive">↑ 5%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Fill Rate</div>
+          <div class="kpi-value">94%</div>
+          <div class="kpi-change negative">↓ 2%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">OTIF</div>
+          <div class="kpi-value">88%</div>
+          <div class="kpi-change positive">↑ 3%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">DSO</div>
+          <div class="kpi-value">42</div>
+          <div class="kpi-change positive">↓ 5 días</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Cobranza</div>
+          <div class="kpi-value">96%</div>
+          <div class="kpi-change positive">↑ 1%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 28: Escenarios Financieros -->
+  <section class="section" id="slide-28" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title">Escenarios Financieros</h2>
+      <p class="subtitle">Tres caminos de crecimiento</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Conservador: 21K puertas.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Base: 35K puertas.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Optimista: 70K puertas.</span>
+        </li>
+      </ul>
+      <table class="financial-table">
+        <thead>
+          <tr>
+            <th>Escenario</th>
+            <th>Unidades</th>
+            <th>Ventas</th>
+            <th>Utilidad</th>
+            <th>Comisión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Conservador</td>
+            <td>21,000</td>
+            <td>$9.45M</td>
+            <td class="table-highlight">$1.89M</td>
+            <td>$260K</td>
+          </tr>
+          <tr>
+            <td>Base</td>
+            <td>35,000</td>
+            <td>$15.05M</td>
+            <td class="table-highlight">$3.15M</td>
+            <td>$1.33M</td>
+          </tr>
+          <tr>
+            <td>Optimista</td>
+            <td>70,000</td>
+            <td>$28.7M</td>
+            <td class="table-highlight">$6.3M</td>
+            <td>$3.89M</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Slide 29: Próximos Pasos -->
+  <section class="section" id="slide-29">
+    <div class="container">
+      <h2 class="section-title">Próximos Pasos y LOI</h2>
+      <p class="subtitle">Acción inmediata para arrancar</p>
+      <ul class="bullet-list">
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Firma LOI hoy.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Catálogo semana 1.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>Ola A semana 2.</span>
+        </li>
+        <li class="bullet-item">
+          <span class="bullet-icon"></span>
+          <span>RFQs semana 3.</span>
+        </li>
+      </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background: var(--primary-blue); color: white;">HOY</div>
+          <div class="timeline-label">Firma LOI</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">S1</div>
+          <div class="timeline-label">Catálogo</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">S2</div>
+          <div class="timeline-label">Ola A</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">S3</div>
+          <div class="timeline-label">RFQs</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="#" class="cta-button">Firmar LOI Ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 30: Cierre -->
+  <section class="section hero-slide" id="slide-30">
+    <div class="container">
+      <div class="hero-content">
+        <h2 class="display-title">Arranquemos Hoy</h2>
+        <p class="subtitle">El momento es ahora</p>
+        <ul class="bullet-list">
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>Recuperan primero.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>Método probado.</span>
+          </li>
+          <li class="bullet-item">
+            <span class="bullet-icon"></span>
+            <span>Empezamos ya.</span>
+          </li>
+        </ul>
+        <div style="text-align: center; margin-top: 3rem;">
+          <div style="display: inline-block; padding: 2rem; background: linear-gradient(135deg, var(--light-blue) 0%, var(--lighter-blue) 100%); border-radius: 16px;">
+            <p style="font-size: 1.5rem; font-weight: 600; color: var(--primary-blue); margin-bottom: 1rem;">
+              Transformemos GMuva juntos
+            </p>
+            <p style="font-size: 1.125rem; color: var(--text-gray);">
+              De fabricante tradicional a líder B2B digital
+            </p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="#slide-1" class="cta-button">Volver al Inicio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('progressBar').style.width = scrollPercentage + '%';
+    });
+
+    // Side Navigation
+    const sections = document.querySelectorAll('.section');
+    const navDots = document.querySelectorAll('.nav-dot');
+
+    // Update active nav on scroll
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 200) {
+          current = index;
+        }
+      });
+
+      navDots.forEach((dot, index) => {
+        dot.classList.remove('active');
+        if (index === current) {
+          dot.classList.add('active');
+        }
+      });
+    });
+
+    // Click navigation
+    navDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+      });
+    });
+
+    // Animate elements on scroll
+    gsap.utils.toArray('.bullet-item').forEach((item, index) => {
+      gsap.fromTo(item, 
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          delay: index * 0.1,
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.card').forEach((card, index) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: index * 0.1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // Animate hero numbers
+    gsap.utils.toArray('.hero-number').forEach(num => {
+      gsap.fromTo(num,
+        { scale: 0.8, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: num,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // Animate timeline items
+    gsap.utils.toArray('.timeline-item').forEach((item, index) => {
+      gsap.fromTo(item,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+          delay: index * 0.2,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // Chart.js - Channel Distribution
+    const ctx = document.getElementById('channelChart');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Constructoras', 'Ferreterías', 'Retail Moderno', 'Otros'],
+          datasets: [{
+            data: [38, 35, 12, 15],
+            backgroundColor: [
+              'rgba(37, 99, 235, 0.8)',
+              'rgba(14, 165, 233, 0.8)',
+              'rgba(124, 58, 237, 0.8)',
+              'rgba(245, 158, 11, 0.8)'
+            ],
+            borderColor: [
+              'rgba(37, 99, 235, 1)',
+              'rgba(14, 165, 233, 1)',
+              'rgba(124, 58, 237, 1)',
+              'rgba(245, 158, 11, 1)'
+            ],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                font: {
+                  size: 14
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Animate city bubbles
+    gsap.utils.toArray('.city-bubble').forEach((bubble, index) => {
+      gsap.fromTo(bubble,
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          delay: index * 0.1,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: bubble,
+            start: 'top 85%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // Fullscreen functionality
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+        document.body.classList.add('fullscreen');
+      } else {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
+      }
+    }
+
+    // Slide navigation system
+    let currentSlide = 0;
+    let isTransitioning = false;
+    
+    function goToSlide(index) {
+      if (isTransitioning || index < 0 || index >= sections.length) return;
+      
+      isTransitioning = true;
+      currentSlide = index;
+      
+      sections[index].scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Update nav dots
+      navDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
+    }
+    
+    function nextSlide() {
+      if (currentSlide < sections.length - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+    
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(sections.length - 1);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && document.fullscreenElement) {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
+      }
+    });
+    
+    // Wheel navigation with proper debounce
+    let wheelLocked = false;
+    let wheelTimeout;
+    
+    window.addEventListener('wheel', (e) => {
+      // Check current section's scroll status
+      const currentSection = sections[currentSlide];
+      if (currentSection) {
+        const scrollTop = currentSection.scrollTop;
+        const scrollHeight = currentSection.scrollHeight;
+        const clientHeight = currentSection.clientHeight;
+        const hasScroll = scrollHeight > clientHeight + 10; // Has scrollable content
+        const isAtTop = scrollTop <= 5;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
+        
+        // If section has scrollable content
+        if (hasScroll) {
+          // Allow scrolling within the section
+          if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) {
+            return; // Let it scroll normally within the section
+          }
+        }
+      }
+      
+      // Prevent default scroll behavior for slide navigation
+      e.preventDefault();
+      
+      // Clear existing timeout
+      clearTimeout(wheelTimeout);
+      
+      // Only process if not locked
+      if (!wheelLocked) {
+        wheelLocked = true;
+        
+        // Navigate slides
+        if (e.deltaY > 0) {
+          nextSlide();
+        } else if (e.deltaY < 0) {
+          prevSlide();
+        }
+        
+        // Reset lock after delay
+        wheelTimeout = setTimeout(() => {
+          wheelLocked = false;
+        }, 700);
+      }
+    }, { passive: false });
+
+    // Smooth scroll for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

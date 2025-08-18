@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GMuva B2B - La Transformación Digital del Mercado de Puertas en México">
+  <title>GMuva B2B | Motor de Crecimiento Digital</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+  
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/DrawSVGPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+  <script src="https://cdn.jsdelivr.net/npm/countup.js@2.6.2/dist/countUp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Ultra Premium Color System */
+      --white: #FFFFFF;
+      --black: #000000;
+      --gray-50: #FAFBFC;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+      
+      /* Brand Colors - Premium Blue Palette */
+      --primary-50: #EFF6FF;
+      --primary-100: #DBEAFE;
+      --primary-200: #BFDBFE;
+      --primary-300: #93C5FD;
+      --primary-400: #60A5FA;
+      --primary-500: #3B82F6;
+      --primary-600: #2563EB;
+      --primary-700: #1D4ED8;
+      --primary-800: #1E40AF;
+      --primary-900: #1E3A8A;
+      --primary-950: #172554;
+      
+      /* Accent Colors */
+      --teal: #14B8A6;
+      --purple: #8B5CF6;
+      --amber: #F59E0B;
+      --emerald: #10B981;
+      --rose: #F43F5E;
+      --indigo: #6366F1;
+      
+      /* Premium Gradients */
+      --gradient-primary: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-dark: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+      --gradient-light: linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 100%);
+      --gradient-success: linear-gradient(135deg, #10B981 0%, #14B8A6 100%);
+      --gradient-warm: linear-gradient(135deg, #F59E0B 0%, #F43F5E 100%);
+      --gradient-cool: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+      --gradient-premium: linear-gradient(135deg, #667EEA 0%, #764BA2 25%, #F093FB 50%, #667EEA 75%, #764BA2 100%);
+      --gradient-mesh: radial-gradient(at 40% 20%, hsla(231, 89%, 62%, 1) 0px, transparent 50%),
+                       radial-gradient(at 80% 0%, hsla(284, 72%, 65%, 1) 0px, transparent 50%),
+                       radial-gradient(at 0% 50%, hsla(291, 90%, 77%, 1) 0px, transparent 50%),
+                       radial-gradient(at 80% 50%, hsla(189, 85%, 48%, 1) 0px, transparent 50%),
+                       radial-gradient(at 0% 100%, hsla(221, 83%, 53%, 1) 0px, transparent 50%),
+                       radial-gradient(at 80% 100%, hsla(242, 75%, 60%, 1) 0px, transparent 50%),
+                       radial-gradient(at 0% 0%, hsla(343, 84%, 58%, 1) 0px, transparent 50%);
+      
+      /* Premium Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --shadow-3xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+      --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+      --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.4);
+      --shadow-glow-lg: 0 0 60px rgba(102, 126, 234, 0.6);
+      
+      /* Timing Functions */
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --ease-bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    /* Dark Mode Variables */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: var(--gray-950);
+        --bg-secondary: var(--gray-900);
+        --text-primary: var(--gray-50);
+        --text-secondary: var(--gray-300);
+      }
+    }
+
+    /* Base Styles */
+    html {
+      font-size: 16px;
+      height: 100%;
+      overflow: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      height: 100vh;
+    }
+
+    /* Noise Texture Overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.02;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Mesh Gradient Background */
+    .mesh-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-mesh);
+      opacity: 0.03;
+      z-index: 0;
+      pointer-events: none;
+      animation: meshMove 20s ease infinite;
+    }
+
+    @keyframes meshMove {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(-20px, -20px) rotate(1deg); }
+      66% { transform: translate(20px, -20px) rotate(-1deg); }
+    }
+
+    /* Main Container */
+    .presentation-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    /* Slides System */
+    .slides-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform 0.8s var(--ease-out-expo);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(100%) scale(0.9);
+      transition: all 0.8s var(--ease-out-expo);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+    }
+
+    .slide.prev {
+      transform: translateX(-100%) scale(0.9);
+    }
+
+    .slide.next {
+      transform: translateX(100%) scale(0.9);
+    }
+
+    /* Slide Content */
+    .slide-content {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Ultra Premium Typography */
+    .ultra-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      background: var(--gradient-premium);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s ease infinite;
+      filter: drop-shadow(0 4px 20px rgba(102, 126, 234, 0.3));
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .display-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+      animation: expandWidth 1s ease forwards;
+    }
+
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 60px; }
+    }
+
+    .subtitle {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    /* Premium Cards System */
+    .card-grid {
+      display: grid;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .card-grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .card-grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card-grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .premium-card {
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-expo);
+      cursor: pointer;
+    }
+
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-out-expo);
+    }
+
+    .premium-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--primary-100) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .premium-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--primary-300);
+    }
+
+    .premium-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .premium-card:hover::after {
+      opacity: 0.3;
+    }
+
+    .card-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--gradient-cool);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-icon::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: var(--gradient-premium);
+      border-radius: 20px;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.3s ease;
+    }
+
+    .premium-card:hover .card-icon::after {
+      opacity: 1;
+      animation: rotate 3s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .card-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--gradient-cool);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin: 1rem 0;
+    }
+
+    .card-description {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* Hero Number Animation */
+    .hero-number {
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 900;
+      background: var(--gradient-premium);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientMove 4s ease infinite;
+      line-height: 0.9;
+      margin: 2rem 0;
+      text-align: center;
+      filter: drop-shadow(0 10px 40px rgba(102, 126, 234, 0.4));
+      position: relative;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-number::before {
+      content: attr(data-prefix);
+      font-size: 0.3em;
+      position: absolute;
+      top: 0;
+      left: -0.5em;
+      opacity: 0.7;
+    }
+
+    .hero-number::after {
+      content: attr(data-suffix);
+      font-size: 0.3em;
+      position: absolute;
+      bottom: 0;
+      right: -0.5em;
+      opacity: 0.7;
+    }
+
+    /* Advanced Button System */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.25rem 3rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border-radius: 16px;
+      text-decoration: none;
+      transition: all 0.3s var(--ease-out-expo);
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+      background: var(--gradient-cool);
+      color: white;
+      box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn-primary:hover::before {
+      width: 300%;
+      height: 300%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary-600);
+      border: 2px solid var(--primary-600);
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-cool);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-out-expo);
+      z-index: -1;
+      border-radius: 14px;
+    }
+
+    .btn-secondary:hover::before {
+      transform: scaleX(1);
+    }
+
+    .btn-secondary:hover {
+      color: white;
+      border-color: transparent;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Ultra Navigation Dots */
+    .nav-dots {
+      position: fixed;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .nav-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gray-300);
+      cursor: pointer;
+      transition: all 0.4s var(--ease-spring);
+      position: relative;
+      border: 2px solid transparent;
+    }
+
+    .nav-dot::before {
+      content: attr(data-title);
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%) translateX(10px);
+      background: var(--gray-900);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s var(--ease-out-expo);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--gradient-cool);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-dot:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .nav-dot:hover::after {
+      opacity: 0.2;
+    }
+
+    .nav-dot.active {
+      background: var(--primary-600);
+      transform: scale(1.5);
+      border-color: var(--primary-300);
+    }
+
+    .nav-dot.active::after {
+      opacity: 0.3;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.1; }
+    }
+
+    /* Progress Bar Ultra */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: rgba(229, 231, 235, 0.1);
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient-premium);
+      background-size: 200% 200%;
+      width: 0;
+      transition: width 0.6s var(--ease-out-expo);
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+      animation: gradientMove 3s ease infinite;
+    }
+
+    /* Metric Cards Ultra */
+    .metric-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: all 0.4s var(--ease-out-expo);
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: var(--gradient-mesh);
+      opacity: 0;
+      transition: all 0.6s var(--ease-out-expo);
+      animation: meshRotate 10s linear infinite;
+    }
+
+    @keyframes meshRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .metric-card:hover::before {
+      opacity: 0.05;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: var(--shadow-2xl);
+      border-color: var(--primary-200);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.75rem;
+    }
+
+    .metric-value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary-600);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .metric-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .metric-change.positive {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--emerald);
+    }
+
+    .metric-change.negative {
+      background: rgba(244, 63, 94, 0.1);
+      color: var(--rose);
+    }
+
+    .metric-change:hover {
+      transform: scale(1.1);
+    }
+
+    /* Interactive Elements */
+    .interactive-element {
+      transition: all 0.3s var(--ease-out-expo);
+      cursor: pointer;
+    }
+
+    .interactive-element:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Slide Backgrounds */
+    .slide-bg-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-mesh);
+      opacity: 0.02;
+      z-index: 0;
+    }
+
+    .slide-bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.03;
+      z-index: 0;
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(102, 126, 234, 0.05) 35px, rgba(102, 126, 234, 0.05) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(139, 92, 246, 0.05) 35px, rgba(139, 92, 246, 0.05) 70px);
+    }
+
+    /* Fullscreen & Controls */
+    .controls-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 999;
+    }
+
+    .control-btn {
+      width: 56px;
+      height: 56px;
+      background: var(--gradient-cool);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-xl);
+      transition: all 0.3s var(--ease-spring);
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .control-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .control-btn:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+
+    .control-btn:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 0 50px rgba(59, 130, 246, 0.6);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Entrance Animations */
+    .animate-in {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+      opacity: 0;
+    }
+
+    .animate-in-delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .animate-in-delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .animate-in-delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    .animate-in-delay-4 {
+      animation-delay: 0.4s;
+    }
+
+    .animate-in-delay-5 {
+      animation-delay: 0.5s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-dots {
+        right: 1rem;
+        gap: 1rem;
+      }
+
+      .nav-dot {
+        width: 10px;
+        height: 10px;
+      }
+
+      .slide-content {
+        padding: 1.5rem;
+        width: 95%;
+      }
+
+      .card-grid-2,
+      .card-grid-3,
+      .card-grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .ultra-title {
+        font-size: 3rem;
+      }
+
+      .display-title {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-number {
+        font-size: 4rem;
+      }
+
+      .controls-container {
+        bottom: 1rem;
+        right: 1rem;
+      }
+
+      .control-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .nav-dots,
+      .progress-container,
+      .controls-container {
+        display: none !important;
+      }
+
+      .slide {
+        position: relative !important;
+        page-break-after: always;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+      }
+
+      body {
+        overflow: visible !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mesh Gradient Background -->
+  <div class="mesh-gradient"></div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- Main Presentation Container -->
+  <div class="presentation-container">
+    <div class="slides-wrapper" id="slidesWrapper">
+      
+      <!-- Slide 1: Ultra Hero -->
+      <div class="slide active" data-slide="1">
+        <div class="slide-bg-pattern"></div>
+        <div class="slide-content">
+          <div style="text-align: center; position: relative;">
+            <h1 class="ultra-title animate-in">Motor B2B</h1>
+            <p class="subtitle animate-in animate-in-delay-1">La Transformación Digital de GMuva</p>
+            
+            <div style="margin: 4rem 0;">
+              <div class="hero-number animate-in animate-in-delay-2" data-prefix="$" data-suffix="MXN">
+                <span id="heroNumber">0</span>M
+              </div>
+              <p style="font-size: 1.5rem; color: var(--gray-600); font-weight: 500;" class="animate-in animate-in-delay-3">
+                TAM México • Puertas de Tambor
+              </p>
+            </div>
+            
+            <div class="card-grid card-grid-3 animate-in animate-in-delay-4" style="max-width: 900px; margin: 3rem auto;">
+              <div class="metric-card">
+                <div class="metric-label">Mercado Total</div>
+                <div class="metric-value" id="metric1">0</div>
+                <div class="metric-change positive">↑ 5.2% CAGR</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Concentración</div>
+                <div class="metric-value" id="metric2">0%</div>
+                <div class="metric-change positive">5 ciudades clave</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Meta 5 Años</div>
+                <div class="metric-value" id="metric3">0%</div>
+                <div class="metric-change positive">Market Share</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 3rem;" class="animate-in animate-in-delay-5">
+              <a href="#" class="btn btn-primary" onclick="nextSlide(); return false;">
+                Comenzar Presentación
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Context -->
+      <div class="slide" data-slide="2">
+        <div class="slide-bg-gradient"></div>
+        <div class="slide-content">
+          <div>
+            <h2 class="section-title animate-in">El Mercado Real</h2>
+            <p class="subtitle animate-in animate-in-delay-1">No el teórico, el que atacamos hoy</p>
+            
+            <div class="card-grid card-grid-3 animate-in animate-in-delay-2">
+              <div class="premium-card">
+                <div class="card-icon">🏗️</div>
+                <div class="card-title">Vivienda Nueva</div>
+                <div class="card-value">800K</div>
+                <div class="card-description">unidades/año en construcción</div>
+              </div>
+              <div class="premium-card">
+                <div class="card-icon">🔄</div>
+                <div class="card-title">Renovación</div>
+                <div class="card-value">4.4M</div>
+                <div class="card-description">puertas reemplazadas anualmente</div>
+              </div>
+              <div class="premium-card">
+                <div class="card-icon">📈</div>
+                <div class="card-title">Crecimiento</div>
+                <div class="card-value">+5.2%</div>
+                <div class="card-description">CAGR próximos 5 años</div>
+              </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, var(--primary-50) 0%, var(--white) 100%); border-radius: 20px; padding: 2rem; margin-top: 2rem; border-left: 4px solid var(--primary-600);" class="animate-in animate-in-delay-3">
+              <p style="font-size: 1.25rem; color: var(--gray-700); margin: 0; font-weight: 500;">
+                <strong style="color: var(--primary-600);">Insight clave:</strong> El 85% del mercado está fragmentado entre +500 pequeños fabricantes. GMuva puede consolidar y profesionalizar el canal B2B.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- More slides to be added... -->
+      
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls-container">
+    <button class="control-btn" onclick="toggleFullscreen()" title="Pantalla Completa (F)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="control-btn" onclick="togglePresenterMode()" title="Modo Presentador (P)" style="background: var(--gradient-dark);">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    // Global Variables
+    let currentSlide = 1;
+    const totalSlides = 30;
+    let isTransitioning = false;
+    let isPresenterMode = false;
+
+    // Initialize on Load
+    document.addEventListener('DOMContentLoaded', () => {
+      initializePresentation();
+      initializeAnimations();
+      initializeKeyboardControls();
+      initializeTouchControls();
+      initializeCharts();
+      animateNumbers();
+    });
+
+    // Initialize Presentation
+    function initializePresentation() {
+      // Create navigation dots
+      const navDotsContainer = document.getElementById('navDots');
+      const slideTitles = [
+        'Inicio', 'Contexto', 'TAM Real', 'Canales B2B', 'Geografía',
+        'Valor 1%', 'Metas', 'SKUs', 'Precios', 'ASK',
+        'Motor', 'ROI 90 Días', 'Alineación', 'Gobernanza', 'Exclusividad',
+        'Garantía PO', 'Control Riesgo', 'Afiliados', 'Funnel IA', 'Portal B2B',
+        'Equipo Elite', 'Reporting', 'Micro-DC', 'QA/OTIF', 'Plan 90',
+        'Plan 365', 'KPIs', 'Escenarios', 'Next Steps', 'Cierre'
+      ];
+
+      slideTitles.forEach((title, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot';
+        dot.setAttribute('data-title', title);
+        dot.setAttribute('data-slide', index + 1);
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index + 1));
+        navDotsContainer.appendChild(dot);
+      });
+
+      // Update progress bar
+      updateProgressBar(1);
+    }
+
+    // Navigation Functions
+    function goToSlide(slideNumber) {
+      if (isTransitioning || slideNumber === currentSlide) return;
+      if (slideNumber < 1 || slideNumber > totalSlides) return;
+
+      isTransitioning = true;
+      
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.nav-dot');
+      
+      // Remove active states
+      slides[currentSlide - 1]?.classList.remove('active');
+      dots[currentSlide - 1]?.classList.remove('active');
+      
+      // Add transition classes
+      if (slideNumber > currentSlide) {
+        slides[currentSlide - 1]?.classList.add('prev');
+        slides[slideNumber - 1]?.classList.remove('next', 'prev');
+      } else {
+        slides[currentSlide - 1]?.classList.add('next');
+        slides[slideNumber - 1]?.classList.remove('next', 'prev');
+      }
+      
+      // Add active states
+      slides[slideNumber - 1]?.classList.add('active');
+      dots[slideNumber - 1]?.classList.add('active');
+      
+      // Update progress
+      updateProgressBar(slideNumber);
+      
+      // Trigger slide animations
+      triggerSlideAnimations(slideNumber);
+      
+      currentSlide = slideNumber;
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 800);
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function updateProgressBar(slideNumber) {
+      const progress = (slideNumber / totalSlides) * 100;
+      document.getElementById('progressBar').style.width = `${progress}%`;
+    }
+
+    // Keyboard Controls
+    function initializeKeyboardControls() {
+      document.addEventListener('keydown', (e) => {
+        switch(e.key) {
+          case 'ArrowRight':
+          case ' ':
+            e.preventDefault();
+            nextSlide();
+            break;
+          case 'ArrowLeft':
+          case 'Backspace':
+            e.preventDefault();
+            prevSlide();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            goToSlide(1);
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            goToSlide(totalSlides);
+            break;
+          case 'f':
+          case 'F':
+            toggleFullscreen();
+            break;
+          case 'p':
+          case 'P':
+            togglePresenterMode();
+            break;
+          case 'Escape':
+            if (document.fullscreenElement) {
+              document.exitFullscreen();
+            }
+            break;
+          default:
+            // Number keys for direct navigation
+            if (e.key >= '0' && e.key <= '9') {
+              const slideNum = parseInt(e.key) || 10;
+              if (slideNum <= totalSlides) {
+                goToSlide(slideNum);
+              }
+            }
+        }
+      });
+    }
+
+    // Touch Controls
+    function initializeTouchControls() {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+
+      document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      });
+
+      document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+        
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          if (Math.abs(diffX) > swipeThreshold) {
+            if (diffX > 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+          }
+        }
+      }
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Presenter Mode
+    function togglePresenterMode() {
+      isPresenterMode = !isPresenterMode;
+      document.body.classList.toggle('presenter-mode', isPresenterMode);
+      // Additional presenter mode functionality can be added here
+    }
+
+    // Initialize Animations
+    function initializeAnimations() {
+      // GSAP initialization
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+        // Set up GSAP defaults
+        gsap.defaults({
+          ease: "power3.out",
+          duration: 1
+        });
+      }
+    }
+
+    // Trigger Slide Animations
+    function triggerSlideAnimations(slideNumber) {
+      const slide = document.querySelector(`.slide[data-slide="${slideNumber}"]`);
+      if (!slide) return;
+
+      // Reset and replay animations
+      const animatedElements = slide.querySelectorAll('.animate-in');
+      animatedElements.forEach((el, index) => {
+        el.style.animation = 'none';
+        setTimeout(() => {
+          el.style.animation = '';
+        }, 10);
+      });
+
+      // Trigger specific animations based on slide number
+      switch(slideNumber) {
+        case 1:
+          animateHeroSlide();
+          break;
+        case 2:
+          animateContextSlide();
+          break;
+        // Add more slide-specific animations
+      }
+    }
+
+    // Hero Slide Animation
+    function animateHeroSlide() {
+      // Animate hero number with CountUp
+      animateNumbers();
+    }
+
+    // Context Slide Animation
+    function animateContextSlide() {
+      // Animate cards with stagger
+      if (typeof gsap !== 'undefined') {
+        gsap.from('.slide[data-slide="2"] .premium-card', {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out"
+        });
+      }
+    }
+
+    // Animate Numbers
+    function animateNumbers() {
+      // Hero number animation
+      const heroNumber = document.getElementById('heroNumber');
+      if (heroNumber) {
+        animateValue(heroNumber, 0, 3900, 2000);
+      }
+
+      // Metric animations
+      const metric1 = document.getElementById('metric1');
+      if (metric1) {
+        animateValue(metric1, 0, 5.2, 1500, 'M');
+      }
+
+      const metric2 = document.getElementById('metric2');
+      if (metric2) {
+        animateValue(metric2, 0, 72, 1500, '%');
+      }
+
+      const metric3 = document.getElementById('metric3');
+      if (metric3) {
+        animateValue(metric3, 0, 10, 1500, '%');
+      }
+    }
+
+    // Animate Value Helper
+    function animateValue(element, start, end, duration, suffix = '') {
+      if (!element) return;
+      
+      const startTime = performance.now();
+      const isDecimal = !Number.isInteger(end);
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        
+        const current = start + (end - start) * easeOutQuart;
+        
+        if (isDecimal) {
+          element.textContent = current.toFixed(1) + suffix;
+        } else {
+          element.textContent = Math.floor(current).toLocaleString() + suffix;
+        }
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+
+    // Initialize Charts
+    function initializeCharts() {
+      // Charts will be initialized when their respective slides are shown
+      // This is a placeholder for chart initialization logic
+    }
+
+    // Mouse Parallax Effect
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      
+      const meshGradient = document.querySelector('.mesh-gradient');
+      if (meshGradient) {
+        meshGradient.style.transform = `translate(${x}px, ${y}px)`;
+      }
+    });
+
+    // Visibility Change Handler
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Pause animations when tab is not visible
+        document.querySelectorAll('*').forEach(el => {
+          const animationPlayState = window.getComputedStyle(el).animationPlayState;
+          if (animationPlayState === 'running') {
+            el.style.animationPlayState = 'paused';
+          }
+        });
+      } else {
+        // Resume animations
+        document.querySelectorAll('*').forEach(el => {
+          if (el.style.animationPlayState === 'paused') {
+            el.style.animationPlayState = 'running';
+          }
+        });
+      }
+    });
+
+    // Performance Optimization
+    const debounce = (func, wait) => {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    };
+
+    // Optimized Resize Handler
+    window.addEventListener('resize', debounce(() => {
+      // Handle responsive adjustments
+    }, 250));
+  </script>
+</body>
+</html>

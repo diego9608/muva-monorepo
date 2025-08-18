@@ -13,7 +13,8 @@
       "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\door-industry-executive-deck-v2.html\")",
       "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\presentations-hub.html\")",
       "WebSearch",
-      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck.html\")"
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck.html\")",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck-ultra.html\")"
     ],
     "deny": [],
     "ask": [],
