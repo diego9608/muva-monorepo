@@ -141,36 +141,32 @@
 
     /* Sections */
     .section {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 4rem 2rem;
       position: relative;
-    }
-
-    /* Scrollable sections for tall content */
-    .section.scrollable {
-      height: 100vh;
       overflow-y: auto;
-      align-items: flex-start;
-      padding-top: 6rem;
-      padding-bottom: 6rem;
+      overflow-x: hidden;
     }
 
-    .section.scrollable::-webkit-scrollbar {
-      width: 6px;
+    /* Custom scrollbar for sections */
+    .section::-webkit-scrollbar {
+      width: 8px;
     }
 
-    .section.scrollable::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 3px;
+    .section::-webkit-scrollbar-track {
+      background: transparent;
     }
 
-    .section.scrollable::-webkit-scrollbar-thumb {
-      background: var(--primary-blue);
-      border-radius: 3px;
-      opacity: 0.5;
+    .section::-webkit-scrollbar-thumb {
+      background: rgba(37, 99, 235, 0.3);
+      border-radius: 4px;
+    }
+
+    .section::-webkit-scrollbar-thumb:hover {
+      background: rgba(37, 99, 235, 0.5);
     }
 
     .container {
@@ -1663,7 +1659,7 @@
   </section>
 
   <!-- Slide 17: Casos ilustrativos -->
-  <section class="section scrollable" id="slide-17">
+  <section class="section" id="slide-17">
     <div class="container">
       <h2 class="section-title">Casos Ilustrativos</h2>
       <p class="subtitle">Escenarios de volumen y rentabilidad</p>
@@ -1867,7 +1863,7 @@
   </section>
 
   <!-- Slide 21: Glosario -->
-  <section class="section scrollable" id="slide-21">
+  <section class="section" id="slide-21">
     <div class="container">
       <h2 class="section-title">Apéndice - Glosario</h2>
       <p class="subtitle">Términos clave para alineación</p>
@@ -2235,31 +2231,27 @@
     let wheelTimeout;
     
     window.addEventListener('wheel', (e) => {
-      // Check if we're in a scrollable section
+      // Check current section's scroll status
       const currentSection = sections[currentSlide];
-      const isScrollable = currentSection && currentSection.classList.contains('scrollable');
-      
-      if (isScrollable) {
+      if (currentSection) {
         const scrollTop = currentSection.scrollTop;
         const scrollHeight = currentSection.scrollHeight;
         const clientHeight = currentSection.clientHeight;
-        const isAtTop = scrollTop <= 0;
+        const hasScroll = scrollHeight > clientHeight + 10; // Has scrollable content
+        const isAtTop = scrollTop <= 5;
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
         
-        // Allow normal scroll within scrollable sections
-        if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) {
-          return; // Let it scroll normally
+        // If section has scrollable content
+        if (hasScroll) {
+          // Allow scrolling within the section
+          if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) {
+            return; // Let it scroll normally within the section
+          }
         }
-        
-        // If at boundaries, continue to slide navigation
-        if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-          e.preventDefault();
-        } else {
-          return;
-        }
-      } else {
-        e.preventDefault();
       }
+      
+      // Prevent default scroll behavior for slide navigation
+      e.preventDefault();
       
       // Clear existing timeout
       clearTimeout(wheelTimeout);
@@ -2268,17 +2260,17 @@
       if (!wheelLocked) {
         wheelLocked = true;
         
-        // Determine direction
-        if (e.deltaY > 50) {
+        // Navigate slides
+        if (e.deltaY > 0) {
           nextSlide();
-        } else if (e.deltaY < -50) {
+        } else if (e.deltaY < 0) {
           prevSlide();
         }
         
-        // Reset after delay
+        // Reset lock after delay
         wheelTimeout = setTimeout(() => {
           wheelLocked = false;
-        }, 800);
+        }, 700);
       }
     }, { passive: false });
 
