@@ -149,10 +149,54 @@
       position: relative;
     }
 
+    /* Scrollable sections for tall content */
+    .section.scrollable {
+      height: 100vh;
+      overflow-y: auto;
+      align-items: flex-start;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .section.scrollable::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .section.scrollable::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 3px;
+    }
+
+    .section.scrollable::-webkit-scrollbar-thumb {
+      background: var(--primary-blue);
+      border-radius: 3px;
+      opacity: 0.5;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
+    }
+
+    /* Scroll indicator for tall slides */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: bounce 2s infinite;
+      color: var(--primary-blue);
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
     }
 
     /* Typography */
@@ -1619,7 +1663,7 @@
   </section>
 
   <!-- Slide 17: Casos ilustrativos -->
-  <section class="section" id="slide-17">
+  <section class="section scrollable" id="slide-17">
     <div class="container">
       <h2 class="section-title">Casos Ilustrativos</h2>
       <p class="subtitle">Escenarios de volumen y rentabilidad</p>
@@ -1823,7 +1867,7 @@
   </section>
 
   <!-- Slide 21: Glosario -->
-  <section class="section" id="slide-21">
+  <section class="section scrollable" id="slide-21">
     <div class="container">
       <h2 class="section-title">Apéndice - Glosario</h2>
       <p class="subtitle">Términos clave para alineación</p>
@@ -2186,22 +2230,55 @@
       }
     });
     
-    // Wheel navigation with throttle
-    let lastWheelTime = 0;
-    const wheelThrottle = 1000; // 1 second between scrolls
+    // Wheel navigation with proper debounce
+    let wheelLocked = false;
+    let wheelTimeout;
     
     window.addEventListener('wheel', (e) => {
-      e.preventDefault();
+      // Check if we're in a scrollable section
+      const currentSection = sections[currentSlide];
+      const isScrollable = currentSection && currentSection.classList.contains('scrollable');
       
-      const now = Date.now();
-      if (now - lastWheelTime < wheelThrottle) return;
+      if (isScrollable) {
+        const scrollTop = currentSection.scrollTop;
+        const scrollHeight = currentSection.scrollHeight;
+        const clientHeight = currentSection.clientHeight;
+        const isAtTop = scrollTop <= 0;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
+        
+        // Allow normal scroll within scrollable sections
+        if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) {
+          return; // Let it scroll normally
+        }
+        
+        // If at boundaries, continue to slide navigation
+        if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+          e.preventDefault();
+        } else {
+          return;
+        }
+      } else {
+        e.preventDefault();
+      }
       
-      lastWheelTime = now;
+      // Clear existing timeout
+      clearTimeout(wheelTimeout);
       
-      if (e.deltaY > 0) {
-        nextSlide();
-      } else if (e.deltaY < 0) {
-        prevSlide();
+      // Only process if not locked
+      if (!wheelLocked) {
+        wheelLocked = true;
+        
+        // Determine direction
+        if (e.deltaY > 50) {
+          nextSlide();
+        } else if (e.deltaY < -50) {
+          prevSlide();
+        }
+        
+        // Reset after delay
+        wheelTimeout = setTimeout(() => {
+          wheelLocked = false;
+        }, 800);
       }
     }, { passive: false });
 
