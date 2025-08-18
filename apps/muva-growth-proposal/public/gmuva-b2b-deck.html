@@ -761,6 +761,62 @@
       box-shadow: 0 6px 30px rgba(37, 99, 235, 0.35);
     }
 
+    /* Fullscreen Button */
+    .fullscreen-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-blue);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      font-size: 1.5rem;
+    }
+
+    .fullscreen-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 99, 235, 0.4);
+      background: var(--teal);
+    }
+
+    body.fullscreen .side-nav,
+    body.fullscreen .fullscreen-toggle {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.fullscreen {
+      cursor: none;
+    }
+
+    /* Fullscreen hint */
+    .fullscreen-hint {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 998;
+    }
+
+    .fullscreen-toggle:hover + .fullscreen-hint {
+      opacity: 1;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .side-nav {
@@ -799,12 +855,23 @@
       .city-bubble {
         transform: scale(0.7);
       }
+
+      .fullscreen-toggle {
+        bottom: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Progress Bar -->
   <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Fullscreen Button -->
+  <div class="fullscreen-toggle" onclick="toggleFullscreen()">⛶</div>
+  <div class="fullscreen-hint">Presiona F para pantalla completa</div>
 
   <!-- Side Navigation -->
   <nav class="side-nav" id="sideNav">
@@ -2041,6 +2108,19 @@
       );
     });
 
+    // Fullscreen functionality
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+        document.body.classList.add('fullscreen');
+      } else {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
+      }
+    }
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       const currentSection = Array.from(navDots).findIndex(dot => dot.classList.contains('active'));
@@ -2049,6 +2129,11 @@
         sections[currentSection + 1].scrollIntoView({ behavior: 'smooth' });
       } else if (e.key === 'ArrowUp' && currentSection > 0) {
         sections[currentSection - 1].scrollIntoView({ behavior: 'smooth' });
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape' && document.fullscreenElement) {
+        document.exitFullscreen();
+        document.body.classList.remove('fullscreen');
       }
     });
 
