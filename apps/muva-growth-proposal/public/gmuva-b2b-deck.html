@@ -43,8 +43,6 @@
       font-size: 16px;
       height: 100%;
       overflow-y: auto;
-      scroll-snap-type: y mandatory;
-      scroll-padding-top: 0;
     }
 
     body {
@@ -55,7 +53,6 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      height: 100%;
     }
 
     /* Custom Scrollbar */
@@ -145,15 +142,11 @@
     /* Sections */
     .section {
       min-height: 100vh;
-      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 4rem 2rem;
       position: relative;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      overflow-y: auto;
     }
 
     .container {
@@ -826,12 +819,6 @@
       opacity: 1;
     }
 
-    /* Touch devices optimization */
-    @media (hover: none) and (pointer: coarse) {
-      html {
-        scroll-snap-type: y proximity;
-      }
-    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -841,8 +828,7 @@
 
       .section {
         padding: 2rem 1rem;
-        height: 100vh;
-        min-height: -webkit-fill-available;
+        min-height: 100vh;
       }
 
       .grid-2, .grid-3, .grid-4 {
@@ -1979,7 +1965,7 @@
     // Click navigation
     navDots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        sections[index].scrollIntoView({ behavior: 'smooth' });
+        goToSlide(index);
       });
     });
 
@@ -2141,30 +2127,57 @@
       }
     }
 
-    // Improved keyboard navigation with smooth transitions
-    let isScrolling = false;
+    // Slide navigation system
+    let currentSlide = 0;
+    let isTransitioning = false;
     
+    function goToSlide(index) {
+      if (isTransitioning || index < 0 || index >= sections.length) return;
+      
+      isTransitioning = true;
+      currentSlide = index;
+      
+      sections[index].scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Update nav dots
+      navDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
+    }
+    
+    function nextSlide() {
+      if (currentSlide < sections.length - 1) {
+        goToSlide(currentSlide + 1);
+      }
+    }
+    
+    function prevSlide() {
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    }
+    
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (isScrolling) return; // Prevent multiple scrolls
-      
-      const currentSection = Array.from(navDots).findIndex(dot => dot.classList.contains('active'));
-      
-      if ((e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') && currentSection < sections.length - 1) {
+      if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
-        isScrolling = true;
-        sections[currentSection + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => { isScrolling = false; }, 800);
-      } else if ((e.key === 'ArrowUp' || e.key === 'PageUp') && currentSection > 0) {
+        nextSlide();
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         e.preventDefault();
-        isScrolling = true;
-        sections[currentSection - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => { isScrolling = false; }, 800);
+        prevSlide();
       } else if (e.key === 'Home') {
         e.preventDefault();
-        sections[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        goToSlide(0);
       } else if (e.key === 'End') {
         e.preventDefault();
-        sections[sections.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        goToSlide(sections.length - 1);
       } else if (e.key === 'f' || e.key === 'F') {
         toggleFullscreen();
       } else if (e.key === 'Escape' && document.fullscreenElement) {
@@ -2172,29 +2185,24 @@
         document.body.classList.remove('fullscreen');
       }
     });
-
-    // Smooth wheel navigation with debounce
-    let wheelTimeout;
-    let canScroll = true;
+    
+    // Wheel navigation with throttle
+    let lastWheelTime = 0;
+    const wheelThrottle = 1000; // 1 second between scrolls
     
     window.addEventListener('wheel', (e) => {
-      if (!canScroll) return;
-      
       e.preventDefault();
-      canScroll = false;
       
-      const currentSection = Array.from(navDots).findIndex(dot => dot.classList.contains('active'));
+      const now = Date.now();
+      if (now - lastWheelTime < wheelThrottle) return;
       
-      if (e.deltaY > 0 && currentSection < sections.length - 1) {
-        sections[currentSection + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else if (e.deltaY < 0 && currentSection > 0) {
-        sections[currentSection - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      lastWheelTime = now;
+      
+      if (e.deltaY > 0) {
+        nextSlide();
+      } else if (e.deltaY < 0) {
+        prevSlide();
       }
-      
-      clearTimeout(wheelTimeout);
-      wheelTimeout = setTimeout(() => {
-        canScroll = true;
-      }, 800);
     }, { passive: false });
 
     // Smooth scroll for all internal links
