@@ -402,10 +402,12 @@
     .map-container {
       position: relative;
       height: 500px;
-      background: var(--off-white);
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f1ff 100%);
       border-radius: 16px;
       overflow: hidden;
-      margin: 2rem 0;
+      margin: 2rem auto;
+      max-width: 1000px;
+      border: 1px solid var(--border);
     }
 
     .city-bubble {
@@ -1073,12 +1075,14 @@
           <div class="card-subtitle">0.78M unidades</div>
         </div>
       </div>
-      <canvas id="channelChart" style="max-width: 600px; margin: 2rem auto; display: block;"></canvas>
+      <div style="max-width: 500px; margin: 2rem auto;">
+        <canvas id="channelChart"></canvas>
+      </div>
     </div>
   </section>
 
   <!-- Slide 5: Concentración geográfica -->
-  <section class="section" id="slide-5">
+  <section class="section" id="slide-5" style="background: var(--white);">
     <div class="container">
       <h2 class="section-title">Concentración Geográfica</h2>
       <p class="subtitle">72% del mercado en 5 ciudades clave</p>
@@ -1109,7 +1113,7 @@
           <div class="city-percent">7.5%</div>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 2rem;">
+      <div style="text-align: center; margin-top: 2rem; padding-bottom: 2rem;">
         <span style="font-size: 1.125rem; color: var(--text-gray);">
           Enfoque en estas plazas para visitas, pilotos y micro-DC
         </span>
@@ -2065,7 +2069,7 @@
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           plugins: {
             legend: {
               position: 'bottom',
