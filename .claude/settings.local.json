@@ -15,7 +15,8 @@
       "WebSearch",
       "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck.html\")",
       "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck-ultra.html\")",
-      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck-final.html\")"
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\gmuva-b2b-deck-final.html\")",
+      "Bash(start chrome \"C:\\Users\\calid\\misproyectos\\muva-monorepo\\apps\\muva-growth-proposal\\public\\puertas-tambor.html\")"
     ],
     "deny": [],
     "ask": [],

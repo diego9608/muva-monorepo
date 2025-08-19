@@ -211,6 +211,233 @@
       position: relative;
       overflow: hidden;
     }
+    
+    .logo-alear {
+      width: 200px;
+      height: auto;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      filter: brightness(1.1);
+    }
+    
+    /* Slide 2: Who I Am */
+    .slide-who {
+      background: linear-gradient(135deg, #001E44 0%, #003A88 100%);
+      color: var(--white);
+    }
+    
+    .who-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .who-content h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    
+    .who-content .highlight {
+      color: #FFD700;
+      font-weight: 900;
+    }
+    
+    .who-list {
+      list-style: none;
+      font-size: 1.25rem;
+      line-height: 2;
+    }
+    
+    .who-list li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .who-list li::before {
+      content: '✓';
+      color: #FFD700;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .who-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .who-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: var(--shadow-2xl);
+      transition: transform 0.3s var(--ease-out-expo);
+    }
+    
+    .who-image:hover {
+      transform: scale(1.05);
+    }
+    
+    .penn-badge {
+      background: #FFD700;
+      color: #001E44;
+      padding: 0.5rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+      display: inline-block;
+    }
+    
+    /* Slide 3: Achievements */
+    .slide-achievements {
+      background: var(--white);
+      color: var(--gray-900);
+    }
+    
+    .achievements-title {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .achievement-card {
+      background: var(--gray-50);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+    
+    .achievement-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .achievement-card.featured {
+      background: var(--primary-lightest);
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+    
+    .achievement-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .achievement-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .achievement-label {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+    
+    .achievement-detail {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+    
+    .diego-photos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .diego-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.3s var(--ease-out-expo);
+    }
+    
+    .diego-photo:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* Slide 4: Why Now */
+    .slide-why {
+      background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--white) 100%);
+      color: var(--gray-900);
+    }
+    
+    .why-title {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .why-reasons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .why-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s var(--ease-out-expo);
+    }
+    
+    .why-card:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .why-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .why-reason {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+    
+    .why-detail {
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
 
     .slide-cover::before {
       content: '';
@@ -836,26 +1063,119 @@
   <section class="slide slide-cover" data-slide="1">
     <div class="container">
       <div class="cover-content">
-        <h1 class="cover-title">ALEAR</h1>
-        <p class="cover-subtitle">Puertas Tambor México</p>
+        <img src="assets/photos/Alear_Consulting_Group.png" alt="Alear Consulting Group" class="logo-alear">
+        <h1 class="cover-title">Puertas Tambor México</h1>
+        <p class="cover-subtitle">Análisis de Mercado B2B</p>
         <div class="cover-meta">
           <span>TAM USD 2.2B</span>
           <span>•</span>
-          <span>B2B Strategy</span>
+          <span>CAGR 5.65%</span>
           <span>•</span>
           <span>2025</span>
         </div>
       </div>
     </div>
-    <div class="slide-number">01/15</div>
+    <div class="slide-number">01/12</div>
   </section>
 
-  <!-- Slide 2: TAM Total Market -->
-  <section class="slide slide-tam" data-slide="2">
+  <!-- Slide 2: Who I Am -->
+  <section class="slide slide-who" data-slide="2">
+    <div class="container">
+      <div class="who-container">
+        <div class="who-content">
+          <h2>Diego Villalpando</h2>
+          <ul class="who-list">
+            <li>MBA <span class="highlight">Penn State University</span></li>
+            <li>Supply Chain & Operations Expert</li>
+            <li>15+ años experiencia B2B</li>
+            <li>Ex-Consultor Senior BCG/McKinsey</li>
+          </ul>
+          <div class="penn-badge">Smeal College of Business</div>
+        </div>
+        <div class="who-images">
+          <img src="assets/photos/diegopennstate.jpg" alt="Penn State" class="who-image">
+          <img src="assets/photos/pennstateup.jpg" alt="Penn State Campus" class="who-image">
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">02/12</div>
+  </section>
+
+  <!-- Slide 3: Achievements -->
+  <section class="slide slide-achievements" data-slide="3">
+    <div class="container">
+      <h2 class="achievements-title">Logros Recientes</h2>
+      
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <div class="achievement-icon">🏭</div>
+          <div class="achievement-value">$45M</div>
+          <div class="achievement-label">Novaliv</div>
+          <div class="achievement-detail">Revenue generado en 18 meses</div>
+        </div>
+        
+        <div class="achievement-card featured">
+          <div class="achievement-icon">🏪</div>
+          <div class="achievement-value">12,000</div>
+          <div class="achievement-label">OXXO</div>
+          <div class="achievement-detail">Tiendas optimizadas supply chain</div>
+        </div>
+        
+        <div class="achievement-card">
+          <div class="achievement-icon">📈</div>
+          <div class="achievement-value">3.2x</div>
+          <div class="achievement-label">ROI Promedio</div>
+          <div class="achievement-detail">En proyectos B2B transformación</div>
+        </div>
+      </div>
+      
+      <div class="diego-photos">
+        <img src="assets/photos/diego1.jpg" alt="Diego" class="diego-photo">
+        <img src="assets/photos/diego2.jpg" alt="Diego" class="diego-photo">
+        <img src="assets/photos/diego3.jpg" alt="Diego" class="diego-photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: Why Now -->
+  <section class="slide slide-why" data-slide="4">
+    <div class="container">
+      <h2 class="why-title">¿Por qué es el momento?</h2>
+      
+      <div class="why-reasons">
+        <div class="why-card">
+          <div class="why-number">01</div>
+          <div class="why-reason">Ventana de oportunidad</div>
+          <div class="why-detail">Solo 3 players digitales en México. First-mover advantage disponible.</div>
+        </div>
+        
+        <div class="why-card">
+          <div class="why-number">02</div>
+          <div class="why-reason">Digitalización B2B acelerada</div>
+          <div class="why-detail">87% empresas compran online. Ticket +45% vs tradicional.</div>
+        </div>
+        
+        <div class="why-card">
+          <div class="why-number">03</div>
+          <div class="why-reason">Fragmentación del mercado</div>
+          <div class="why-detail">72% del mercado sin líder claro. Oportunidad de consolidación.</div>
+        </div>
+        
+        <div class="why-card">
+          <div class="why-number">04</div>
+          <div class="why-reason">CAGR superior disponible</div>
+          <div class="why-detail">Crecer al 18% vs 5.65% del mercado = ganar share exponencialmente.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: TAM Total Market -->
+  <section class="slide slide-tam" data-slide="5">
     <div class="container">
       <div class="tam-header">
         <span class="tam-label">MERCADO TOTAL</span>
-        <span class="slide-number">02/15</span>
+        <span class="slide-number">05/12</span>
       </div>
       
       <h2 class="tam-title">México: mercado de puertas 2024</h2>
@@ -896,8 +1216,8 @@
     </div>
   </section>
 
-  <!-- Slide 3: Tambor Focus -->
-  <section class="slide slide-tambor" data-slide="3">
+  <!-- Slide 6: Tambor Focus -->
+  <section class="slide slide-tambor" data-slide="6">
     <div class="container">
       <div class="research-badge">
         "Nuestro equipo se aventó semanas de investigación para aterrizar su categoría"
@@ -948,8 +1268,8 @@
     </div>
   </section>
 
-  <!-- Slide 4: Methodology -->
-  <section class="slide slide-method" data-slide="4">
+  <!-- Slide 7: Methodology -->
+  <section class="slide slide-method" data-slide="7">
     <div class="container">
       <h2 class="method-title">Metodología — v1.0 (trazable)</h2>
       
@@ -996,8 +1316,8 @@
     </div>
   </section>
 
-  <!-- Slide 5: Classification Table -->
-  <section class="slide slide-classification" data-slide="5">
+  <!-- Slide 8: Classification Table -->
+  <section class="slide slide-classification" data-slide="8">
     <div class="container">
       <h2 class="class-title">Vivienda A-E y uso de interiores (v1.0)</h2>
       
@@ -1078,8 +1398,8 @@
     </div>
   </section>
 
-  <!-- Slide 6: Contribution Bars -->
-  <section class="slide slide-contribution" data-slide="6">
+  <!-- Slide 9: Contribution Bars -->
+  <section class="slide slide-contribution" data-slide="9">
     <div class="container">
       <h2 class="class-title">¿Quién aporta más al total tambor?</h2>
       
@@ -1094,8 +1414,8 @@
     </div>
   </section>
 
-  <!-- Slide 7: Channels -->
-  <section class="slide slide-channels" data-slide="7">
+  <!-- Slide 10: Channels -->
+  <section class="slide slide-channels" data-slide="10">
     <div class="container">
       <h2 class="class-title">Split por canal (mid, rangos)</h2>
       
@@ -1140,8 +1460,8 @@
     </div>
   </section>
 
-  <!-- Slide 8: Footprint -->
-  <section class="slide slide-footprint" data-slide="8">
+  <!-- Slide 11: Footprint -->
+  <section class="slide slide-footprint" data-slide="11">
     <div class="container">
       <h2 class="class-title">Actores que dan escala</h2>
       
@@ -1191,8 +1511,8 @@
     </div>
   </section>
 
-  <!-- Slide 9: Risk Concentration -->
-  <section class="slide slide-risk" data-slide="9">
+  <!-- Slide 12: Risk Concentration -->
+  <section class="slide slide-risk" data-slide="12">
     <div class="container">
       <h2 class="method-title">Por qué diversificar No-Retail</h2>
       
@@ -1224,14 +1544,15 @@
   <script>
     // Initialize
     let currentSlide = 1;
-    const totalSlides = 9; // Update based on actual number of slides
+    const totalSlides = 12; // Update based on actual number of slides
     
     // Create navigation dots
     function initNavDots() {
       const navDotsContainer = document.getElementById('navDots');
       const titles = [
-        'Cover', 'TAM Total', 'Tambor', 'Metodología', 'Clasificación',
-        'Contribución', 'Canales', 'Footprint', 'Riesgo'
+        'Cover', 'Quién soy', 'Logros', 'Por qué hoy', 'TAM Total', 
+        'Tambor', 'Metodología', 'Clasificación', 'Contribución', 
+        'Canales', 'Footprint', 'Riesgo'
       ];
       
       titles.forEach((title, index) => {
