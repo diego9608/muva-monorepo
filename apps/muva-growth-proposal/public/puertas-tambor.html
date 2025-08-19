@@ -85,6 +85,7 @@
       scroll-snap-type: y mandatory;
       font-size: 16px;
       height: 100%;
+      overscroll-behavior-y: contain;
     }
 
     body {
@@ -114,6 +115,7 @@
       display: flex;
       align-items: center;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
       position: relative;
       opacity: 0;
       animation: fadeIn 0.8s forwards;
@@ -1540,20 +1542,388 @@
     </div>
   </section>
 
-  <!-- Additional slides would continue here... -->
+  <!-- Slide 13: Dream Outcome -->
+  <section class="slide slide-dream" data-slide="13">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">META CUANTIFICADA</span>
+        <span class="slide-number">13/43</span>
+      </div>
+      
+      <h2 class="dream-title">10% B2B en 3-5 años</h2>
+      
+      <div class="dream-ladder">
+        <div class="ladder-step" style="animation-delay: 0.2s;">
+          <div class="step-year">Año 1</div>
+          <div class="step-value">0.5-1.0%</div>
+          <div class="step-label">Punto de partida</div>
+        </div>
+        <div class="ladder-step" style="animation-delay: 0.4s;">
+          <div class="step-year">Año 2</div>
+          <div class="step-value">2-3%</div>
+          <div class="step-label">Tracción validada</div>
+        </div>
+        <div class="ladder-step" style="animation-delay: 0.6s;">
+          <div class="step-year">Años 3-5</div>
+          <div class="step-value">3-10%</div>
+          <div class="step-label">Share acumulado</div>
+        </div>
+      </div>
+      
+      <div class="dream-kpis">
+        <div class="kpi-chip" style="animation-delay: 0.8s;">Fill-rate ≥95%</div>
+        <div class="kpi-chip" style="animation-delay: 0.9s;">OTIF ≥92%</div>
+        <div class="kpi-chip" style="animation-delay: 1s;">DSO ≤45</div>
+        <div class="kpi-chip" style="animation-delay: 1.1s;">Servicio</div>
+        <div class="kpi-chip" style="animation-delay: 1.2s;">Mix</div>
+        <div class="kpi-chip" style="animation-delay: 1.3s;">Cobertura</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: Tesis -->
+  <section class="slide slide-tesis" data-slide="14">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">PROPUESTA DE VALOR</span>
+        <span class="slide-number">14/43</span>
+      </div>
+      
+      <h2 class="tesis-title">"Ustedes fabrican; nosotros operamos"</h2>
+      
+      <div class="tesis-components">
+        <div class="component-card">
+          <h3 class="pulse">MCO</h3>
+          <p>Marketing & Commercial Operations</p>
+        </div>
+        <div class="component-card">
+          <h3 class="pulse">RevOps MSP</h3>
+          <p>Revenue Operations Managed Service</p>
+        </div>
+        <div class="component-card">
+          <h3 class="pulse">4PL Light</h3>
+          <p>Orquestación logística sin flota</p>
+        </div>
+      </div>
+      
+      <div class="tesis-features">
+        <div class="feature">✓ Seller-of-Record: GMuva</div>
+        <div class="feature">✓ Portal B2B, PIM/DAM, EDI-lite</div>
+        <div class="feature">✓ Kitting / Pre-hung + Control Tower</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX</div>
+        <div class="term-box-content">
+          <strong>MCO:</strong> Marketing & Commercial Operations<br>
+          <strong>RevOps MSP:</strong> Revenue Operations as Managed Service<br>
+          <strong>4PL Light:</strong> Orquestación sin activos propios<br>
+          <strong>Seller-of-Record:</strong> GMuva factura y cobra
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 15: SLAs -->
+  <section class="slide slide-slas" data-slide="15">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">COMPROMISOS MEDIBLES</span>
+        <span class="slide-number">15/43</span>
+      </div>
+      
+      <h2 class="slas-title">SLAs que mueven aguja</h2>
+      
+      <div class="slas-gauges">
+        <div class="gauge-container">
+          <canvas id="fillRateGauge" width="200" height="200"></canvas>
+          <div class="gauge-label">Fill-rate ≥95%</div>
+        </div>
+        <div class="gauge-container">
+          <canvas id="otifGauge" width="200" height="200"></canvas>
+          <div class="gauge-label">OTIF ≥92%</div>
+        </div>
+        <div class="gauge-container">
+          <canvas id="dsoGauge" width="200" height="200"></canvas>
+          <div class="gauge-label">DSO ≤45 días</div>
+        </div>
+      </div>
+      
+      <div class="slas-governance">
+        <div class="governance-item">📊 Reporte semanal</div>
+        <div class="governance-item">📈 QBR trimestral</div>
+        <div class="governance-item">🔧 Plan de cura si desviación</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — SLAs</div>
+        <div class="term-box-content">
+          <strong>Fill-rate:</strong> % surtido al primer intento<br>
+          <strong>OTIF:</strong> On-Time In-Full (a tiempo y completo)<br>
+          <strong>DSO:</strong> Days Sales Outstanding (días por cobrar)<br>
+          <strong>QBR:</strong> Quarterly Business Review
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 16: Price Waterfall -->
+  <section class="slide slide-waterfall" data-slide="16">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">ARQUITECTURA DE VALOR</span>
+        <span class="slide-number">16/43</span>
+      </div>
+      
+      <h2>Price Waterfall</h2>
+      
+      <div class="waterfall-chart">
+        <canvas id="waterfallChart" width="900" height="400"></canvas>
+      </div>
+      
+      <div class="waterfall-features">
+        <div class="wf-item">Lista → Neto transparente</div>
+        <div class="wf-item">Tiers por tráiler (eficiencia)</div>
+        <div class="wf-item">Rebates/MDF programados</div>
+        <div class="wf-item">Pronto pago cuando convenga</div>
+        <div class="wf-item">CTS como brújula</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Pricing</div>
+        <div class="term-box-content">
+          <strong>Rebates:</strong> Bonificación por volumen alcanzado<br>
+          <strong>MDF:</strong> Market Development Funds (co-marketing)<br>
+          <strong>CTS:</strong> Cost to Serve (costo de servir)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 17: Crédito -->
+  <section class="slide slide-credit" data-slide="17">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">FINANCIAMIENTO INTELIGENTE</span>
+        <span class="slide-number">17/43</span>
+      </div>
+      
+      <h2>Crédito que no ahoga caja</h2>
+      
+      <div class="credit-matrix">
+        <div class="matrix-card">
+          <h3>Net-45/60</h3>
+          <p>Con seguro de crédito</p>
+          <div class="risk-level low">Riesgo: Bajo</div>
+        </div>
+        <div class="matrix-card">
+          <h3>2/10 Net-30</h3>
+          <p>Selectivo por volumen</p>
+          <div class="risk-level medium">Riesgo: Medio</div>
+        </div>
+        <div class="matrix-card">
+          <h3>Factoraje</h3>
+          <p>Donde convenga</p>
+          <div class="risk-level low">Riesgo: Bajo</div>
+        </div>
+      </div>
+      
+      <div class="credit-target">
+        <div class="target-value">DSO ≤45</div>
+        <div class="target-label">Meta de cobranza</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Crédito</div>
+        <div class="term-box-content">
+          <strong>Seguro:</strong> Cubre incumplimiento de pago<br>
+          <strong>Factoraje:</strong> Cobro anticipado con descuento<br>
+          <strong>Early-pay:</strong> Descuento por pronto pago
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 18: Plan 90 días -->
+  <section class="slide slide-plan90" data-slide="18">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">EMBUDO OPERATIVO</span>
+        <span class="slide-number">18/43</span>
+      </div>
+      
+      <h2>Plan 90 días</h2>
+      
+      <div class="funnel-container">
+        <div class="funnel-stage">
+          <div class="stage-value" data-target="150">0</div>
+          <div class="stage-label">ABM: Cuentas objetivo</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-stage">
+          <div class="stage-value" data-target="220">0</div>
+          <div class="stage-label">SDR: Citas agendadas</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-stage">
+          <div class="stage-value" data-target="100">0</div>
+          <div class="stage-label">RFQs generados</div>
+        </div>
+        <div class="funnel-arrow">→</div>
+        <div class="funnel-stage">
+          <div class="stage-value" data-target="36">0</div>
+          <div class="stage-label">POs (Ola 1)</div>
+        </div>
+      </div>
+      
+      <div class="plan90-timeline">
+        <div class="timeline-item">Semana 1-2: Setup portal</div>
+        <div class="timeline-item">Semana 3-4: Llamadas SDR</div>
+        <div class="timeline-item">Semana 5-8: Demos y RFQs</div>
+        <div class="timeline-item">Semana 9-12: Cierre POs</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Funnel</div>
+        <div class="term-box-content">
+          <strong>ABM:</strong> Account-Based Marketing (cuenta por cuenta)<br>
+          <strong>SDR/AE:</strong> SDR agenda, AE cotiza y cierra<br>
+          <strong>RFQ:</strong> Request for Quote (solicitud de cotización)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 19: Plan 12 meses -->
+  <section class="slide slide-plan12" data-slide="19">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">RAMPA ANUAL</span>
+        <span class="slide-number">19/43</span>
+      </div>
+      
+      <h2>Plan 12 meses</h2>
+      
+      <div class="roadmap-timeline">
+        <div class="roadmap-quarter">
+          <h3>Q1</h3>
+          <ul>
+            <li>✓ Portal activo</li>
+            <li>✓ 150 cuentas ABM</li>
+            <li>✓ Primeros POs</li>
+          </ul>
+        </div>
+        <div class="roadmap-quarter">
+          <h3>Q2</h3>
+          <ul>
+            <li>$2M revenue</li>
+            <li>Variable activa</li>
+            <li>3 afiliados</li>
+          </ul>
+        </div>
+        <div class="roadmap-quarter">
+          <h3>Q3</h3>
+          <ul>
+            <li>$4M revenue</li>
+            <li>Micro-DC #1</li>
+            <li>7 afiliados</li>
+          </ul>
+        </div>
+        <div class="roadmap-quarter">
+          <h3>Q4</h3>
+          <ul>
+            <li>$8M No-Retail</li>
+            <li>≥10 afiliados</li>
+            <li>DSO ≤45 estable</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="annual-target">
+        <div class="target-metric">$8M</div>
+        <div class="target-label">Revenue No-Retail Año 1</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Micro-DC</div>
+        <div class="term-box-content">
+          <strong>Micro-DC:</strong> Centro de distribución local<br>
+          <strong>DRP:</strong> Distribution Requirements Planning<br>
+          <strong>Umbral:</strong> ~6k/mes por plaza justifica DC
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 20: Kitting & Pre-hung -->
+  <section class="slide slide-kitting" data-slide="20">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">MARGEN Y SERVICIO</span>
+        <span class="slide-number">20/43</span>
+      </div>
+      
+      <h2>Kitting & Pre-hung</h2>
+      
+      <div class="kitting-ladder">
+        <div class="ladder-item">
+          <div class="item-icon">🚪</div>
+          <div class="item-name">Hoja sola</div>
+          <div class="item-margin">Margen base</div>
+          <div class="margin-bar" style="width: 30%;"></div>
+        </div>
+        <div class="ladder-item">
+          <div class="item-icon">🔧</div>
+          <div class="item-name">Kit completo</div>
+          <div class="item-margin">Margen +</div>
+          <div class="margin-bar" style="width: 50%;"></div>
+        </div>
+        <div class="ladder-item">
+          <div class="item-icon">✨</div>
+          <div class="item-name">Pre-hung</div>
+          <div class="item-margin">Margen ++</div>
+          <div class="margin-bar" style="width: 70%;"></div>
+        </div>
+      </div>
+      
+      <div class="kitting-features">
+        <div class="kf-item">BOM estandarizado</div>
+        <div class="kf-item">AQL por lote</div>
+        <div class="kf-item">Etiqueta obra/lote</div>
+        <div class="kf-item">Tarifa/puerta transparente</div>
+        <div class="kf-item">Rechazo ↓, instalación ↑</div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Kitting</div>
+        <div class="term-box-content">
+          <strong>Kitting:</strong> Kit con marco, bisagras, chapa<br>
+          <strong>Pre-hung:</strong> Puerta precolgada lista para instalar<br>
+          <strong>BOM:</strong> Bill of Materials (lista de materiales)<br>
+          <strong>AQL:</strong> Acceptable Quality Level
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script>
     // Initialize
     let currentSlide = 1;
-    const totalSlides = 12; // Update based on actual number of slides
+    const totalSlides = 43; // Full presentation with all slides
     
     // Create navigation dots
     function initNavDots() {
       const navDotsContainer = document.getElementById('navDots');
       const titles = [
-        'Cover', 'Quién soy', 'Logros', 'Por qué hoy', 'TAM Total', 
-        'Tambor', 'Metodología', 'Clasificación', 'Contribución', 
-        'Canales', 'Footprint', 'Riesgo'
+        'Cover', 'Quién soy', 'Logros', 'Por qué hoy', 'TAM Total',
+        'Tambor', 'Metodología', 'Clasificación', 'Contribución', 'Canales',
+        'Footprint', 'Riesgo', 'Dream Outcome', 'Tesis', 'SLAs',
+        'Price Waterfall', 'Crédito', 'Plan 90d', 'Plan 12m', 'Kitting/Pre-hung',
+        'Portal B2B', 'PIM/DAM', 'EDI-lite', 'Control Tower', 'DoorNet OS',
+        'Scraper & Datos', 'Redes PRO', 'Institucional', 'Exclusividad', 'Conglomerado',
+        'Riesgo invertido', 'Uso anticipo', 'Gobernanza', 'KPIs/Alertas', 'Personas',
+        'Battlecards', 'Pricing tiers', 'Unit economics', 'Red logística', 'Roadmap',
+        'Legal', 'Next steps', 'Q&A'
       ];
       
       titles.forEach((title, index) => {
@@ -1577,8 +1947,7 @@
       
       slides[slideNumber - 1].scrollIntoView({ behavior: 'smooth' });
       
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[slideNumber - 1].classList.add('active');
+      updateNavDots();
       
       updateProgressBar();
     }
@@ -1624,23 +1993,76 @@
       toggleFullscreen();
     });
     
-    // Mouse wheel navigation
+    // Mouse wheel navigation (more responsive)
     let isScrolling = false;
     document.addEventListener('wheel', (e) => {
       if (isScrolling) return;
+      e.preventDefault();
       
       isScrolling = true;
       
       if (e.deltaY > 0) {
         goToSlide(currentSlide + 1);
-      } else {
+      } else if (e.deltaY < 0) {
         goToSlide(currentSlide - 1);
       }
       
       setTimeout(() => {
         isScrolling = false;
-      }, 800);
+      }, 600); // Reduced from 800ms for more responsive feel
+    }, { passive: false });
+    
+    // Touch gestures support
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+      touchStartY = e.changedTouches[0].screenY;
     });
+    
+    document.addEventListener('touchend', (e) => {
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const deltaY = touchStartY - touchEndY;
+      
+      if (Math.abs(deltaY) > 30) { // 30px threshold
+        if (deltaY > 0) {
+          // Swipe up = next slide
+          goToSlide(currentSlide + 1);
+        } else {
+          // Swipe down = previous slide
+          goToSlide(currentSlide - 1);
+        }
+      }
+    }
+    
+    // IntersectionObserver to track current slide
+    const slideObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          const slideNum = parseInt(entry.target.dataset.slide);
+          if (slideNum !== currentSlide) {
+            currentSlide = slideNum;
+            updateProgressBar();
+            updateNavDots();
+          }
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+    
+    // Update nav dots
+    function updateNavDots() {
+      const dots = document.querySelectorAll('.nav-dot');
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[currentSlide - 1]) {
+        dots[currentSlide - 1].classList.add('active');
+      }
+    }
     
     // Initialize charts
     function initCharts() {
@@ -1785,9 +2207,27 @@
       updateProgressBar();
       initCharts();
       
+      // Observe all slides
+      document.querySelectorAll('.slide').forEach(slide => {
+        slideObserver.observe(slide);
+      });
+      
       // Add fullscreen hint (shows briefly then fades)
       showFullscreenHint();
+      
+      // Update slide numbers dynamically
+      updateAllSlideNumbers();
     });
+    
+    // Update all slide numbers
+    function updateAllSlideNumbers() {
+      document.querySelectorAll('.slide').forEach((slide, index) => {
+        const slideNumber = slide.querySelector('.slide-number');
+        if (slideNumber && index > 0) { // Skip cover
+          slideNumber.textContent = `${String(index + 1).padStart(2, '0')}/${totalSlides}`;
+        }
+      });
+    }
     
     // Show fullscreen hint
     function showFullscreenHint() {
