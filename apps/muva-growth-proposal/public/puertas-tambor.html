@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Puertas Tambor México - Análisis de Mercado B2B">
+  <title>Puertas Tambor MX | TAM USD 2.2B | GMuva B2B</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/countup.js@2.6.2/dist/countUp.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Color System */
+      --white: #FFFFFF;
+      --black: #000000;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+      
+      /* Brand Colors */
+      --primary: #2563EB;
+      --primary-dark: #1E40AF;
+      --primary-light: #60A5FA;
+      --primary-lighter: #DBEAFE;
+      --primary-lightest: #EFF6FF;
+      
+      /* Semantic Colors */
+      --danger: #DC2626;
+      --danger-light: #FEE2E2;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --info: #0EA5E9;
+      --info-light: #E0F2FE;
+      
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-danger: linear-gradient(135deg, #F43F5E 0%, #DC2626 100%);
+      --gradient-success: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      --gradient-dark: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+      --gradient-premium: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%);
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      
+      /* Transitions */
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* Base */
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      font-size: 16px;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Slide */
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      scroll-snap-align: start;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Navigation */
+    .nav-dots {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gray-300);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .nav-dot:hover {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .nav-dot.active {
+      background: var(--primary);
+      transform: scale(1.3);
+    }
+
+    .nav-dot::after {
+      content: attr(data-title);
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--gray-900);
+      color: var(--white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .nav-dot:hover::after {
+      opacity: 1;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gray-200);
+      z-index: 1001;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-primary);
+      width: 0;
+      transition: width 0.3s var(--ease-out-expo);
+    }
+
+    /* Slide Counter */
+    .slide-number {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    /* Slide 1: Cover */
+    .slide-cover {
+      background: radial-gradient(ellipse at top, #1a1a2e 0%, #0f0f1e 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-cover::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -100%;
+      left: -100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      animation: drift 20s linear infinite;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(60px, 60px); }
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .cover-title {
+      font-size: 5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+    }
+
+    .cover-subtitle {
+      font-size: 2rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+    }
+
+    .cover-meta {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      font-size: 1.125rem;
+      opacity: 0.8;
+    }
+
+    /* Slide 2: TAM Total */
+    .slide-tam {
+      background: var(--white);
+      color: var(--gray-900);
+    }
+
+    .tam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .tam-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .tam-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+
+    .tam-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .tam-card {
+      background: var(--gray-50);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .tam-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary);
+    }
+
+    .tam-value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .tam-metric-label {
+      font-size: 1rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+
+    .tam-bullets {
+      list-style: none;
+    }
+
+    .tam-bullets li {
+      padding: 0.5rem 0;
+      color: var(--gray-700);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .tam-bullets li::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    /* Term Box */
+    .term-box {
+      background: var(--primary-lightest);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+
+    .term-box-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .term-box-content {
+      color: var(--gray-700);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .term-box-content strong {
+      color: var(--gray-900);
+      font-weight: 600;
+    }
+
+    /* Slide 3: Tambor Focus */
+    .slide-tambor {
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+      color: var(--gray-900);
+    }
+
+    .research-badge {
+      display: inline-block;
+      background: var(--info-light);
+      color: var(--info);
+      padding: 0.5rem 1.5rem;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .tambor-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+    }
+
+    .tambor-title strong {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-underline-offset: 8px;
+      text-decoration-color: var(--primary-light);
+    }
+
+    .tambor-data {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .data-block {
+      text-align: center;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .data-block:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .data-label {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .data-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .data-range {
+      font-size: 1rem;
+      color: var(--gray-600);
+    }
+
+    .cross-check {
+      background: var(--warning-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid var(--warning);
+      margin-top: 2rem;
+    }
+
+    .cross-check-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .cross-check-content {
+      color: var(--gray-700);
+      font-size: 1rem;
+    }
+
+    /* Slide 4: Methodology */
+    .slide-method {
+      background: var(--gray-900);
+      color: var(--white);
+    }
+
+    .method-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .method-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .method-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .method-type {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .method-audited { color: var(--success-light); }
+    .method-derived { color: var(--info-light); }
+    .method-assumption { color: var(--warning-light); }
+
+    .method-items {
+      list-style: none;
+    }
+
+    .method-items li {
+      padding: 0.5rem 0;
+      color: var(--gray-300);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .method-items li::before {
+      content: '→';
+      color: var(--primary-light);
+    }
+
+    /* Slide 5: Classification A-E Table */
+    .slide-classification {
+      background: var(--white);
+      color: var(--gray-900);
+    }
+
+    .class-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .class-table {
+      width: 100%;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 2rem;
+    }
+
+    .class-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .class-table th {
+      background: var(--gradient-primary);
+      color: var(--white);
+      padding: 1.25rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .class-table td {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 1rem;
+    }
+
+    .class-table tr:hover {
+      background: var(--gray-50);
+    }
+
+    .class-label {
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .class-A { color: #8B5CF6; }
+    .class-B { color: #3B82F6; }
+    .class-C { color: #10B981; }
+    .class-D { color: #F59E0B; }
+    .class-E { color: #EF4444; }
+
+    .class-summary {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .summary-stat {
+      text-align: center;
+    }
+
+    .summary-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .summary-label {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Slide 6: Classification Bars */
+    .slide-contribution {
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+      color: var(--gray-900);
+    }
+
+    .contribution-chart {
+      height: 400px;
+      margin-bottom: 3rem;
+    }
+
+    .contribution-insight {
+      background: var(--primary-lightest);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .contribution-insight h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+
+    .contribution-insight p {
+      font-size: 1.125rem;
+      color: var(--gray-700);
+    }
+
+    /* Slide 7: Channels */
+    .slide-channels {
+      background: var(--white);
+      color: var(--gray-900);
+    }
+
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .channel-card {
+      background: var(--gray-50);
+      padding: 2rem;
+      border-radius: 16px;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .channel-card:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .channel-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .channel-percentage {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .channel-range {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      font-style: italic;
+    }
+
+    /* Slide 8: Footprint */
+    .slide-footprint {
+      background: linear-gradient(135deg, var(--primary-lightest) 0%, var(--white) 100%);
+      color: var(--gray-900);
+    }
+
+    .footprint-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footprint-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footprint-logo {
+      width: 80px;
+      height: 80px;
+      background: var(--white);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .footprint-data h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+    }
+
+    .footprint-data p {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .footprint-data small {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+
+    /* Slide 9: Risk */
+    .slide-risk {
+      background: var(--gray-900);
+      color: var(--white);
+    }
+
+    .risk-chart {
+      height: 300px;
+      margin-bottom: 3rem;
+    }
+
+    .risk-insight {
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid var(--danger);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .risk-insight h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--danger-light);
+      margin-bottom: 1rem;
+    }
+
+    .risk-insight p {
+      font-size: 1.125rem;
+      color: var(--gray-300);
+    }
+
+    /* Citation */
+    .citation {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      font-style: italic;
+    }
+
+    .citation a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+
+    .citation a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .cover-title {
+        font-size: 3rem;
+      }
+
+      .cover-subtitle {
+        font-size: 1.5rem;
+      }
+
+      .tam-metrics,
+      .tambor-data,
+      .method-grid,
+      .channels-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-dots {
+        display: none;
+      }
+
+      .class-table {
+        overflow-x: auto;
+      }
+
+      .class-table table {
+        min-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- Slide 1: Cover -->
+  <section class="slide slide-cover" data-slide="1">
+    <div class="container">
+      <div class="cover-content">
+        <h1 class="cover-title">ALEAR</h1>
+        <p class="cover-subtitle">Puertas Tambor México</p>
+        <div class="cover-meta">
+          <span>TAM USD 2.2B</span>
+          <span>•</span>
+          <span>B2B Strategy</span>
+          <span>•</span>
+          <span>2025</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">01/15</div>
+  </section>
+
+  <!-- Slide 2: TAM Total Market -->
+  <section class="slide slide-tam" data-slide="2">
+    <div class="container">
+      <div class="tam-header">
+        <span class="tam-label">MERCADO TOTAL</span>
+        <span class="slide-number">02/15</span>
+      </div>
+      
+      <h2 class="tam-title">México: mercado de puertas 2024</h2>
+      
+      <div class="tam-metrics">
+        <div class="tam-card">
+          <div class="tam-value" id="tamValue">$2.2B</div>
+          <div class="tam-metric-label">Valor USD (2024)</div>
+          <ul class="tam-bullets">
+            <li>Incluye todas las categorías</li>
+            <li>Interior + Exterior</li>
+            <li>Todos los materiales</li>
+          </ul>
+        </div>
+        
+        <div class="tam-card">
+          <div class="tam-value">5.65%</div>
+          <div class="tam-metric-label">CAGR (2025-2033)</div>
+          <ul class="tam-bullets">
+            <li>Urbanización acelerada</li>
+            <li>Remodelación activa</li>
+            <li>Sector PRO en crecimiento</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — TAM</div>
+        <div class="term-box-content">
+          <strong>Qué es:</strong> Total Addressable Market (valor total anual).<br>
+          <strong>Por qué importa:</strong> Define el techo y el ritmo (CAGR).
+        </div>
+      </div>
+      
+      <div class="citation">
+        Fuente: <a href="https://www.imarcgroup.com/mexico-doors-market" target="_blank">IMARC Group 2024</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3: Tambor Focus -->
+  <section class="slide slide-tambor" data-slide="3">
+    <div class="container">
+      <div class="research-badge">
+        "Nuestro equipo se aventó semanas de investigación para aterrizar su categoría"
+      </div>
+      
+      <h2 class="tambor-title">Puertas de <strong>tambor</strong> (interior): MX</h2>
+      
+      <div class="tambor-data">
+        <div class="data-block">
+          <div class="data-label">Volumen Anual</div>
+          <div class="data-value">9.4M</div>
+          <div class="data-range">6.0-14.6M uds/año</div>
+        </div>
+        
+        <div class="data-block">
+          <div class="data-label">Motor Principal</div>
+          <div class="data-value">Reposición</div>
+          <div class="data-range">Vida útil 20-30 años</div>
+        </div>
+        
+        <div class="data-block">
+          <div class="data-label">Nueva Vivienda</div>
+          <div class="data-value">128K</div>
+          <div class="data-range">RUV 2024</div>
+        </div>
+      </div>
+      
+      <div class="cross-check">
+        <div class="cross-check-title">✓ Cross-check con operación</div>
+        <div class="cross-check-content">
+          <strong>40k/mes = 4%</strong> ⇒ mercado implícito ~12M (dentro del rango alto)
+        </div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Reposición / Vida útil</div>
+        <div class="term-box-content">
+          <strong>Vida útil</strong> (interior hollow-core): 20-30 años.<br>
+          <strong>Reposición:</strong> 3-5% de la base instalada/año.<br>
+          <strong>Fuente:</strong> InterNACHI (tablas).
+        </div>
+      </div>
+      
+      <div class="citation">
+        Fuentes: <a href="https://www.nachi.org/life-expectancy.htm" target="_blank">InterNACHI</a>, 
+        <a href="https://www.eleconomista.com.mx" target="_blank">El Economista</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: Methodology -->
+  <section class="slide slide-method" data-slide="4">
+    <div class="container">
+      <h2 class="method-title">Metodología — v1.0 (trazable)</h2>
+      
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-type method-audited">AUDITED</div>
+          <ul class="method-items">
+            <li>IMARC (TAM USD 2.2B)</li>
+            <li>INEGI (stock vivienda)</li>
+            <li>RUV (128,147 nuevas)</li>
+            <li>InterNACHI (vida útil)</li>
+          </ul>
+        </div>
+        
+        <div class="method-card">
+          <div class="method-type method-derived">DERIVED</div>
+          <ul class="method-items">
+            <li>Recambio 3-5%/año</li>
+            <li>6-8 puertas/vivienda</li>
+            <li>70-85% tambor</li>
+            <li>Fórmulas directas</li>
+          </ul>
+        </div>
+        
+        <div class="method-card">
+          <div class="method-type method-assumption">ASSUMPTION</div>
+          <ul class="method-items">
+            <li>Split por canal</li>
+            <li>Segmentación A-E</li>
+            <li>No-residencial 15%</li>
+            <li>Rangos low/mid/high</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="term-box" style="background: rgba(255,255,255,0.1); border-color: var(--primary-light);">
+        <div class="term-box-title" style="color: var(--primary-light);">TERM BOX — AUD/DER/ASS</div>
+        <div class="term-box-content" style="color: var(--gray-300);">
+          <strong>AUDITED:</strong> fuente primaria (IMARC, RUV, INEGI).<br>
+          <strong>DERIVED:</strong> de esas bases (3-5% reposición; 6-8 puertas/vivienda).<br>
+          <strong>ASSUMPTION:</strong> canal y no-res (recalibramos v1.1).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Classification Table -->
+  <section class="slide slide-classification" data-slide="5">
+    <div class="container">
+      <h2 class="class-title">Vivienda A-E y uso de interiores (v1.0)</h2>
+      
+      <div class="class-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Clase</th>
+              <th>% Stock</th>
+              <th>Puertas/Viv</th>
+              <th>% Tambor</th>
+              <th>Contribución</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="class-label class-A">A (Plus/Lujo)</td>
+              <td>3%</td>
+              <td>10-14 (mid: 12)</td>
+              <td>30-45% (mid: 37.5%)</td>
+              <td>~2.3%</td>
+            </tr>
+            <tr>
+              <td class="class-label class-B">B (Alto)</td>
+              <td>12%</td>
+              <td>9-12 (mid: 10)</td>
+              <td>50-65% (mid: 57.5%)</td>
+              <td>~11.9%</td>
+            </tr>
+            <tr>
+              <td class="class-label class-C">C (Medio)</td>
+              <td>35%</td>
+              <td>7-9 (mid: 8)</td>
+              <td>70-85% (mid: 77.5%)</td>
+              <td>~37.5%</td>
+            </tr>
+            <tr>
+              <td class="class-label class-D">D (Popular)</td>
+              <td>30%</td>
+              <td>6-7 (mid: 6.5)</td>
+              <td>85-95% (mid: 90%)</td>
+              <td>~30.3%</td>
+            </tr>
+            <tr>
+              <td class="class-label class-E">E (Social)</td>
+              <td>20%</td>
+              <td>5-6 (mid: 5.5)</td>
+              <td>90-98% (mid: 94%)</td>
+              <td>~17.9%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="class-summary">
+        <div class="summary-stat">
+          <div class="summary-value">7.4</div>
+          <div class="summary-label">Puertas/Viv (ponderado)</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-value">81%</div>
+          <div class="summary-label">Tambor (ponderado)</div>
+        </div>
+        <div class="summary-stat">
+          <div class="summary-value">68%</div>
+          <div class="summary-label">C+D del total</div>
+        </div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — A-E v1.0</div>
+        <div class="term-box-content">
+          <strong>Qué es:</strong> Tipología Plus/Alto/Medio/Popular/Social.<br>
+          <strong>Por qué importa:</strong> Ubica dónde está el volumen.<br>
+          <strong>Estatus:</strong> ASSUMPTION con rationale (se valida en v1.1).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Contribution Bars -->
+  <section class="slide slide-contribution" data-slide="6">
+    <div class="container">
+      <h2 class="class-title">¿Quién aporta más al total tambor?</h2>
+      
+      <div class="contribution-chart">
+        <canvas id="contributionChart"></canvas>
+      </div>
+      
+      <div class="contribution-insight">
+        <h3>C + D = 67.8% del volumen</h3>
+        <p>Es donde programas PRO, pre-hung y tier por tráiler pagan más.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Channels -->
+  <section class="slide slide-channels" data-slide="7">
+    <div class="container">
+      <h2 class="class-title">Split por canal (mid, rangos)</h2>
+      
+      <div class="channels-grid">
+        <div class="channel-card">
+          <div class="channel-name">Ferretería/Redes</div>
+          <div class="channel-percentage">42%</div>
+          <div class="channel-range">(38-45%)</div>
+        </div>
+        
+        <div class="channel-card">
+          <div class="channel-name">Constructoras</div>
+          <div class="channel-percentage">38%</div>
+          <div class="channel-range">(35-40%)</div>
+        </div>
+        
+        <div class="channel-card">
+          <div class="channel-name">Retail moderno</div>
+          <div class="channel-percentage">12%</div>
+          <div class="channel-range">(10-15%)</div>
+        </div>
+        
+        <div class="channel-card">
+          <div class="channel-name">Institucional</div>
+          <div class="channel-percentage">8%</div>
+          <div class="channel-range">(5-10%)</div>
+        </div>
+      </div>
+      
+      <div class="term-box">
+        <div class="term-box-title">TERM BOX — Redes PRO / Institucional</div>
+        <div class="term-box-content">
+          <strong>Red PRO:</strong> cadenas con foco profesional (compras recurrentes, crédito, MDF).<br>
+          <strong>Institucional:</strong> Compras MX (sustituye CompraNet) y subastas; entrar por etapas.
+        </div>
+      </div>
+      
+      <div class="citation">
+        Fuentes: <a href="https://www.construrama.com" target="_blank">Construrama</a>, 
+        <a href="https://ir.homedepot.com" target="_blank">Home Depot IR</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: Footprint -->
+  <section class="slide slide-footprint" data-slide="8">
+    <div class="container">
+      <h2 class="class-title">Actores que dan escala</h2>
+      
+      <div class="footprint-grid">
+        <div class="footprint-item">
+          <div class="footprint-logo">HD</div>
+          <div class="footprint-data">
+            <h3>Home Depot México</h3>
+            <p>140</p>
+            <small>tiendas Q1-2025</small>
+          </div>
+        </div>
+        
+        <div class="footprint-item">
+          <div class="footprint-logo">C</div>
+          <div class="footprint-data">
+            <h3>Construrama</h3>
+            <p>>1,900</p>
+            <small>puntos de venta</small>
+          </div>
+        </div>
+        
+        <div class="footprint-item">
+          <div class="footprint-logo">S</div>
+          <div class="footprint-data">
+            <h3>Sodimac</h3>
+            <p>19</p>
+            <small>meta tiendas 2025</small>
+          </div>
+        </div>
+        
+        <div class="footprint-item">
+          <div class="footprint-logo">HD</div>
+          <div class="footprint-data">
+            <h3>Plan HD 2030</h3>
+            <p>$172M</p>
+            <small>inversión/expansión</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="citation">
+        Fuentes: <a href="https://ir.homedepot.com" target="_blank">Home Depot IR</a>, 
+        <a href="https://www.reuters.com" target="_blank">Reuters</a>, 
+        <a href="https://www.construrama.com" target="_blank">Construrama</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Risk Concentration -->
+  <section class="slide slide-risk" data-slide="9">
+    <div class="container">
+      <h2 class="method-title">Por qué diversificar No-Retail</h2>
+      
+      <div class="risk-chart">
+        <canvas id="riskChart"></canvas>
+      </div>
+      
+      <div class="risk-insight">
+        <h3>Benchmark Global: Masonite</h3>
+        <p>HD ~22% (2022) • Top-10 clientes ≈ 50% • Revisión de línea: precio/rotación</p>
+      </div>
+      
+      <div class="term-box" style="background: rgba(255,255,255,0.1); border-color: var(--danger);">
+        <div class="term-box-title" style="color: var(--danger-light);">So-what</div>
+        <div class="term-box-content" style="color: var(--gray-300);">
+          Balancear mix protege margen y servicio. Diversificar es estratégico.
+        </div>
+      </div>
+      
+      <div class="citation">
+        Fuentes: <a href="https://www.sec.gov" target="_blank">Masonite 10-K</a>, 
+        <a href="https://content.edgar-online.com" target="_blank">EDGAR Online</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional slides would continue here... -->
+
+  <script>
+    // Initialize
+    let currentSlide = 1;
+    const totalSlides = 9; // Update based on actual number of slides
+    
+    // Create navigation dots
+    function initNavDots() {
+      const navDotsContainer = document.getElementById('navDots');
+      const titles = [
+        'Cover', 'TAM Total', 'Tambor', 'Metodología', 'Clasificación',
+        'Contribución', 'Canales', 'Footprint', 'Riesgo'
+      ];
+      
+      titles.forEach((title, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot';
+        dot.setAttribute('data-title', title);
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index + 1));
+        navDotsContainer.appendChild(dot);
+      });
+    }
+    
+    // Navigation
+    function goToSlide(slideNumber) {
+      if (slideNumber < 1 || slideNumber > totalSlides) return;
+      
+      currentSlide = slideNumber;
+      
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.nav-dot');
+      
+      slides[slideNumber - 1].scrollIntoView({ behavior: 'smooth' });
+      
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[slideNumber - 1].classList.add('active');
+      
+      updateProgressBar();
+    }
+    
+    // Update progress bar
+    function updateProgressBar() {
+      const progress = (currentSlide / totalSlides) * 100;
+      document.getElementById('progressFill').style.width = `${progress}%`;
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        goToSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft') {
+        goToSlide(currentSlide - 1);
+      }
+    });
+    
+    // Mouse wheel navigation
+    let isScrolling = false;
+    document.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+      
+      isScrolling = true;
+      
+      if (e.deltaY > 0) {
+        goToSlide(currentSlide + 1);
+      } else {
+        goToSlide(currentSlide - 1);
+      }
+      
+      setTimeout(() => {
+        isScrolling = false;
+      }, 800);
+    });
+    
+    // Initialize charts
+    function initCharts() {
+      // TAM Value Counter
+      const tamValue = document.getElementById('tamValue');
+      if (tamValue) {
+        const countUp = new CountUp('tamValue', 2.2, {
+          duration: 2,
+          prefix: '$',
+          suffix: 'B',
+          decimalPlaces: 1
+        });
+        
+        // Start animation when slide is visible
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              countUp.start();
+            }
+          });
+        });
+        
+        observer.observe(tamValue.closest('.slide'));
+      }
+      
+      // Contribution Chart
+      const contributionCanvas = document.getElementById('contributionChart');
+      if (contributionCanvas) {
+        const ctx = contributionCanvas.getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['C (Medio)', 'D (Popular)', 'E (Social)', 'B (Alto)', 'A (Plus)'],
+            datasets: [{
+              label: 'Contribución al total tambor',
+              data: [37.5, 30.3, 17.9, 11.9, 2.3],
+              backgroundColor: [
+                'rgba(16, 185, 129, 0.8)',
+                'rgba(245, 158, 11, 0.8)',
+                'rgba(239, 68, 68, 0.8)',
+                'rgba(59, 130, 246, 0.8)',
+                'rgba(139, 92, 246, 0.8)'
+              ],
+              borderColor: [
+                'rgba(16, 185, 129, 1)',
+                'rgba(245, 158, 11, 1)',
+                'rgba(239, 68, 68, 1)',
+                'rgba(59, 130, 246, 1)',
+                'rgba(139, 92, 246, 1)'
+              ],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.parsed.y + '%';
+                  }
+                }
+              },
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                formatter: (value) => value + '%',
+                font: {
+                  weight: 'bold',
+                  size: 14
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 40,
+                ticks: {
+                  callback: function(value) {
+                    return value + '%';
+                  }
+                }
+              }
+            }
+          },
+          plugins: [ChartDataLabels]
+        });
+      }
+      
+      // Risk Chart
+      const riskCanvas = document.getElementById('riskChart');
+      if (riskCanvas) {
+        const ctx = riskCanvas.getContext('2d');
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Home Depot', 'Top 10 (otros)', 'Resto'],
+            datasets: [{
+              data: [22, 28, 50],
+              backgroundColor: [
+                'rgba(239, 68, 68, 0.8)',
+                'rgba(245, 158, 11, 0.8)',
+                'rgba(96, 165, 250, 0.8)'
+              ],
+              borderColor: 'rgba(255, 255, 255, 1)',
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: 'white',
+                  font: {
+                    size: 14
+                  }
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ': ' + context.parsed + '%';
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+    
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavDots();
+      updateProgressBar();
+      initCharts();
+    });
+  </script>
+</body>
+</html>
