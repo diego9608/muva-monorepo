@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GMuva B2B - Motor de Crecimiento | La Verdad del CAGR">
+  <title>GMuva B2B | Transformación Digital 2025</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+  <script src="https://cdn.jsdelivr.net/npm/countup.js@2.6.2/dist/countUp.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Color System */
+      --white: #FFFFFF;
+      --black: #000000;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+      
+      /* Brand Colors */
+      --primary: #2563EB;
+      --primary-dark: #1E40AF;
+      --primary-light: #60A5FA;
+      --primary-lighter: #DBEAFE;
+      --primary-lightest: #EFF6FF;
+      
+      /* Semantic Colors */
+      --danger: #DC2626;
+      --danger-light: #FEE2E2;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --info: #0EA5E9;
+      --info-light: #E0F2FE;
+      
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-danger: linear-gradient(135deg, #F43F5E 0%, #DC2626 100%);
+      --gradient-success: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      --gradient-dark: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+      --gradient-premium: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6347 100%);
+      --gradient-mesh: radial-gradient(at 40% 20%, hsla(231, 89%, 62%, 0.3) 0px, transparent 50%),
+                       radial-gradient(at 80% 0%, hsla(242, 75%, 60%, 0.3) 0px, transparent 50%),
+                       radial-gradient(at 0% 50%, hsla(343, 84%, 58%, 0.3) 0px, transparent 50%);
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.3);
+      
+      /* Transitions */
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* Base */
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      font-size: 16px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hide Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    /* Slides */
+    .slide {
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+    }
+
+    .slide-content {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Typography */
+    .display-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      width: 0%;
+      transition: width 0.5s var(--ease-out-expo);
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Navigation Dots */
+    .nav-dots {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gray-300);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-spring);
+      position: relative;
+      border: 2px solid transparent;
+    }
+
+    .nav-dot.active {
+      background: var(--primary);
+      transform: scale(1.5);
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.1);
+    }
+
+    .nav-dot::before {
+      content: attr(data-title);
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--gray-900);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-dot:hover::before {
+      opacity: 1;
+    }
+
+    /* Fullscreen Button */
+    .fullscreen-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow-xl);
+      transition: all 0.3s var(--ease-spring);
+      z-index: 999;
+      border: none;
+    }
+
+    .fullscreen-btn:hover {
+      transform: scale(1.1) rotate(180deg);
+      box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Slide S1: La verdad incómoda del CAGR */
+    .slide-s1 {
+      background: linear-gradient(135deg, var(--black) 0%, var(--gray-900) 100%);
+      color: var(--white);
+    }
+
+    .slide-s1::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-mesh);
+      opacity: 0.1;
+      animation: meshMove 20s ease infinite;
+    }
+
+    @keyframes meshMove {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-20px, -20px); }
+    }
+
+    .formula-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      margin: 2rem 0;
+      text-align: center;
+      color: var(--primary-light);
+      letter-spacing: 0.05em;
+    }
+
+    .bullets-container {
+      display: grid;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: slideInLeft 0.6s ease forwards;
+    }
+
+    .bullet-item:nth-child(1) { animation-delay: 0.1s; }
+    .bullet-item:nth-child(2) { animation-delay: 0.2s; }
+    .bullet-item:nth-child(3) { animation-delay: 0.3s; }
+    .bullet-item:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .bullet-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(10px);
+      border-left-color: var(--warning);
+    }
+
+    .bullet-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-danger);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .bullet-text {
+      flex: 1;
+    }
+
+    .bullet-text strong {
+      color: var(--warning);
+      font-weight: 700;
+    }
+
+    /* Slide S2: Crecimiento relativo = cuota de mercado */
+    .slide-s2 {
+      background: var(--white);
+      color: var(--gray-900);
+    }
+
+    .slide-s2::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--primary-lighter) 0%, transparent 60%);
+      opacity: 0.3;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    .math-visualization {
+      background: var(--gray-50);
+      border-radius: 24px;
+      padding: 3rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .math-formula {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+    }
+
+    .growth-comparison {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin: 2rem 0;
+    }
+
+    .growth-box {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+    }
+
+    .growth-box:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .growth-box.losing {
+      border: 2px solid var(--danger);
+    }
+
+    .growth-box.winning {
+      border: 2px solid var(--success);
+      background: var(--success-light);
+    }
+
+    .growth-value {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 1rem 0;
+    }
+
+    .vs-indicator {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gray-400);
+    }
+
+    /* Slide S3: Efectos compuestos */
+    .slide-s3 {
+      background: linear-gradient(135deg, var(--danger) 0%, var(--warning) 100%);
+      color: var(--white);
+    }
+
+    .compound-effects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .effect-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .effect-card::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      transition: all 0.5s ease;
+    }
+
+    .effect-card:hover::before {
+      top: -150%;
+      left: -150%;
+    }
+
+    .effect-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .effect-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .effect-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .effect-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--warning-light);
+      margin: 0.5rem 0;
+    }
+
+    .effect-description {
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    /* Slide S4: ¿Y si te quedas igual? */
+    .slide-s4 {
+      background: var(--gray-950);
+      color: var(--white);
+      position: relative;
+    }
+
+    .slide-s4::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 0, 0, 0.05) 35px, rgba(255, 0, 0, 0.05) 70px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255, 165, 0, 0.05) 35px, rgba(255, 165, 0, 0.05) 70px);
+      animation: patternMove 20s linear infinite;
+    }
+
+    @keyframes patternMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(70px, 70px); }
+    }
+    
+    /* Additional Slides Styles */
+    .slide-p11 {
+      background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+      color: var(--gray-900);
+    }
+    
+    .roadmap-timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    
+    .year-block {
+      flex: 1;
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--white);
+      border-radius: 12px;
+      margin: 0 0.5rem;
+      transition: all 0.3s var(--ease-out-expo);
+      position: relative;
+    }
+    
+    .year-block::after {
+      content: '→';
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+    
+    .year-block:last-child::after {
+      display: none;
+    }
+    
+    .year-2025 { height: 200px; }
+    .year-2026 { height: 250px; }
+    .year-2027 { height: 300px; }
+    .year-2028 { height: 350px; }
+    .year-2029 { height: 400px; background: var(--primary-lightest); border: 2px solid var(--primary); }
+    
+    .year-block h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .year-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .year-metrics .metric {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+    
+    .roadmap-kpis {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+    }
+    
+    .kpi-item {
+      text-align: center;
+    }
+    
+    .kpi-value {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .kpi-label {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .death-spiral {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 3rem 0;
+      position: relative;
+    }
+
+    .spiral-step {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--danger);
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .spiral-step:nth-child(1) { animation-delay: 0.1s; }
+    .spiral-step:nth-child(2) { animation-delay: 0.3s; }
+    .spiral-step:nth-child(3) { animation-delay: 0.5s; }
+    .spiral-step:nth-child(4) { animation-delay: 0.7s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .spiral-step:hover {
+      background: rgba(255, 0, 0, 0.1);
+      transform: translateX(10px);
+      border-left-width: 8px;
+    }
+
+    .spiral-arrow {
+      font-size: 2rem;
+      color: var(--danger);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .spiral-text {
+      flex: 1;
+      font-size: 1.25rem;
+    }
+
+    .spiral-text strong {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    /* Interactive Charts */
+    .chart-container {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+
+    .chart-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Animations */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .animate-in-delay-1 { animation-delay: 0.1s; }
+    .animate-in-delay-2 { animation-delay: 0.2s; }
+    .animate-in-delay-3 { animation-delay: 0.3s; }
+    .animate-in-delay-4 { animation-delay: 0.4s; }
+    .animate-in-delay-5 { animation-delay: 0.5s; }
+
+    /* Value Highlight */
+    .value-highlight {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--warning);
+      color: var(--white);
+      border-radius: 6px;
+      font-weight: 700;
+      animation: glow 2s ease infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.8); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide-content {
+        padding: 2rem 1rem;
+      }
+
+      .display-title {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .formula-display {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .math-formula {
+        font-size: 1.25rem;
+      }
+
+      .growth-comparison {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .compound-effects {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-dots {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- Fullscreen Button -->
+  <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
+
+  <!-- SLIDE S1: La verdad incómoda del CAGR -->
+  <section class="slide slide-s1" data-slide="1">
+    <div class="slide-content">
+      <h1 class="display-title animate-in">La verdad incómoda del CAGR</h1>
+      <p class="subtitle animate-in animate-in-delay-1">Crecer al ritmo del mercado = Muerte lenta</p>
+      
+      <div class="formula-display animate-in animate-in-delay-2">
+        Mercado México: USD $2.2B (2024) → CAGR 5.65% → USD $3.6B (2033)
+      </div>
+      
+      <div class="bullets-container">
+        <div class="bullet-item">
+          <div class="bullet-icon">📊</div>
+          <div class="bullet-text">
+            Mercado crece <strong>5.65%</strong> compuesto
+          </div>
+        </div>
+        
+        <div class="bullet-item">
+          <div class="bullet-icon">⚠️</div>
+          <div class="bullet-text">
+            Crecer igual = <strong>cero</strong> cuota ganada
+          </div>
+        </div>
+        
+        <div class="bullet-item">
+          <div class="bullet-icon">💰</div>
+          <div class="bullet-text">
+            El rival <strong>compra</strong> ventaja con diferencial
+          </div>
+        </div>
+        
+        <div class="bullet-item">
+          <div class="bullet-icon">📉</div>
+          <div class="bullet-text">
+            Costos bajan con <strong>experiencia</strong> acumulada
+          </div>
+        </div>
+      </div>
+
+      <div style="position: absolute; bottom: 2rem; right: 2rem; font-size: 0.75rem; opacity: 0.6;">
+        Fuente: IMARC Group 2024, BCG Experience Curve
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE S2: Crecimiento relativo = cuota de mercado -->
+  <section class="slide slide-s2" data-slide="2">
+    <div class="slide-content">
+      <h2 class="section-title animate-in">Crecimiento relativo = cuota de mercado</h2>
+      <p class="subtitle animate-in animate-in-delay-1">La fórmula que define ganadores y perdedores</p>
+      
+      <div class="math-visualization animate-in animate-in-delay-2">
+        <div class="math-formula">
+          S<sub>t</sub> = S<sub>0</sub> × ((1 + g<sub>empresa</sub>) / (1 + g<sub>mercado</sub>))<sup>t</sup>
+        </div>
+        
+        <div class="growth-comparison">
+          <div class="growth-box losing">
+            <div style="font-size: 1rem; color: var(--gray-600); margin-bottom: 0.5rem;">GMuva hoy</div>
+            <div class="growth-value" style="color: var(--danger);">5.65%</div>
+            <div style="font-size: 0.875rem; color: var(--gray-500);">Crecimiento anual</div>
+            <div style="margin-top: 1rem; font-size: 1.25rem; font-weight: 700; color: var(--danger);">
+              Share en 5 años: <span style="font-size: 1.5rem;">0%</span> ganancia
+            </div>
+          </div>
+          
+          <div class="vs-indicator">VS</div>
+          
+          <div class="growth-box winning">
+            <div style="font-size: 1rem; color: var(--gray-600); margin-bottom: 0.5rem;">Competidor B2B</div>
+            <div class="growth-value" style="color: var(--success);">12%</div>
+            <div style="font-size: 0.875rem; color: var(--gray-500);">Crecimiento anual</div>
+            <div style="margin-top: 1rem; font-size: 1.25rem; font-weight: 700; color: var(--success);">
+              Share en 5 años: <span style="font-size: 1.5rem;">+34%</span> ganancia
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+          <canvas id="marketShareChart" width="600" height="300"></canvas>
+        </div>
+      </div>
+
+      <div class="bullets-container">
+        <div class="bullet-item" style="background: var(--gray-50); border-left-color: var(--primary);">
+          <div class="bullet-icon" style="background: var(--gradient-primary);">📈</div>
+          <div class="bullet-text" style="color: var(--gray-900);">
+            Cuota futura = <strong style="color: var(--primary);">crecimiento relativo</strong>
+          </div>
+        </div>
+        
+        <div class="bullet-item" style="background: var(--gray-50); border-left-color: var(--warning);">
+          <div class="bullet-icon" style="background: var(--gradient-danger);">🔢</div>
+          <div class="bullet-text" style="color: var(--gray-900);">
+            5 años: +12% vs +5.65%
+          </div>
+        </div>
+        
+        <div class="bullet-item" style="background: var(--gray-50); border-left-color: var(--success);">
+          <div class="bullet-icon" style="background: var(--gradient-success);">🎯</div>
+          <div class="bullet-text" style="color: var(--gray-900);">
+            Resultado: <strong style="color: var(--success);">+34%</strong> más cuota
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE S3: Efectos compuestos que te rebasan -->
+  <section class="slide slide-s3" data-slide="3">
+    <div class="slide-content">
+      <h2 class="section-title animate-in" style="color: white;">Efectos compuestos que te rebasan</h2>
+      <p class="subtitle animate-in animate-in-delay-1" style="color: rgba(255,255,255,0.9);">
+        Cada punto de ventaja se multiplica exponencialmente
+      </p>
+      
+      <div class="compound-effects">
+        <div class="effect-card">
+          <div class="effect-icon">📊</div>
+          <div class="effect-title">Curva de Experiencia</div>
+          <div class="effect-value">-20-30%</div>
+          <div class="effect-description">
+            Reducción de costo por cada doble de producción acumulada
+          </div>
+        </div>
+        
+        <div class="effect-card">
+          <div class="effect-icon">📢</div>
+          <div class="effect-title">ESOV (Share of Voice)</div>
+          <div class="effect-value">Voz > Cuota</div>
+          <div class="effect-description">
+            Mayor inversión en marketing = Mayor crecimiento de share
+          </div>
+        </div>
+        
+        <div class="effect-card">
+          <div class="effect-icon">🏪</div>
+          <div class="effect-title">Cobertura Canal</div>
+          <div class="effect-value">+Canales</div>
+          <div class="effect-description">
+            Más puntos de venta, más POs, más volumen garantizado
+          </div>
+        </div>
+        
+        <div class="effect-card">
+          <div class="effect-icon">🔒</div>
+          <div class="effect-title">Switching Costs</div>
+          <div class="effect-value">EDI Lock-in</div>
+          <div class="effect-description">
+            Integraciones y exclusividades que aumentan barreras
+          </div>
+        </div>
+      </div>
+      
+      <div style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 2rem; margin-top: 3rem; backdrop-filter: blur(10px);">
+        <p style="font-size: 1.25rem; text-align: center; line-height: 1.6;">
+          <strong style="color: var(--warning-light); font-size: 1.5rem;">El que crece más rápido:</strong><br>
+          Abarata → Reinvierte → Captura más → Abarata más → <span class="value-highlight">DOMINA</span>
+        </p>
+      </div>
+
+      <div style="position: absolute; bottom: 2rem; right: 2rem; font-size: 0.75rem; opacity: 0.6;">
+        Fuentes: BCG Experience Curve, IPA/Binet-Field ESOV, Ehrenberg-Bass Institute
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE S4: ¿Y si te quedas igual? -->
+  <section class="slide slide-s4" data-slide="4">
+    <div class="slide-content">
+      <h2 class="section-title animate-in" style="color: white;">¿Y si te quedas igual?</h2>
+      <p class="subtitle animate-in animate-in-delay-1" style="color: var(--gray-400);">
+        La espiral descendente de la mediocridad
+      </p>
+      
+      <div class="death-spiral">
+        <div class="spiral-step">
+          <div class="spiral-arrow">↓</div>
+          <div class="spiral-text">
+            Te "congela" tu <strong>share</strong>
+          </div>
+        </div>
+        
+        <div class="spiral-step">
+          <div class="spiral-arrow">↓</div>
+          <div class="spiral-text">
+            Rival baja costo, <strong>reinvierte</strong>
+          </div>
+        </div>
+        
+        <div class="spiral-step">
+          <div class="spiral-arrow">↓</div>
+          <div class="spiral-text">
+            Mejor crédito, <strong>capex</strong>, <strong>MDF</strong>
+          </div>
+        </div>
+        
+        <div class="spiral-step">
+          <div class="spiral-arrow">⚠️</div>
+          <div class="spiral-text">
+            <strong>Precio</strong> o <strong>marca</strong>: te aprietan
+          </div>
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem;">
+        <div style="background: rgba(255,0,0,0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--danger); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem;">2025</div>
+          <div style="font-size: 1rem; color: var(--gray-400);">"Somos competitivos"</div>
+        </div>
+        
+        <div style="background: rgba(255,0,0,0.15); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--danger); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem;">2027</div>
+          <div style="font-size: 1rem; color: var(--gray-400);">"Bajamos márgenes"</div>
+        </div>
+        
+        <div style="background: rgba(255,0,0,0.2); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--danger); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem;">2029</div>
+          <div style="font-size: 1rem; color: var(--gray-400);">"No igualamos precios"</div>
+        </div>
+        
+        <div style="background: rgba(255,0,0,0.25); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--danger); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem;">2031</div>
+          <div style="font-size: 1rem; color: var(--gray-400);">"Player regional"</div>
+        </div>
+        
+        <div style="background: rgba(255,0,0,0.3); padding: 1.5rem; border-radius: 12px; border: 2px solid var(--danger); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--danger); margin-bottom: 0.5rem;">2033</div>
+          <div style="font-size: 1rem; color: var(--gray-300); font-weight: 700;">"Buscando comprador"</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 3rem; text-align: center;">
+        <p style="font-size: 1.5rem; color: var(--warning); font-weight: 700;">
+          Casos reales México:
+        </p>
+        <p style="font-size: 1.125rem; color: var(--gray-400); margin-top: 1rem;">
+          Blockbuster • Comercial Mexicana • Nextel • Martí • Viana
+        </p>
+        <p style="font-size: 1rem; color: var(--gray-500); margin-top: 0.5rem;">
+          Todos crecían al CAGR. Todos desaparecieron o fueron comprados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Hero (Gradient Premium) -->
+  <section class="slide slide-p5" data-slide="5">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3rem;">
+        <div class="hero-badge">SOLUCIÓN</div>
+        <div class="slide-number">05/30</div>
+      </div>
+      
+      <h1 class="hero-title">GMuva B2B</h1>
+      <h2 class="hero-subtitle">Motor de Crecimiento Exponencial</h2>
+      
+      <div class="hero-metrics">
+        <div class="metric-card">
+          <div class="metric-value">18%</div>
+          <div class="metric-label">CAGR Objetivo</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">3.2x</div>
+          <div class="metric-label">Ventaja vs Mercado</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">24</div>
+          <div class="metric-label">Meses ROI</div>
+        </div>
+      </div>
+      
+      <div class="hero-features">
+        <div class="feature-item">
+          <span class="feature-icon">🚀</span>
+          <span>Canal 100% Digital</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🎯</span>
+          <span>IA Predictiva</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">⚡</span>
+          <span>Fulfillment 48hrs</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🔒</span>
+          <span>Exclusividad 24 meses</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Context (White Clean) -->
+  <section class="slide slide-p6" data-slide="6">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">CONTEXTO MÉXICO 2025</span>
+        <span class="slide-number">06/30</span>
+      </div>
+      
+      <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 3rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        El Momento es Ahora
+      </h2>
+      
+      <div class="context-grid">
+        <div class="context-card">
+          <div class="context-icon">📈</div>
+          <h3>Mercado en Expansión</h3>
+          <ul class="context-list">
+            <li>5.65% CAGR sostenido</li>
+            <li>MXN $38.2B TAM 2025</li>
+            <li>Nearshoring boost +12%</li>
+          </ul>
+        </div>
+        
+        <div class="context-card">
+          <div class="context-icon">🏗️</div>
+          <h3>Construcción Activa</h3>
+          <ul class="context-list">
+            <li>2.4M viviendas nuevas/año</li>
+            <li>80K desarrollos comerciales</li>
+            <li>Inversión pública histórica</li>
+          </ul>
+        </div>
+        
+        <div class="context-card">
+          <div class="context-icon">💻</div>
+          <h3>Digitalización B2B</h3>
+          <ul class="context-list">
+            <li>87% empresas compran online</li>
+            <li>Ticket promedio +45% digital</li>
+            <li>Frecuencia 3.2x vs tradicional</li>
+          </ul>
+        </div>
+        
+        <div class="context-card">
+          <div class="context-icon">⚡</div>
+          <h3>Ventana Competitiva</h3>
+          <ul class="context-list">
+            <li>Solo 3 players digitales</li>
+            <li>Fragmentación 72%</li>
+            <li>First-mover advantage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: TAM Real (Dark Data) -->
+  <section class="slide slide-p7" data-slide="7">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+        <span class="data-label">TAM REAL B2B</span>
+        <span class="slide-number" style="color: var(--gray-400);">07/30</span>
+      </div>
+      
+      <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--white); margin-bottom: 3rem;">
+        MXN $8.4B Direccionable
+      </h2>
+      
+      <div class="tam-visualization">
+        <canvas id="tamChart" width="800" height="400"></canvas>
+      </div>
+      
+      <div class="tam-breakdown">
+        <div class="tam-segment">
+          <div class="tam-value">$14.5B</div>
+          <div class="tam-label">Constructoras</div>
+          <div class="tam-detail">38% del mercado</div>
+        </div>
+        <div class="tam-segment">
+          <div class="tam-value">$7.6B</div>
+          <div class="tam-label">Desarrolladoras</div>
+          <div class="tam-detail">20% del mercado</div>
+        </div>
+        <div class="tam-segment">
+          <div class="tam-value">$5.3B</div>
+          <div class="tam-label">Gobierno</div>
+          <div class="tam-detail">14% del mercado</div>
+        </div>
+        <div class="tam-segment">
+          <div class="tam-value">$3.8B</div>
+          <div class="tam-label">Retail Chains</div>
+          <div class="tam-detail">10% del mercado</div>
+        </div>
+      </div>
+      
+      <div class="tam-focus">
+        <p style="color: var(--primary-light); font-size: 1.125rem; margin-top: 2rem;">
+          Foco Inicial: <strong>Top 500 empresas</strong> = 22% del TAM
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: Canales (Split Screen) -->
+  <section class="slide slide-p8" data-slide="8">
+    <div class="split-container">
+      <div class="split-left">
+        <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem;">Omnicanal B2B</h2>
+        <p style="font-size: 1.25rem; color: var(--gray-600); margin-bottom: 3rem;">4 canales sincronizados</p>
+        
+        <div class="channel-stack">
+          <div class="channel-item active">
+            <div class="channel-number">01</div>
+            <div class="channel-content">
+              <h3>Portal B2B</h3>
+              <p>Self-service 24/7, catálogo completo, pricing dinámico</p>
+            </div>
+          </div>
+          
+          <div class="channel-item">
+            <div class="channel-number">02</div>
+            <div class="channel-content">
+              <h3>Account Executives</h3>
+              <p>Cuentas clave, negociación, desarrollo</p>
+            </div>
+          </div>
+          
+          <div class="channel-item">
+            <div class="channel-number">03</div>
+            <div class="channel-content">
+              <h3>Inside Sales</h3>
+              <p>SDRs + closers, funnel velocity</p>
+            </div>
+          </div>
+          
+          <div class="channel-item">
+            <div class="channel-number">04</div>
+            <div class="channel-content">
+              <h3>WhatsApp Business</h3>
+              <p>Soporte instant, reorders, tracking</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="split-right">
+        <div class="channel-metrics">
+          <h3 style="color: var(--white); margin-bottom: 2rem;">Proyección Canal</h3>
+          <canvas id="channelChart" width="400" height="300"></canvas>
+          
+          <div class="channel-stats">
+            <div class="stat-item">
+              <span class="stat-label">Conversión</span>
+              <span class="stat-value">12.3%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Ticket Promedio</span>
+              <span class="stat-value">$284K</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">LTV</span>
+              <span class="stat-value">$3.4M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Geografía (Map Visual) -->
+  <section class="slide slide-p9" data-slide="9">
+    <div class="container">
+      <div class="geo-header">
+        <span class="section-label">EXPANSIÓN GEOGRÁFICA</span>
+        <span class="slide-number">09/30</span>
+      </div>
+      
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem;">
+        Cobertura Nacional Progresiva
+      </h2>
+      
+      <div class="geo-phases">
+        <div class="phase-card phase-1">
+          <div class="phase-header">
+            <span class="phase-label">FASE 1</span>
+            <span class="phase-timeline">Q1-Q2 2025</span>
+          </div>
+          <h3>Centro + Bajío</h3>
+          <ul class="phase-cities">
+            <li>CDMX + EdoMex</li>
+            <li>Querétaro</li>
+            <li>Guadalajara</li>
+            <li>León</li>
+          </ul>
+          <div class="phase-metric">
+            <span class="metric-label">TAM</span>
+            <span class="metric-value">$4.2B</span>
+          </div>
+        </div>
+        
+        <div class="phase-card phase-2">
+          <div class="phase-header">
+            <span class="phase-label">FASE 2</span>
+            <span class="phase-timeline">Q3-Q4 2025</span>
+          </div>
+          <h3>Norte Industrial</h3>
+          <ul class="phase-cities">
+            <li>Monterrey</li>
+            <li>Tijuana</li>
+            <li>Ciudad Juárez</li>
+            <li>Saltillo</li>
+          </ul>
+          <div class="phase-metric">
+            <span class="metric-label">TAM</span>
+            <span class="metric-value">$2.8B</span>
+          </div>
+        </div>
+        
+        <div class="phase-card phase-3">
+          <div class="phase-header">
+            <span class="phase-label">FASE 3</span>
+            <span class="phase-timeline">2026</span>
+          </div>
+          <h3>Sureste + Pacífico</h3>
+          <ul class="phase-cities">
+            <li>Mérida</li>
+            <li>Cancún</li>
+            <li>Puebla</li>
+            <li>Mazatlán</li>
+          </ul>
+          <div class="phase-metric">
+            <span class="metric-label">TAM</span>
+            <span class="metric-value">$1.4B</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="geo-summary">
+        <div class="summary-item">
+          <span class="summary-icon">🏭</span>
+          <span class="summary-text">15 ciudades principales</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-icon">📦</span>
+          <span class="summary-text">6 micro-DCs estratégicos</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-icon">🚚</span>
+          <span class="summary-text">48hrs nationwide delivery</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Valor 1% (Impact Visual) -->
+  <section class="slide slide-p10" data-slide="10">
+    <div class="container">
+      <div class="impact-header">
+        <span class="impact-badge">IMPACTO FINANCIERO</span>
+        <span class="slide-number">10/30</span>
+      </div>
+      
+      <h2 class="impact-title">
+        El Poder del 1% de Market Share
+      </h2>
+      
+      <div class="impact-calculation">
+        <div class="calc-step">
+          <div class="calc-label">TAM B2B México</div>
+          <div class="calc-value">$38,200M</div>
+        </div>
+        <div class="calc-operator">×</div>
+        <div class="calc-step">
+          <div class="calc-label">Market Share</div>
+          <div class="calc-value">1%</div>
+        </div>
+        <div class="calc-operator">=</div>
+        <div class="calc-step highlight">
+          <div class="calc-label">Revenue Anual</div>
+          <div class="calc-value">$382M</div>
+        </div>
+      </div>
+      
+      <div class="impact-metrics">
+        <div class="impact-card">
+          <h3>Con Margen 15%</h3>
+          <div class="impact-value">$57.3M</div>
+          <div class="impact-label">EBITDA Anual</div>
+        </div>
+        
+        <div class="impact-card primary">
+          <h3>Valuación 8x EBITDA</h3>
+          <div class="impact-value">$458M</div>
+          <div class="impact-label">Valor Empresa</div>
+        </div>
+        
+        <div class="impact-card">
+          <h3>En 5 años al 18% CAGR</h3>
+          <div class="impact-value">$875M</div>
+          <div class="impact-label">Revenue Run Rate</div>
+        </div>
+      </div>
+      
+      <div class="impact-comparison">
+        <p style="font-size: 1.25rem; color: var(--gray-600); text-align: center; margin-top: 3rem;">
+          Comparable: <strong>Kavak B2B</strong> valorado en $1.2B USD con 2% market share
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: Metas (Waterfall) -->
+  <section class="slide slide-p11" data-slide="11">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">ROADMAP 5 AÑOS</span>
+        <span class="slide-number">11/30</span>
+      </div>
+      
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem;">
+        Crecimiento Escalonado y Sostenible
+      </h2>
+      
+      <div class="roadmap-timeline">
+        <div class="year-block year-2025">
+          <h3>2025</h3>
+          <div class="year-metrics">
+            <div class="metric">$84M Revenue</div>
+            <div class="metric">220 Clientes</div>
+            <div class="metric">4 Ciudades</div>
+          </div>
+        </div>
+        
+        <div class="year-block year-2026">
+          <h3>2026</h3>
+          <div class="year-metrics">
+            <div class="metric">$156M Revenue</div>
+            <div class="metric">450 Clientes</div>
+            <div class="metric">8 Ciudades</div>
+          </div>
+        </div>
+        
+        <div class="year-block year-2027">
+          <h3>2027</h3>
+          <div class="year-metrics">
+            <div class="metric">$289M Revenue</div>
+            <div class="metric">920 Clientes</div>
+            <div class="metric">12 Ciudades</div>
+          </div>
+        </div>
+        
+        <div class="year-block year-2028">
+          <h3>2028</h3>
+          <div class="year-metrics">
+            <div class="metric">$536M Revenue</div>
+            <div class="metric">1,850 Clientes</div>
+            <div class="metric">15 Ciudades</div>
+          </div>
+        </div>
+        
+        <div class="year-block year-2029">
+          <h3>2029</h3>
+          <div class="year-metrics">
+            <div class="metric">$875M Revenue</div>
+            <div class="metric">3,200 Clientes</div>
+            <div class="metric">Nacional</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="roadmap-kpis">
+        <div class="kpi-item">
+          <span class="kpi-value">18%</span>
+          <span class="kpi-label">CAGR</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-value">2.3%</span>
+          <span class="kpi-label">Market Share 2029</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-value">15%</span>
+          <span class="kpi-label">EBITDA Margin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slides 12-30 -->
+  <section class="slide slide-p12" data-slide="12">
+    <div class="container">
+      <h2>SKUs y Catálogo</h2>
+      <p>12,000+ SKUs digitalizados</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p13" data-slide="13">
+    <div class="container">
+      <h2>Pricing Dinámico</h2>
+      <p>IA-powered pricing optimization</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p14" data-slide="14">
+    <div class="container">
+      <h2>ASK Inicial</h2>
+      <p>MXN $50M inversión</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p15" data-slide="15">
+    <div class="container">
+      <h2>Motor de Crecimiento</h2>
+      <p>Flywheel B2B</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p16" data-slide="16">
+    <div class="container">
+      <h2>ROI Proyectado</h2>
+      <p>24 meses payback</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p17" data-slide="17">
+    <div class="container">
+      <h2>Alineación Estratégica</h2>
+      <p>Win-win ecosystem</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p18" data-slide="18">
+    <div class="container">
+      <h2>Gobernanza</h2>
+      <p>Steering Committee</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p19" data-slide="19">
+    <div class="container">
+      <h2>Exclusividad</h2>
+      <p>24 meses lock-in</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p20" data-slide="20">
+    <div class="container">
+      <h2>Garantía</h2>
+      <p>10,000 puertas PO</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p21" data-slide="21">
+    <div class="container">
+      <h2>Control de Riesgo</h2>
+      <p>Mitigación completa</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p22" data-slide="22">
+    <div class="container">
+      <h2>Afiliados</h2>
+      <p>Red de distribución</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p23" data-slide="23">
+    <div class="container">
+      <h2>Funnel IA</h2>
+      <p>Predictive scoring</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p24" data-slide="24">
+    <div class="container">
+      <h2>Portal B2B</h2>
+      <p>Self-service platform</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p25" data-slide="25">
+    <div class="container">
+      <h2>Equipo AE/SDR</h2>
+      <p>Sales force</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p26" data-slide="26">
+    <div class="container">
+      <h2>Reporting</h2>
+      <p>Real-time dashboards</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p27" data-slide="27">
+    <div class="container">
+      <h2>Micro-DC</h2>
+      <p>Fulfillment centers</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p28" data-slide="28">
+    <div class="container">
+      <h2>QA/OTIF</h2>
+      <p>98.5% on-time delivery</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p29" data-slide="29">
+    <div class="container">
+      <h2>Next Steps</h2>
+      <p>Immediate action items</p>
+    </div>
+  </section>
+
+  <section class="slide slide-p30" data-slide="30">
+    <div class="container">
+      <h2>Cierre</h2>
+      <p>¿Comenzamos?</p>
+    </div>
+  </section>
+
+  <script>
+    // Initialize
+    let currentSlide = 1;
+    const totalSlides = 30;
+    let isTransitioning = false;
+
+    // Create navigation dots
+    function initNavDots() {
+      const navDotsContainer = document.getElementById('navDots');
+      const titles = [
+        'CAGR Truth', 'Market Share', 'Compound Effects', 'Death Spiral',
+        'Hero', 'Context', 'TAM Real', 'Canales', 'Geografía', 'Valor 1%',
+        'Metas', 'SKUs', 'Precios', 'ASK', 'Motor', 'ROI', 'Alineación',
+        'Gobernanza', 'Exclusividad', 'Garantía', 'Riesgo', 'Afiliados',
+        'Funnel IA', 'Portal B2B', 'Equipo', 'Reporting', 'Micro-DC',
+        'QA/OTIF', 'Next Steps', 'Cierre'
+      ];
+
+      titles.forEach((title, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot';
+        dot.setAttribute('data-title', title);
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index + 1));
+        navDotsContainer.appendChild(dot);
+      });
+    }
+
+    // Navigation
+    function goToSlide(slideNumber) {
+      if (isTransitioning || slideNumber === currentSlide) return;
+      if (slideNumber < 1 || slideNumber > totalSlides) return;
+
+      isTransitioning = true;
+      
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.nav-dot');
+      
+      // Update active states
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      if (slides[slideNumber - 1]) {
+        slides[slideNumber - 1].scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      if (dots[slideNumber - 1]) {
+        dots[slideNumber - 1].classList.add('active');
+      }
+      
+      // Update progress bar
+      updateProgressBar(slideNumber);
+      
+      currentSlide = slideNumber;
+      
+      // Initialize slide-specific content
+      initializeSlideContent(slideNumber);
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 800);
+    }
+
+    function updateProgressBar(slideNumber) {
+      const progress = (slideNumber / totalSlides) * 100;
+      document.getElementById('progressBar').style.width = `${progress}%`;
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      switch(e.key) {
+        case 'ArrowRight':
+        case ' ':
+          e.preventDefault();
+          goToSlide(currentSlide + 1);
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          goToSlide(currentSlide - 1);
+          break;
+        case 'Home':
+          e.preventDefault();
+          goToSlide(1);
+          break;
+        case 'End':
+          e.preventDefault();
+          goToSlide(totalSlides);
+          break;
+        case 'f':
+        case 'F':
+          toggleFullscreen();
+          break;
+      }
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSlide(currentSlide + 1);
+        } else {
+          goToSlide(currentSlide - 1);
+        }
+      }
+    });
+
+    // Fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Initialize slide-specific content
+    function initializeSlideContent(slideNumber) {
+      switch(slideNumber) {
+        case 2:
+          drawMarketShareChart();
+          break;
+        // Add more slide-specific initializations
+      }
+    }
+
+    // Draw Market Share Evolution Chart
+    function drawMarketShareChart() {
+      const canvas = document.getElementById('marketShareChart');
+      if (!canvas || canvas.chartInstance) return;
+
+      const ctx = canvas.getContext('2d');
+      
+      canvas.chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Año 0', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
+          datasets: [
+            {
+              label: 'GMuva (5.65% CAGR)',
+              data: [100, 100, 100, 100, 100, 100],
+              borderColor: '#DC2626',
+              backgroundColor: 'rgba(220, 38, 38, 0.1)',
+              borderWidth: 3,
+              tension: 0.4,
+              pointRadius: 6,
+              pointHoverRadius: 8
+            },
+            {
+              label: 'Competidor B2B (12% CAGR)',
+              data: [100, 106.1, 112.5, 119.4, 126.6, 134.2],
+              borderColor: '#10B981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              borderWidth: 3,
+              tension: 0.4,
+              pointRadius: 6,
+              pointHoverRadius: 8
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Evolución de Cuota de Mercado Relativa',
+              font: {
+                size: 16,
+                weight: 'bold'
+              },
+              color: '#111827'
+            },
+            legend: {
+              display: true,
+              position: 'bottom'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 90,
+              max: 140,
+              title: {
+                display: true,
+                text: 'Cuota Relativa (%)',
+                font: {
+                  size: 14,
+                  weight: 'bold'
+                }
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Tiempo',
+                font: {
+                  size: 14,
+                  weight: 'bold'
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Animate numbers on scroll
+    function animateValue(element, start, end, duration) {
+      const startTime = performance.now();
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = start + (end - start) * progress;
+        
+        element.textContent = Math.floor(current).toLocaleString();
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      initNavDots();
+      updateProgressBar(1);
+      
+      // Observe all animatable elements
+      document.querySelectorAll('.animate-in').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Initialize first slide
+      initializeSlideContent(1);
+    });
+
+    // Scroll to update current slide
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const slides = document.querySelectorAll('.slide');
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        
+        slides.forEach((slide, index) => {
+          const slideTop = slide.offsetTop;
+          const slideBottom = slideTop + slide.offsetHeight;
+          
+          if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+            if (currentSlide !== index + 1) {
+              currentSlide = index + 1;
+              updateProgressBar(currentSlide);
+              
+              // Update nav dots
+              document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+              document.querySelectorAll('.nav-dot')[index]?.classList.add('active');
+            }
+          }
+        });
+      }, 100);
+    });
+  </script>
+</body>
+</html>
